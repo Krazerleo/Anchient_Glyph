@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,6 +10,10 @@ namespace AncientGlyph.EditorScripts.Editors
 {
     public class AssetLibrary : EditorWindow
     {
+        private const string UxmlPath = "Assets/Scripts/EditorScripts/Editors/AssetView/AssetLibrary/AssetLibrary.uxml";
+        private const string AssetListViewName = "Asset-List-View";
+        private const string AssetSearchFieldName = "Asset-Search-Field";
+
         private const string _floorPath = "Level/Prefab/Floors/";
         private const string _wallPath = "Level/Prefab/Walls";
         private const string _envPath = "Level/Prefab/Environment";
@@ -22,7 +27,9 @@ namespace AncientGlyph.EditorScripts.Editors
         private static TypeAsset selectedTypeAsset = TypeAsset.None;
         private static string selectedAsset = "";
 
+        private List<AssetInfo> _foundAssets = new List<AssetInfo>();
         private ListView _assetListView;
+        private ToolbarSearchField _assetSearchField;
 
         #region UnityMessages
 
@@ -39,23 +46,35 @@ namespace AncientGlyph.EditorScripts.Editors
             FindAssetsPath(_itemsAssetsPath, _itemPath);
             FindAssetsPath(_envsAssetsPath, _envPath);
 
-            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/EditorScripts/Editors/AssetView/AssetLibrary.uxml");
-            var tree = visualTree.CloneTree();
+            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath);
+            rootVisualElement.Add(visualTree.CloneTree());
 
-            _assetListView = rootVisualElement.Q("Asset-List-View-Container").Children().First() as ListView;
-
-            foreach (ListView xmlListView in tree.Children().ToList().Cast<ListView>())
-            {
-                xmlListView.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Examples/Editor/styles.uss"));
-                xmlListView.itemsSource = items;
-                xmlListView.makeItem = makeItem;
-                xmlListView.bindItem = bindItem;
-                root.schedule.Execute(() => { xmlListView.Refresh(); });
-                AddListView(xmlListView);
-            }
+            InitAssetListView();
         }
 
-        #endregion
+        #endregion UnityMessages
+
+        private void InitAssetListView()
+        {
+            _assetListView = rootVisualElement.Q<ListView>(AssetListViewName);
+            _assetSearchField = rootVisualElement.Q<ToolbarSearchField>(AssetSearchFieldName);
+
+            _assetListView.makeItem = MakeItemForAssetListView;
+            _assetListView.bindItem = BindItemForAssetListView;
+            _assetListView.selectionType = SelectionType.Single;
+        }
+
+        private VisualElement MakeItemForAssetListView()
+        {
+            return new AssetInfoVisualElement();
+        }
+
+        private void BindItemForAssetListView(VisualElement visualElement, int index)
+        {
+            var assetInfo = _foundAssets[index];
+            var assetVisualElement = visualElement as AssetInfoVisualElement;
+            assetVisualElement.BindToAssetInfoVisualElement(assetInfo.AssetName, assetInfo.AssetPreviewImage);
+        }
 
         private void FindAssetsPath(List<string> assetNames, string path)
         {
