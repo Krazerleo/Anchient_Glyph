@@ -1,0 +1,18 @@
+{
+    "name": "EditorScriptAssembly",
+    "rootNamespace": "AncientGlyph.EditorScripts",
+    "references": [
+        "GUID:136fecf16de443c41a825bd6f14d16a1"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

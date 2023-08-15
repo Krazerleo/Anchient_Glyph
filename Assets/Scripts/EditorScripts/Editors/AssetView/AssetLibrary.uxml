@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/EditorScripts/Editors/LevelEditor/Styles/typeButton.uss?fileID=7433441132597879392&amp;guid=f22027813054f2d49a378d5184dae289&amp;type=3#typeButton" />
+    <Style src="project://database/Assets/Scripts/EditorScripts/Editors/LevelEditor/Styles/container.uss?fileID=7433441132597879392&amp;guid=adcc2233aab736840840a1f306a1d0c0&amp;type=3#container" />
+    <ui:VisualElement name="Type-Buttons-Container" class="container" style="height: 5%;">
+        <ui:Button text="Tiles" display-tooltip-when-elided="true" name="Tiles-Button" class="typeButton" />
+        <ui:Button text="Walls" display-tooltip-when-elided="true" name="Walls-Button" class="typeButton" />
+        <ui:Button text="Objects" display-tooltip-when-elided="true" name="Environment-Button" class="typeButton" />
+        <ui:Button text="Items" display-tooltip-when-elided="true" name="Items-Button" class="typeButton" />
+    </ui:VisualElement>
+    <ui:VisualElement name="Prompt-Container" class="container" style="height: 10%;">
+        <uie:ToolbarSearchField focusable="true" style="flex-direction: row; align-self: center; justify-content: center; align-items: stretch; flex-shrink: 1; flex-grow: 0; margin-left: 10%; margin-right: 10%;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="Asset-List-View-Container" class="container" style="height: 85%;">
+        <ui:ListView focusable="true" name="Asset-List-View" />
+    </ui:VisualElement>
+</ui:UXML>

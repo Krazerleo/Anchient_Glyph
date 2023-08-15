@@ -1,0 +1,6 @@
+.container {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-direction: row;
+    background-color: rgb(172, 172, 172);
+}
