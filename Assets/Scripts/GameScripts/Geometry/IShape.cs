@@ -6,7 +6,7 @@ namespace AncientGlyph.GameScripts.Geometry
     /// <summary>
     /// 3D ceil geometry representation
     /// </summary>
-    public interface Shape
+    public interface IShape
     {
         public IEnumerable<Vector3Int> GetDefinedGeometry();
     }

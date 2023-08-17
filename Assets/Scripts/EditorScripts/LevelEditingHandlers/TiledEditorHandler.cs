@@ -1,5 +1,5 @@
 using AncientGlyph.GameScripts.Geometry;
-using AncientGlyph.GameScripts.LevelModel;
+using AncientGlyph.GameScripts.ModelElements;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -11,9 +11,9 @@ namespace AncientGlyph.EditorScripts.LevelEditingHandlers
         private Vector3 _secondPosition;
 
         private Vector3Int _tilesInSelectedRegion;
-        private Level _level;
+        private LevelModel _level;
 
-        public TileEditorHandler(Level level)
+        public TileEditorHandler(LevelModel level)
         {
             _level = level;
         }

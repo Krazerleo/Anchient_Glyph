@@ -1,10 +1,10 @@
-using AncientGlyph.GameScripts.LevelModel;
+using AncientGlyph.GameScripts.ModelElements;
 
 namespace AncientGlyph.EditorScripts.LevelEditingHandlers
 {
     public class LevelEditingByMouseHandlerCreator
     {
-        public static ILevelEditingByMouseHandler CreateLevelEditingHandler(TypeAsset typeAsset, Level level)
+        public static ILevelEditingByMouseHandler CreateLevelEditingHandler(TypeAsset typeAsset, LevelModel level)
         {
             return typeAsset switch
             {

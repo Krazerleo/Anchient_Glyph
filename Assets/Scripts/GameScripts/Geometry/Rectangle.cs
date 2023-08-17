@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AncientGlyph.GameScripts.Geometry
 {
-    public class Rectangle : Shape
+    public class Rectangle : IShape
     {
         public Vector3Int StartCorner { get; private set; }
         public Vector3Int EndCorner { get; private set; }
