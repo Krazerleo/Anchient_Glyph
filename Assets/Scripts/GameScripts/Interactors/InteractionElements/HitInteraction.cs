@@ -1,7 +1,7 @@
-using AncientGlyph.GameScripts.ModelElements.EntityModels.Interfaces;
-using AncientGlyph.GameScripts.ModelElements.Interaction.Interfaces;
+using AncientGlyph.GameScripts.Interactors.Interaction.Interfaces;
+using AncientGlyph.GameScripts.Interactors.Interfaces;
 
-namespace AncientGlyph.GameScripts.ModelElements.Interaction
+namespace AncientGlyph.GameScripts.Interactors.Interaction
 {
     public class HitInteraction : IInteraction
     {
@@ -12,7 +12,7 @@ namespace AncientGlyph.GameScripts.ModelElements.Interaction
             DamageAmount = damageAmount;
         }
 
-        public void Accept(IEntityModel entityModel)
+        public void InteractTo(IEntityModel entityModel)
         {
             entityModel.InteractWith(this);
         }

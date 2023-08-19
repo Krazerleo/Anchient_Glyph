@@ -1,36 +1,32 @@
 using System;
-using System.Linq;
+using System.IO;
+using System.Runtime.InteropServices;
 
 using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.ModelElements;
+using AncientGlyph.GameScripts.GameWorldModel;
 
 namespace AncientGlyph.GameScripts.Serialization.Interfaces
 {
-    public class CellModelSerializer : IModelDataSerializer<CellModel>
+    public class CellModelSerializer
     {
-        public CellModel DeserializeElement(Span<byte> bytes)
+        public CellModel DeserializeElement(BinaryReader reader)
         {
+            var bytes = reader.ReadBytes(CellModel.SizeOfElementBytes);
+            var hasFloor = BitConverter.ToUInt32(bytes[0..4]) == 1 ? true : false;
             var walls = new WallType[4];
 
-            int i = 1;
-            for (; i < bytes.Length; i += 4)
+            for (var i = 0; i < bytes.Length; i += CellModel.SizeOfCellElement)
             {
                 walls[i] = (WallType) BitConverter.ToUInt32(bytes[i..(i + 4)]);
             }
 
-            var hasFloor = BitConverter.ToUInt32(bytes[i..(i + 4)]) == 1 ? true : false;
-
             return new CellModel(walls, hasFloor);
         }
 
-        public Span<byte> SerializeElement(CellModel element)
+        public void SerializeElement(CellModel element, BinaryWriter writer)
         {
-            var uintArray = new uint[CellModel.SizeOfCellElement];
-
-            uintArray[4] = element.HasFloor ? 1u : 0u;
-            element.GetWalls.CopyTo(uintArray);
-
-            return uintArray.SelectMany(BitConverter.GetBytes).ToArray().AsSpan();
+            writer.Write(element.HasFloor ? 1 : 0);
+            writer.Write(MemoryMarshal.Cast<uint, byte>(element.GetWalls));
         }
     }
 }

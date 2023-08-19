@@ -1,8 +1,13 @@
 {
     "name": "GameScriptsAssembly",
     "rootNamespace": "AncientGlyph.GameScripts",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone64"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

@@ -1,0 +1,21 @@
+{
+    "name": "TestAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:136fecf16de443c41a825bd6f14d16a1",
+        "GUID:bf5c878e5f4973c4aae1fe2d1772397d"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

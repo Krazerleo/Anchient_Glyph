@@ -1,5 +1,5 @@
 using AncientGlyph.GameScripts.Geometry;
-using AncientGlyph.GameScripts.ModelElements;
+using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 using UnityEngine.Assertions;
 

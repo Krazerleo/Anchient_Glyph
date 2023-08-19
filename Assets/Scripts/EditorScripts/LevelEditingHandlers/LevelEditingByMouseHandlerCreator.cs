@@ -1,4 +1,4 @@
-using AncientGlyph.GameScripts.ModelElements;
+using AncientGlyph.GameScripts.GameWorldModel;
 
 namespace AncientGlyph.EditorScripts.LevelEditingHandlers
 {

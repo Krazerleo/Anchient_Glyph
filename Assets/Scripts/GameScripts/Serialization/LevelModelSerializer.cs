@@ -1,33 +1,35 @@
 using System;
-
+using System.IO;
 using AncientGlyph.GameScripts.Helpers;
-using AncientGlyph.GameScripts.ModelElements;
+using AncientGlyph.GameScripts.GameWorldModel;
 
 namespace AncientGlyph.GameScripts.Serialization.Interfaces
 {
-    public class LevelModelSerializer : IModelDataSerializer<LevelModel>
+    public class LevelModelSerializer
     {
-        private const uint ElementSize = CellModel.SizeOfElementBytes;
-
-        public LevelModel DeserializeElement(Span<byte> bytes)
+        public LevelModel DeserializeElement(BinaryReader reader)
         {
             var levelModel = new LevelModel();
-            int gridIterator = 0;
 
             var cellSerializer = new CellModelSerializer();
 
-            for (uint bytesIterator = 0; bytesIterator < bytes.Length; bytesIterator += ElementSize)
+            for (int gridIterator = 0; gridIterator < LevelModel.CellsCount; gridIterator++)
             {
                 var multiIndex = ArrayTools.Get3dArrayIndex(gridIterator, LevelModel.LevelCellsSizeX, LevelModel.LevelCellsSizeZ, LevelModel.LevelCellsSizeY);
-                levelModel.CellModelGrid[multiIndex.xIndex, multiIndex.zIndex, multiIndex.yIndex] = cellSerializer.DeserializeElement(bytes.Slice((int) bytesIterator, (int) ElementSize));
+                levelModel[multiIndex.xIndex, multiIndex.yIndex, multiIndex.zIndex] = cellSerializer.DeserializeElement(reader);
             }
 
             return levelModel;
         }
 
-        public Span<byte> SerializeElement(LevelModel element)
+        public void SerializeElement(LevelModel level, BinaryWriter writer)
         {
-            throw new NotImplementedException();
+            var cellSerializer = new CellModelSerializer();
+
+            foreach (var cell in level)
+            {
+                cellSerializer.SerializeElement(cell, writer);
+            }
         }
     }
 }
