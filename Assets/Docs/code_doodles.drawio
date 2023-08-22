@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-08-19T18:51:00.550Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="Rwr6wG2OgzQ9r4ggu_Tv" version="21.6.1" type="device">
+<mxfile host="Electron" modified="2023-08-20T17:37:22.003Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="LtEMAcWYr91Id9veAYcy" version="21.6.1" type="device">
   <diagram name="Page-1" id="58cdce13-f638-feb5-8d6f-7d28b1aa9fa0">
-    <mxGraphModel dx="1222" dy="1852" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1375" dy="1978" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -303,6 +303,68 @@
               <mxPoint x="1870" y="180" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-109" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="-820" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-108" value="Project Context" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="-805" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-110" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="-720" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-111" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Scene Context&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="-705" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-112" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="DIWdCTv0tTlez8iICaOq-109">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1690" y="-450" as="sourcePoint" />
+            <mxPoint x="1740" y="-720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-113" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="DIWdCTv0tTlez8iICaOq-111">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1920" y="-690" as="sourcePoint" />
+            <mxPoint x="1710" y="-440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-115" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="-720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-116" value="Deserialize Level Model" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="-705" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-120" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DIWdCTv0tTlez8iICaOq-117" target="DIWdCTv0tTlez8iICaOq-111">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1880" y="-590.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-117" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="-620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-118" value="Deserialize Entities" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1950" y="-605" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-122" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="DIWdCTv0tTlez8iICaOq-110" target="DIWdCTv0tTlez8iICaOq-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1760" y="-410" as="sourcePoint" />
+            <mxPoint x="1810" y="-460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-123" value="Inject Entities In Game Loop" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="-440" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-124" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="DIWdCTv0tTlez8iICaOq-110">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1650" y="-400" as="sourcePoint" />
+            <mxPoint x="1580" y="-690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-125" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="-720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIWdCTv0tTlez8iICaOq-126" value="Instantiate Prefabs" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="-705" width="80" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

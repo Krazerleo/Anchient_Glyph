@@ -9,8 +9,9 @@ namespace AncientGlyph.Tests.ModelTests
         [Test]
         public void HitCheck()
         {
-            var firstEntity = new CreatureEntityModel();
-            var secondEntity = new CreatureEntityModel();
+            var creatureTraits = new CreatureTraits();
+            var firstEntity = new CreatureEntityModel(creatureTraits, new UnityEngine.Vector3Int());
+            var secondEntity = new CreatureEntityModel(creatureTraits, new UnityEngine.Vector3Int());
 
             firstEntity.Hit(secondEntity);
         }

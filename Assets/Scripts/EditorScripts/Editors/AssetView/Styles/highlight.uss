@@ -1,0 +1,9 @@
+.highlight {
+    background-color: rgb(200, 67, 63);
+    border-left-color: rgb(105, 63, 200);
+    border-right-color: rgb(105, 63, 200);
+    border-top-color: rgb(105, 63, 200);
+    border-bottom-color: rgb(105, 63, 200);
+    -unity-background-image-tint-color: rgb(200, 71, 63);
+    opacity: 0;
+}

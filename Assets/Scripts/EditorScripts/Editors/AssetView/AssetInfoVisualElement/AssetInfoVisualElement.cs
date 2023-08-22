@@ -6,7 +6,7 @@ namespace AncientGlyph.EditorScripts.Editors
 {
     public class AssetInfoVisualElement : VisualElement
     {
-        private const string UxmlPath = "Assets/Scripts/EditorScripts/Editors/AssetView/AssetInfoVisualElement.uxml";
+        private const string UxmlPath = "Assets/Scripts/EditorScripts/Editors/AssetView/AssetInfoVisualElement/AssetInfoVisualElement.uxml";
         private const string AssetLabelName = "Asset-Name-Label";
         private const string AssetPreviewImageName = "Asset-Preview-Image";
 

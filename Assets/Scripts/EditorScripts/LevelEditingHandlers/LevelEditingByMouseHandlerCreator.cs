@@ -8,7 +8,7 @@ namespace AncientGlyph.EditorScripts.LevelEditingHandlers
         {
             return typeAsset switch
             {
-                TypeAsset.Floor or TypeAsset.Environment or TypeAsset.Item => new TileEditorHandler(level),
+                TypeAsset.Tile or TypeAsset.Object or TypeAsset.Item => new TileEditorHandler(level),
                 TypeAsset.Wall => new WallEditorHandler(),
                 _ => throw new System.ArgumentException(),
             };

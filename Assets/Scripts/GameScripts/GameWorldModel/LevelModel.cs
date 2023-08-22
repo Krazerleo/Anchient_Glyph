@@ -1,5 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using AncientGlyph.GameScripts.Enums;
+using AncientGlyph.GameScripts.Interactors.Creatures.Controllers.Interfaces;
+using AncientGlyph.GameScripts.Interactors.Interfaces;
+
+using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameWorldModel
 {
@@ -11,7 +17,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
         public const int CellsCount = LevelCellsSizeZ * LevelCellsSizeY * LevelCellsSizeX;
 
-        private CellModel[,,] _cellModelGrid;
+        private readonly CellModel[,,] _cellModelGrid;
 
         public LevelModel()
         {
@@ -30,6 +36,36 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             throw new System.NotImplementedException();
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => _cellModelGrid.GetEnumerator();
+        public bool MoveEntity(IEntityModel entity, int xOffset, int zOffset, int yOffset)
+        {
+            var entityPosition = entity.Position;
+
+            //Check if entity can be accomodated in next cell.
+            if (entity.IsFullSize && _cellModelGrid[entityPosition.x + xOffset, entityPosition.y + yOffset, entityPosition.z + zOffset]
+                .EntityModelsInCell.Value.Any(x => x.IsFullSize))
+            {
+                return false;
+            }
+            else
+            {
+                _cellModelGrid[entityPosition.x, entityPosition.y, entityPosition.z].EntityModelsInCell.Value.Remove(entity);
+                _cellModelGrid[entityPosition.x + xOffset, entityPosition.y + yOffset, entityPosition.z + zOffset].EntityModelsInCell.Value.Add(entity);
+                return true;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int x = 0; x < LevelCellsSizeX; x++)
+            {
+                for (int z = 0; z < LevelCellsSizeZ; z++)
+                {
+                    for (int y = 0; y < LevelCellsSizeY; y++)
+                    {
+                        yield return _cellModelGrid[x, z, y];
+                    }
+                }
+            }
+        }
     }
 }

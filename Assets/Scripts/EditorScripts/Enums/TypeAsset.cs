@@ -3,9 +3,10 @@ namespace AncientGlyph.EditorScripts
     public enum TypeAsset
     {
         None = 0,
-        Floor = 1,
+        Tile = 1,
         Wall = 2,
-        Environment = 3,
+        Object = 3,
         Item = 4,
+        Creature,
     }
 }

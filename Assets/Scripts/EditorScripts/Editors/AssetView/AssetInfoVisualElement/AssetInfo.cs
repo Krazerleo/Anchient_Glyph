@@ -7,5 +7,11 @@ namespace AncientGlyph.EditorScripts.Editors
         public readonly string AssetName;
 
         public readonly Texture2D AssetPreviewImage;
+
+        public AssetInfo(string assetName, Texture2D assetPreviewImage)
+        {
+            AssetName = assetName;
+            AssetPreviewImage = assetPreviewImage;
+        }
     }
 }
