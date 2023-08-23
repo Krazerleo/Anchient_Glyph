@@ -31,8 +31,9 @@ namespace AncientGlyph.EditorScripts.Editors
             (null, TypeAsset.Creature, "Creatures-Type-Button"),
         };
 
-        private static TypeAsset _selectedTypeAsset = TypeAsset.None;
+        private static TypeAsset _selectedTypeAsset = TypeAsset.Tile;
         private static string _propmt = "";
+        private static string _selectedAssetName = "";
 
         private List<AssetInfo> _foundAssets = new List<AssetInfo>();
 
@@ -147,26 +148,47 @@ namespace AncientGlyph.EditorScripts.Editors
         private void RefreshSelectedAssets()
         {
             _foundAssets.Clear();
+            IEnumerable<string> findedAssetsDirectories;
 
             switch (_selectedTypeAsset)
             {
                 case TypeAsset.Tile:
                 {
-                    var findedAssetsDirectories = _tilesAssetsPath.Where(path => path.StartsWith(_propmt) || _propmt == "");
-                    foreach (var directoryName in findedAssetsDirectories)
-                    {
-                        var directoryInfo = new DirectoryInfo(string.Join('/', Application.dataPath, directoryName));
-                        var image = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/Level/Prefab/Tiles/floor_placeholder/Cat03.jpg", typeof(Texture2D));
-                        _foundAssets.Add(new AssetInfo(directoryName, image));
-                    }
+                    findedAssetsDirectories = _tilesAssetsPath.Where(path => path.StartsWith(_propmt) || _propmt == "");
                     break;
                 }
-
+                case TypeAsset.Wall:
+                {
+                    findedAssetsDirectories = _wallsAssetsPath.Where(path => path.StartsWith(_propmt) || _propmt == "");
+                    break;
+                }
+                case TypeAsset.Item:
+                {
+                    findedAssetsDirectories = _itemsAssetsPath.Where(path => path.StartsWith(_propmt) || _propmt == "");
+                    break;
+                }
+                case TypeAsset.Object:
+                {
+                    findedAssetsDirectories = _objectsAssetsPath.Where(path => path.StartsWith(_propmt) || _propmt == "");
+                    break;
+                }
+                case TypeAsset.Creature:
+                {
+                    findedAssetsDirectories = _creaturesAssetsPath.Where(path => path.StartsWith(_propmt) || _propmt == "");
+                    break;
+                }
                 default:
                 {
                     Debug.LogError($"{nameof(AssetLibrary)} == {nameof(RefreshSelectedAssets)}");
-                    break;
+                    return;
                 }
+            }
+
+            foreach (var directoryName in findedAssetsDirectories)
+            {
+                var directoryInfo = new DirectoryInfo(string.Join('/', Application.dataPath, directoryName));
+                var image = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/Level/Prefab/Tiles/floor_placeholder/Cat03.jpg", typeof(Texture2D));
+                _foundAssets.Add(new AssetInfo(directoryName, image));
             }
         }
 
@@ -180,6 +202,11 @@ namespace AncientGlyph.EditorScripts.Editors
             var assetInfo = _foundAssets[index];
             var assetVisualElement = visualElement as AssetInfoVisualElement;
             assetVisualElement.BindToAssetInfoVisualElement(assetInfo.AssetName, assetInfo.AssetPreviewImage);
+
+            assetVisualElement.RegisterCallback<ClickEvent>(click =>
+            {
+                _selectedAssetName = assetInfo.AssetName;
+            });
         }
 
         private void FindAssetsPath(List<string> assetOfTypeNames, string pathAssetsOfType)
