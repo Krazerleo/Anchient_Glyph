@@ -3,24 +3,26 @@ using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+using AncientGlyph.EditorScripts.Editors;
+
 namespace AncientGlyph.EditorScripts.LevelEditingHandlers
 {
-    public class TileEditorHandler : ILevelEditingByMouseHandler
+    public class TilePlacerHandler : IAssetPlacerHandler
     {
         private Vector3 _firstPosition;
         private Vector3 _secondPosition;
 
-        private Vector3Int _tilesInSelectedRegion;
+        private GameObject _tilePrefab;
         private LevelModel _level;
 
-        public TileEditorHandler(LevelModel level)
+        private LevelModelEditor _modelEditor;
+        private LevelSceneEditor _sceneEditor;
+
+        public TilePlacerHandler(LevelModel level, GameObject tilePrefab)
         {
             _level = level;
-        }
-
-        public void OnMouseButtonClickHandler(Vector3 position)
-        {
-            throw new System.NotImplementedException();
+            _modelEditor = new LevelModelEditor();
+            _sceneEditor = new LevelSceneEditor();
         }
 
         public void OnMouseButtonPressedHandler(Vector3 firstPosition)
@@ -70,6 +72,8 @@ namespace AncientGlyph.EditorScripts.LevelEditingHandlers
             var level = Mathf.FloorToInt(_firstPosition.y);
 
             var ceilRectangle = new Rectangle(new Vector3Int(firstPositionX, level, firstPositionZ), new Vector3Int(secondPositionX, level, secondPositionZ));
+
+            _sceneEditor.PlaceTile(ceilRectangle, null);
         }
     }
 }

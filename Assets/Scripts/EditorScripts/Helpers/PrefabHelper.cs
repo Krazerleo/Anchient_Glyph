@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.IO;
+using AncientGlyph.GameScripts.Helpers;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,7 +20,8 @@ namespace AncientGlyph.EditorScripts.Helpers
 
                 if (loadedAsset == null)
                 {
-                    throw new FileNotFoundException(@$"File ""{filename}"" not found");
+                    Debug.LogWarning("");
+                    return null;
                 }
 
                 prefabCache[filename] = loadedAsset;
