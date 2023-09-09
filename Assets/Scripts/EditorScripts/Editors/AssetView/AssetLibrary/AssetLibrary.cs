@@ -13,16 +13,27 @@ namespace AncientGlyph.EditorScripts.Editors
 {
     public class AssetLibrary : EditorWindow
     {
-        private const string UxmlPath = "Assets/Scripts/EditorScripts/Editors/AssetView/AssetLibrary/AssetLibrary.uxml";
-        private const string HighlightStylePath = "Assets/Scripts/EditorScripts/Editors/AssetView/Styles/highlight.uss";
+        #region Public Fields
+
+        public static EventHandler<string> OnAssetNameChangeHandler;
+        public static EventHandler<AssetType> OnAssetTypeChangeHandler;
+
+        #endregion Public Fields
+
+        #region Private Fields
+
+        private const string _creaturePath = "Level/Prefab/Creatures";
+        private const string _itemPath = "Level/Prefab/Items";
+        private const string _objectPath = "Level/Prefab/Objects";
+        private const string _tilesPath = "Level/Prefab/Tiles/";
+        private const string _wallPath = "Level/Prefab/Walls";
         private const string AssetListViewName = "Asset-List-View";
         private const string AssetSearchFieldName = "Asset-Search-Field";
         private const string AssetTypeToolbarName = "Asset-Type-Toolbar";
-
+        private const string HighlightStylePath = "Assets/Scripts/EditorScripts/Editors/AssetView/Styles/highlight.uss";
+        private const string UxmlPath = "Assets/Scripts/EditorScripts/Editors/AssetView/AssetLibrary/AssetLibrary.uxml";
         private static StyleSheet _highlightStyle;
-        private ListView _assetListView;
-        private ToolbarSearchField _assetSearchField;
-        private Toolbar _assetTypeToolbar;
+        private static string _propmt = "";
 
         private static List<(ToolbarButton button, AssetType type, string name)> _typeButtonList = new List<(ToolbarButton, AssetType, string)>()
         {
@@ -33,40 +44,34 @@ namespace AncientGlyph.EditorScripts.Editors
             (null, AssetType.Creature, "Creatures-Type-Button"),
         };
 
-        private static string _propmt = "";
+        private ListView _assetListView;
+        private ToolbarSearchField _assetSearchField;
+        private Toolbar _assetTypeToolbar;
         private List<AssetInfo> _foundAssets = new List<AssetInfo>();
 
-        private static string GetAssetDirectory(AssetType type)
-        {
-            return type switch
-            {
-                AssetType.Tile => _tilesPath,
-                AssetType.Wall => _wallPath,
-                AssetType.Item => _itemPath,
-                AssetType.Creature => _creaturePath,
-                AssetType.Object => _objectPath,
-                AssetType.None or _ => null,
-            };
-        }
+        #region
 
-        private const string _tilesPath = "Level/Prefab/Tiles/";
-        private const string _wallPath = "Level/Prefab/Walls";
-        private const string _objectPath = "Level/Prefab/Objects";
-        private const string _itemPath = "Level/Prefab/Items";
-        private const string _creaturePath = "Level/Prefab/Creatures";
-
-        private List<string> _tilesAssetsPath = new List<string>();
-        private List<string> _wallsAssetsPath = new List<string>();
-        private List<string> _objectsAssetsPath = new List<string>();
-        private List<string> _itemsAssetsPath = new List<string>();
         private List<string> _creaturesAssetsPath = new List<string>();
 
-        public static EventHandler<AssetType> OnAssetTypeChangeHandler;
-        public static EventHandler<string> OnAssetNameChangeHandler;
+        private List<string> _itemsAssetsPath = new List<string>();
+
+        private List<string> _objectsAssetsPath = new List<string>();
+
+        private List<string> _tilesAssetsPath = new List<string>();
+
+        private List<string> _wallsAssetsPath = new List<string>();
+
+        #endregion
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public static string SelectedAssetName { get; private set; } = "";
 
         public static AssetType SelectedTypeAsset { get; private set; } = AssetType.Tile;
 
-        public static string SelectedAssetName { get; private set; } = "";
+        #endregion Public Properties
 
         #region UnityMessages
 
@@ -95,41 +100,41 @@ namespace AncientGlyph.EditorScripts.Editors
 
         #endregion UnityMessages
 
-        private void InitAssetTypeToolbar()
+        #region Private Methods
+
+        private void BindItemForAssetListView(VisualElement visualElement, int index)
         {
-            _assetTypeToolbar = rootVisualElement.Q<Toolbar>(AssetTypeToolbarName);
+            var assetInfo = _foundAssets[index];
+            var assetVisualElement = visualElement as AssetInfoVisualElement;
+            assetVisualElement.BindToAssetInfoVisualElement(assetInfo.AssetName, assetInfo.AssetPreviewImage);
 
-            for (var index = 0; index < _typeButtonList.Count; index++)
+            assetVisualElement.RegisterCallback<ClickEvent>(click =>
             {
-                var typebutton = _assetTypeToolbar.Q<ToolbarButton>(_typeButtonList[index].name);
-                typebutton.userData = _typeButtonList[index].type;
+                SelectedAssetName = assetInfo.AssetName;
+                OnAssetNameChangeHandler?.Invoke(null, assetInfo.AssetPath);
+            });
+        }
 
-                typebutton.RegisterCallback<ClickEvent>(click =>
-                {
-                    SelectedTypeAsset = (AssetType) typebutton.userData;
-                    RepaintAssetToolbar(typebutton);
-
-                    _assetSearchField.value = "";
-
-                    RefreshSelectedAssets();
-                    RefreshAssetListView();
-
-                    OnAssetTypeChangeHandler?.Invoke(null, SelectedTypeAsset);
-                    OnAssetNameChangeHandler?.Invoke(null, "");
-                });
-
-                _typeButtonList[index] = (typebutton, _typeButtonList[index].type, _typeButtonList[index].name);
+        private void FindAssetsPath(List<string> assetOfTypeNames, string pathAssetsOfType)
+        {
+            var directoryInfo = new DirectoryInfo(string.Join('/', Application.dataPath, pathAssetsOfType));
+            foreach (var directory in directoryInfo.GetDirectories())
+            {
+                assetOfTypeNames.Add(directory.Name);
             }
         }
 
-        private void RepaintAssetToolbar(ToolbarButton selectedButton)
+        private string GetAssetDirectory(AssetType type)
         {
-            foreach (var button in _typeButtonList.Select(b => b.button))
+            return type switch
             {
-                button.styleSheets.Remove(_highlightStyle);
-            }
-
-            selectedButton.styleSheets.Add(_highlightStyle);
+                AssetType.Tile => _tilesPath,
+                AssetType.Wall => _wallPath,
+                AssetType.Item => _itemPath,
+                AssetType.Creature => _creaturePath,
+                AssetType.Object => _objectPath,
+                AssetType.None or _ => null,
+            };
         }
 
         private void InitAssetListView()
@@ -160,6 +165,38 @@ namespace AncientGlyph.EditorScripts.Editors
                     RefreshAssetListView();
                 }
             });
+        }
+
+        private void InitAssetTypeToolbar()
+        {
+            _assetTypeToolbar = rootVisualElement.Q<Toolbar>(AssetTypeToolbarName);
+
+            for (var index = 0; index < _typeButtonList.Count; index++)
+            {
+                var typebutton = _assetTypeToolbar.Q<ToolbarButton>(_typeButtonList[index].name);
+                typebutton.userData = _typeButtonList[index].type;
+
+                typebutton.RegisterCallback<ClickEvent>(click =>
+                {
+                    SelectedTypeAsset = (AssetType) typebutton.userData;
+                    RepaintAssetToolbar(typebutton);
+
+                    _assetSearchField.value = string.Empty;
+
+                    RefreshSelectedAssets();
+                    RefreshAssetListView();
+
+                    OnAssetTypeChangeHandler?.Invoke(null, SelectedTypeAsset);
+                    OnAssetNameChangeHandler?.Invoke(null, string.Empty);
+                });
+
+                _typeButtonList[index] = (typebutton, _typeButtonList[index].type, _typeButtonList[index].name);
+            }
+        }
+
+        private VisualElement MakeItemForAssetListView()
+        {
+            return new AssetInfoVisualElement();
         }
 
         private void RefreshAssetListView()
@@ -227,37 +264,22 @@ namespace AncientGlyph.EditorScripts.Editors
 
                 var prefabPath = string.Join('/', "Assets", GetAssetDirectory(SelectedTypeAsset), directoryPrefabName, prefabInfo.Name).Replace("//", "/");
                 var imagePath = string.Join('/', "Assets", GetAssetDirectory(SelectedTypeAsset), directoryPrefabName, imageInfo.Name).Replace("//", "/");
-                var image = (Texture2D) AssetDatabase.LoadAssetAtPath(imagePath, typeof (Texture2D));
+                var image = (Texture2D) AssetDatabase.LoadAssetAtPath(imagePath, typeof(Texture2D));
 
-                _foundAssets.Add(new AssetInfo(prefabPath, image));
+                _foundAssets.Add(new AssetInfo(directoryPrefabName, image, prefabPath));
             }
         }
 
-        private VisualElement MakeItemForAssetListView()
+        private void RepaintAssetToolbar(ToolbarButton selectedButton)
         {
-            return new AssetInfoVisualElement();
-        }
-
-        private void BindItemForAssetListView(VisualElement visualElement, int index)
-        {
-            var assetInfo = _foundAssets[index];
-            var assetVisualElement = visualElement as AssetInfoVisualElement;
-            assetVisualElement.BindToAssetInfoVisualElement(assetInfo.AssetName, assetInfo.AssetPreviewImage);
-
-            assetVisualElement.RegisterCallback<ClickEvent>(click =>
+            foreach (var button in _typeButtonList.Select(b => b.button))
             {
-                SelectedAssetName = assetInfo.AssetName;
-                OnAssetNameChangeHandler?.Invoke(null, assetInfo.AssetName);
-            });
-        }
-
-        private void FindAssetsPath(List<string> assetOfTypeNames, string pathAssetsOfType)
-        {
-            var directoryInfo = new DirectoryInfo(string.Join('/', Application.dataPath, pathAssetsOfType));
-            foreach (var directory in directoryInfo.GetDirectories())
-            {
-                assetOfTypeNames.Add(directory.Name);
+                button.styleSheets.Remove(_highlightStyle);
             }
+
+            selectedButton.styleSheets.Add(_highlightStyle);
         }
+
+        #endregion Private Methods
     }
 }

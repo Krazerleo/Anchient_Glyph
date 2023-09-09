@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/GameScripts/UserInterface/Styles/MenuButtonStyle.uss?fileID=7433441132597879392&amp;guid=572134a555f3197419e0a6e11b86abbb&amp;type=3#MenuButtonStyle" />
+    <ui:VisualElement name="MenuContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-left: 10%; margin-right: 75%; margin-top: 10%; margin-bottom: 10%;">
+        <ui:Label tabindex="-1" text="Game Icon" display-tooltip-when-elided="true" name="GameIconPlaceHolder" style="height: 20%; align-self: center; font-size: 40px;" />
+        <ui:Button text="CONTINUE" display-tooltip-when-elided="true" name="ContinueButton" class="menuButton" />
+        <ui:Button text="NEW GAME" display-tooltip-when-elided="true" name="NewGameButton" class="menuButton" />
+        <ui:Button text="LOAD GAME" display-tooltip-when-elided="true" name="LoadGameButton" class="menuButton" />
+        <ui:Button text="SETTINGS" display-tooltip-when-elided="true" name="SettingsButton" class="menuButton" />
+        <ui:Button text="QUIT" display-tooltip-when-elided="true" name="QuitButton" class="menuButton" />
+    </ui:VisualElement>
+</ui:UXML>

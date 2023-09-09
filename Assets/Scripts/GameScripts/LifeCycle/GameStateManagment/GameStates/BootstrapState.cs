@@ -1,4 +1,6 @@
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.Interfaces;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateArguments;
+using AncientGlyph.GameScripts.Services;
 
 namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
 {
@@ -12,11 +14,19 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
         }
 
         #region Public Methods
-        public void Enter()
+        public void Enter<TNextStateParams>(TNextStateParams parameters)
         {
+            _stateMachine.EnterState<LoadSceneState, LoadSceneArguments>(
+                new LoadSceneArguments(SceneManagmentService.MainMenuSceneName, OnMenuSceneLoaded));
         }
 
         public void Exit()
+        {
+        }
+        #endregion
+
+        #region Private Methods
+        private void OnMenuSceneLoaded()
         {
             _stateMachine.EnterState<MenuState, object>(null);
         }

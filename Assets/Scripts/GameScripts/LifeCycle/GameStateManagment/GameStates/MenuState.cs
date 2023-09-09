@@ -12,9 +12,8 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
         }
 
         #region Public Methods
-        public void Enter()
+        public void Enter<TNextStateParams>(TNextStateParams parameters)
         {
-            _stateMachine.EnterState<LoadSceneState, object>(null);
         }
 
         public void Exit()

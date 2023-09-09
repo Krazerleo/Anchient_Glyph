@@ -10,7 +10,7 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
         {
             _stateMachine = stateMachine;
         }
-        public void Enter()
+        public void Enter<TNextStateParams>(TNextStateParams parameters)
         {
         }
 

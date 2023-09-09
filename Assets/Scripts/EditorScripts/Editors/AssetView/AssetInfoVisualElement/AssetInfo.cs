@@ -4,14 +4,23 @@ namespace AncientGlyph.EditorScripts.Editors
 {
     public class AssetInfo
     {
-        public readonly string AssetName;
+        #region Public Fields
 
+        public readonly string AssetName;
+        public readonly string AssetPath;
         public readonly Texture2D AssetPreviewImage;
 
-        public AssetInfo(string assetName, Texture2D assetPreviewImage)
+        #endregion Public Fields
+
+        #region Public Constructors
+
+        public AssetInfo(string assetName, Texture2D assetPreviewImage, string assetPath)
         {
             AssetName = assetName;
             AssetPreviewImage = assetPreviewImage;
+            AssetPath = assetPath;
         }
+
+        #endregion Public Constructors
     }
 }

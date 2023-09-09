@@ -1,12 +1,15 @@
-using System;
 using System.IO;
-using AncientGlyph.GameScripts.Helpers;
+
+using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
+using AncientGlyph.GameScripts.Helpers;
 
 namespace AncientGlyph.GameScripts.Serialization.Interfaces
 {
     public class LevelModelSerializer
     {
+        #region Public Methods
+
         public LevelModel DeserializeElement(BinaryReader reader)
         {
             var levelModel = new LevelModel();
@@ -15,7 +18,7 @@ namespace AncientGlyph.GameScripts.Serialization.Interfaces
 
             for (int gridIterator = 0; gridIterator < LevelModel.CellsCount; gridIterator++)
             {
-                var multiIndex = ArrayTools.Get3dArrayIndex(gridIterator, LevelModel.LevelCellsSizeX, LevelModel.LevelCellsSizeZ, LevelModel.LevelCellsSizeY);
+                var multiIndex = ArrayTools.Get3dArrayIndex(gridIterator, GameConstants.LevelCellsSizeX, GameConstants.LevelCellsSizeY, GameConstants.LevelCellsSizeZ);
                 levelModel[multiIndex.xIndex, multiIndex.yIndex, multiIndex.zIndex] = cellSerializer.DeserializeElement(reader);
             }
 
@@ -31,5 +34,7 @@ namespace AncientGlyph.GameScripts.Serialization.Interfaces
                 cellSerializer.SerializeElement(cell, writer);
             }
         }
+
+        #endregion Public Methods
     }
 }

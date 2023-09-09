@@ -1,0 +1,4 @@
+namespace AncientGlyph.EditorScripts.DebugTools
+{
+
+}

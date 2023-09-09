@@ -2,8 +2,9 @@ using System.Collections.Generic;
 
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.Interfaces;
+using AncientGlyph.GameScripts.Services.Interfaces;
 
-namespace AncientGlyph.GameScripts.Core.GameStateManagment
+namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment
 {
     public class GameStateMachine : IGameStateMachine
     {
@@ -11,19 +12,21 @@ namespace AncientGlyph.GameScripts.Core.GameStateManagment
 
         public IGameState CurrentState { get; private set; }
 
-        public GameStateMachine()
+        public GameStateMachine(ISceneManagmentService sceneManagmentService)
         {
             _states[typeof(BootstrapState)] = new BootstrapState(this);
-            _states[typeof(LoadSceneState)] = new LoadSceneState(this);
+            _states[typeof(LoadSceneState)] = new LoadSceneState(this, sceneManagmentService);
             _states[typeof(MenuState)] = new MenuState(this);
             _states[typeof(PlayState)] = new PlayState(this);
         }
 
+        #region Public Methods
         public void EnterState<TState, TNextStateParams>(TNextStateParams parameters) where TState : IGameState
         {
             CurrentState?.Exit();
             CurrentState = _states[typeof(TState)];
-            CurrentState.Enter();
+            CurrentState.Enter(parameters);
         }
+        #endregion
     }
 }

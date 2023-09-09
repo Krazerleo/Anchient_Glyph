@@ -1,31 +1,53 @@
 using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.Geometry;
-using AncientGlyph.GameScripts.Helpers;
+using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
 
+using UnityEditor;
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Editors
 {
     public class LevelSceneEditor
     {
-        public void PlaceTile(Vector3Int position, GameObject tilePrefab)
+        #region Public Methods
+
+        public void PlaceTile(IShape shape, GameObject tilePrefab)
         {
-            LogTools.LogTodo(this);
+            if (tilePrefab == null)
+            {
+                return;
+            }
+
+            Undo.SetCurrentGroupName("Remove Tiles");
+            int groupId = Undo.GetCurrentGroup();
+
+            foreach (var cellCoordinates in shape.GetDefinedGeometry())
+            {
+                Undo.RegisterCreatedObjectUndo(Object.Instantiate(tilePrefab, cellCoordinates, Quaternion.identity, null), "");
+            }
+
+            Undo.CollapseUndoOperations(groupId);
         }
 
-        public void PlaceTile(Rectangle rectangle, GameObject tilePrefab)
+        public void PlaceWall(IShape shape, GameObject wallPrefab, Direction direction)
         {
-            LogTools.LogTodo(this);
+            if (wallPrefab == null)
+            {
+                return;
+            }
+
+            Undo.SetCurrentGroupName("Remove Walls");
+            int groupId = Undo.GetCurrentGroup();
+
+            var rotation = Quaternion.AngleAxis(90f * (1 + (uint) direction), Vector3.up);
+
+            foreach (var cellCoordinates in shape.GetDefinedGeometry())
+            {
+                Undo.RegisterCreatedObjectUndo(Object.Instantiate(wallPrefab, cellCoordinates, rotation * wallPrefab.transform.rotation, null), "");
+            }
+
+            Undo.CollapseUndoOperations(groupId);
         }
 
-        public void PlaceWall(Vector3Int position, Direction direction)
-        {
-            LogTools.LogTodo(this);
-        }
-
-        public void PlaceWall(Rectangle rectangle)
-        {
-            LogTools.LogTodo(this);
-        }
+        #endregion Public Methods
     }
 }

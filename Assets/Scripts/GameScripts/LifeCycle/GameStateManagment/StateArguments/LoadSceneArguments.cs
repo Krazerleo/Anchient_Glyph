@@ -1,15 +1,15 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.Interfaces;
+using System;
 
 namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateArguments
 {
     public class LoadSceneArguments
     {
-        public readonly IGameState NextGameState;
+        public readonly Action OnLoadAction;
         public readonly string SceneName;
 
-        public LoadSceneArguments(IGameState nextGameState, string sceneName)
+        public LoadSceneArguments(string sceneName, Action onLoadAction)
         {
-            NextGameState = nextGameState;
+            OnLoadAction = onLoadAction;
             SceneName = sceneName;
         }
     }

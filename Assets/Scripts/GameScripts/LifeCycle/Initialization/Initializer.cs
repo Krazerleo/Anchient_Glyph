@@ -1,4 +1,4 @@
-using AncientGlyph.GameScripts.Core.GameStateManagment;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagment;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
 using AncientGlyph.GameScripts.Services.Interfaces;
 
@@ -11,6 +11,7 @@ namespace AncientGlyph.GameScripts.Services
     public class Initializer : MonoBehaviour
     {
         private IComponentLocatorService _componentLocator;
+        private ISceneManagmentService _sceneManagmentService;
 
         #region UnityMessages
         private void Awake()
@@ -21,16 +22,17 @@ namespace AncientGlyph.GameScripts.Services
 
         #region Public Methods
         [Inject]
-        public void Construct(IComponentLocatorService componentLocator)
+        public void Construct(IComponentLocatorService componentLocator, ISceneManagmentService sceneManagmentService)
         {
             _componentLocator = componentLocator;
+            _sceneManagmentService = sceneManagmentService;
         }
         #endregion
 
         #region Private Methods
         private void Initialize()
         {
-            if (Exist())
+            if (_componentLocator.IsComponentExist(this))
             {
                 Destroy(gameObject);
                 return;
@@ -38,14 +40,8 @@ namespace AncientGlyph.GameScripts.Services
 
             DontDestroyOnLoad(gameObject);
 
-            var stateMachine = new GameStateMachine();
+            var stateMachine = new GameStateMachine(_sceneManagmentService);
             stateMachine.EnterState<BootstrapState, object>(null);
-        }
-
-        private bool Exist()
-        {
-            var currentInitializer = _componentLocator.FindComponent<Initializer>();
-            return currentInitializer != null && currentInitializer != this;
         }
         #endregion
     }
