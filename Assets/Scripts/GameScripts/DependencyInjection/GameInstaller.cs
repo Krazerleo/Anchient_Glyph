@@ -1,7 +1,6 @@
 using AncientGlyph.GameScripts.LifeCycle.Services;
 using AncientGlyph.GameScripts.Services;
 using AncientGlyph.GameScripts.Services.Interfaces;
-
 using Zenject;
 
 namespace AncientGlyph.GameScripts.DependencyInjection

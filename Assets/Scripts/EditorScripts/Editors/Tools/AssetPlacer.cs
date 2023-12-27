@@ -1,10 +1,9 @@
-using System;
-using System.Reflection;
-
 using AncientGlyph.EditorScripts.Constants;
+using AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers;
+using AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers.Interfaces;
+using AncientGlyph.EditorScripts.Editors.Tools.LevelFileEditing;
 using AncientGlyph.EditorScripts.Helpers;
-using AncientGlyph.EditorScripts.LevelEditingHandlers;
-using AncientGlyph.EditorScripts.LevelEditingHandlers.Interfaces;
+using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
 
 using UnityEditor;
@@ -12,7 +11,7 @@ using UnityEditor.EditorTools;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
-namespace AncientGlyph.EditorScripts.Editors
+namespace AncientGlyph.EditorScripts.Editors.Tools
 {
     [EditorTool("Place Selected Asset")]
     public class AssetPlacer : EditorTool
@@ -24,7 +23,6 @@ namespace AncientGlyph.EditorScripts.Editors
         private int _availabeCurrentTicks = 0;
         private GameObject _gridPlane;
         private bool _isAvailable = false;
-        private LevelModel _levelModel;
         private bool _mouseButtonWasPressed = false;
         private IAssetPlacerHandler _placerHandler;
         private GameObject _selectedGameObject;
@@ -43,7 +41,7 @@ namespace AncientGlyph.EditorScripts.Editors
             AssetLibrary.OnAssetNameChangeHandler += OnAssetNameChanged;
             AssetLibrary.OnAssetTypeChangeHandler += OnAssetTypeChanged;
 
-            _placerHandler = PlacerHandlerCreator.CreatePlacerHandler(AssetLibrary.SelectedTypeAsset, _levelModel);
+            _placerHandler = PlacerHandlerCreator.CreatePlacerHandler(AssetLibrary.SelectedTypeAsset);
             _selectedGameObject = PrefabHelper.LoadPrefabFromFile(AssetLibrary.SelectedAssetName);
         }
 
@@ -77,11 +75,19 @@ namespace AncientGlyph.EditorScripts.Editors
         private void OnEnable()
         {
             EditorApplication.update += UpdateAvailable;
+            InstantiateGridPlane();
+        }
 
+        private void InstantiateGridPlane()
+        {
             _gridPlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
             _gridPlane.name = _gridName;
             _gridPlane.transform.localScale = new Vector3(EditorConstants.GridSizeX, 1, EditorConstants.GridSizeZ);
-            _gridPlane.transform.Translate(Vector3.up * EditorConstants.DistanceTolerance);
+            _gridPlane.transform.Translate(
+                Vector3.up * EditorConstants.DistanceTolerance
+                + Vector3.right * GameConstants.LevelCellsSizeX / 2
+                + Vector3.forward * GameConstants.LevelCellsSizeZ / 2);
+
             SceneVisibilityManager.instance.Hide(_gridPlane, true);
         }
 
@@ -182,7 +188,7 @@ namespace AncientGlyph.EditorScripts.Editors
 
         private void OnAssetTypeChanged(object obj, AssetType type)
         {
-            _placerHandler = PlacerHandlerCreator.CreatePlacerHandler(type, _levelModel);
+            _placerHandler = PlacerHandlerCreator.CreatePlacerHandler(type);
         }
 
         private void UpdateAvailable()

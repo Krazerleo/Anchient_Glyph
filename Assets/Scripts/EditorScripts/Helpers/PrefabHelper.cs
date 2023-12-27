@@ -19,7 +19,6 @@ namespace AncientGlyph.EditorScripts.Helpers
 
                 if (loadedAsset == null)
                 {
-                    Debug.LogWarning("");
                     return null;
                 }
 

@@ -28,6 +28,24 @@ namespace AncientGlyph.EditorScripts.Editors
             Undo.CollapseUndoOperations(groupId);
         }
 
+        public void PlaceCreature(IShape shape, GameObject creaturePrefab)
+        {
+            if (creaturePrefab == null)
+            {
+                return;
+            }
+
+            Undo.SetCurrentGroupName("Remove Creature");
+            int groupId = Undo.GetCurrentGroup();
+
+            foreach (var cellCoordinates in shape.GetDefinedGeometry())
+            {
+                Undo.RegisterCreatedObjectUndo(Object.Instantiate(creaturePrefab, cellCoordinates, Quaternion.identity, null), "");
+            }
+
+            Undo.CollapseUndoOperations(groupId);
+        }
+
         public void PlaceWall(IShape shape, GameObject wallPrefab, Direction direction)
         {
             if (wallPrefab == null)
@@ -38,11 +56,11 @@ namespace AncientGlyph.EditorScripts.Editors
             Undo.SetCurrentGroupName("Remove Walls");
             int groupId = Undo.GetCurrentGroup();
 
-            var rotation = Quaternion.AngleAxis(90f * (1 + (uint) direction), Vector3.up);
-
             foreach (var cellCoordinates in shape.GetDefinedGeometry())
             {
-                Undo.RegisterCreatedObjectUndo(Object.Instantiate(wallPrefab, cellCoordinates, rotation * wallPrefab.transform.rotation, null), "");
+                var gameObject = Object.Instantiate(wallPrefab, cellCoordinates, Quaternion.identity, null);
+                gameObject.transform.GetChild(0).Rotate(Vector3.up, 90f * (uint) direction, Space.World);
+                Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
 
             Undo.CollapseUndoOperations(groupId);

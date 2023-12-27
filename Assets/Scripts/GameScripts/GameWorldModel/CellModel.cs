@@ -14,41 +14,71 @@ namespace AncientGlyph.GameScripts.GameWorldModel
     /// </summary>
     public struct CellModel
     {
-        public const int SizeOfCellElement = 5;
-        public const int SizeOfElementBytes = 5 * sizeof(uint);
+        #region Public Fields
+
+        public const int SizeOfCellElement = 6;
+        public const int SizeOfElementBytes = 6 * sizeof(uint);
+
+        public Lazy<ICollection<IEntityModel>> EntityModelsInCell;
+
+        #endregion Public Fields
+
+        #region Private Fields
 
         private uint[] _cellData;
 
-        public Lazy<ICollection<IEntityModel>> EntityModelsInCell;
+        #endregion Private Fields
+
+        #region Public Constructors
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="walls">Walls array should have 4 elements
-        /// of north, east, south and west walls</param>
-        /// <param name="hasFloor"></param>
-        public CellModel(WallType[] walls, bool hasFloor)
+        /// <param name="walls">Walls array should have 6
+        /// <see cref="AncientGlyph.GameScripts.Enums.Direction"/></param>
+        /// <param name="hasFloor">has floor</param>
+        public CellModel(WallType[] walls)
         {
-            Assert.IsTrue(walls.Length == 4);
+            Assert.IsTrue(walls.Length == 6);
             _cellData = new uint[SizeOfCellElement];
-            _cellData[0] = hasFloor ? 1u : 0u;
 
             for (int i = 0; i < walls.Length; i++)
             {
-                _cellData[i + 1] = (uint) walls[i];
+                _cellData[i] = (uint) walls[i];
             }
 
             EntityModelsInCell = new Lazy<ICollection<IEntityModel>>();
         }
+
+        #endregion Public Constructors
+
+        #region Public Properties
+
+        public Span<uint> GetWalls => _cellData.AsSpan(1, 4);
+
+        public bool HasCeil => _cellData[5] == 1 ? true : false;
+
+        public bool HasFloor => _cellData[4] == 1 ? true : false;
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public void AddEntityToCell(IEntityModel entity)
         {
             EntityModelsInCell.Value.Add(entity);
         }
 
-        public void RemoveEntityFromCell(IEntityModel entity)
+        public CellModel DeserializeElement(Span<byte> bytes)
         {
-            EntityModelsInCell.Value.Remove(entity);
+            var walls = new WallType[6];
+
+            for (var i = 0; i < bytes.Length; i += sizeof(uint))
+            {
+                walls[i/ sizeof(uint)] = (WallType) BitConverter.ToUInt32(bytes[i..(i + 4)]);
+            }
+
+            return new CellModel(walls);
         }
 
         /// <summary>
@@ -69,40 +99,21 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             return true;
         }
 
+        public void RemoveEntityFromCell(IEntityModel entity)
+        {
+            EntityModelsInCell.Value.Remove(entity);
+        }
+
+        public Span<byte> SerializeElement()
+        {
+            return _cellData.SelectMany(BitConverter.GetBytes).ToArray().AsSpan();
+        }
+
         public void SetWall(WallType wall, Direction direction)
         {
             _cellData[(uint) direction] = (uint) wall;
         }
 
-        public Span<uint> GetWalls => _cellData.AsSpan(1, 4);
-
-        public bool HasFloor => _cellData[0] == 1 ? true : false;
-
-        public Span<byte> SerializeElement()
-        {
-            var uintArray = new uint[SizeOfCellElement];
-
-            uintArray[0] = HasFloor ? 1u : 0u;
-
-            for (var i = 1; i < 5; i++)
-            {
-                uintArray[i] = _cellData[i];
-            }
-
-            return uintArray.SelectMany(BitConverter.GetBytes).ToArray().AsSpan();
-        }
-
-        public CellModel DeserializeElement(Span<byte> bytes)
-        {
-            var walls = new WallType[4];
-            bool hasFloor = BitConverter.ToUInt32(bytes[0..4]) == 1 ? true : false;
-
-            for (var i = 1; i < bytes.Length; i += 4)
-            {
-                walls[i] = (WallType) BitConverter.ToUInt32(bytes[i..(i + 4)]);
-            }
-
-            return new CellModel(walls, hasFloor);
-        }
+        #endregion Public Methods
     }
 }
