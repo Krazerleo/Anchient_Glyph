@@ -1,104 +1,193 @@
 using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
 using AncientGlyph.GameScripts.Interactors.Interfaces;
 using AncientGlyph.GameScripts.Interactors.Extentions;
+using AncientGlyph.EditorScripts.Editors.Tools.LevelFileEditing;
 
 using UnityEngine;
-using AncientGlyph.EditorScripts.Editors.Tools.LevelFileEditing;
+using System.Linq;
 
 namespace AncientGlyph.EditorScripts.Editors
 {
     public class LevelModelEditor
     {
-        #region Public Fields
-
-        private LevelModel _levelModel;
-
-        #endregion Public Fields
-
-        #region Public Constructors
-
-        public LevelModelEditor()
+        public bool TryPlaceTile(IShape3D shape)
         {
-            _levelModel = LevelModelDatabase.LevelModelInstance;
-        }
+            var levelModel = LevelModelData.GetLevelModel();
 
-        #endregion Public Constructors
-
-        #region Public Methods
-
-        public void PlaceTile(IShape shape)
-        {
             foreach (var cellCoordinates in shape.GetDefinedGeometry())
             {
                 try
                 {
-                    _levelModel[cellCoordinates.x, cellCoordinates.z, cellCoordinates.y]
-                    .SetWall(WallType.Whole, Direction.Down);
+                    levelModel[cellCoordinates.x, cellCoordinates.y, cellCoordinates.z]
+                        .SetWall(WallType.Whole, Direction.Down);
+                }
+                catch
+                {
+                    Debug.LogError("Tried to place asset out of build range\n"+
+                                   $"Cooordinates: x:{cellCoordinates.x} " +
+                                                 $"y:{cellCoordinates.y} " +
+                                                 $"z:{cellCoordinates.z} ");
 
-                    _levelModel[cellCoordinates.x, cellCoordinates.z, cellCoordinates.y - 1]
+                    return false;
+                }
+
+                try
+                {
+                    levelModel[cellCoordinates.x, cellCoordinates.y - 1, cellCoordinates.z]
                         .SetWall(WallType.Whole, Direction.Up);
                 }
                 catch
                 {
-                    Debug.LogError("Place asset in required field");
-                    break;
+                    Debug.LogError("Tried to place asset out of build range\n" +
+                                   $"Cooordinates: x:{cellCoordinates.x} " +
+                                                 $"y:{cellCoordinates.y - 1} " +
+                                                 $"z:{cellCoordinates.z} ");
+                    return false;
                 }
             }
+
+            return true;
         }
 
-        public void PlaceEntity(IShape shape, IEntityModel entity)
+        public bool TryPlaceEntity(IShape3D shape, IEntityModel entity)
         {
+            var levelModel = LevelModelData.GetLevelModel();
+
             foreach (var entityCoordinates in shape.GetDefinedGeometry())
             {
                 try
                 {
-                    var entities = _levelModel[entityCoordinates.x, entityCoordinates.z, entityCoordinates.y]
-                    .EntityModelsInCell.Value;
+                    var entities = levelModel[entityCoordinates.x, entityCoordinates.y, entityCoordinates.z]
+                        .EntityModelsInCell.Value;
 
                     if (!entities.IsCellOccupied())
                     {
                         entities.Add(entity);
                     }
+                    else
+                    {
+                        Debug.LogError("Tried to place entity in occupied cell\n" +
+                                   $"Cooordinates: x:{entityCoordinates.x} " +
+                                                 $"y:{entityCoordinates.y} " +
+                                                 $"z:{entityCoordinates.z} ");
+
+                        return false;
+                    }
                 }
                 catch
                 {
-                    Debug.LogError("Place asset in required field");
-                    break;
+                    Debug.LogError("Tried to place asset out of build range\n" +
+                                   $"Cooordinates: x:{entityCoordinates.x} " +
+                                                 $"y:{entityCoordinates.y} " +
+                                                 $"z:{entityCoordinates.z} ");
+
+                    return false;
                 }
             }
+
+            return true;
         }
 
-        public void PlaceWall(IShape shape, Direction direction)
+        public bool TryPlaceWall(IShape3D shape, Direction direction)
         {
+            var levelModel = LevelModelData.GetLevelModel();
+
             foreach (var wallCoordinates in shape.GetDefinedGeometry())
             {
                 try
                 {
-                    _levelModel[wallCoordinates.x, wallCoordinates.y, wallCoordinates.z]
-                            .SetWall(WallType.Whole, direction);
+                    levelModel[wallCoordinates.x, wallCoordinates.y, wallCoordinates.z]
+                        .SetWall(WallType.Whole, direction);
                 }
                 catch
                 {
-                    Debug.LogError("Place asset in required field");
-                    break;
+                    Debug.LogError("Tried to place asset out of build range\n" +
+                                   $"Cooordinates: x:{wallCoordinates.x} " +
+                                                 $"y:{wallCoordinates.y} " +
+                                                 $"z:{wallCoordinates.z} ");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public void RemoveTiles(IShape3D shape)
+        {
+            var levelModel = LevelModelData.GetLevelModel();
+
+            foreach (var cellCoordinates in shape.GetDefinedGeometry())
+            {
+                try
+                {
+                    levelModel[cellCoordinates.x, cellCoordinates.y, cellCoordinates.z]
+                        .SetWall(WallType.None, Direction.Down);
+                }
+                catch
+                {
+                    Debug.LogError("Tried to remove asset out of build range\n" +
+                                   $"Cooordinates: x:{cellCoordinates.x} " +
+                                                 $"y:{cellCoordinates.y} " +
+                                                 $"z:{cellCoordinates.z} ");
+                }
+
+                try
+                {
+                    levelModel[cellCoordinates.x, cellCoordinates.y - 1, cellCoordinates.z]
+                        .SetWall(WallType.None, Direction.Up);
+                }
+                catch
+                {
+                    Debug.LogError("Tried to remove asset out of build range\n" +
+                                   $"Cooordinates: x:{cellCoordinates.x} " +
+                                                 $"y:{cellCoordinates.y - 1} " +
+                                                 $"z:{cellCoordinates.z} ");
                 }
             }
         }
 
-        public void RemoveEntity(Vector3Int coordinates, string creatureId)
+        public void RemoveEntity(IShape3D shape, string entityId)
         {
+            var levelModel = LevelModelData.GetLevelModel();
+
+            foreach (var entityCoordinates in shape.GetDefinedGeometry())
+            {
+                var entities = levelModel[entityCoordinates.x, entityCoordinates.y, entityCoordinates.z]
+                    .EntityModelsInCell.Value;
+
+                var findedEntity = entities.FirstOrDefault(ent => ent.Identifier == entityId);
+
+                if (findedEntity == null)
+                {
+                    Debug.LogError("Cannot delete entity with \n" +
+                                   $"Cooordinates: x:{entityCoordinates.x} " +
+                                                 $"y:{entityCoordinates.y} " +
+                                                 $"z:{entityCoordinates.z} \n" +
+                                   $"and ID {entityId}");
+                }
+            }
         }
 
-        public void RemoveTile(Vector3Int coordinates)
+        public void RemoveWall(IShape3D shape, Direction direction)
         {
-        }
+            var levelModel = LevelModelData.GetLevelModel();
 
-        public void RemoveWall(Vector3Int coordinates, Direction direction)
-        {
+            foreach (var wallCoordinates in shape.GetDefinedGeometry())
+            {
+                try
+                {
+                    levelModel[wallCoordinates.x, wallCoordinates.y, wallCoordinates.z]
+                        .SetWall(WallType.None, direction);
+                }
+                catch
+                {
+                    Debug.LogError("Tried to place remove out of build range\n" +
+                                   $"Cooordinates: x:{wallCoordinates.x} " +
+                                                 $"z:{wallCoordinates.z} " +
+                                                 $"y:{wallCoordinates.y} ");
+                }
+            }
         }
-
-        #endregion Public Methods
     }
 }

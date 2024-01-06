@@ -10,7 +10,6 @@ namespace AncientGlyph.GameScripts.LifeCycle.Services
     {
         private readonly Dictionary<System.Type, MonoBehaviour> ComponentCache = new Dictionary<System.Type, MonoBehaviour>();
 
-        #region Public Methods
         public TComponent FindComponent<TComponent>() where TComponent : MonoBehaviour
         {
             var type = typeof(TComponent);
@@ -38,6 +37,5 @@ namespace AncientGlyph.GameScripts.LifeCycle.Services
             var component = FindComponent<TComponent>();
             return component != null && thisComponent != component;
         }
-        #endregion
     }
 }

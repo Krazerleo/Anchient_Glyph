@@ -1,48 +1,48 @@
 using AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers.Interfaces;
-using AncientGlyph.GameScripts.GameWorldModel;
+using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.Geometry.Extensions;
 using AncientGlyph.GameScripts.Geometry.Shapes;
+using AncientGlyph.GameScripts.Interactors.Creatures;
 
+using UnityEditor;
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers
 {
     public class CreaturePlacerHandler : IAssetPlacerHandler
     {
-        #region Public Methods
+        private GameObject _entityPrefab;
+        private LevelModelEditor _levelEditor = new();
+        private LevelSceneEditor _sceneEditor = new();
 
-        private GameObject _creaturePrefab;
-        private LevelModelEditor _levelEditor;
-        private LevelSceneEditor _sceneEditor;
+        public void OnMouseButtonClickHandler(Vector3 position) { }
 
-        public CreaturePlacerHandler()
-        {
-            _levelEditor = new LevelModelEditor();
-            _sceneEditor = new LevelSceneEditor();
-        }
-
-        public void OnMouseButtonClickHandler(Vector3 position)
-        {
-        }
-
-        public void OnMouseButtonPressedHandler(Vector3 position)
-        {
-        }
+        public void OnMouseButtonPressedHandler(Vector3 position) { }
 
         public void OnMouseButtonReleasedHandler(Vector3 position)
         {
-            _sceneEditor.PlaceCreature(new Point(position.ToVector3Int()), _creaturePrefab);
+            var traits = _entityPrefab.GetComponent<CreatureTraitsSource>()?.CreatureTraits;
+
+            if (traits == null)
+            {
+                Debug.LogError("Entity must have creature traits config" +
+                               "before placement of scene");
+
+                return;
+            }
+
+            var entity = new CreatureModel(traits, position.ToVector3Int(), GUID.Generate().ToString());
+
+            if (_levelEditor.TryPlaceEntity(new Point(position.ToVector3Int()), entity))
+            {
+                _sceneEditor.PlaceEntity(new Point(position.ToVector3Int()),
+                                           _entityPrefab, entity.Identifier);
+            }
         }
 
-        public void OnMouseMoveHandler(Vector3 position)
-        {
-        }
+        public void OnMouseMoveHandler(Vector3 position) { }
 
         public void SetPrefabObject(GameObject prefab)
-        {
-            _creaturePrefab = prefab;
-        }
-
-        #endregion Public Methods
+            => _entityPrefab = prefab;
     }
 }

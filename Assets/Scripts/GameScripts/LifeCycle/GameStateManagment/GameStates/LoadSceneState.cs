@@ -2,7 +2,6 @@ using AncientGlyph.GameScripts.Helpers;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.Interfaces;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateArguments;
 using AncientGlyph.GameScripts.Services.Interfaces;
-using Zenject;
 
 namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
 {

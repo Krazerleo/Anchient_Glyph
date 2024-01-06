@@ -11,7 +11,6 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
             _stateMachine = stateMachine;
         }
 
-        #region Public Methods
         public void Enter<TNextStateParams>(TNextStateParams parameters)
         {
         }
@@ -19,6 +18,5 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
         public void Exit()
         {
         }
-        #endregion
     }
 }

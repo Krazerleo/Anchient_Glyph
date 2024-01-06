@@ -1,7 +1,6 @@
 using System;
 
 using AncientGlyph.GameScripts.Services.Interfaces;
-using AncientGlyph.GameScripts.Helpers;
 
 using UnityEngine.SceneManagement;
 
@@ -24,11 +23,8 @@ namespace AncientGlyph.GameScripts.Services
             InternalLoadScene(sceneName, onLoadCallback).Forget();
         }
 
-        #region Public Methods
         private async UniTaskVoid InternalLoadScene(string sceneName, Action onLoadCallback)
         {
-            LogTools.LogTodo(this, "make normal exception handling");
-
             if (sceneName == SceneManager.GetActiveScene().name)
             {
                 return;
@@ -43,9 +39,8 @@ namespace AncientGlyph.GameScripts.Services
             }
             catch
             {
-                throw new Exception("scene not loaded");
+                throw new Exception("Scene cannot be loaded");
             }
         }
-        #endregion
     }
 }

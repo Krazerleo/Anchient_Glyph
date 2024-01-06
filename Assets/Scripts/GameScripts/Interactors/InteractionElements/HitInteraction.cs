@@ -14,7 +14,7 @@ namespace AncientGlyph.GameScripts.Interactors.Interaction
 
         public void InteractTo(IEntityModel entityModel)
         {
-            entityModel.InteractWith(this);
+            entityModel.AcceptInteraction(this);
         }
     }
 }

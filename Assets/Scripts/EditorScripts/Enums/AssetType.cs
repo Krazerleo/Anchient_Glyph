@@ -7,6 +7,6 @@ namespace AncientGlyph.EditorScripts
         Wall = 2,
         Object = 3,
         Item = 4,
-        Creature,
+        Entity,
     }
 }

@@ -1,8 +1,10 @@
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
+using AncientGlyph.GameScripts.Serialization;
 
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -12,8 +14,6 @@ namespace AncientGlyph.EditorScripts.Editors.Tools.LevelFileEditing
 {
     public class LevelModelLoader
     {
-        #region Private Methods
-
         [MenuItem("Project Instruments / Get Or Create Level Model")]
         private static void GetOrCreateLevelModel()
         {
@@ -25,27 +25,36 @@ namespace AncientGlyph.EditorScripts.Editors.Tools.LevelFileEditing
 
             if (File.Exists(levelModelPath))
             {
-                using var reader = File.OpenRead(levelModelPath);
-                var deserializer = new XmlSerializer(typeof(LevelModel));
+                Debug.Log($"Deserializing level model from {levelModelPath}");
 
-                LevelModelDatabase.Init((LevelModel) deserializer.Deserialize(reader));
+                using var reader = File.OpenRead(levelModelPath);
+                using var deserializer = XmlReader.Create(reader);
+                var levelModelDeserializer = new LevelModelDeserializer(deserializer);
+
+                if (levelModelDeserializer.TryDeserialize(out var levelModel))
+                {
+                    LevelModelData.Init(levelModel);
+                    Debug.Log("Level model deserialized successfully");
+                }
+                else
+                {
+                    Debug.LogError("Level model deserialized unsuccessfully");
+                }
             }
             else
             {
-                Debug.Log("Level Model Creating Started");
+                Debug.Log("Level model creating started");
 
                 using var writer = File.OpenWrite(levelModelPath);
                 var serializer = new XmlSerializer(typeof(LevelModel));
 
                 var levelModel = new LevelModel();
-                LevelModelDatabase.Init(levelModel);
+                LevelModelData.Init(levelModel);
 
                 serializer.Serialize(writer, levelModel);
 
-                Debug.Log("Level Model Creating Finished");
+                Debug.Log("Level model creating finished");
             }
         }
-
-        #endregion Private Methods
     }
 }

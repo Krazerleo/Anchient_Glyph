@@ -4,10 +4,10 @@ namespace AncientGlyph.GameScripts.Interactors.Interaction.Interfaces
 {
     public interface IInteractable
     {
-        public void InteractWith(HitInteraction hit);
+        public void AcceptInteraction(HitInteraction hit);
 
-        public void InteractWith(FunctionalInteraction func);
+        public void AcceptInteraction(FunctionalInteraction func);
 
-        public void InteractWith(ICollection<object> listItems);
+        public void AcceptInteraction(ICollection<object> listItems);
     }
 }

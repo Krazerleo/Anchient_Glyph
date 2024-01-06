@@ -1,10 +1,8 @@
 using AncientGlyph.EditorScripts.Constants;
 using AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers;
 using AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers.Interfaces;
-using AncientGlyph.EditorScripts.Editors.Tools.LevelFileEditing;
 using AncientGlyph.EditorScripts.Helpers;
 using AncientGlyph.GameScripts.Constants;
-using AncientGlyph.GameScripts.GameWorldModel;
 
 using UnityEditor;
 using UnityEditor.EditorTools;
@@ -16,20 +14,15 @@ namespace AncientGlyph.EditorScripts.Editors.Tools
     [EditorTool("Place Selected Asset")]
     public class AssetPlacer : EditorTool
     {
-        #region Private Fields
-
         private const int _availableCheckTicks = 1000;
         private const string _gridName = "Level Grid";
+        private const float _initialGridPlaneHeight = 1.5f;
         private int _availabeCurrentTicks = 0;
         private GameObject _gridPlane;
         private bool _isAvailable = false;
         private bool _mouseButtonWasPressed = false;
         private IAssetPlacerHandler _placerHandler;
         private GameObject _selectedGameObject;
-
-        #endregion Private Fields
-
-        #region Unity Messages
 
         public override bool IsAvailable()
         {
@@ -75,7 +68,11 @@ namespace AncientGlyph.EditorScripts.Editors.Tools
         private void OnEnable()
         {
             EditorApplication.update += UpdateAvailable;
-            InstantiateGridPlane();
+
+            if (GameObject.FindGameObjectsWithTag("GridPlaneTag") == null)
+            {
+                InstantiateGridPlane();
+            }
         }
 
         private void InstantiateGridPlane()
@@ -84,16 +81,12 @@ namespace AncientGlyph.EditorScripts.Editors.Tools
             _gridPlane.name = _gridName;
             _gridPlane.transform.localScale = new Vector3(EditorConstants.GridSizeX, 1, EditorConstants.GridSizeZ);
             _gridPlane.transform.Translate(
-                Vector3.up * EditorConstants.DistanceTolerance
+                Vector3.up * (EditorConstants.DistanceTolerance + _initialGridPlaneHeight)
                 + Vector3.right * GameConstants.LevelCellsSizeX / 2
                 + Vector3.forward * GameConstants.LevelCellsSizeZ / 2);
 
             SceneVisibilityManager.instance.Hide(_gridPlane, true);
         }
-
-        #endregion Unity Messages
-
-        #region Private Methods
 
         private void HandleInput()
         {
@@ -167,11 +160,13 @@ namespace AncientGlyph.EditorScripts.Editors.Tools
             if (Event.current.type == EventType.KeyDown && Event.current.shift && Event.current.keyCode == KeyCode.UpArrow)
             {
                 _gridPlane.transform.Translate(Vector3.up * EditorConstants.LevelHeightDifference, Space.World);
+                Debug.Log($"Grid Plane is on {_gridPlane.transform.position.y} height");
             }
 
             if (Event.current.type == EventType.KeyDown && Event.current.shift && Event.current.keyCode == KeyCode.DownArrow)
             {
                 _gridPlane.transform.Translate(Vector3.down * EditorConstants.LevelHeightDifference, Space.World);
+                Debug.Log($"Grid Plane is on {_gridPlane.transform.position.y} height");
             }
         }
 
@@ -202,7 +197,5 @@ namespace AncientGlyph.EditorScripts.Editors.Tools
                 _isAvailable = (EditorWindow.HasOpenInstances<AssetLibrary>() && AssetLibrary.SelectedAssetName != "");
             }
         }
-
-        #endregion Private Methods
     }
 }

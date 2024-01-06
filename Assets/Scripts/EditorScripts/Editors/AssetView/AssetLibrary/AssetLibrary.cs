@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using AncientGlyph.GameScripts.Helpers;
 
 using UnityEditor;
@@ -13,14 +14,8 @@ namespace AncientGlyph.EditorScripts.Editors
 {
     public class AssetLibrary : EditorWindow
     {
-        #region Public Fields
-
         public static EventHandler<string> OnAssetNameChangeHandler;
         public static EventHandler<AssetType> OnAssetTypeChangeHandler;
-
-        #endregion Public Fields
-
-        #region Private Fields
 
         private const string _creaturePath = "Level/Prefab/Creatures";
         private const string _itemPath = "Level/Prefab/Items";
@@ -41,7 +36,7 @@ namespace AncientGlyph.EditorScripts.Editors
             (null, AssetType.Wall, "Walls-Type-Button"),
             (null, AssetType.Item, "Items-Type-Button"),
             (null, AssetType.Object, "Objects-Type-Button"),
-            (null, AssetType.Creature, "Creatures-Type-Button"),
+            (null, AssetType.Entity, "Creatures-Type-Button"),
         };
 
         private ListView _assetListView;
@@ -49,31 +44,14 @@ namespace AncientGlyph.EditorScripts.Editors
         private Toolbar _assetTypeToolbar;
         private List<AssetInfo> _foundAssets = new List<AssetInfo>();
 
-        #region
-
         private List<string> _creaturesAssetsPath = new List<string>();
-
         private List<string> _itemsAssetsPath = new List<string>();
-
         private List<string> _objectsAssetsPath = new List<string>();
-
         private List<string> _tilesAssetsPath = new List<string>();
-
         private List<string> _wallsAssetsPath = new List<string>();
 
-        #endregion
-
-        #endregion Private Fields
-
-        #region Public Properties
-
         public static string SelectedAssetName { get; private set; } = "";
-
         public static AssetType SelectedTypeAsset { get; private set; } = AssetType.Tile;
-
-        #endregion Public Properties
-
-        #region UnityMessages
 
         [MenuItem("Project Instruments / Asset Library")]
         private static void ShowWindow()
@@ -97,10 +75,6 @@ namespace AncientGlyph.EditorScripts.Editors
             InitAssetSearchField();
             InitAssetTypeToolbar();
         }
-
-        #endregion UnityMessages
-
-        #region Private Methods
 
         private void BindItemForAssetListView(VisualElement visualElement, int index)
         {
@@ -131,7 +105,7 @@ namespace AncientGlyph.EditorScripts.Editors
                 AssetType.Tile => _tilesPath,
                 AssetType.Wall => _wallPath,
                 AssetType.Item => _itemPath,
-                AssetType.Creature => _creaturePath,
+                AssetType.Entity => _creaturePath,
                 AssetType.Object => _objectPath,
                 AssetType.None or _ => null,
             };
@@ -231,7 +205,7 @@ namespace AncientGlyph.EditorScripts.Editors
                     findedAssetsDirectories = _objectsAssetsPath.Where(path => path.StartsWith(_propmt) || _propmt == "");
                     break;
                 }
-                case AssetType.Creature:
+                case AssetType.Entity:
                 {
                     findedAssetsDirectories = _creaturesAssetsPath.Where(path => path.StartsWith(_propmt) || _propmt == "");
                     break;
@@ -279,7 +253,5 @@ namespace AncientGlyph.EditorScripts.Editors
 
             selectedButton.styleSheets.Add(_highlightStyle);
         }
-
-        #endregion Private Methods
     }
 }

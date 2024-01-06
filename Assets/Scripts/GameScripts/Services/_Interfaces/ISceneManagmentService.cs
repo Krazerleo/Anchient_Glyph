@@ -1,7 +1,5 @@
 using System;
 
-using Cysharp.Threading.Tasks;
-
 namespace AncientGlyph.GameScripts.Services.Interfaces
 {
     public interface ISceneManagmentService

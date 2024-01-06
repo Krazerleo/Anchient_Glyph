@@ -1,9 +1,8 @@
 using System.IO;
-using System.Xml.Serialization;
+using System.Xml;
 
 using AncientGlyph.GameScripts.Constants;
-using AncientGlyph.GameScripts.GameWorldModel;
-
+using AncientGlyph.GameScripts.Serialization;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -13,8 +12,6 @@ namespace AncientGlyph.EditorScripts.Editors.Tools.LevelFileEditing
     [InitializeOnLoad]
     public class LevelModelSaver
     {
-        #region Private Methods
-
         static LevelModelSaver()
         {
             EditorApplication.quitting += SaveLevelModel;
@@ -31,17 +28,20 @@ namespace AncientGlyph.EditorScripts.Editors.Tools.LevelFileEditing
 
             if (File.Exists(levelModelPath))
             {
-                using var writer = new StreamWriter(levelModelPath, false);
-                var serializer = new XmlSerializer(typeof(LevelModel));
+                Debug.Log("Started level model serialization");
 
-                serializer.Serialize(writer, LevelModelDatabase.LevelModelInstance);
+                using var writer = new StreamWriter(levelModelPath, false);
+                using var serializer = XmlWriter.Create(writer);
+                var levelModelSerializer = new LevelModelSerializer(serializer);
+
+                levelModelSerializer.Serialize(LevelModelData.GetLevelModel());
+
+                Debug.Log("Finished level model serialization");
             }
             else
             {
-                Debug.LogWarning("Create Level Model Before Saving");
+                Debug.LogWarning("Create level model before saving");
             }
         }
-
-        #endregion Private Methods
     }
 }

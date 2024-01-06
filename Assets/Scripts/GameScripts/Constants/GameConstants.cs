@@ -1,9 +1,9 @@
 namespace AncientGlyph.GameScripts.Constants
 {
-    public class GameConstants
+    public static class GameConstants
     {
-        public const int LevelCellsSizeX = 64;
-        public const int LevelCellsSizeZ = 64;
-        public const int LevelCellsSizeY = 8;
+        public const int LevelCellsSizeX = 32;
+        public const int LevelCellsSizeZ = 32;
+        public const int LevelCellsSizeY = 6;
     }
 }

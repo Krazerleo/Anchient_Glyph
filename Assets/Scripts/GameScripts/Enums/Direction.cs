@@ -3,21 +3,21 @@ namespace AncientGlyph.GameScripts.Enums
     public enum Direction : uint 
     {
         /// <summary>
-        /// Against X axis
-        /// </summary>
-        South = 1,
-        /// <summary>
-        /// Against Z axis
-        /// </summary>
-        West = 2,
-        /// <summary>
         /// Along X axis
         /// </summary>
-        North = 3,
+        East = 0,
         /// <summary>
         /// Along Z axis
         /// </summary>
-        East = 4,
+        North = 1,
+        /// <summary>
+        /// Against X axis
+        /// </summary>
+        West = 2,
+        /// <summary>
+        /// Against Z axis
+        /// </summary>
+        South = 3,
         /// <summary>
         /// Along Y axis
         /// </summary>

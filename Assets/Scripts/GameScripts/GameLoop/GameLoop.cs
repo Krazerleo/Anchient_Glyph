@@ -9,9 +9,9 @@ namespace AncientGlyph.GameScripts.GameLoop
 {
     public class GameLoop : MonoBehaviour
     {
-        private IEnumerable<ICreatureModelController> _entityControllerList = new List<ICreatureModelController>();
-
+        private List<IEntityModelController> _entityControllerList = new();
         private bool _playerMakeTurn = false;
+
         private async void Update()
         {
             if (_playerMakeTurn == false)

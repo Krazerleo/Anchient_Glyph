@@ -1,21 +1,23 @@
-using AncientGlyph.GameScripts.Constants;
-
 namespace AncientGlyph.GameScripts.Helpers
 {
     public static class ArrayTools
     {
-        public static (int xIndex, int yIndex, int zIndex) Get3dArrayIndex(int index, int sizeX, int sizeY, int sizeZ)
+        public static (int xIndex, int yIndex, int zIndex)
+            Get3dArrayIndex(int index, int sizeX, int sizeZ)
         {
-            var xIndex = index % (sizeZ * sizeY);
-            var zIndex = index % (sizeX * sizeY);
-            var yIndex = index % (sizeX * sizeZ);
+            var yIndex = index / (sizeX * sizeZ);
+            index -= yIndex * sizeX * sizeZ;
 
-            return (xIndex, zIndex, yIndex);
+            var xIndex = index % sizeX;
+            var zIndex = index / sizeX;
+
+            return (xIndex, yIndex, zIndex);
         }
 
-        public static int Get1dArrayIndex(int xIndex, int yIndex, int zIndex)
+        public static int Get1dArrayIndex(int xIndex, int yIndex, int zIndex,
+                        int sizeX, int sizeZ)
         {
-            return xIndex + zIndex * GameConstants.LevelCellsSizeX + yIndex * GameConstants.LevelCellsSizeZ * GameConstants.LevelCellsSizeX;
+            return xIndex + (zIndex * sizeX) + (yIndex * sizeX * sizeZ);
         }
     }
 }

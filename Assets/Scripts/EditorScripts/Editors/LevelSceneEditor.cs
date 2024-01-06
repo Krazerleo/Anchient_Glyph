@@ -1,3 +1,4 @@
+using AncientGlyph.EditorScripts.Helpers;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
 
@@ -8,9 +9,7 @@ namespace AncientGlyph.EditorScripts.Editors
 {
     public class LevelSceneEditor
     {
-        #region Public Methods
-
-        public void PlaceTile(IShape shape, GameObject tilePrefab)
+        public void PlaceTile(IShape3D shape, GameObject tilePrefab)
         {
             if (tilePrefab == null)
             {
@@ -22,13 +21,15 @@ namespace AncientGlyph.EditorScripts.Editors
 
             foreach (var cellCoordinates in shape.GetDefinedGeometry())
             {
-                Undo.RegisterCreatedObjectUndo(Object.Instantiate(tilePrefab, cellCoordinates, Quaternion.identity, null), "");
+                var gameObject = Object.Instantiate(tilePrefab, cellCoordinates, Quaternion.identity, null);
+                ModelMarkerCreator.AddTileMarker(cellCoordinates, gameObject);
+                Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
 
             Undo.CollapseUndoOperations(groupId);
         }
 
-        public void PlaceCreature(IShape shape, GameObject creaturePrefab)
+        public void PlaceEntity(IShape3D shape, GameObject creaturePrefab, string entityId)
         {
             if (creaturePrefab == null)
             {
@@ -40,13 +41,15 @@ namespace AncientGlyph.EditorScripts.Editors
 
             foreach (var cellCoordinates in shape.GetDefinedGeometry())
             {
-                Undo.RegisterCreatedObjectUndo(Object.Instantiate(creaturePrefab, cellCoordinates, Quaternion.identity, null), "");
+                var gameObject = Object.Instantiate(creaturePrefab, cellCoordinates, Quaternion.identity, null);
+                ModelMarkerCreator.AddEntityMarker(cellCoordinates, entityId, gameObject);
+                Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
 
             Undo.CollapseUndoOperations(groupId);
         }
 
-        public void PlaceWall(IShape shape, GameObject wallPrefab, Direction direction)
+        public void PlaceWall(IShape3D shape, GameObject wallPrefab, Direction direction)
         {
             if (wallPrefab == null)
             {
@@ -59,13 +62,12 @@ namespace AncientGlyph.EditorScripts.Editors
             foreach (var cellCoordinates in shape.GetDefinedGeometry())
             {
                 var gameObject = Object.Instantiate(wallPrefab, cellCoordinates, Quaternion.identity, null);
-                gameObject.transform.GetChild(0).Rotate(Vector3.up, 90f * (uint) direction, Space.World);
+                ModelMarkerCreator.AddWallMarker(cellCoordinates, direction, gameObject);
+                gameObject.transform.GetChild(0).Rotate(Vector3.up, -90f * (uint) direction, Space.World);
                 Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
 
             Undo.CollapseUndoOperations(groupId);
         }
-
-        #endregion Public Methods
     }
 }

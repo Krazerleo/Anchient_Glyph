@@ -1,36 +1,26 @@
 using AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers.Interfaces;
 using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry.Shapes;
 using AncientGlyph.GameScripts.Geometry.Extensions;
 
 using UnityEngine;
+using AncientGlyph.EditorScripts.Editors.UndoRedo;
 
 namespace AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers
 {
     public class WallPlacerHandler : IAssetPlacerHandler
     {
-        #region Private Fields
-
         private Vector3 _firstPosition;
         private LevelModelEditor _levelEditor;
         private LevelSceneEditor _sceneEditor;
         private Vector3 _secondPosition;
         private GameObject _wallPrefab;
 
-        #endregion Private Fields
-
-        #region Public Constructors
-
         public WallPlacerHandler()
         {
             _levelEditor = new LevelModelEditor();
             _sceneEditor = new LevelSceneEditor();
         }
-
-        #endregion Public Constructors
-
-        #region Public Methods
 
         public void OnMouseButtonClickHandler(Vector3 mousePosition)
         {
@@ -67,52 +57,48 @@ namespace AncientGlyph.EditorScripts.Editors.Tools.LevelEditingHandlers
 
             if (Mathf.Abs(diagonalVector.x) > Mathf.Abs(diagonalVector.z))
             {
+                var xRectangle = new Rectangle(
+                                _firstPosition.ToVector3Int(),
+                                _secondPosition.ToVector3Int()
+                                    .SetZInt(Mathf.FloorToInt(_firstPosition.z)));
+
                 if (Mathf.RoundToInt(_firstPosition.z) == Mathf.FloorToInt(_firstPosition.z))
                 {
-                    _sceneEditor.PlaceWall(new Rectangle(
-                        _firstPosition.ToVector3Int(), _secondPosition.ToVector3Int().SetZInt(Mathf.FloorToInt(_firstPosition.z))
-                        ), _wallPrefab, Direction.South);
-
-                    _levelEditor.PlaceWall(new Rectangle(
-                        _firstPosition.ToVector3Int(), _secondPosition.ToVector3Int().SetZInt(Mathf.FloorToInt(_firstPosition.z))
-                        ), Direction.South);
+                    if (_levelEditor.TryPlaceWall(xRectangle, Direction.South))
+                    {
+                        _sceneEditor.PlaceWall(xRectangle, _wallPrefab, Direction.South);
+                    }
                 }
                 else
                 {
-                    _sceneEditor.PlaceWall(new Rectangle(
-                        _firstPosition.ToVector3Int(), _secondPosition.ToVector3Int().SetZInt(Mathf.FloorToInt(_firstPosition.z))
-                        ), _wallPrefab, Direction.North);
-
-                    _levelEditor.PlaceWall(new Rectangle(
-                        _firstPosition.ToVector3Int(), _secondPosition.ToVector3Int().SetZInt(Mathf.FloorToInt(_firstPosition.z))
-                        ), Direction.North);
+                    if (_levelEditor.TryPlaceWall(xRectangle, Direction.North))
+                    {
+                        _sceneEditor.PlaceWall(xRectangle, _wallPrefab, Direction.North);
+                    }
                 }
             }
             else
             {
+                var zRectangle = new Rectangle(
+                                _firstPosition.ToVector3Int(),
+                                _secondPosition.ToVector3Int()
+                                    .SetXInt(Mathf.FloorToInt(_firstPosition.x)));
+
                 if (Mathf.RoundToInt(_firstPosition.x) == Mathf.FloorToInt(_firstPosition.x))
                 {
-                    _sceneEditor.PlaceWall(new Rectangle(
-                        _firstPosition.ToVector3Int(), _secondPosition.ToVector3Int().SetXInt(Mathf.FloorToInt(_firstPosition.x))
-                        ), _wallPrefab, Direction.West);
-
-                    _levelEditor.PlaceWall(new Rectangle(
-                        _firstPosition.ToVector3Int(), _secondPosition.ToVector3Int().SetXInt(Mathf.FloorToInt(_firstPosition.x))
-                        ), Direction.West);
+                    if (_levelEditor.TryPlaceWall(zRectangle, Direction.West))
+                    {
+                        _sceneEditor.PlaceWall(zRectangle, _wallPrefab, Direction.West);
+                    }
                 }
                 else
                 {
-                    _sceneEditor.PlaceWall(new Rectangle(
-                        _firstPosition.ToVector3Int(), _secondPosition.ToVector3Int().SetXInt(Mathf.FloorToInt(_firstPosition.x))
-                        ), _wallPrefab, Direction.East);
-
-                    _levelEditor.PlaceWall(new Rectangle(
-                        _firstPosition.ToVector3Int(), _secondPosition.ToVector3Int().SetXInt(Mathf.FloorToInt(_firstPosition.x))
-                        ), Direction.East);
+                    if (_levelEditor.TryPlaceWall(zRectangle, Direction.East))
+                    {
+                        _sceneEditor.PlaceWall(zRectangle, _wallPrefab, Direction.East);
+                    }
                 }
             }
         }
-
-        #endregion Public Methods
     }
 }
