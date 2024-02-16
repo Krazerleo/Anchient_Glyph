@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="InventorySlot" src="project://database/Assets/Scripts/GameScripts/UserInterface/Player/InventorySlot.uxml?fileID=9197481963319205126&amp;guid=a45fa6a31ac1f9e4581e68b9985278c5&amp;type=3#InventorySlot" />
+    <Style src="project://database/Assets/Scripts/GameScripts/UserInterface/Styles/InventoryRowStyle.uss?fileID=7433441132597879392&amp;guid=b55c060711238a64cb33feda373af1ca&amp;type=3#InventoryRowStyle" />
+    <ui:VisualElement name="InventoryBox" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="Row" style="flex-direction: row;">
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Row" style="flex-direction: row;">
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Row" style="flex-direction: row;">
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+            <ui:Instance template="InventorySlot" name="InventorySlot" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

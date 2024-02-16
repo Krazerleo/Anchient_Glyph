@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CreatureBundle
+  m_EditorClassIdentifier: 
+  m_GroupName: CreatureBundle
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 42e68f83e5c790043a56ea05b7bd97c7
+  m_SerializeEntries:
+  - m_GUID: 190a67508ee7541459a0bbd920d23ee4
+    m_Address: Assets/Level/Prefab/Creatures/test_creature_1/test_creature_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - creature
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8accd8095bd26bc499267b21d179e59e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0a460599e052d514bb069467ba79d859, type: 2}
+    - {fileID: 11400000, guid: 1d344580cd1b8ef4c8f19a413c61392b, type: 2}

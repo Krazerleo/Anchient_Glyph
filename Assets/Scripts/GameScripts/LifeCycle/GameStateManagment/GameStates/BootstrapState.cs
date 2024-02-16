@@ -1,19 +1,13 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.Interfaces;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateArguments;
-using AncientGlyph.GameScripts.Services;
+using AncientGlyph.GameScripts.Services.SceneManagmentService;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
 
 namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
 {
     public class BootstrapState : IGameState
     {
-        private readonly IGameStateMachine _stateMachine;
+        private IGameStateMachine _stateMachine;
 
-        public BootstrapState(IGameStateMachine stateMachine)
-        {
-            _stateMachine = stateMachine;
-        }
-
-        #region Public Methods
         public void Enter<TNextStateParams>(TNextStateParams parameters)
         {
             _stateMachine.EnterState<LoadSceneState, LoadSceneArguments>(
@@ -23,13 +17,15 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
         public void Exit()
         {
         }
-        #endregion
 
-        #region Private Methods
         private void OnMenuSceneLoaded()
         {
             _stateMachine.EnterState<MenuState, object>(null);
         }
-        #endregion
+
+        public void LateStateMachineBinding(IGameStateMachine stateMachine)
+        {
+            _stateMachine = stateMachine;
+        }
     }
 }

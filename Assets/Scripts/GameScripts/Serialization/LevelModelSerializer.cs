@@ -1,78 +1,41 @@
-using System;
 using System.Xml;
+using System.Xml.Serialization;
 
-using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
 
 namespace AncientGlyph.GameScripts.Serialization
 {
     public class LevelModelSerializer
     {
-        private XmlWriter _xmlWriter;
+        private string _levelModelPath = string.Empty;
 
-        public LevelModelSerializer(XmlWriter xmlWriter)
+        public LevelModelSerializer(string levelModelPath)
         {
-            _xmlWriter = xmlWriter;
+            _levelModelPath = levelModelPath;
+        }
+
+        public bool TrySerialize(LevelModel levelModel)
+        {
+            try
+            {
+                Serialize(levelModel);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void Serialize(LevelModel levelModel)
         {
-            _xmlWriter.WriteStartDocument();
-
-            _xmlWriter.WriteStartElement(XmlLevelConstants.XmlNodeLevelFileName);
-
-            SerializeLevelEnvironment(levelModel);
-
-            SerializeLevelEntities(levelModel);
-
-            _xmlWriter.WriteEndElement();
-
-            _xmlWriter.WriteEndDocument();
-        }
-
-        private void SerializeLevelEnvironment(LevelModel levelModel)
-        {
-            var arrayBuffer = new byte[LevelModel.CellsCount * CellModel.SizeOfElementBytes];
-            var bytePointer = 0;
-
-            foreach (var cell in levelModel)
+            using var xmlWriter = XmlWriter.Create(_levelModelPath, new XmlWriterSettings()
             {
-                var cellData = cell.SerializeElement();
-                var location = arrayBuffer.AsSpan().Slice(bytePointer, CellModel.SizeOfElementBytes);
-                bytePointer += CellModel.SizeOfElementBytes;
+                Indent = true
+            });
+            var xmlSerializer = new XmlSerializer(typeof(LevelModel));
 
-                cellData.CopyTo(location);
-            }
-
-            _xmlWriter.WriteStartElement(XmlLevelConstants.XmlNodeLevelEnvName);
-            _xmlWriter.WriteBase64(arrayBuffer, 0, arrayBuffer.Length);
-            _xmlWriter.WriteEndElement();
-        }
-
-        private void SerializeLevelEntities(LevelModel levelModel)
-        {
-            _xmlWriter.WriteStartElement(XmlLevelConstants.XmlNodeLevelEntitiesName);
-
-            foreach (var cell in levelModel)
-            {
-                var entities = cell.EntityModelsInCell;
-
-                if (entities.IsValueCreated)
-                {
-                    foreach (var entity in entities.Value)
-                    {
-                        _xmlWriter.WriteStartElement(XmlLevelConstants.XmlNodeEntity);
-
-                        _xmlWriter.WriteAttributeString(XmlLevelConstants.XmlPropertyEntityId, entity.Identifier);
-                        _xmlWriter.WriteElementString(XmlLevelConstants.XmlPropertyEntityName, entity.Name);
-                        _xmlWriter.WriteElementString(XmlLevelConstants.XmlPropertyEntityPosition, entity.Position.ToString());
-
-                        _xmlWriter.WriteEndElement();
-                    }
-                }
-            }
-
-            _xmlWriter.WriteEndElement();
+            xmlSerializer.Serialize(xmlWriter, levelModel);
         }
     }
 }

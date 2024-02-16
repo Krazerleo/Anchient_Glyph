@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 3dcdc963de65e2941adb6793a61051f1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _editorUxmlAsset: {fileID: 9197481963319205126, guid: 8fac36ae599366f4db659ae4d5df6f75, type: 3}
+  - _freeCellStyleSheet: {fileID: 7433441132597879392, guid: fc0da871964435d48b0b90bf1516b404, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

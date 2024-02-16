@@ -1,18 +1,18 @@
 using System;
 using System.Xml;
+using System.Xml.Serialization;
 
-using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
 
 namespace AncientGlyph.GameScripts.Serialization
 {
     public class LevelModelDeserializer
     {
-        private XmlReader _xmlReader;
+        private string _levelModelPath = string.Empty;
 
-        public LevelModelDeserializer(XmlReader xmlReader)
+        public LevelModelDeserializer(string levelModelPath)
         {
-            _xmlReader = xmlReader;
+            _levelModelPath = levelModelPath;
         }
 
         public bool TryDeserialize(out LevelModel levelModel)
@@ -31,37 +31,16 @@ namespace AncientGlyph.GameScripts.Serialization
 
         public LevelModel Deserialize()
         {
-            var levelModel = new LevelModel();
+            using var xmlReader = XmlReader.Create(_levelModelPath);
+            var xmlSerializer = new XmlSerializer(typeof(LevelModel));
+            var model = xmlSerializer.Deserialize(xmlReader) as LevelModel;
 
-            DeserializeLevelEnvironment(levelModel);
-
-            DeserializeLevelEntities(levelModel);
-
-            return levelModel;
-        }
-
-        private void DeserializeLevelEnvironment(LevelModel levelModel)
-        {
-            var levelModelBuffer = new byte[LevelModel.CellsCount * CellModel.SizeOfElementBytes];
-
-            _xmlReader.ReadToDescendant(XmlLevelConstants.XmlNodeLevelEnvName);
-            _xmlReader.ReadElementContentAsBase64(levelModelBuffer, 0,
-                                                  LevelModel.CellsCount * CellModel.SizeOfElementBytes);
-
-            for (int bytePointer = 0;
-                bytePointer < LevelModel.CellsCount * CellModel.SizeOfElementBytes;
-                bytePointer += CellModel.SizeOfElementBytes)
+            if (model is null)
             {
-                levelModel[bytePointer / CellModel.SizeOfElementBytes]
-                    = CellModelDeserializer.Deserialize(levelModelBuffer.AsSpan(bytePointer,
-                                                                CellModel.SizeOfElementBytes));
+                throw new ArgumentException("Deserialization unsuccessful");
             }
-        }
 
-        private void DeserializeLevelEntities(LevelModel levelModel)
-        {
-            _xmlReader.ReadToFollowing(XmlLevelConstants.XmlNodeLevelEntitiesName);
-
+            return model;
         }
     }
 }

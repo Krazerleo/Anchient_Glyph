@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="PlayerTraitsBox" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+        <ui:VisualElement name="Picture" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Scripts/GameScripts/UserInterface/UiResources/msg708290441-18938.jpg?fileID=2800000&amp;guid=a0728bf67cb4c564c89f8c10585c58b5&amp;type=3#msg708290441-18938&apos;); flex-grow: 1; -unity-background-scale-mode: stretch-to-fill;" />
+        <ui:VisualElement name="Stats" style="background-color: rgba(0, 0, 0, 0); flex-grow: 1;">
+            <ui:Label tabindex="-1" text="=========" display-tooltip-when-elided="true" name="OtherStats" />
+            <ui:Label tabindex="-1" text="=========" display-tooltip-when-elided="true" name="Health" />
+            <ui:Label tabindex="-1" text="=========" display-tooltip-when-elided="true" name="Mana" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

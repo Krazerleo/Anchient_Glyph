@@ -1,9 +1,10 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 
 using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.Interactors.Interfaces;
+using AncientGlyph.GameScripts.Interactors;
 using UnityEngine.Assertions;
 
 namespace AncientGlyph.GameScripts.GameWorldModel
@@ -15,9 +16,9 @@ namespace AncientGlyph.GameScripts.GameWorldModel
     public struct CellModel
     {
         public const int SizeOfCellElement = 6;
-        public const int SizeOfElementBytes = 6 * sizeof(uint);
+        public const int SizeOfElementBytes = SizeOfCellElement * sizeof(uint);
 
-        public Lazy<List<IEntityModel>> EntityModelsInCell;
+        private List<IEntityModel> _entityModelsInCell;
 
         private WallType[] _cellData;
 
@@ -37,39 +38,38 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                 _cellData[i] = walls[i];
             }
 
-            EntityModelsInCell = new Lazy<List<IEntityModel>>();
+            _entityModelsInCell = new List<IEntityModel>();
         }
 
         public Span<WallType> GetWalls => _cellData.AsSpan(0, 4);
         public bool HasCeil => _cellData[4] != 0 ? true : false;
         public bool HasFloor => _cellData[5] != 0 ? true : false;
 
-        public void AddEntityToCell(IEntityModel entity) 
-            => EntityModelsInCell.Value.Add(entity);
-
-        /// <summary>
-        /// Returns entity models from cell
-        /// </summary>
-        /// <param name="entityModels"></param>
-        /// <returns>True if cell has entity models, otherwise false</returns>
-        public bool GetEntitiesFromCell(out List<IEntityModel> entityModels)
-        {
-            if (EntityModelsInCell.IsValueCreated)
-            {
-                entityModels = null;
-                return false;
-            }
-
-            entityModels = EntityModelsInCell.Value;
-
-            return true;
-        }
+        public void AddEntityToCell(IEntityModel entity)
+            => _entityModelsInCell.Add(entity);
 
         public void RemoveEntityFromCell(IEntityModel entity)
-            => EntityModelsInCell.Value.Remove(entity);
+            => _entityModelsInCell.Remove(entity);
+
+        public IEnumerable<IEntityModel> GetEntitiesFromCell()
+        {
+            return _entityModelsInCell;
+        }
 
         public Span<byte> SerializeElement()
             => _cellData.SelectMany(wt => BitConverter.GetBytes((uint) wt)).ToArray().AsSpan();
+
+        public static CellModel DeserializeElement(Span<byte> bytes)
+        {
+            var walls = new WallType[6];
+
+            for (var i = 0; i < bytes.Length; i += sizeof(uint))
+            {
+                walls[i / sizeof(uint)] = (WallType) BitConverter.ToUInt32(bytes[i..(i + 4)]);
+            }
+
+            return new CellModel(walls);
+        }
 
         public void SetWall(WallType wall, Direction direction)
             => _cellData[(uint) direction] =  wall;

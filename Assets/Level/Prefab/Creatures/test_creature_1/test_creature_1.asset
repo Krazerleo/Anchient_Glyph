@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: test_creature_1
   m_EditorClassIdentifier: 
   CreatureName: leonid
+  SerializationName: test_creature_1
   Description: best man in the world
   MaxHealthPoints: 10
   MaxManaPoints: 5
   DamageStrength: 21212
   DamageType: 0
-  MovementType: 0
+  BehaviourType: 0
   MovementSteps: 1
   IsFullSize: 1
   PhysicalResistance: 100

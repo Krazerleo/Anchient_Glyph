@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="PlayerTraits" src="project://database/Assets/Scripts/GameScripts/UserInterface/Player/PlayerTraits.uxml?fileID=9197481963319205126&amp;guid=c80cb44fbdc90c9469af1b246586a987&amp;type=3#PlayerTraits" />
+    <ui:Template name="MainInventory" src="project://database/Assets/Scripts/GameScripts/UserInterface/Player/MainInventory.uxml?fileID=9197481963319205126&amp;guid=74aa32ed408f5604fb1cb418753b2029&amp;type=3#MainInventory" />
+    <ui:Template name="ExtraInventory" src="project://database/Assets/Scripts/GameScripts/UserInterface/Player/ExtraInventory.uxml?fileID=9197481963319205126&amp;guid=6340e28183f58d148b8e49827579c559&amp;type=3#ExtraInventory" />
+    <Style src="project://database/Assets/Scripts/GameScripts/UserInterface/Styles/SideWindowStyle.uss?fileID=7433441132597879392&amp;guid=19df28b1b841afd4da98ceadf6d83aff&amp;type=3#SideWindowStyle" />
+    <ui:VisualElement name="Container" style="background-color: rgba(0, 0, 0, 0); flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="IconSpace" style="background-color: rgba(0, 0, 0, 0); flex-grow: 3; width: auto;" />
+        <ui:VisualElement name="SideWindow">
+            <ui:Instance template="PlayerTraits" name="PlayerTraits" style="flex-grow: 0; background-color: rgb(164, 164, 164);" />
+            <ui:VisualElement name="Inventory">
+                <ui:Instance template="MainInventory" name="MainInventory" style="align-self: center;" />
+                <ui:VisualElement name="ExtraInventory" style="background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                    <ui:Instance template="ExtraInventory" name="LeftInventory" class="InventoryExtra" />
+                    <ui:Instance template="ExtraInventory" name="RightInventory" class="InventoryExtra" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

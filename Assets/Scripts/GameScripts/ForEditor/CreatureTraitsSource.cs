@@ -1,4 +1,4 @@
-using AncientGlyph.GameScripts.Interactors.Creatures;
+using AncientGlyph.GameScripts.Interactors.Entities.Traits;
 
 using UnityEngine;
 

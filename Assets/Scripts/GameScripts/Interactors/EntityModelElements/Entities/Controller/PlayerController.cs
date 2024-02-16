@@ -1,60 +1,91 @@
-using System.Threading.Tasks;
-
-using AncientGlyph.GameScripts.Enums;
+using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.Interactors.Creatures.Controllers.Interfaces;
-using AncientGlyph.GameScripts.Interactors.Interaction.Interfaces;
-using AncientGlyph.GameScripts.Interactors.Interfaces;
+using AncientGlyph.GameScripts.Interactors.Interaction;
+using AncientGlyph.GameScripts.PlayerInput;
+using AncientGlyph.GameScripts.Services.LoggingService;
 
-namespace AncientGlyph.GameScripts.Interactors.Creatures.Controllers
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace AncientGlyph.GameScripts.Interactors.Entities.Controllers
 {
-    public class PlayerController : IEntityModelController
+    public class PlayerController : IEntityController
     {
-        public PlayerController(LevelModel levelModel, IEntityModel entityModel)
+        public PlayerController(PlayerAnimator playerAnimator,
+                                PlayerMoveInput playerMoveInput,
+                                LevelModel levelModel,
+                                PlayerModel playerModel,
+                                ILoggingService loggingService)
         {
+            _loggingService = loggingService;
+            _playerAnimator = playerAnimator;
+            _playerMoveInput = playerMoveInput;
             _levelModel = levelModel;
-            _playerEntity = entityModel;
+            _playerEntity = playerModel;
+
+            _actionCompletionSource = AutoResetUniTaskCompletionSource.Create();
         }
 
-        private LevelModel _levelModel;
-        private IEntityModel _playerEntity;
-
-        public int TurnsCount => 1;
-
-        public IEntityModel CreatureEntity => throw new System.NotImplementedException();
-
+        public IEntityModel EntityModel => _playerEntity;
         public IInteraction PlayerAction;
         public IEntityModel InteractedEntity;
-        public Direction? WalkDirection;
+        public bool IsEnabled => true;
 
-        public bool PlayerMakeTurn()
+        private readonly ILoggingService _loggingService;
+        private readonly PlayerMoveInput _playerMoveInput;
+        private readonly LevelModel _levelModel;
+        private readonly PlayerModel _playerEntity;
+        private readonly PlayerAnimator _playerAnimator;
+        private AutoResetUniTaskCompletionSource _actionCompletionSource;
+
+        public UniTask MakeNextTurn()
         {
-            return true;
+            AddActionEvents();
+
+            return _actionCompletionSource.Task;
         }
 
-        public async void MakeNextTurn()
+        private void AddActionEvents()
         {
-            if (PlayerAction == null && WalkDirection == null)
-            {
-                await Task.Yield();
-            }
-            else
-            {
-                if (PlayerAction != null)
-                {
-                    PlayerAction.InteractTo(InteractedEntity);
-                }
-                else
-                {
-                    var xOffset = WalkDirection == Direction.North ? 1 : WalkDirection == Direction.South ? -1 : 0;
-                    var zOffset = WalkDirection == Direction.East ? 1 : WalkDirection == Direction.West ? -1 : 0;
-                    var yOffset = WalkDirection == Direction.Up ? 1 : WalkDirection == Direction.Down ? -1 : 0;
+            _playerMoveInput.MoveBackwardAction.action.performed += OnMoveForward;
+            _playerMoveInput.MoveBackwardAction.action.performed += OnMoveBackward;
+            _playerMoveInput.MoveLeftAction.action.performed += OnMoveLeft;
+            _playerMoveInput.MoveRightAction.action.performed += OnMoveRight;
+        }
 
-                    if (_levelModel.MoveEntity(_playerEntity, xOffset, zOffset, yOffset))
-                    {
-                        _playerEntity.Position.Set(_playerEntity.Position.x + xOffset, _playerEntity.Position.z + zOffset, _playerEntity.Position.y + yOffset);
-                    }
+        private void RemoveActionEvents()
+        {
+            _playerMoveInput.MoveBackwardAction.action.performed -= OnMoveForward;
+            _playerMoveInput.MoveBackwardAction.action.performed -= OnMoveBackward;
+            _playerMoveInput.MoveLeftAction.action.performed -= OnMoveLeft;
+            _playerMoveInput.MoveRightAction.action.performed -= OnMoveRight;
+        }
 
+        private void OnMoveForward(InputAction.CallbackContext context)
+            => Move(0, 0, 1);
+
+        private void OnMoveBackward(InputAction.CallbackContext context)
+            => Move(0, 0, -1);
+
+        private void OnMoveLeft(InputAction.CallbackContext context)
+            => Move(1, 0, 0);
+
+        private void OnMoveRight(InputAction.CallbackContext context)
+            => Move(-1, 0, 0);
+
+        private void Move(int xOffset, int yOffset, int zOffset)
+        {
+            Debug.Log("walked");
+
+            if (_levelModel.TryMoveEntity(_playerEntity, xOffset, yOffset, zOffset))
+            {
+                RemoveActionEvents();
+                _playerAnimator.Move(new Vector3Int(xOffset, yOffset, zOffset));
+
+                if (_actionCompletionSource.TrySetResult() == false)
+                {
+                    _loggingService.LogError("Cannot set task result on completion");
                 }
             }
         }

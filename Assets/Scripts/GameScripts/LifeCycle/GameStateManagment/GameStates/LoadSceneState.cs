@@ -1,37 +1,40 @@
-using AncientGlyph.GameScripts.Helpers;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.Interfaces;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateArguments;
-using AncientGlyph.GameScripts.Services.Interfaces;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
+using AncientGlyph.GameScripts.Services.LoggingService;
+using AncientGlyph.GameScripts.Services.SceneManagmentService;
 
 namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
 {
     public class LoadSceneState : IGameState
     {
         private IGameStateMachine _stateMachine;
-        private ISceneManagmentService _sceneManagmentService;
+        private readonly ISceneManagmentService _sceneManagmentService;
+        private readonly ILoggingService _loggingService;
 
-        public LoadSceneState(IGameStateMachine stateMachine, ISceneManagmentService sceneManagmentService)
+        public LoadSceneState(ISceneManagmentService sceneManagmentService,
+            ILoggingService loggingService)
         {
-            _stateMachine = stateMachine;
             _sceneManagmentService = sceneManagmentService;
+            _loggingService = loggingService;
         }
 
-        #region Public Methods
         public void Enter<TNextStateParams>(TNextStateParams parameters)
         {
             var loadingParameters = parameters as LoadSceneArguments;
 
             if (loadingParameters == null)
             {
-                LogTools.LogWarning(this, "wrong scene loading params");
+                _loggingService.LogError("Wrong scene loading params");
             }
 
             _sceneManagmentService.LoadScene(loadingParameters.SceneName, loadingParameters.OnLoadAction);
         }
 
-        public void Exit()
+        public void Exit() { }
+
+        public void LateStateMachineBinding(IGameStateMachine stateMachine)
         {
+            _stateMachine = stateMachine;
         }
-        #endregion
     }
 }

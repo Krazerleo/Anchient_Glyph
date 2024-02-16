@@ -1,0 +1,34 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/EditorScripts/Editors/GameItemTools/ItemEditorStyles.uss?fileID=7433441132597879392&amp;guid=16556eb15a0d35a4f9480f47e66d24cf&amp;type=3#ItemEditorStyles" />
+    <ui:Label tabindex="-1" text="Select Cells For Item" display-tooltip-when-elided="true" name="ItemGeometryPickerLabel" />
+    <ui:VisualElement name="ItemGeometryPicker" style="flex-direction: column; -unity-background-scale-mode: scale-to-fit; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; max-width: 256px; max-height: 256px; min-width: 256px;">
+        <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-direction: row;">
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-direction: row;">
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-direction: row;">
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-direction: row;">
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+            <ui:Button display-tooltip-when-elided="true" name="Slot" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:TextField picking-mode="Ignore" label="Item ID" value="filler text" binding-path="ItemId" name="IdField" />
+    <ui:TextField picking-mode="Ignore" label="Item Name" value="filler text" binding-path="Name" name="NameField" />
+    <uie:PropertyField binding-path="Icon" label="Item Icon" name="IconField" />
+    <uie:PropertyField name="GhostIconField" binding-path="GhostIcon" />
+</ui:UXML>

@@ -1,10 +1,11 @@
 using NUnit.Framework;
 
-using AncientGlyph.GameScripts.Interactors.Creatures;
+using AncientGlyph.GameScripts.Interactors.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities.Traits;
 
 using UnityEngine;
 
-namespace AncientGlyph.Tests.ModelTests
+namespace AncientGlyph.TestScripts.ModelTests
 {
     public class InteractionTests
     {
@@ -12,8 +13,8 @@ namespace AncientGlyph.Tests.ModelTests
         public void HitCheck()
         {
             var creatureTraits = ScriptableObject.CreateInstance<CreatureTraits>();
-            var firstEntity = new CreatureModel(creatureTraits, new Vector3Int(), "a");
-            var secondEntity = new CreatureModel(creatureTraits, new Vector3Int(), "b");
+            var firstEntity = new CreatureModel(creatureTraits, new Vector3Int(), "a", "");
+            var secondEntity = new CreatureModel(creatureTraits, new Vector3Int(), "b", "");
 
             firstEntity.InteractWith(secondEntity);
         }

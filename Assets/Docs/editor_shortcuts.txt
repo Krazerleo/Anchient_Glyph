@@ -1,2 +1,0 @@
-shift+down_arrow => on height down (asset placer)
-shift+up_arrow => on height up (asset placer)

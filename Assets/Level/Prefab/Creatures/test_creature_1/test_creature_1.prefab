@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7369312113529725700}
-  - component: {fileID: -8211230006806583444}
+  - component: {fileID: 357161569827024606}
+  - component: {fileID: 7579915352060113529}
   m_Layer: 0
   m_Name: test_creature_1
   m_TagString: EditorOnly
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867114768123439662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 18, y: 1, z: 14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8211230006806583444
+--- !u!114 &357161569827024606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +43,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867114768123439662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c12921e233ec63f42b0d672b5b9dd7bc, type: 3}
+  m_Script: {fileID: 11500000, guid: d5f197d7304b3e64f85326e2d5c25f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CreatureTraits: {fileID: 11400000, guid: da5b79a03dd283547a439ed93b2bf4e4, type: 2}
+--- !u!114 &7579915352060113529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867114768123439662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fcc79e7fab5f6449b631216dcd026a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3541020592721051951
 GameObject:
   m_ObjectHideFlags: 0

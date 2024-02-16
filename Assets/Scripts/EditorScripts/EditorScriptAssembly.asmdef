@@ -2,7 +2,9 @@
     "name": "EditorScriptAssembly",
     "rootNamespace": "AncientGlyph.EditorScripts",
     "references": [
-        "GUID:136fecf16de443c41a825bd6f14d16a1"
+        "GUID:136fecf16de443c41a825bd6f14d16a1",
+        "GUID:f7c292403b24ec84ba53c5459a94624b",
+        "GUID:57a6d82589ae03c4cabdc058f719f231"
     ],
     "includePlatforms": [
         "Editor"

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 
-namespace AncientGlyph.GameScripts.Interactors.Interaction.Interfaces
+namespace AncientGlyph.GameScripts.Interactors.Interaction
 {
     public interface IInteractable
     {
@@ -8,6 +9,6 @@ namespace AncientGlyph.GameScripts.Interactors.Interaction.Interfaces
 
         public void AcceptInteraction(FunctionalInteraction func);
 
-        public void AcceptInteraction(ICollection<object> listItems);
+        public void AcceptInteraction(ICollection<GameItem> listItems);
     }
 }

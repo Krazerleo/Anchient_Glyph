@@ -1,6 +1,6 @@
 using AncientGlyph.EditorScripts.Editors;
 using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.ForEditor;
+using AncientGlyph.GameScripts.ForEditor.ModelMarkerComponent;
 using AncientGlyph.GameScripts.Geometry.Shapes;
 
 using UnityEngine;
@@ -13,6 +13,7 @@ namespace AncientGlyph.EditorScripts.Helpers
         {
             var marker = gameObject.AddComponent<ModelMarker>();
             marker.Coordinates = coordinates;
+            marker.DeletionHandler = new();
             marker.DeletionHandler += OnModelTileDelete;
         }
 
@@ -21,6 +22,7 @@ namespace AncientGlyph.EditorScripts.Helpers
             var marker = gameObject.AddComponent<ModelMarker>();
             marker.Coordinates = coordinates;
             marker.Direction = direction;
+            marker.DeletionHandler = new();
             marker.DeletionHandler += OnModelWallDelete;
         }
 
@@ -29,28 +31,26 @@ namespace AncientGlyph.EditorScripts.Helpers
             var marker = gameObject.AddComponent<ModelMarker>();
             marker.Coordinates = coordinates;
             marker.EntityId = entityId;
+            marker.DeletionHandler = new();
             marker.DeletionHandler += OnModelEntityDelete;
         }
 
-        private static void OnModelTileDelete(object sender, ModelMarker modelMarker)
+        private static void OnModelTileDelete(ModelMarker modelMarker)
         {
             var levelEditor = new LevelModelEditor();
             levelEditor.RemoveTiles(new Point(modelMarker.Coordinates));
-            modelMarker.DeletionHandler -= OnModelTileDelete;
         }
 
-        private static void OnModelWallDelete(object sender, ModelMarker modelMarker)
+        private static void OnModelWallDelete(ModelMarker modelMarker)
         {
             var levelEditor = new LevelModelEditor();
             levelEditor.RemoveWall(new Point(modelMarker.Coordinates), modelMarker.Direction);
-            modelMarker.DeletionHandler -= OnModelWallDelete;
         }
 
-        private static void OnModelEntityDelete(object sender, ModelMarker modelMarker)
+        private static void OnModelEntityDelete(ModelMarker modelMarker)
         {
             var levelEditor = new LevelModelEditor();
             levelEditor.RemoveEntity(new Point(modelMarker.Coordinates), modelMarker.EntityId);
-            modelMarker.DeletionHandler -= OnModelEntityDelete;
         }
     }
 }

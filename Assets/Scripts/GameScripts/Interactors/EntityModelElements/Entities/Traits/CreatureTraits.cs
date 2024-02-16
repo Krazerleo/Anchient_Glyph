@@ -1,15 +1,18 @@
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.Enums;
+using AncientGlyph.GameScripts.Interactors.Entities.Controllers;
 
 using UnityEngine;
 
-namespace AncientGlyph.GameScripts.Interactors.Creatures
+namespace AncientGlyph.GameScripts.Interactors.Entities.Traits
 {
-    [CreateAssetMenu(fileName = "Creature Traits Config", menuName = ProjectConstants.ScriptableObjectAssetMenuName)]
+    [CreateAssetMenu(
+        fileName = "Creature Traits Config",
+        menuName = ProjectConstants.ScriptableObjectAssetMenuName + "/" + "Creature Traits Config")]
     public class CreatureTraits : ScriptableObject
     {
         [SerializeField]
-        public string CreatureName;
+        public string Name;
 
         [SerializeField]
         public string Description;
@@ -30,10 +33,10 @@ namespace AncientGlyph.GameScripts.Interactors.Creatures
         [SerializeField]
         public DamageType DamageType;
 
-        [Header("Movement")]
+        [Header("Behaviour")]
 
         [SerializeField]
-        public int MovementType;
+        public BehaviourType BehaviourType;
 
         [SerializeField]
         public int MovementSteps;

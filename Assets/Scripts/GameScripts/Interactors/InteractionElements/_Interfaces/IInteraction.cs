@@ -1,6 +1,4 @@
-using AncientGlyph.GameScripts.Interactors.Interfaces;
-
-namespace AncientGlyph.GameScripts.Interactors.Interaction.Interfaces
+namespace AncientGlyph.GameScripts.Interactors.Interaction
 {
     public interface IInteraction
     {
