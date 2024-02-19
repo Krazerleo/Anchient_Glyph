@@ -4,29 +4,28 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
-
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.Geometry;
 using AncientGlyph.GameScripts.Interactors;
 using AncientGlyph.GameScripts.Interactors.Entities;
-
+using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameWorldModel
 {
     public class LevelModel : IXmlSerializable
     {
-        public const int CellsCount
+        private const int CellsCount
             = GameConstants.LevelCellsSizeX * GameConstants.LevelCellsSizeY * GameConstants.LevelCellsSizeZ;
 
         private readonly List<CellModel> _cellModelGrid = new(CellsCount);
 
         public LevelModel()
         {
-            var walls = new WallType[6] { 0, 0, 0, 0, 0, 0 };
+            var walls = new WallType[] { 0, 0, 0, 0, 0, 0 };
 
-            for (int i = 0; i < CellsCount; i++)
+            for (var i = 0; i < CellsCount; i++)
             {
                 _cellModelGrid.Add(new CellModel(walls));
             }
@@ -51,7 +50,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
         public CellModel At(Vector3Int vec3Int)
             => this[vec3Int.x, vec3Int.y, vec3Int.z];
 
-        public IEnumerator<CellModel> GetEnumerator()
+        public List<CellModel>.Enumerator GetEnumerator()
         {
             return _cellModelGrid.GetEnumerator();
         }
@@ -63,23 +62,25 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
         public bool TryMoveEntity(IEntityModel entity, int xOffset, int yOffset, int zOffset)
         {
-            var entityPosition = entity.Position;
-
-            if (entity.IsFullSize && this[entityPosition.x + xOffset, entityPosition.y + yOffset, entityPosition.z + zOffset]
-                .GetEntitiesFromCell().Any(x => x.IsFullSize))
+            var oldEntityPosition = entity.Position;
+            var newEntityPosition = entity.Position + new Vector3Int(xOffset, yOffset, zOffset);
+            
+            if (CheckInBounds(newEntityPosition) == false)
             {
                 return false;
             }
-            else
+
+            if (entity.IsFullSize && At(newEntityPosition).GetEntitiesFromCell().Any(x => x.IsFullSize))
             {
-                this[entityPosition.x, entityPosition.y, entityPosition.z]
-                    .RemoveEntityFromCell(entity);
-
-                this[entityPosition.x + xOffset, entityPosition.y + yOffset, entityPosition.z + zOffset]
-                    .AddEntityToCell(entity);
-
-                return true;
+                return false;
             }
+
+            At(oldEntityPosition).RemoveEntityFromCell(entity);
+            At(newEntityPosition).AddEntityToCell(entity);
+
+            entity.Position = newEntityPosition;
+
+            return true;
         }
 
         /// <summary>
@@ -99,7 +100,18 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             return entities;
         }
 
-        #region Serialization
+        private bool CheckInBounds(int xPosition, int yPosition, int zPosition)
+        {
+            return 0 <= xPosition && 0 <= yPosition && 0 <= zPosition &&
+                   xPosition < GameConstants.LevelCellsSizeX &&
+                   yPosition < GameConstants.LevelCellsSizeY &&
+                   zPosition < GameConstants.LevelCellsSizeZ;
+        }
+
+        private bool CheckInBounds(Vector3Int position)
+        {
+            return CheckInBounds(position.x, position.y, position.z);
+        }
 
         public XmlSchema GetSchema()
         {
@@ -128,22 +140,22 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
             xmlReader.ReadToDescendant(XmlLevelConstants.XmlNodeLevelEnvName);
             xmlReader.ReadElementContentAsBase64(levelModelBuffer, 0,
-                                                  CellsCount * CellModel.SizeOfElementBytes);
+                CellsCount * CellModel.SizeOfElementBytes);
 
             for (int bytePointer = 0;
-                bytePointer < CellsCount * CellModel.SizeOfElementBytes;
-                bytePointer += CellModel.SizeOfElementBytes)
+                 bytePointer < CellsCount * CellModel.SizeOfElementBytes;
+                 bytePointer += CellModel.SizeOfElementBytes)
             {
                 this[bytePointer / CellModel.SizeOfElementBytes]
                     = CellModel.DeserializeElement(levelModelBuffer.AsSpan(bytePointer,
-                                                                CellModel.SizeOfElementBytes));
+                        CellModel.SizeOfElementBytes));
             }
         }
 
         /// <summary>
         /// Deserialize only creatures, excluding player
         /// </summary>
-        /// <param name="xmlWriter"></param>
+        /// <param name="xmlReader"></param>
         private void DeserializeLevelEntities(XmlReader xmlReader)
         {
             var xmlSerializer = new XmlSerializer(typeof(CreatureModel[]),
@@ -154,7 +166,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
             xmlReader.ReadToNextSibling(XmlLevelConstants.XmlNodeLevelEntitiesName);
 
-            var creatureModels = (CreatureModel[]) xmlSerializer.Deserialize(xmlReader);
+            var creatureModels = (CreatureModel[])xmlSerializer.Deserialize(xmlReader);
             foreach (var creatureModel in creatureModels)
             {
                 At(creatureModel.Position)
@@ -196,7 +208,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                 foreach (var entity in cell.GetEntitiesFromCell())
                 {
                     // Player Serialization in another place. It`s not available to
-                    // polymorph serialize entities atleast using standard serializer
+                    // polymorph serialize entities at least using standard serializer
                     if (entity is PlayerModel)
                     {
                         continue;
@@ -209,5 +221,4 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             xmlWriter.WriteEndElement();
         }
     }
-    #endregion
 }

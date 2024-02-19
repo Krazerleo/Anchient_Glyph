@@ -1,5 +1,4 @@
 using AncientGlyph.EditorScripts.Editors.UndoRedo;
-using AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers.Interfaces;
 using AncientGlyph.GameScripts.Geometry;
 using AncientGlyph.GameScripts.Geometry.Shapes;
 
@@ -15,11 +14,11 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
         private Vector3Int _startPosition;
         private Vector3Int _lastPosition;
 
-        private LevelModelEditor _levelEditor = new();
-        private LevelSceneEditor _sceneEditor = new();
+        private readonly LevelModelEditor _levelEditor = new();
+        private readonly LevelSceneEditor _sceneEditor = new();
         private GameObject _tilePrefab;
 
-        private bool _isJustStarted = false;
+        private bool _isJustStarted;
 
         public void OnMouseButtonPressedHandler(Vector3 startMousePosition)
         {

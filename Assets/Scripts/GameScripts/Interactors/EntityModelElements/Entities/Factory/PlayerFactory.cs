@@ -44,8 +44,6 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factories
             var playerPrefab = await _creatureAssetProvider
                 .GetAssetByName(GameConstants.PlayerName);
 
-            playerPrefab.transform.position = new Vector3Int(5, 5, 1);
-
             if (playerPrefab.TryGetComponent<PlayerAnimator>(out var animator) == false)
             {
                 var message = "Player Animator not found";
@@ -59,6 +57,10 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factories
                 _loggingService.LogError(message);
                 throw new ArgumentException(message);
             }
+
+            playerPrefab.transform.position = new Vector3Int(5, 5, 1);
+            var playerModel = new PlayerModel();
+            playerModel.Position = new Vector3Int(5, 5, 1);
 
             return new PlayerController(animator, moveInput, _levelModel,
                                         new PlayerModel(), _loggingService);

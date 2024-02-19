@@ -1,5 +1,6 @@
 using AncientGlyph.EditorScripts.Helpers;
 using AncientGlyph.GameScripts.Enums;
+using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
 
 using UnityEditor;
@@ -45,6 +46,12 @@ namespace AncientGlyph.EditorScripts.Editors
                 return;
             }
 
+            if (creaturePrefab.TryGetComponent<CreatureTraitsSource>(out var traitSource) == false)
+            {
+                Debug.Log($"Can`t find traits of this creature: {creaturePrefab.name}");
+                return;
+            }
+
             Undo.SetCurrentGroupName("Remove Creature");
             int groupId = Undo.GetCurrentGroup();
 
@@ -55,9 +62,9 @@ namespace AncientGlyph.EditorScripts.Editors
 
             foreach (var cellCoordinates in shape.GetDefinedGeometry())
             {
-                Object.Instantiate(_entityMarkerPrefab, cellCoordinates, Quaternion.identity, entitiesGroup.transform);
-                ModelMarkerCreator.AddEntityMarker(cellCoordinates, entityId, _entityMarkerPrefab);
-                Undo.RegisterCreatedObjectUndo(_entityMarkerPrefab, "");
+                var entityMarker = Object.Instantiate(_entityMarkerPrefab, cellCoordinates, Quaternion.identity, entitiesGroup.transform);
+                ModelMarkerCreator.AddEntityMarker(cellCoordinates, entityId, traitSource.CreatureTraits.Name, entityMarker);
+                Undo.RegisterCreatedObjectUndo(entityMarker, "");
             }
 
             Undo.CollapseUndoOperations(groupId);

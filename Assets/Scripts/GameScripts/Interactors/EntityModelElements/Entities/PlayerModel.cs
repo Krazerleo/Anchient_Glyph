@@ -12,7 +12,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities
     public class PlayerModel : IEntityModel
     {
         public bool IsFullSize => true;
-        public Vector3Int Position { get; }
+        public Vector3Int Position { get; set; }
         public string Identifier { get; }
         public string Name { get; }
 
@@ -51,6 +51,11 @@ namespace AncientGlyph.GameScripts.Interactors.Entities
         public void WriteXml(XmlWriter writer)
         {
             // TODO
+        }
+
+        public bool Equals(IEntityModel other)
+        {
+            return (other.Identifier == Identifier) ? true : false;
         }
     }
 }

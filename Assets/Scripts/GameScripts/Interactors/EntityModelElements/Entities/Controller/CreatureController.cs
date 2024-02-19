@@ -1,8 +1,10 @@
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.GameWorldModel;
+using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
 using AncientGlyph.GameScripts.Services.LoggingService;
 
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace AncientGlyph.GameScripts.Interactors.Entities.Controllers
 {
@@ -12,7 +14,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controllers
         public IEntityModel EntityModel => _creatureModel;
 
         private bool _isEnabled = true;
-        private CreatureModel _creatureModel;
+        public CreatureModel _creatureModel;
 
         private LevelModel _levelModel;
         private ILoggingService _loggingService;
@@ -35,6 +37,12 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controllers
         public UniTask MakeNextTurn()
         {
             _behaviour.PlanForTurn(_creatureModel, _levelModel);
+            var randomOffset = new Vector3Int(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
+            Debug.Log("Making Turn");
+            if (_levelModel.TryMoveEntity(_creatureModel, randomOffset))
+            {
+                _animator.Move(randomOffset);
+            }
             return UniTask.CompletedTask;
         }
     }

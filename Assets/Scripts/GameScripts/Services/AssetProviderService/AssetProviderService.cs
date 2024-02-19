@@ -27,7 +27,7 @@ namespace AncientGlyph.GameScripts.Services.AssetProviderService
 
             if (_resources.TryGetValue(name, out var asset))
             {
-                return asset;
+                return UnityEngine.Object.Instantiate(asset);
             }
             else
             {
@@ -47,10 +47,11 @@ namespace AncientGlyph.GameScripts.Services.AssetProviderService
 
             _resources = new();
 
-            var resourceLocations =  await Addressables
-                .LoadResourceLocationsAsync(default(TAssetTypeOption).Labels,
-                                            Addressables.MergeMode.Union)
-                .ToUniTask();
+            var resourceLocationsHandle = Addressables
+                .LoadResourceLocationsAsync(default(TAssetTypeOption)!.Labels,
+                                            Addressables.MergeMode.Union);
+
+            var resourceLocations = await resourceLocationsHandle;
 
             if (resourceLocations.Count == 0)
             {
@@ -62,6 +63,8 @@ namespace AncientGlyph.GameScripts.Services.AssetProviderService
                 var resource = await Addressables.LoadAssetAsync<GameObject>(resourceLocation);
                 _resources.Add(resource.name, resource);
             }
+
+            Addressables.Release(resourceLocationsHandle);
 
             return;
         }

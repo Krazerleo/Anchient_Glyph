@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-
 using AncientGlyph.GameScripts.Interactors.Entities.Controllers;
+using Cysharp.Threading.Tasks;
 
 namespace AncientGlyph.GameScripts.CoreGameMechanics
 {
@@ -9,7 +9,7 @@ namespace AncientGlyph.GameScripts.CoreGameMechanics
     /// </summary>
     public class GameLoop
     {
-        private IList<IEntityController> _entityControllers 
+        private IList<IEntityController> _entityControllers
             = new List<IEntityController>();
 
         private bool _isStopped;
@@ -19,21 +19,24 @@ namespace AncientGlyph.GameScripts.CoreGameMechanics
             _entityControllers.Add(controller);
         }
 
-        public async void StartGameLoop()
+        public async UniTask StartGameLoop()
         {
-            if (_isStopped)
+            while (true)
             {
-                return;
-            }
-
-            foreach (var controller in _entityControllers)
-            {
-                if (controller.IsEnabled == false)
+                foreach (var controller in _entityControllers)
                 {
-                    continue;
-                }
+                    if (_isStopped)
+                    {
+                        return;
+                    }
 
-                await controller.MakeNextTurn();
+                    if (controller.IsEnabled == false)
+                    {
+                        continue;
+                    }
+
+                    await controller.MakeNextTurn();
+                }
             }
         }
 

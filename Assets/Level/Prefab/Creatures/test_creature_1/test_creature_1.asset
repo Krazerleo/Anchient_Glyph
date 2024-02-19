@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4477b568f98564da4fe2ca568c8e88, type: 3}
   m_Name: test_creature_1
   m_EditorClassIdentifier: 
-  CreatureName: leonid
-  SerializationName: test_creature_1
+  Name: leonid
   Description: best man in the world
-  MaxHealthPoints: 10
-  MaxManaPoints: 5
+  MaxHealthPoints: 25331
+  MaxManaPoints: 123123
   DamageStrength: 21212
   DamageType: 0
   BehaviourType: 0

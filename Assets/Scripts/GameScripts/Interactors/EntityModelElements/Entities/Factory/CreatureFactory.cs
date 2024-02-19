@@ -1,17 +1,19 @@
 using System;
-
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
+using AncientGlyph.GameScripts.Interactors.Entities;
 using AncientGlyph.GameScripts.Interactors.Entities.Controllers;
+using AncientGlyph.GameScripts.Interactors.Entities.Factories;
 using AncientGlyph.GameScripts.Services.AssetProviderService;
 using AncientGlyph.GameScripts.Services.LoggingService;
-
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 
-namespace AncientGlyph.GameScripts.Interactors.Entities.Factories
+namespace AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities.Factory
 {
+    [UsedImplicitly]
     public class CreatureFactory : ICreatureFactory
     {
         private readonly ILoggingService _loggingService;
@@ -19,8 +21,8 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factories
         private readonly LevelModel _levelModel;
 
         public CreatureFactory(ILoggingService loggingService,
-                               IAssetProviderService<CreatureAssetOption> creatureAssetProvider,
-                               LevelModel levelModel)
+            IAssetProviderService<CreatureAssetOption> creatureAssetProvider,
+            LevelModel levelModel)
         {
             _creatureAssetProvider = creatureAssetProvider;
             _loggingService = loggingService;
@@ -39,7 +41,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factories
         {
             if (creatureModel == null)
             {
-                var message = "Creature Model is null";
+                const string message = "Creature Model is null";
                 _loggingService.LogError(message);
                 throw new ArgumentException(message);
             }
@@ -64,6 +66,8 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factories
             }
 
             creatureModel.Traits = traitsSource.CreatureTraits;
+
+            var cell = _levelModel.At(creatureModel.Position);
 
             return new CreatureController(creatureModel, _levelModel, _loggingService,
                 animator, BehaviourFactory.CreateCreatureBehaviour(traitsSource.CreatureTraits.BehaviourType));

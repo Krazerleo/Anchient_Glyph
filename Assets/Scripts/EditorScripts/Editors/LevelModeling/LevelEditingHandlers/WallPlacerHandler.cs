@@ -1,4 +1,3 @@
-using AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers.Interfaces;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.Geometry.Shapes;
 using AncientGlyph.GameScripts.Geometry;
@@ -13,12 +12,12 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
         private const string GhostWallAssetPath = "Assets/Level/Prefab/Debug/wall_ghost.prefab";
 
         private Vector3 _startPosition;
-        private LevelModelEditor _levelEditor = new();
-        private LevelSceneEditor _sceneEditor = new();
+        private readonly LevelModelEditor _levelEditor = new();
+        private readonly LevelSceneEditor _sceneEditor = new();
         private Vector3 _lastPosition;
         private GameObject _wallPrefab;
 
-        private bool _isJustStarted = false;
+        private bool _isJustStarted;
 
         public void OnMouseButtonPressedHandler(Vector3 startMousePosition)
         {

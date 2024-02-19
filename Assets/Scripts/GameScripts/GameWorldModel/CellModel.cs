@@ -49,7 +49,16 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             => _entityModelsInCell.Add(entity);
 
         public void RemoveEntityFromCell(IEntityModel entity)
-            => _entityModelsInCell.Remove(entity);
+        {
+            if (_entityModelsInCell.Remove(entity))
+            {
+
+            }
+            else
+            {
+
+            }
+        }
 
         public IEnumerable<IEntityModel> GetEntitiesFromCell()
         {

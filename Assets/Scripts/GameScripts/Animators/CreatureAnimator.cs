@@ -4,6 +4,9 @@ namespace AncientGlyph.GameScripts.Animators
 {
     public class CreatureAnimator : MonoBehaviour
     {
-
+        public void Move(Vector3Int offset)
+        {
+            transform.position += offset;
+        }
     }
 }

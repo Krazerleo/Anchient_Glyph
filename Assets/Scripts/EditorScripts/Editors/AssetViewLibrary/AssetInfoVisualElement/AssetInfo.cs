@@ -1,18 +1,12 @@
 using UnityEngine;
 
-namespace AncientGlyph.EditorScripts.Editors
+namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetInfoVisualElement
 {
     public class AssetInfo
     {
-        #region Public Fields
-
         public readonly string AssetName;
         public readonly string AssetPath;
         public readonly Texture2D AssetPreviewImage;
-
-        #endregion Public Fields
-
-        #region Public Constructors
 
         public AssetInfo(string assetName, Texture2D assetPreviewImage, string assetPath)
         {
@@ -20,7 +14,5 @@ namespace AncientGlyph.EditorScripts.Editors
             AssetPreviewImage = assetPreviewImage;
             AssetPath = assetPath;
         }
-
-        #endregion Public Constructors
     }
 }

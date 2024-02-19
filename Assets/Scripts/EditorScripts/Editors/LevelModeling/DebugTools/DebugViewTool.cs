@@ -7,7 +7,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
     [EditorTool("Debug View")]
     public class DebugViewTool : EditorTool
     {
-        public static bool IsEnabled { get; private set; }
+        private static bool IsEnabled { get; set; }
 
         public override void OnActivated()
         {

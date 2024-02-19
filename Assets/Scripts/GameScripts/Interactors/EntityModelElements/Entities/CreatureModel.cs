@@ -2,15 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
-
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
-using AncientGlyph.GameScripts.Interactors.Entities.Traits;
+using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities.Traits;
 using AncientGlyph.GameScripts.Interactors.Interaction;
 using AncientGlyph.GameScripts.Serialization.Extensions;
-
 using UnityEngine;
 
-namespace AncientGlyph.GameScripts.Interactors.Entities
+namespace AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities
 {
     public class CreatureModel : IEntityModel
     {
@@ -21,22 +19,23 @@ namespace AncientGlyph.GameScripts.Interactors.Entities
         /// Same as CreatureTraits.Name
         /// </summary>
         public string SerializationName;
+
         public CreatureTraits Traits;
 
-        private Vector3Int _position;
         private Guid _identifier;
 
         public CreatureModel() { }
 
-        public CreatureModel(CreatureTraits traits, Vector3Int position, string entityId, string serializationName)
+        public CreatureModel(CreatureTraits traits, Vector3Int position,
+                             string entityId, string serializationName)
         {
             Traits = traits;
-            _position = position;
+            Position = position;
             _identifier = new Guid(entityId);
             SerializationName = serializationName;
         }
 
-        public Vector3Int Position => _position;
+        public Vector3Int Position { get; set; }
 
         public bool IsFullSize => Traits.IsFullSize;
 
@@ -77,7 +76,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities
             SerializationName = xmlReader.ReadElementContentAsString();
 
             xmlReader.ReadToNextSibling(nameof(Position));
-            _position = SerializationExtensions
+            Position = SerializationExtensions
                 .ParseVector3Int(xmlReader.ReadElementContentAsString());
 
             // VOODOO MAGIC
@@ -93,6 +92,11 @@ namespace AncientGlyph.GameScripts.Interactors.Entities
             xmlWriter.WriteElementString(nameof(SerializationName),
                                          SerializationName);
             xmlWriter.WriteElementString(nameof(Position), Position.ToString());
+        }
+
+        public bool Equals(IEntityModel other)
+        {
+            return (other.Identifier == Identifier) ? true : false;
         }
     }
 }

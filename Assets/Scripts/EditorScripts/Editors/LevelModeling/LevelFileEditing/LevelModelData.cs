@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
 {
-    public class LevelModelData
+    public static class LevelModelData
     {
         private static LevelModel _levelModelInstance;
 

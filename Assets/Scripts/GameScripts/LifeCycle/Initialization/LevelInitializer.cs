@@ -1,4 +1,5 @@
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.PlayState;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
 using AncientGlyph.GameScripts.Services.ComponentLocatorService;
 
@@ -23,12 +24,12 @@ namespace AncientGlyph.GameScripts.LifeCycle.Initialization
             _playStateMachine = gameStateMachine;
         }
 
-        private void Awake()
+        private async void Awake()
         {
-            Initialize();
+            await Initialize();
         }
 
-        private void Initialize()
+        private async UniTask Initialize()
         {
             if (_componentLocator.IsComponentExist(this))
             {
@@ -36,7 +37,7 @@ namespace AncientGlyph.GameScripts.LifeCycle.Initialization
                 return;
             }
 
-            Addressables.InitializeAsync().ToUniTask().GetAwaiter().GetResult();
+            await Addressables.InitializeAsync();
 
             _playStateMachine.EnterState<PlayStateInitial, object>(null);
         }

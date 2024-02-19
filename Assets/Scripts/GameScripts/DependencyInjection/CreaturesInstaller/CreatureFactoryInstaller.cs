@@ -1,8 +1,8 @@
 using AncientGlyph.GameScripts.Interactors.Entities.Factories;
-
+using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities.Factory;
 using Zenject;
 
-namespace AncientGlyph.GameScripts.DependencyInjection
+namespace AncientGlyph.GameScripts.DependencyInjection.CreaturesInstaller
 {
     public class CreatureFactoryInstaller : MonoInstaller<CreatureFactoryInstaller>
     {

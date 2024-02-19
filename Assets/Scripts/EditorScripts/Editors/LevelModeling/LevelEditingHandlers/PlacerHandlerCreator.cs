@@ -1,11 +1,10 @@
 using System;
 
-using AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers.Interfaces;
 using AncientGlyph.GameScripts.ForEditor;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
 {
-    public class PlacerHandlerCreator
+    public static class PlacerHandlerCreator
     {
         public static IAssetPlacerHandler CreatePlacerHandler(AssetType typeAsset)
         {

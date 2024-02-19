@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EditorDebugViewObject
   - GridPlaneTag
+  - EditorEntityMarker
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ namespace AncientGlyph.TestScripts.OtherTests
             var (xIndex, yIndex, zIndex) = ArrayTools.Get3dArrayIndex(index, xSize, zSize);
 
             Assert.AreEqual(index, ArrayTools.Get1dArrayIndex(xIndex,
-                zIndex, yIndex, xSize, zSize));
+                yIndex, zIndex, xSize, zSize));
         }
     }
 }

@@ -3,12 +3,15 @@ using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Interactors.Entities;
 using AncientGlyph.GameScripts.Interactors.Entities.Controllers;
 using AncientGlyph.GameScripts.Interactors.Entities.Factories;
+using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
-
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 
-namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
+namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.PlayState
 {
+    [UsedImplicitly]
     public class PlayStateInitial : IGameState
     {
         private IGameStateMachine _stateMachine;
@@ -31,8 +34,11 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
         public void Enter<TNextStateParams>(TNextStateParams parameters)
         {
             InjectCreaturesToGameLoop()
-                .ContinueWith(() => _gameLoop.InjectEntityController(_playerController))
-                .ContinueWith(() => _gameLoop.StartGameLoop())
+                .ContinueWith(() =>
+                {
+                    _gameLoop.InjectEntityController(_playerController);
+                    _gameLoop.StartGameLoop().Forget();
+                })
                 .Forget();
         }
 

@@ -26,11 +26,12 @@ namespace AncientGlyph.EditorScripts.Helpers
             marker.DeletionHandler += OnModelWallDelete;
         }
 
-        public static void AddEntityMarker(Vector3Int coordinates, string entityId, GameObject gameObject)
+        public static void AddEntityMarker(Vector3Int coordinates, string entityId, string entityName, GameObject entityMarker)
         {
-            var marker = gameObject.AddComponent<ModelMarker>();
+            var marker = entityMarker.AddComponent<ModelMarker>();
             marker.Coordinates = coordinates;
             marker.EntityId = entityId;
+            marker.EntityName = entityName;
             marker.DeletionHandler = new();
             marker.DeletionHandler += OnModelEntityDelete;
         }

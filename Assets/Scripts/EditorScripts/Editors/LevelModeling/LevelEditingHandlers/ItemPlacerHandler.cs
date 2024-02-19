@@ -1,5 +1,3 @@
-using AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers.Interfaces;
-
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers

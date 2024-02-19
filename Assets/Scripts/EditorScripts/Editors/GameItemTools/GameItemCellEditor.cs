@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;

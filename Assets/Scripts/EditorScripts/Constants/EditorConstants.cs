@@ -2,7 +2,7 @@ using AncientGlyph.GameScripts.Constants;
 
 namespace AncientGlyph.EditorScripts.Constants
 {
-    public class EditorConstants
+    public static class EditorConstants
     {
         public const float DistanceTolerance = 0.01f;
 

@@ -1,8 +1,8 @@
-namespace AncientGlyph.GameScripts.Enums
+namespace AncientGlyph.GameScripts.GameSystems.FightingSystem
 {
     public enum DamageType
     {
-        Phisical,
+        Physical,
         Fire,
         Water,
         Earth,

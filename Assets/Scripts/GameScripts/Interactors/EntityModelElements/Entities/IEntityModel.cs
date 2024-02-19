@@ -1,4 +1,6 @@
+using System;
 using System.Xml.Serialization;
+
 using AncientGlyph.GameScripts.Interactors.Interaction;
 
 using UnityEngine;
@@ -8,14 +10,14 @@ namespace AncientGlyph.GameScripts.Interactors
     /// <summary>
     /// Basic description for entity model
     /// </summary>
-    public interface IEntityModel : IInteractable, IXmlSerializable
+    public interface IEntityModel : IInteractable, IXmlSerializable, IEquatable<IEntityModel>
     {
         /// <summary>
         /// Indicate if cannot be placed in same cell with
         /// other full size entity
         /// </summary>
         public bool IsFullSize { get; }
-        public Vector3Int Position { get; }
+        public Vector3Int Position { get; set; }
         /// <summary>
         /// Some unique identifier
         /// </summary>

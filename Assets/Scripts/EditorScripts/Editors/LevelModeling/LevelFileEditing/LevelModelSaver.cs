@@ -1,7 +1,7 @@
 //#define PRINT_LOG_SERIALIZATION
 
 using System.IO;
-
+using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.Serialization;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -27,7 +27,11 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
         [MenuItem("Project Instruments / Save Level Model")]
         private static void SaveLevelModel()
         {
-            var levelModelPath = LevelModelPathProvider.GetPathFromEditor();
+            var currentSceneName = EditorSceneManager.GetActiveScene().name;
+            var streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
+            var levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
+                                            FileConstants.StreamingAssetLevelFolderName,
+                                            currentSceneName + FileConstants.LevelModelFileExtention);
 
             if (File.Exists(levelModelPath) && LevelModelData.GetLevelModel() != null)
             {

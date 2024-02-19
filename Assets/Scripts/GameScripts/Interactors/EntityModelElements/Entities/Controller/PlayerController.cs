@@ -48,7 +48,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controllers
 
         private void AddActionEvents()
         {
-            _playerMoveInput.MoveBackwardAction.action.performed += OnMoveForward;
+            _playerMoveInput.MoveForwardAction.action.performed += OnMoveForward;
             _playerMoveInput.MoveBackwardAction.action.performed += OnMoveBackward;
             _playerMoveInput.MoveLeftAction.action.performed += OnMoveLeft;
             _playerMoveInput.MoveRightAction.action.performed += OnMoveRight;
@@ -56,7 +56,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controllers
 
         private void RemoveActionEvents()
         {
-            _playerMoveInput.MoveBackwardAction.action.performed -= OnMoveForward;
+            _playerMoveInput.MoveForwardAction.action.performed -= OnMoveForward;
             _playerMoveInput.MoveBackwardAction.action.performed -= OnMoveBackward;
             _playerMoveInput.MoveLeftAction.action.performed -= OnMoveLeft;
             _playerMoveInput.MoveRightAction.action.performed -= OnMoveRight;
@@ -68,16 +68,14 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controllers
         private void OnMoveBackward(InputAction.CallbackContext context)
             => Move(0, 0, -1);
 
-        private void OnMoveLeft(InputAction.CallbackContext context)
+        private void OnMoveRight(InputAction.CallbackContext context)
             => Move(1, 0, 0);
 
-        private void OnMoveRight(InputAction.CallbackContext context)
+        private void OnMoveLeft(InputAction.CallbackContext context)
             => Move(-1, 0, 0);
 
         private void Move(int xOffset, int yOffset, int zOffset)
         {
-            Debug.Log("walked");
-
             if (_levelModel.TryMoveEntity(_playerEntity, xOffset, yOffset, zOffset))
             {
                 RemoveActionEvents();

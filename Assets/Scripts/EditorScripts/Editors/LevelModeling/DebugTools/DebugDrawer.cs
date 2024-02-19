@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
 {
-    public class DebugDrawer
+    public static class DebugDrawer
     {
         private const string WallDebugPrefabPath = "Assets/Level/Prefab/Debug/wall_debug.prefab";
         private const string FloorDebugPrefabPath = "Assets/Level/Prefab/Debug/floor_debug.prefab";
@@ -34,7 +34,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
 
             foreach (var debugObject in debugGameObjects)
             {
-                GameObject.DestroyImmediate(debugObject);
+                Object.DestroyImmediate(debugObject);
             }
         }
 
@@ -49,7 +49,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
             {
                 if (cell.GetWalls[i] != 0)
                 {
-                    var debugObject = GameObject.Instantiate(
+                    var debugObject = Object.Instantiate(
                         wallPrefab,
                         position: new Vector3(x, y, z),
                         rotation: Quaternion.identity,
@@ -60,9 +60,9 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
                 }
             }
 
-            if (cell.HasFloor == true)
+            if (cell.HasFloor)
             {
-                GameObject.Instantiate(
+                Object.Instantiate(
                     floorPrefab,
                     position: new Vector3(x, y, z),
                     rotation: Quaternion.identity)

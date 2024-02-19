@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers.Interfaces
+namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
 {
     /// <summary>
     /// Mouse handlers for adding wall and tile
