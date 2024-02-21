@@ -2,7 +2,6 @@ using System;
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.Interactors.Entities;
 using AncientGlyph.GameScripts.Interactors.Entities.Controllers;
 using AncientGlyph.GameScripts.Interactors.Entities.Factories;
 using AncientGlyph.GameScripts.Services.AssetProviderService;
@@ -66,7 +65,7 @@ namespace AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities.Fact
             }
 
             creatureModel.Traits = traitsSource.CreatureTraits;
-
+            
             var cell = _levelModel.At(creatureModel.Position);
 
             return new CreatureController(creatureModel, _levelModel, _loggingService,

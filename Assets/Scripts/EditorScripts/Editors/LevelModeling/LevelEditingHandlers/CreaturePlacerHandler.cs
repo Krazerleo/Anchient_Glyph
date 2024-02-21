@@ -1,7 +1,6 @@
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.Geometry;
 using AncientGlyph.GameScripts.Geometry.Shapes;
-using AncientGlyph.GameScripts.Interactors.Entities;
 using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
 using UnityEditor;
 using UnityEngine;
@@ -11,8 +10,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
     public class CreaturePlacerHandler : IAssetPlacerHandler
     {
         private GameObject _entityPrefab;
-        private LevelModelEditor _levelEditor = new();
-        private LevelSceneEditor _sceneEditor = new();
+        private readonly LevelSceneEditor _sceneEditor = new();
 
         public void OnMouseButtonPressedHandler(Vector3 position) { }
 
@@ -28,13 +26,10 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
                 return;
             }
 
-            var entity = new CreatureModel(traits, position.ToVector3Int(), GUID.Generate().ToString(), _entityPrefab.name);
+            var entity = new CreatureModel(traits, position.ToVector3Int(), GUID.Generate().ToString());
 
-            if (_levelEditor.TryPlaceEntity(new Point(position.ToVector3Int()), entity))
-            {
-                _sceneEditor.PlaceEntities(new Point(position.ToVector3Int()),
-                                           _entityPrefab, entity.Identifier);
-            }
+            _sceneEditor.PlaceEntities(new Point(position.ToVector3Int()),
+                                       _entityPrefab, entity.Identifier);
         }
 
         public void OnMouseMoveHandler(Vector3 position) { }

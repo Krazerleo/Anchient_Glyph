@@ -1,57 +1,36 @@
-using AncientGlyph.EditorScripts.Editors;
 using AncientGlyph.GameScripts.Enums;
+using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.ForEditor.ModelMarkerComponent;
-using AncientGlyph.GameScripts.Geometry.Shapes;
-
+using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Helpers
 {
-    public class ModelMarkerCreator
+    public static class ModelMarkerCreator
     {
-        public static void AddTileMarker(Vector3Int coordinates, GameObject gameObject)
+        public static void AddTileMarker(Vector3Int coordinates, GameObject tileMarker)
         {
-            var marker = gameObject.AddComponent<ModelMarker>();
+            var marker = tileMarker.AddComponent<ModelMarker>();
+            marker.Type = AssetType.Tile;
             marker.Coordinates = coordinates;
-            marker.DeletionHandler = new();
-            marker.DeletionHandler += OnModelTileDelete;
         }
 
-        public static void AddWallMarker(Vector3Int coordinates, Direction direction, GameObject gameObject)
+        public static void AddWallMarker(Vector3Int coordinates, Direction direction,
+            GameObject wallMarker)
         {
-            var marker = gameObject.AddComponent<ModelMarker>();
+            var marker = wallMarker.AddComponent<ModelMarker>();
+            marker.Type = AssetType.Wall;
             marker.Coordinates = coordinates;
             marker.Direction = direction;
-            marker.DeletionHandler = new();
-            marker.DeletionHandler += OnModelWallDelete;
         }
 
-        public static void AddEntityMarker(Vector3Int coordinates, string entityId, string entityName, GameObject entityMarker)
+        public static void AddEntityMarker(Vector3Int coordinates, CreatureModel creatureModel,
+            GameObject entityMarker)
         {
             var marker = entityMarker.AddComponent<ModelMarker>();
+            marker.Type = AssetType.Entity;
             marker.Coordinates = coordinates;
-            marker.EntityId = entityId;
-            marker.EntityName = entityName;
-            marker.DeletionHandler = new();
-            marker.DeletionHandler += OnModelEntityDelete;
-        }
-
-        private static void OnModelTileDelete(ModelMarker modelMarker)
-        {
-            var levelEditor = new LevelModelEditor();
-            levelEditor.RemoveTiles(new Point(modelMarker.Coordinates));
-        }
-
-        private static void OnModelWallDelete(ModelMarker modelMarker)
-        {
-            var levelEditor = new LevelModelEditor();
-            levelEditor.RemoveWall(new Point(modelMarker.Coordinates), modelMarker.Direction);
-        }
-
-        private static void OnModelEntityDelete(ModelMarker modelMarker)
-        {
-            var levelEditor = new LevelModelEditor();
-            levelEditor.RemoveEntity(new Point(modelMarker.Coordinates), modelMarker.EntityId);
+            marker.CreatureModel = creatureModel;
         }
     }
 }

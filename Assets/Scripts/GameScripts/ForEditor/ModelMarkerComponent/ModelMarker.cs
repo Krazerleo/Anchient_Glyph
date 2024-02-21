@@ -1,7 +1,6 @@
 using AncientGlyph.GameScripts.Enums;
-
+using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
 using UnityEngine;
-using UltEvents;
 
 namespace AncientGlyph.GameScripts.ForEditor.ModelMarkerComponent
 {
@@ -13,15 +12,8 @@ namespace AncientGlyph.GameScripts.ForEditor.ModelMarkerComponent
     public class ModelMarker : MonoBehaviour
     {
         public Vector3Int Coordinates;
-        public string EntityId;
-        public string EntityName;
         public Direction Direction;
         public AssetType Type;
-        public UltEvent<ModelMarker> DeletionHandler;
-
-        private void OnDestroy()
-        {
-            DeletionHandler?.Invoke(this);
-        }
+        public CreatureModel CreatureModel;
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using AncientGlyph.GameScripts.CoreGameMechanics;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Interactors.Entities;
@@ -8,6 +9,7 @@ using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.PlayState
 {
@@ -52,7 +54,7 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
         private async UniTask InjectCreaturesToGameLoop()
         {
             var entities = _levelModel.GetAllCurrentEntities();
-
+            
             foreach (var entity in entities)
             {
                 var controller = await _creatureFactory

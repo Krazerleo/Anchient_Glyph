@@ -1,7 +1,6 @@
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.Geometry.Shapes;
 using AncientGlyph.GameScripts.Geometry;
-
 using UnityEngine;
 using UnityEditor;
 
@@ -12,9 +11,9 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
         private const string GhostWallAssetPath = "Assets/Level/Prefab/Debug/wall_ghost.prefab";
 
         private Vector3 _startPosition;
-        private readonly LevelModelEditor _levelEditor = new();
-        private readonly LevelSceneEditor _sceneEditor = new();
         private Vector3 _lastPosition;
+
+        private readonly LevelSceneEditor _sceneEditor = new();
         private GameObject _wallPrefab;
 
         private bool _isJustStarted;
@@ -73,10 +72,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
             //Remove left ghosted walls
             Undo.PerformUndo();
 
-            if (_levelEditor.TryPlaceWall(walls, dir))
-            {
-                _sceneEditor.PlaceWalls(walls, _wallPrefab, dir);
-            }
+            _sceneEditor.PlaceWalls(walls, _wallPrefab, dir);
         }
 
         private (Rectangle wallRectangle, Direction direction) ResolveWallsAndDirection()
@@ -86,9 +82,9 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
             if (Mathf.Abs(diagonalVector.x) > Mathf.Abs(diagonalVector.z))
             {
                 var xRectangle = new Rectangle(
-                                _startPosition.ToVector3Int(),
-                                _lastPosition.ToVector3Int()
-                                    .SetZInt(Mathf.FloorToInt(_startPosition.z)));
+                    _startPosition.ToVector3Int(),
+                    _lastPosition.ToVector3Int()
+                        .SetZInt(Mathf.FloorToInt(_startPosition.z)));
 
                 if (Mathf.RoundToInt(_startPosition.z) == Mathf.FloorToInt(_startPosition.z))
                 {
@@ -102,9 +98,9 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
             else
             {
                 var zRectangle = new Rectangle(
-                                _startPosition.ToVector3Int(),
-                                _lastPosition.ToVector3Int()
-                                    .SetXInt(Mathf.FloorToInt(_startPosition.x)));
+                    _startPosition.ToVector3Int(),
+                    _lastPosition.ToVector3Int()
+                        .SetXInt(Mathf.FloorToInt(_startPosition.x)));
 
                 if (Mathf.RoundToInt(_startPosition.x) == Mathf.FloorToInt(_startPosition.x))
                 {

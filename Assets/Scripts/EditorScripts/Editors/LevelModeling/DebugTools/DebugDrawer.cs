@@ -4,7 +4,9 @@ using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry;
 
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
 {
@@ -17,10 +19,11 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
         public static void RedrawLevelModel()
         {
             RemovePreviousDebugView();
+            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+            
+            var levelModel = LevelModelLoader.GetOrCreateLevelModel();
+            var flatIndex = 0;
 
-            var levelModel = LevelModelData.GetLevelModel();
-
-            int flatIndex = 0;
             foreach (var cell in levelModel)
             {
                 DrawWalls(cell, flatIndex);
@@ -45,7 +48,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
 
             var (x, y, z) = ArrayTools.Get3dArrayIndex(flatIndex, GameConstants.LevelCellsSizeX, GameConstants.LevelCellsSizeZ);
 
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
             {
                 if (cell.GetWalls[i] != 0)
                 {

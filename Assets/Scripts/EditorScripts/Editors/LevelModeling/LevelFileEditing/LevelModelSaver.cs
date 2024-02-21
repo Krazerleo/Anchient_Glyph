@@ -1,7 +1,10 @@
-//#define PRINT_LOG_SERIALIZATION
-
+using System;
 using System.IO;
 using AncientGlyph.GameScripts.Constants;
+using AncientGlyph.GameScripts.ForEditor;
+using AncientGlyph.GameScripts.ForEditor.ModelMarkerComponent;
+using AncientGlyph.GameScripts.GameWorldModel;
+using AncientGlyph.GameScripts.Geometry.Shapes;
 using AncientGlyph.GameScripts.Serialization;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -16,9 +19,8 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
         static LevelModelSaver()
         {
             EditorApplication.quitting += SaveLevelModel;
-            AssemblyReloadEvents.beforeAssemblyReload += SaveLevelModel;
-
             EditorSceneManager.sceneSaved += OnSceneSaved;
+            AssemblyReloadEvents.beforeAssemblyReload += SaveLevelModel;
         }
 
         private static void OnSceneSaved(Scene scene)
@@ -27,28 +29,45 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
         [MenuItem("Project Instruments / Save Level Model")]
         private static void SaveLevelModel()
         {
-            var currentSceneName = EditorSceneManager.GetActiveScene().name;
+            var currentSceneName = SceneManager.GetActiveScene().name;
             var streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
             var levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
                                             FileConstants.StreamingAssetLevelFolderName,
                                             currentSceneName + FileConstants.LevelModelFileExtention);
 
-            if (File.Exists(levelModelPath) && LevelModelData.GetLevelModel() != null)
-            {
-#if PRINT_LOG_SERIALIZATION
-                Debug.Log("Started level model serialization");
-#endif
-                var levelModelSerializer = new LevelModelSerializer(levelModelPath);
+            var levelModel = new LevelModel();
+            var levelEditor = new LevelModelEditor(levelModel);
+            
+            var markers = UnityEngine.Object.FindObjectsOfType<ModelMarker>();
 
-                levelModelSerializer.Serialize(LevelModelData.GetLevelModel());
-#if PRINT_LOG_SERIALIZATION
-                Debug.Log("Finished level model serialization");
-#endif
-            }
-            else
+            foreach (var marker in markers)
             {
-                Debug.LogWarning("Create level model before saving");
+                var coordinates = new Point(marker.Coordinates);
+                
+                switch (marker.Type)
+                {
+                    case AssetType.None:
+                        break;
+                    case AssetType.Tile:
+                        levelEditor.TryPlaceTile(coordinates);
+                        break;
+                    case AssetType.Wall:
+                        levelEditor.TryPlaceWall(coordinates, marker.Direction);
+                        break;
+                    case AssetType.Object:
+                        break;
+                    case AssetType.Item:
+                        break;
+                    case AssetType.Entity:
+                        levelEditor.TryPlaceEntity(coordinates, marker.CreatureModel);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
+
+            var serializer = new LevelModelSerializer(levelModelPath);
+            serializer.Serialize(levelModel);
         }
     }
 }

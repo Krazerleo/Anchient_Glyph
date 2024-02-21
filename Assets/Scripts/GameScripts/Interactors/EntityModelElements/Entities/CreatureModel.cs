@@ -26,13 +26,12 @@ namespace AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities
 
         public CreatureModel() { }
 
-        public CreatureModel(CreatureTraits traits, Vector3Int position,
-                             string entityId, string serializationName)
+        public CreatureModel(CreatureTraits traits, Vector3Int position, string entityId)
         {
             Traits = traits;
             Position = position;
             _identifier = new Guid(entityId);
-            SerializationName = serializationName;
+            SerializationName = traits.Name;
         }
 
         public Vector3Int Position { get; set; }
@@ -70,7 +69,7 @@ namespace AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities
 
         public void ReadXml(XmlReader xmlReader)
         {
-            _identifier = new Guid(xmlReader.GetAttribute(0));
+            _identifier = new Guid(xmlReader.GetAttribute(0)!);
 
             xmlReader.ReadToDescendant(nameof(SerializationName));
             SerializationName = xmlReader.ReadElementContentAsString();
@@ -80,7 +79,7 @@ namespace AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities
                 .ParseVector3Int(xmlReader.ReadElementContentAsString());
 
             // VOODOO MAGIC
-            // WITHOUT IT DESERIALIZNG ARRAY
+            // WITHOUT IT DESERIALIZING ARRAY
             // STOPS ON FIRST ELEMENT ???
             xmlReader.Read();
             xmlReader.Read();
@@ -96,7 +95,7 @@ namespace AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities
 
         public bool Equals(IEntityModel other)
         {
-            return (other.Identifier == Identifier) ? true : false;
+            return other?.Identifier == Identifier;
         }
     }
 }

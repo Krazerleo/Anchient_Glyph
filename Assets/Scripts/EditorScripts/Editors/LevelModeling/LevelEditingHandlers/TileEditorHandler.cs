@@ -1,4 +1,3 @@
-using AncientGlyph.EditorScripts.Editors.UndoRedo;
 using AncientGlyph.GameScripts.Geometry;
 using AncientGlyph.GameScripts.Geometry.Shapes;
 
@@ -14,7 +13,6 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
         private Vector3Int _startPosition;
         private Vector3Int _lastPosition;
 
-        private readonly LevelModelEditor _levelEditor = new();
         private readonly LevelSceneEditor _sceneEditor = new();
         private GameObject _tilePrefab;
 
@@ -81,12 +79,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
 
             var ceilRectangle = new Rectangle(_lastPosition, _startPosition);
 
-            if (_levelEditor.TryPlaceTile(ceilRectangle))
-            {
-                _sceneEditor.PlaceTiles(ceilRectangle, _tilePrefab);
-                History.GetHistoryInstance.AddAction(
-                    new AddTileAction(ceilRectangle));
-            }
+            _sceneEditor.PlaceTiles(ceilRectangle, _tilePrefab);
         }
 
         public void SetPrefabObject(GameObject prefab)

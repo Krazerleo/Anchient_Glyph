@@ -2,16 +2,16 @@ using AncientGlyph.EditorScripts.Helpers;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
-
+using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
 using UnityEditor;
 using UnityEngine;
 
-namespace AncientGlyph.EditorScripts.Editors
+namespace AncientGlyph.EditorScripts.Editors.LevelModeling
 {
     public class LevelSceneEditor
     {
         private GameObject _entityMarkerPrefab;
-        private const string _entityMarkerPrefabPath = "Assets/Level/Prefab/Debug/entity_marker.prefab";
+        private const string EntityMarkerPrefabPath = "Assets/Level/Prefab/Debug/entity_marker.prefab";
 
         private const string TilesGroupName = "{GROUND}";
         private const string WallsGroupName = "{WALLS}";
@@ -56,14 +56,15 @@ namespace AncientGlyph.EditorScripts.Editors
             int groupId = Undo.GetCurrentGroup();
 
             _entityMarkerPrefab ??= AssetDatabase
-                .LoadAssetAtPath<GameObject>(_entityMarkerPrefabPath);
+                .LoadAssetAtPath<GameObject>(EntityMarkerPrefabPath);
 
             var entitiesGroup = GameObject.Find(EntitiesGroupName);
 
             foreach (var cellCoordinates in shape.GetDefinedGeometry())
             {
                 var entityMarker = Object.Instantiate(_entityMarkerPrefab, cellCoordinates, Quaternion.identity, entitiesGroup.transform);
-                ModelMarkerCreator.AddEntityMarker(cellCoordinates, entityId, traitSource.CreatureTraits.Name, entityMarker);
+                var creatureModel = new CreatureModel(traitSource.CreatureTraits, cellCoordinates, entityId);
+                ModelMarkerCreator.AddEntityMarker(cellCoordinates, creatureModel, entityMarker);
                 Undo.RegisterCreatedObjectUndo(entityMarker, "");
             }
 

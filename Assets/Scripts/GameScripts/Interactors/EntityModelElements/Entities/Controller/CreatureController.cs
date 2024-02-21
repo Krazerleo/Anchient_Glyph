@@ -38,7 +38,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controllers
         {
             _behaviour.PlanForTurn(_creatureModel, _levelModel);
             var randomOffset = new Vector3Int(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
-            Debug.Log("Making Turn");
+            
             if (_levelModel.TryMoveEntity(_creatureModel, randomOffset))
             {
                 _animator.Move(randomOffset);
