@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using AncientGlyph.GameScripts.Interactors.Entities.Controllers;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller._Interfaces;
 using Cysharp.Threading.Tasks;
 
 namespace AncientGlyph.GameScripts.CoreGameMechanics

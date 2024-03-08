@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
-using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities.Traits;
+using AncientGlyph.GameScripts.Interactors.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities.Traits;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -17,8 +16,8 @@ namespace AncientGlyph.TestScripts.ModelTests
             var creatureOldPosition = new Vector3Int(5, 0, 5);
             var offset = new Vector3Int(1, 0, 0);
             var creatureNewPosition = creatureOldPosition + offset;
-            var creature = new CreatureModel(ScriptableObject.CreateInstance<CreatureTraits>(),
-                creatureOldPosition, Guid.NewGuid().ToString());
+            var creature = new CreatureModel(ScriptableObject.CreateInstance<CreatureTraits>(), 
+                "test", creatureOldPosition);
             
             levelModel.At(creatureOldPosition).AddEntityToCell(creature);
             
@@ -48,9 +47,9 @@ namespace AncientGlyph.TestScripts.ModelTests
             for (var i = 0; i < totalCreatures; i++)
             {
                 var position = new Vector3Int(i * 2, 0, i * 3);
-                
+
                 var creature = new CreatureModel(ScriptableObject.CreateInstance<CreatureTraits>(),
-                    position, Guid.NewGuid().ToString());
+                    "testing", position);
                 
                 levelModel.At(position).AddEntityToCell(creature);
             }

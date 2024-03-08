@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.ForEditor;
-using AncientGlyph.GameScripts.ForEditor.ModelMarkerComponent;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry.Shapes;
 using AncientGlyph.GameScripts.Serialization;
@@ -33,7 +32,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
             var streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
             var levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
                                             FileConstants.StreamingAssetLevelFolderName,
-                                            currentSceneName + FileConstants.LevelModelFileExtention);
+                                            currentSceneName + FileConstants.LevelModelFileExtension);
 
             var levelModel = new LevelModel();
             var levelEditor = new LevelModelEditor(levelModel);

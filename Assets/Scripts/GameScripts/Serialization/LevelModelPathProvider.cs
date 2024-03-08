@@ -15,7 +15,7 @@ namespace AncientGlyph.GameScripts.Serialization
             var streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
             var levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
                                             FileConstants.StreamingAssetLevelFolderName,
-                                            currentSceneName + FileConstants.LevelModelFileExtention);
+                                            currentSceneName + FileConstants.LevelModelFileExtension);
 
             return levelModelPath;
         }

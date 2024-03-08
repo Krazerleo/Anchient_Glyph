@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
 {
-    public class LevelModelLoader
+    public static class LevelModelLoader
     {
         public static LevelModel GetOrCreateLevelModel()
         {
@@ -17,7 +17,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
             var streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
             var levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
                 FileConstants.StreamingAssetLevelFolderName,
-                currentSceneName + FileConstants.LevelModelFileExtention);
+                currentSceneName + FileConstants.LevelModelFileExtension);
 
             if (File.Exists(levelModelPath))
             {

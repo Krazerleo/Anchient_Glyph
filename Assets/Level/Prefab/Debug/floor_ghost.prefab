@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8744754315469509164}
   - component: {fileID: 5772617697548397757}
   - component: {fileID: 3684731715719229699}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5388377687993106161}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: floor_ghost
   m_TagString: EditorDebugViewObject
   m_Icon: {fileID: 0}

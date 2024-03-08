@@ -2,8 +2,8 @@ using System.Linq;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
-using AncientGlyph.GameScripts.Interactors;
-using AncientGlyph.GameScripts.Interactors.Extentions;
+using AncientGlyph.GameScripts.Interactors.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities.Extensions;
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling
@@ -56,6 +56,12 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
 
         public bool TryPlaceEntity(IShape3D shape, IEntityModel entity)
         {
+            if (entity == null)
+            {
+                Debug.LogError("Entity is null");
+                return false;
+            }
+            
             foreach (var entityCoordinates in shape.GetDefinedGeometry())
             {
                 try

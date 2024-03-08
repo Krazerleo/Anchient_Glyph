@@ -1,10 +1,10 @@
 using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.Interactors;
+using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEngine.Assertions;
 
 namespace AncientGlyph.GameScripts.GameWorldModel
@@ -13,14 +13,14 @@ namespace AncientGlyph.GameScripts.GameWorldModel
     /// Represents 3D world in discrete format by integer cell.
     /// Reserve entities and other functional objects.
     /// </summary>
-    public struct CellModel
+    public readonly struct CellModel
     {
-        public const int SizeOfCellElement = 6;
+        private const int SizeOfCellElement = 6;
         public const int SizeOfElementBytes = SizeOfCellElement * sizeof(uint);
 
-        private List<IEntityModel> _entityModelsInCell;
+        private readonly List<IEntityModel> _entityModelsInCell;
 
-        private WallType[] _cellData;
+        private readonly WallType[] _cellData;
 
         /// <summary>
         /// Default constructor
@@ -41,23 +41,16 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             _entityModelsInCell = new List<IEntityModel>();
         }
 
-        public Span<WallType> GetWalls => _cellData.AsSpan(0, 4);
-        public bool HasCeil => _cellData[4] != 0 ? true : false;
-        public bool HasFloor => _cellData[5] != 0 ? true : false;
+        public Span<WallType> GetWalls => _cellData.AsSpan(0, 6);
+        public bool HasCeil => _cellData[4] != 0;
+        public bool HasFloor => _cellData[5] != 0;
 
         public void AddEntityToCell(IEntityModel entity)
             => _entityModelsInCell.Add(entity);
 
         public void RemoveEntityFromCell(IEntityModel entity)
         {
-            if (_entityModelsInCell.Remove(entity))
-            {
-
-            }
-            else
-            {
-
-            }
+            _entityModelsInCell.Remove(entity);
         }
 
         public IEnumerable<IEntityModel> GetEntitiesFromCell()

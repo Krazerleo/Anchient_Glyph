@@ -4,7 +4,6 @@ using AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers;
 using AncientGlyph.EditorScripts.Helpers;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.ForEditor;
-
 using UnityEditor;
 using UnityEditor.EditorTools;
 using UnityEditor.ShortcutManagement;
@@ -15,13 +14,13 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
     [EditorTool("Place Selected Asset")]
     public class AssetPlacer : EditorTool
     {
-        private const int _availableCheckTicks = 1000;
-        private const string _gridName = "Level Grid";
-        private const float _initialGridPlaneHeight = 1.5f;
-        private int _availableCurrentTicks = 0;
+        private const int AvailableCheckTicks = 1000;
+        private const string GridName = "Level Grid";
+        private const float InitialGridPlaneHeight = 1.5f;
+        private int _availableCurrentTicks;
         private GameObject _gridPlane;
-        private bool _isAvailable = false;
-        private bool _mouseButtonWasPressed = false;
+        private bool _isAvailable;
+        private bool _mouseButtonWasPressed;
         private IAssetPlacerHandler _placerHandler;
         private GameObject _selectedGameObject;
 
@@ -43,7 +42,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
 
         public override void OnToolGUI(EditorWindow window)
         {
-            if (_isAvailable == true && window.hasFocus)
+            if (_isAvailable && window.hasFocus)
             {
                 HandleInput();
             }
@@ -64,27 +63,29 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
         private void OnDisable()
         {
             EditorApplication.update -= UpdateAvailable;
-
-            DestroyImmediate(_gridPlane);
         }
 
         private void OnEnable()
         {
-            EditorApplication.update += UpdateAvailable;
+            EditorApplication.update += UpdateAvailable;    
 
             if (GameObject.FindGameObjectsWithTag("GridPlaneTag") == null)
             {
-                InstantiateGridPlane();
+                InstantiateGridPlane();  
+            }
+            else
+            {
+                _gridPlane = GameObject.FindGameObjectWithTag("GridPlaneTag");
             }
         }
 
         private void InstantiateGridPlane()
         {
             _gridPlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-            _gridPlane.name = _gridName;
-            _gridPlane.transform.localScale = new Vector3(EditorConstants.GridSizeX, 1, EditorConstants.GridSizeZ);
+            _gridPlane.name = GridName;
+            _gridPlane.transform.localScale = new Vector3(EditorConstants.GridSizeX, EditorConstants.FloorHeight, EditorConstants.GridSizeZ);
             _gridPlane.transform.Translate(
-                Vector3.up * (EditorConstants.DistanceTolerance + _initialGridPlaneHeight)
+                Vector3.up * (EditorConstants.DistanceTolerance + InitialGridPlaneHeight)
                 + Vector3.right * GameConstants.LevelCellsSizeX / 2
                 + Vector3.forward * GameConstants.LevelCellsSizeZ / 2);
 
@@ -95,7 +96,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
         {
             var current = Event.current;
             var controlID = GUIUtility.GetControlID(FocusType.Keyboard);
-            
+
             switch (current.type)
             {
                 case EventType.MouseDown:
@@ -160,27 +161,27 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
                 }
             }
 
-            if (Event.current.type == EventType.KeyDown && Event.current.shift && Event.current.keyCode == KeyCode.UpArrow)
+            if (Event.current.type == EventType.KeyDown && Event.current.shift &&
+                Event.current.keyCode == KeyCode.UpArrow)
             {
-                _gridPlane.transform.Translate(Vector3.up * EditorConstants.LevelHeightDifference, Space.World);
-                Debug.Log($"Grid Plane is on {_gridPlane.transform.position.y} height");
+                _gridPlane.transform.Translate(Vector3.up * EditorConstants.FloorHeight, Space.World);
             }
 
-            if (Event.current.type == EventType.KeyDown && Event.current.shift && Event.current.keyCode == KeyCode.DownArrow)
+            if (Event.current.type == EventType.KeyDown && Event.current.shift &&
+                Event.current.keyCode == KeyCode.DownArrow)
             {
-                _gridPlane.transform.Translate(Vector3.down * EditorConstants.LevelHeightDifference, Space.World);
-                Debug.Log($"Grid Plane is on {_gridPlane.transform.position.y} height");
+                _gridPlane.transform.Translate(Vector3.down * EditorConstants.FloorHeight, Space.World);
             }
         }
 
-        private void OnAssetNameChanged(object obj, string name)
+        private void OnAssetNameChanged(object obj, string assetName)
         {
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(assetName))
             {
                 return;
             }
 
-            _selectedGameObject = AssetDatabase.LoadAssetAtPath<GameObject>(name);
+            _selectedGameObject = AssetDatabase.LoadAssetAtPath<GameObject>(assetName);
             _placerHandler.SetPrefabObject(_selectedGameObject);
         }
 
@@ -193,11 +194,11 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
         {
             _availableCurrentTicks++;
 
-            if (_availableCurrentTicks > _availableCheckTicks)
+            if (_availableCurrentTicks > AvailableCheckTicks)
             {
                 _availableCurrentTicks = 0;
 
-                _isAvailable = (EditorWindow.HasOpenInstances<AssetLibrary>() && AssetLibrary.SelectedAssetName != "");
+                _isAvailable = EditorWindow.HasOpenInstances<AssetLibrary>() && AssetLibrary.SelectedAssetName != "";
             }
         }
     }

@@ -1,15 +1,11 @@
-using System.Linq;
 using AncientGlyph.GameScripts.CoreGameMechanics;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Interactors.Entities;
-using AncientGlyph.GameScripts.Interactors.Entities.Controllers;
-using AncientGlyph.GameScripts.Interactors.Entities.Factories;
-using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities.Factory._Interfaces;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
-using UnityEngine;
 
 namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.PlayState
 {
@@ -18,17 +14,17 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
     {
         private IGameStateMachine _stateMachine;
         private readonly ICreatureFactory _creatureFactory;
-        private readonly PlayerController _playerController;
+        private readonly IPlayerFactory _playerFactory;
         private readonly LevelModel _levelModel;
         private readonly GameLoop _gameLoop;
 
         public PlayStateInitial(ICreatureFactory creatureFactory,
-                                PlayerController playerController,
+                                IPlayerFactory playerFactory,
                                 LevelModel levelModel,
                                 GameLoop gameLoop)
         {
             _creatureFactory = creatureFactory;
-            _playerController = playerController;
+            _playerFactory = playerFactory;
             _levelModel = levelModel;
             _gameLoop = gameLoop;
         }
@@ -36,11 +32,8 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
         public void Enter<TNextStateParams>(TNextStateParams parameters)
         {
             InjectCreaturesToGameLoop()
-                .ContinueWith(() =>
-                {
-                    _gameLoop.InjectEntityController(_playerController);
-                    _gameLoop.StartGameLoop().Forget();
-                })
+                .ContinueWith(InjectPlayerToGameLoop)
+                .ContinueWith(_gameLoop.StartGameLoop)
                 .Forget();
         }
 
@@ -62,6 +55,13 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
 
                 _gameLoop.InjectEntityController(controller);
             }
+        }
+
+        private async UniTask InjectPlayerToGameLoop()
+        {
+            var player = await _playerFactory.CreatePlayer();
+            
+            _gameLoop.InjectEntityController(player);
         }
     }
 }

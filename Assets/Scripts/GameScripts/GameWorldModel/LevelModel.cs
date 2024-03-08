@@ -7,10 +7,9 @@ using System.Xml.Serialization;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.Geometry;
-using AncientGlyph.GameScripts.Interactors;
 using AncientGlyph.GameScripts.Interactors.Entities;
-using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace AncientGlyph.GameScripts.GameWorldModel
 {
@@ -54,18 +53,27 @@ namespace AncientGlyph.GameScripts.GameWorldModel
         {
             return _cellModelGrid.GetEnumerator();
         }
-
+        
         public bool TryMoveEntity(IEntityModel entity, Vector3Int offset)
         {
-            return TryMoveEntity(entity, offset.x, offset.y, offset.z);
-        }
-
-        public bool TryMoveEntity(IEntityModel entity, int xOffset, int yOffset, int zOffset)
-        {
+            if (offset.magnitude <= 0.001)
+            {
+                return true;
+            }
+            
+            Assert.IsTrue(offset.magnitude <= 1.001,
+                "Offset magnitude cannot be more than 1 cell length" +
+                "Divide entity movement to few offsets");
+            
             var oldEntityPosition = entity.Position;
-            var newEntityPosition = entity.Position + new Vector3Int(xOffset, yOffset, zOffset);
+            var newEntityPosition = entity.Position + offset;
             
             if (CheckInBounds(newEntityPosition) == false)
+            {
+                return false;
+            }
+
+            if (CheckIfCrossedWall(oldEntityPosition, offset) == false)
             {
                 return false;
             }
@@ -78,9 +86,14 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             At(oldEntityPosition).RemoveEntityFromCell(entity);
             At(newEntityPosition).AddEntityToCell(entity);
 
-            entity.Position = newEntityPosition;
-
             return true;
+        }
+
+        private bool CheckIfCrossedWall(Vector3Int startPosition, Vector3Int offset)
+        {
+            var direction = VectorExtensions.GetDirectionFromNormalizedOffset(offset);
+
+            return At(startPosition).GetWalls[(int)direction] != WallType.Whole;
         }
 
         /// <summary>

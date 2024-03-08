@@ -1,7 +1,6 @@
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.ForEditor;
-using AncientGlyph.GameScripts.ForEditor.ModelMarkerComponent;
-using AncientGlyph.GameScripts.Interactors.EntityModelElements.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Helpers
