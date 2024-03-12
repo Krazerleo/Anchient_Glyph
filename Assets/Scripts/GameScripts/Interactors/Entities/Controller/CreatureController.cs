@@ -17,13 +17,16 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
         private readonly LevelModel _levelModel;
         private readonly CreatureAnimator _animator;
         private readonly ICreatureBehaviour _behaviour;
+        private readonly PlayerModel _playerModel;
 
         public CreatureController(CreatureModel entityModel,
-                                  LevelModel levelModel,
-                                  CreatureAnimator animator,
-                                  ICreatureBehaviour behaviour)
+            PlayerModel playerModelModel,
+            LevelModel levelModel,
+            CreatureAnimator animator,
+            ICreatureBehaviour behaviour)
         {
             _creatureModel = entityModel;
+            _playerModel = playerModelModel;
             _levelModel = levelModel;
             _animator = animator;
             _behaviour = behaviour;
@@ -31,15 +34,15 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
 
         public UniTask MakeNextTurn()
         {
-            _behaviour.PlanForTurn(_creatureModel, _levelModel);
+            _behaviour.PlanForTurn(_creatureModel, _playerModel, _levelModel);
             var randomOffset = new Vector3Int(0, 0, 1);
-            
+
             if (_levelModel.TryMoveEntity(_creatureModel, randomOffset))
             {
                 _creatureModel.Position += randomOffset;
                 _animator.Move(randomOffset);
             }
-            
+
             return UniTask.CompletedTask;
         }
     }

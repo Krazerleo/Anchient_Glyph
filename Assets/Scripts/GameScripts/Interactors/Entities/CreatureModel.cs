@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
+using AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.Interactors.Entities.Traits;
 using AncientGlyph.GameScripts.Interactors.Interaction;
@@ -25,7 +26,8 @@ namespace AncientGlyph.GameScripts.Interactors.Entities
         public string Identifier { get; set; }
         
         public CreatureTraits Traits;
-
+        public List<IAction> Actions = new();
+        
         [field: SerializeField]
         public Vector3Int Position { get; set; }
         

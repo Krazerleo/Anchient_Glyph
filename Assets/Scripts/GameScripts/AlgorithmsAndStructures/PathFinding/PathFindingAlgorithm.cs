@@ -33,7 +33,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
             _maxSteps = maxSteps;
             
             var comparer = Comparer<PathNode>.Create((a, b) => b.EstimatedTotalCost.CompareTo(a.EstimatedTotalCost));
-            _frontier = new BinaryHeap(comparer);
+            _frontier = new BinaryHeap<Vector3Int, PathNode>(comparer, node => node.Position, initialCapacity);
             
             _ignoredPositions = new HashSet<Vector3Int>(initialCapacity);
             _output = new List<Vector3Int>(initialCapacity);

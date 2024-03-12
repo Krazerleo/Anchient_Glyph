@@ -4,7 +4,6 @@ using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours;
-using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours.MoveBehaviour;
 using AncientGlyph.GameScripts.Interactors.Entities.Factory._Interfaces;
 using AncientGlyph.GameScripts.Services.AssetProviderService;
 using AncientGlyph.GameScripts.Services.LoggingService;
@@ -20,14 +19,16 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factory
         private readonly ILoggingService _loggingService;
         private readonly IAssetProviderService<CreatureAssetOption> _creatureAssetProvider;
         private readonly LevelModel _levelModel;
+        private readonly PlayerModel _playerModel;
 
         public CreatureFactory(ILoggingService loggingService,
             IAssetProviderService<CreatureAssetOption> creatureAssetProvider,
-            LevelModel levelModel)
+            LevelModel levelModel, PlayerModel playerModel)
         {
             _creatureAssetProvider = creatureAssetProvider;
             _loggingService = loggingService;
             _levelModel = levelModel;
+            _playerModel = playerModel;
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factory
 
             creatureModel.Traits = traitsSource.CreatureTraits;
 
-            return new CreatureController(creatureModel, _levelModel, animator,
+            return new CreatureController(creatureModel, _playerModel, _levelModel, animator,
                 CreatureBehaviour.CreateFromOptions(traitsSource.CreatureTraits.MovementType));
         }
     }
