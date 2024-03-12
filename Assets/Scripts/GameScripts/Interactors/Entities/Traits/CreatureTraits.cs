@@ -1,7 +1,9 @@
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameSystems.FightingSystem;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours.MoveBehaviour;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace AncientGlyph.GameScripts.Interactors.Entities.Traits
 {
@@ -21,8 +23,8 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Traits
         public int DamageStrength;
         public DamageType DamageType;
 
-        [Header("Behaviour")]
-        public BehaviourType BehaviourType;
+        [FormerlySerializedAs("BehaviourType")] [Header("Behaviour")]
+        public MovementType MovementType;
         public int MovementSteps;
         public bool IsFullSize;
 

@@ -4,6 +4,7 @@ using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours.MoveBehaviour;
 using AncientGlyph.GameScripts.Interactors.Entities.Factory._Interfaces;
 using AncientGlyph.GameScripts.Services.AssetProviderService;
 using AncientGlyph.GameScripts.Services.LoggingService;
@@ -68,7 +69,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factory
             creatureModel.Traits = traitsSource.CreatureTraits;
 
             return new CreatureController(creatureModel, _levelModel, animator,
-                BehaviourFactory.CreateCreatureBehaviour(traitsSource.CreatureTraits.BehaviourType));
+                CreatureBehaviour.CreateFromOptions(traitsSource.CreatureTraits.MovementType));
         }
     }
 }

@@ -1,3 +1,4 @@
+using AncientGlyph.EditorScripts.Constants;
 using AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
@@ -54,7 +55,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
                 {
                     var debugObject = Object.Instantiate(
                         wallPrefab,
-                        position: new Vector3(x, y, z),
+                        position: new Vector3(x, y * EditorConstants.FloorHeight, z),
                         rotation: Quaternion.identity,
                         null);
 
@@ -67,7 +68,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
             {
                 Object.Instantiate(
                     floorPrefab,
-                    position: new Vector3(x, y, z),
+                    position: new Vector3(x, y * EditorConstants.FloorHeight, z),
                     rotation: Quaternion.identity)
                 .tag = DebugObjectTag;
             }

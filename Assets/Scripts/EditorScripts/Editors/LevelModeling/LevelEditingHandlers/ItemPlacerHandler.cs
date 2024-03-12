@@ -6,17 +6,16 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
     {
         public void OnMouseButtonPressedHandler(Vector3 position)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException("Not implemented");
         }
 
         public void OnMouseButtonReleasedHandler(Vector3 position)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException("Not implemented");
         }
 
         public void OnMouseMoveHandler(Vector3 position)
         {
-            throw new System.NotImplementedException();
         }
 
         public void SetPrefabObject(GameObject prefab)

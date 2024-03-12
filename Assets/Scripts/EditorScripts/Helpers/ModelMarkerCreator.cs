@@ -1,5 +1,6 @@
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.ForEditor;
+using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEngine;
 

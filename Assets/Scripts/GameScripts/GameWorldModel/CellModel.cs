@@ -26,7 +26,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
         /// Default constructor
         /// </summary>
         /// <param name="walls">Walls array should have 6
-        /// <see cref="AncientGlyph.GameScripts.Enums.Direction"/>
+        /// <see cref="Direction"/>
         /// </param>
         public CellModel(WallType[] walls)
         {

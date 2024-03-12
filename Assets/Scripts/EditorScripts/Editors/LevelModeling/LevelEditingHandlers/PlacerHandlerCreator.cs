@@ -15,7 +15,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers
                 AssetType.Entity => new CreaturePlacerHandler(),
                 AssetType.Item => new CreaturePlacerHandler(),
                 AssetType.Object => new ObjectPlacerHandler(),
-                _ => throw new NotImplementedException()
+                _ => throw new ArgumentException(nameof(typeAsset) + "type cannot be instantiated")
             };
         }
     }

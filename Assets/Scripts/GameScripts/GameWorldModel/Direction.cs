@@ -1,4 +1,4 @@
-namespace AncientGlyph.GameScripts.Enums
+namespace AncientGlyph.GameScripts.GameWorldModel
 {
     public enum Direction : uint 
     {

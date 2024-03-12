@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
-
 using UnityEngine;
 
-namespace AncientGlyph.GameScripts.Geometry.Shapes
+namespace AncientGlyph.GameScripts.Geometry.Shapes.VolumeShapes
 {
     public class Line : IShape3D
     {

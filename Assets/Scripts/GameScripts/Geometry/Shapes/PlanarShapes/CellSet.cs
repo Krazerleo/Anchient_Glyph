@@ -29,7 +29,7 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes
             }
         }
 
-        //TODO
+        // TODO : Implement item cells rotation
         public IEnumerable<Vector2Int> GetDefinedGeometry(int rotations)
         {
             rotations %= 4;
