@@ -1,6 +1,5 @@
 using System;
 using System.Xml.Serialization;
-using AncientGlyph.GameScripts.Interactors.Interactions;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.Interactors.Entities
@@ -8,7 +7,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities
     /// <summary>
     /// Basic description for entity model
     /// </summary>
-    public interface IEntityModel : IInteractable, IXmlSerializable, IEquatable<IEntityModel>
+    public interface IEntityModel : IXmlSerializable, IEquatable<IEntityModel>
     {
         /// <summary>
         /// Indicate if cannot be placed in same cell with

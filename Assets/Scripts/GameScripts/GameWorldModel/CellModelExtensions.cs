@@ -9,10 +9,12 @@ namespace AncientGlyph.GameScripts.GameWorldModel
     {
         /// <summary>
         /// Check if is other endCell is reachable
-        /// from startCell. Maximum distance difference
+        /// from startCell. Maximum distance
         /// is only 1 else UB.
         /// </summary>
         /// <returns></returns>
+        /// <remarks>CellModel has not any coordinates, so its client responsibility to
+        /// calculate offset between start cell and end cell :(</remarks>
         public static bool CheckIsReachable(this CellModel startCell, CellModel endCell, Vector3Int offset)
         {
             if (offset.sqrMagnitude == 0)
@@ -24,7 +26,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             {
                 throw new ArgumentOutOfRangeException($"{nameof(offset)} is greater than 1");
             }
-            
+
             var direction = offset.GetDirectionFromNormalizedOffset();
 
             switch (direction)
@@ -35,12 +37,12 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                            endCell.GetWalls[(int)Direction.West] != WallType.Whole;
                 case Direction.North:
                 case Direction.South:
-                    return startCell.GetWalls[(int) Direction.North] != WallType.Whole &&
-                           endCell.GetWalls[(int) Direction.South] != WallType.Whole;
+                    return startCell.GetWalls[(int)Direction.North] != WallType.Whole &&
+                           endCell.GetWalls[(int)Direction.South] != WallType.Whole;
                 case Direction.Up:
                 case Direction.Down:
-                    return startCell.GetWalls[(int) Direction.Up] != WallType.Whole &&
-                           endCell.GetWalls[(int) Direction.Down] != WallType.Whole;
+                    return startCell.GetWalls[(int)Direction.Up] != WallType.Whole &&
+                           endCell.GetWalls[(int)Direction.Down] != WallType.Whole;
                 default:
                     throw new ArgumentOutOfRangeException($"{direction} - Unexpected type of Direction Enum");
             }

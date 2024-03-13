@@ -1,9 +1,9 @@
-using AncientGlyph.GameScripts.Interactors.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller;
 
 namespace AncientGlyph.GameScripts.Interactors.Interactions
 {
     public interface IInteraction
     {
-        public void InteractTo(IEntityModel entityModel);
+        public void InteractTo(IEntityController entityModel);
     }
 }

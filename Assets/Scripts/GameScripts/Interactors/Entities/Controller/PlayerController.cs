@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using AncientGlyph.GameScripts.Animators;
+using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.Interactors.Entities.Controller._Interfaces;
 using AncientGlyph.GameScripts.Interactors.Interactions;
 using AncientGlyph.GameScripts.PlayerInput;
 using AncientGlyph.GameScripts.Services.LoggingService;
@@ -10,7 +11,7 @@ using UnityEngine.InputSystem;
 
 namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
 {
-    public class PlayerController : IEntityController
+    public class PlayerController : IEntityController, IInteractable
     {
         public PlayerController(PlayerAnimator playerAnimator,
                                 PlayerMoveInput playerMoveInput,
@@ -28,8 +29,6 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
         }
 
         public IEntityModel EntityModel => _playerEntity;
-        public IInteraction PlayerAction;
-        public IEntityModel InteractedEntity;
         public bool IsEnabled => true;
 
         private readonly ILoggingService _loggingService;
@@ -89,6 +88,21 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
                     _loggingService.LogError("Cannot set task result on completion");
                 }
             }
+        }
+
+        public void AcceptInteraction(HitInteraction hit)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AcceptInteraction(FunctionalInteraction func)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AcceptInteraction(ICollection<GameItem> listItems)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

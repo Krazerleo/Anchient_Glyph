@@ -9,6 +9,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehav
     public class CreatureBehaviour : ICreatureBehaviour
     {
         private IPriorityQueue<string, IAction> _actionPriority;
+        private IPriorityQueue<string, IAction> _feedbackPriority;
         private IMoveBehaviour _moveBehaviour;
         
         private CreatureBehaviour() { }
@@ -26,7 +27,6 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehav
             return creatureBehaviour;
         }
 
-
         public IAction PlanForTurn(CreatureModel creatureModel, PlayerModel playerModel, LevelModel levelModel)
         {
             foreach (var action in creatureModel.Actions)
@@ -35,16 +35,28 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehav
                 {
                     _actionPriority.Enqueue(action);
                 }
+                else
+                {
+                    _feedbackPriority.Enqueue(action.GetFeedback(creatureModel, playerModel));
+                }
             }
 
-            if (_actionPriority.Count == 0)
+            if (_actionPriority.Count != 0)
             {
-                return null;
+                var bestAction = _actionPriority.Dequeue();
+                _actionPriority.Clear();
+                _feedbackPriority.Clear();
+                return bestAction;
             }
 
-            var bestAction = _actionPriority.Dequeue();
-            _actionPriority.Clear();
-            return bestAction;
+            if (_feedbackPriority.Count != 0)
+            {
+                var bestFeedback = _feedbackPriority.Dequeue();
+                _feedbackPriority.Clear();
+                return bestFeedback;
+            }
+
+            return new NullAction();
         }
     }
 }

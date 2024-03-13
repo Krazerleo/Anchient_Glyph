@@ -1,4 +1,5 @@
 ﻿using AncientGlyph.GameScripts.Interactors.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller;
 
 namespace AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions
 {
@@ -8,7 +9,7 @@ namespace AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions
         
         int CalculatePower();
         bool CanExecute(CreatureModel creatureModel, PlayerModel playerModel);
-        void Execute();
-        IAction GetFeedback();
+        void Execute(CreatureController creatureController, PlayerModel playerModel);
+        IAction GetFeedback(CreatureModel creatureModel, PlayerModel playerModel);
     }
 }

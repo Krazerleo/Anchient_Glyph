@@ -70,7 +70,8 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factory
             creatureModel.Traits = traitsSource.CreatureTraits;
 
             return new CreatureController(creatureModel, _playerModel, _levelModel, animator,
-                CreatureBehaviour.CreateFromOptions(traitsSource.CreatureTraits.MovementType));
+                CreatureBehaviour.CreateFromOptions(traitsSource.CreatureTraits.MovementType),
+                _loggingService);
         }
     }
 }

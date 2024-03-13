@@ -1,6 +1,4 @@
-﻿using AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding;
-using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.Interactors.Entities;
+﻿using AncientGlyph.GameScripts.Interactors.Entities;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller;
 using UnityEngine;
 
@@ -8,19 +6,11 @@ namespace AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.FeedbackAc
 {
     public class GoToAction : IAction
     {
-        private readonly Vector3Int _startPosition;
-        private readonly Vector3Int _endPosition;
-        private readonly LevelModel _levelModel;
-        private readonly CreatureController _controller;
-
-        public GoToAction(Vector3Int startPosition,
-            Vector3Int endPosition,
-            LevelModel levelModel,
-            CreatureController controller)
+        public readonly Vector3Int Offset;
+        
+        public GoToAction(Vector3Int offset)
         {
-            _startPosition = startPosition;
-            _endPosition = endPosition;
-            _levelModel = levelModel;
+            Offset = offset;
         }
         
         public string Id => nameof(GoToAction);
@@ -29,16 +19,15 @@ namespace AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.FeedbackAc
 
         public bool CanExecute(CreatureModel creatureModel, PlayerModel playerModel) => true;
 
-        public void Execute()
+        public void Execute(CreatureController creatureController, PlayerModel playerModel)
         {
-            var algo = new PathFindingAlgorithm(_levelModel, 32, 4);
-
-            var path = algo.Calculate(_startPosition, _endPosition);
+            creatureController.ExecuteMove(this);
         }
 
-        public IAction GetFeedback()
+        public IAction GetFeedback(CreatureModel creatureModel, PlayerModel playerModel)
         {
-            throw new System.NotImplementedException();
+            Debug.LogError("Trying to get feedback action from feedback action <<GoToAction>>");
+            return new NullAction();
         }
     }
 }

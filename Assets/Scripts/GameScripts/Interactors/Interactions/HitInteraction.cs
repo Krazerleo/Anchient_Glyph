@@ -1,4 +1,4 @@
-using AncientGlyph.GameScripts.Interactors.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller;
 
 namespace AncientGlyph.GameScripts.Interactors.Interactions
 {
@@ -11,7 +11,7 @@ namespace AncientGlyph.GameScripts.Interactors.Interactions
             DamageAmount = damageAmount;
         }
 
-        public void InteractTo(IEntityModel entityModel)
+        public void InteractTo(IEntityController entityModel)
         {
             entityModel.AcceptInteraction(this);
         }

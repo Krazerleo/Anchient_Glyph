@@ -1,10 +1,10 @@
-using AncientGlyph.GameScripts.Interactors.Entities;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller;
 
 namespace AncientGlyph.GameScripts.Interactors.Interactions
 {
     public class FunctionalInteraction : IInteraction
     {
-        public void InteractTo(IEntityModel entityModel)
+        public void InteractTo(IEntityController entityModel)
         {
             entityModel.AcceptInteraction(this);
         }

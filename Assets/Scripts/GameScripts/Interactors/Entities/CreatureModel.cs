@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
 using AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions;
-using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.Interactors.Entities.Traits;
-using AncientGlyph.GameScripts.Interactors.Interactions;
 using AncientGlyph.GameScripts.Serialization.Extensions;
 using UnityEngine;
 
@@ -41,30 +39,9 @@ namespace AncientGlyph.GameScripts.Interactors.Entities
             SerializationName = serializationName;
         }
 
-
         public bool IsFullSize => Traits.IsFullSize;
 
         public string Name => Traits.Name;
-
-        public void InteractWith(IEntityModel targetEntity)
-        {
-            //TODO
-        }
-
-        public void AcceptInteraction(HitInteraction hit)
-        {
-            //TODO
-        }
-
-        public void AcceptInteraction(FunctionalInteraction func)
-        {
-            //TODO
-        }
-
-        public void AcceptInteraction(ICollection<GameItem> listItems)
-        {
-            //TODO
-        }
 
         public XmlSchema GetSchema()
         {

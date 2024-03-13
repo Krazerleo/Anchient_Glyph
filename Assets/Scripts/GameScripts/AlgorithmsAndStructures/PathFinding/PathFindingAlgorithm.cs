@@ -15,7 +15,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
         private readonly int _maxSteps;
         private readonly PathNode[] _neighbours = new PathNode[MaxNeighbours];
         private readonly List<Vector3Int> _output;
-        
+
         private readonly IPriorityQueue<Vector3Int, PathNode> _frontier;
         private readonly HashSet<Vector3Int> _ignoredPositions;
         private readonly Dictionary<Vector3Int, Vector3Int> _links;
@@ -23,35 +23,39 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 
         public PathFindingAlgorithm(LevelModel levelModel, int maxSteps = int.MaxValue, int initialCapacity = 0)
         {
-            if (maxSteps <= 0) 
+            if (maxSteps <= 0)
                 throw new ArgumentOutOfRangeException(nameof(maxSteps));
-            
-            if (initialCapacity < 0) 
+
+            if (initialCapacity < 0)
                 throw new ArgumentOutOfRangeException(nameof(initialCapacity));
-            
+
             _levelModel = levelModel;
             _maxSteps = maxSteps;
-            
+
             var comparer = Comparer<PathNode>.Create((a, b) => b.EstimatedTotalCost.CompareTo(a.EstimatedTotalCost));
             _frontier = new BinaryHeap<Vector3Int, PathNode>(comparer, node => node.Position, initialCapacity);
-            
+
             _ignoredPositions = new HashSet<Vector3Int>(initialCapacity);
             _output = new List<Vector3Int>(initialCapacity);
             _links = new Dictionary<Vector3Int, Vector3Int>(initialCapacity);
         }
 
-        public IReadOnlyCollection<Vector3Int> Calculate(Vector3Int start, Vector3Int target)
+        public bool TryCalculate(Vector3Int start, Vector3Int target,
+            out IReadOnlyList<Vector3Int> path)
         {
+            path = Array.Empty<Vector3Int>();
+            
             if (!GenerateNodes(start, target))
-                return Array.Empty<Vector3Int>();
+                return false;
 
             _output.Clear();
             _output.Add(target);
 
-            while (_links.TryGetValue(target, out target)) 
+            while (_links.TryGetValue(target, out target))
                 _output.Add(target);
 
-            return _output.AsReadOnly();
+            path = _output.AsReadOnly();
+            return true;
         }
 
         private bool GenerateNodes(Vector3Int start, Vector3Int target)
@@ -59,10 +63,10 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
             _frontier.Clear();
             _ignoredPositions.Clear();
             _links.Clear();
-            
+
             _frontier.Enqueue(new PathNode(start, target, 0));
             int step = 0;
-            
+
             while (_frontier.Count > 0 && step++ <= _maxSteps)
             {
                 var current = _frontier.Dequeue();
@@ -82,7 +86,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
         private void GenerateFrontierNodes(PathNode parent, Vector3Int target)
         {
             _neighbours.Fill(parent, target);
-            
+
             foreach (var newNode in _neighbours)
             {
                 if (_ignoredPositions.Contains(newNode.Position)) continue;
@@ -91,7 +95,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
                 var targetNodeCell = _levelModel.At(target);
                 var offset = newNode.Position - target;
 
-                if (newNodeCell.CheckIsReachable(targetNodeCell, offset) == false)
+                if (newNodeCell.CheckIsReachable(targetNodeCell, offset: offset) == false)
                 {
                     continue;
                 }

@@ -1,4 +1,3 @@
-using System;
 using AncientGlyph.GameScripts.Interactors.Entities;
 using AncientGlyph.GameScripts.Interactors.Entities.Traits;
 using NUnit.Framework;
@@ -15,7 +14,8 @@ namespace AncientGlyph.TestScripts.ModelTests
             var firstEntity = new CreatureModel(creatureTraits, "a", new Vector3Int(1,0,0));
             var secondEntity = new CreatureModel(creatureTraits, "ab", new Vector3Int(1,0,1));
 
-            firstEntity.InteractWith(secondEntity);
+            // TODO : Rework on Controllers
+            // firstEntity.InteractWith(secondEntity);
         }
     }
 }

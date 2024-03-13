@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using AncientGlyph.GameScripts.Interactors.Entities.Controller._Interfaces;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 
