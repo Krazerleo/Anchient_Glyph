@@ -1,6 +1,6 @@
 using System;
 using System.Xml.Serialization;
-using AncientGlyph.GameScripts.Interactors.Interaction;
+using AncientGlyph.GameScripts.Interactors.Interactions;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.Interactors.Entities

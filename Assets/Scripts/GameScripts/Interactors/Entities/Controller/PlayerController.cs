@@ -1,7 +1,7 @@
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller._Interfaces;
-using AncientGlyph.GameScripts.Interactors.Interaction;
+using AncientGlyph.GameScripts.Interactors.Interactions;
 using AncientGlyph.GameScripts.PlayerInput;
 using AncientGlyph.GameScripts.Services.LoggingService;
 using Cysharp.Threading.Tasks;

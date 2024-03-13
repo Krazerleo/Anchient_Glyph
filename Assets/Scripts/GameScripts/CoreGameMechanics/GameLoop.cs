@@ -1,15 +1,17 @@
 using System.Collections.Generic;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller._Interfaces;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace AncientGlyph.GameScripts.CoreGameMechanics
 {
     /// <summary>
     /// Provides a turn based game
     /// </summary>
+    [UsedImplicitly]
     public class GameLoop
     {
-        private IList<IEntityController> _entityControllers
+        private readonly IList<IEntityController> _entityControllers
             = new List<IEntityController>();
 
         private bool _isStopped;

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 
-namespace AncientGlyph.GameScripts.Interactors.Interaction
+namespace AncientGlyph.GameScripts.Interactors.Interactions
 {
     public interface IInteractable
     {

@@ -1,8 +1,7 @@
 using AncientGlyph.GameScripts.CoreGameMechanics;
-
 using Zenject;
 
-namespace AncientGlyph.GameScripts.DependencyInjection
+namespace AncientGlyph.GameScripts.DependencyInjection.GameLoopInstaller
 {
     public class GameLoopInstaller : MonoInstaller<GameLoopInstaller>
     {

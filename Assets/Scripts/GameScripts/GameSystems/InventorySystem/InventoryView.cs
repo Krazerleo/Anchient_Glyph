@@ -33,11 +33,11 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private const string ItemIconName = "ItemIcon";
         private const string SideWindowName = "SideWindow";
 
-        private InventoryModel _inventoryMain = new(6, 4);
-        private InventoryModel _inventoryLeft = new(3, 3);
-        private InventoryModel _inventoryRight = new(3, 3);
+        private InventoryModel _inventoryMain;
+        private InventoryModel _inventoryLeft;
+        private InventoryModel _inventoryRight;
 
-        private int _rotations = 0;
+        private int _rotations;
         private GameItemView _capturedGameItem;
         private VisualElement _itemIconElement;
 
@@ -65,9 +65,9 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void Awake()
         {
-            _inventoryMain = new(6, 4);
-            _inventoryLeft = new(3, 3);
-            _inventoryRight = new(3, 3);
+            _inventoryMain = new InventoryModel(6, 4);
+            _inventoryLeft = new InventoryModel(3, 3);
+            _inventoryRight = new InventoryModel(3, 3);
 
             AddBindings();
         }
@@ -113,10 +113,9 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void AddIconSpaceInteraction()
         {
-            VisualElement rootIconSpace;
-
-            rootIconSpace = _inventoryUiDocument.rootVisualElement
-                .Query(IconSpaceName).First();
+            var rootIconSpace = _inventoryUiDocument.rootVisualElement
+                .Query(IconSpaceName)
+                .First();
 
             if (rootIconSpace == null)
             {
@@ -130,25 +129,22 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void AddInventorySpaceInteraction()
         {
-            VisualElement rootAllInventoryElement;
-
-            rootAllInventoryElement = _inventoryUiDocument.rootVisualElement
-                .Query(InventoryName).First();
+            var rootAllInventoryElement = _inventoryUiDocument.rootVisualElement
+                .Query(InventoryName)
+                .First();
             
             if (rootAllInventoryElement == null)
             {
                 Debug.LogError($"Not found UI inventory: should be named {InventoryName}");
-                return;
             }
         }
 
         private void AddBindingsToInventory(InventoryModel inventory,
             string inventoryViewName)
         {
-            VisualElement rootInventoryElement;
-
-            rootInventoryElement = _inventoryUiDocument.rootVisualElement
-                .Query(inventoryViewName).First();
+            var rootInventoryElement = _inventoryUiDocument.rootVisualElement
+                .Query(inventoryViewName)
+                .First();
 
             if (rootInventoryElement == null)
             {
@@ -195,17 +191,22 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         }
 
         private void InstantiateItemIconOnUI(Sprite sprite, Rect size,
-            string name, out VisualElement iconElement)
+            string iconName, out VisualElement iconElement)
         {
-            iconElement = new VisualElement();
-            iconElement.name = name;
-            iconElement.style.height = size.height;
-            iconElement.style.width = size.width;
-            iconElement.style.top = size.y;
-            iconElement.style.left = size.x;
-            iconElement.style.backgroundImage = new StyleBackground(sprite);
-            iconElement.style.position = new StyleEnum<Position>(Position.Absolute);
-            iconElement.pickingMode = PickingMode.Ignore;
+            iconElement = new VisualElement
+            {
+                name = iconName,
+                style =
+                {
+                    height = size.height,
+                    width = size.width,
+                    top = size.y,
+                    left = size.x,
+                    backgroundImage = new StyleBackground(sprite),
+                    position = new StyleEnum<Position>(Position.Absolute)
+                },
+                pickingMode = PickingMode.Ignore
+            };
 
             _inventoryUiDocument.rootVisualElement.Add(iconElement);
         }
@@ -240,12 +241,14 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private void OnMouseLeaveItemSlot(MouseLeaveEvent mouseEvent,
             InventoryPosition inventoryPosition)
         {
+            // TODO : Implement moving item in inventory grid
             //Debug.Log($"Mouse leave icon slot {inventoryPosition.SlotModelPosition}");
         }
 
         private void OnMouseUpItemSlot(MouseUpEvent mouseEvent,
             InventoryPosition inventoryPosition)
         {
+            // TODO : Implement taking item from inventory grid
             //Debug.Log($"Mouse up icon slot {inventoryPosition.SlotModelPosition}");
         }
 

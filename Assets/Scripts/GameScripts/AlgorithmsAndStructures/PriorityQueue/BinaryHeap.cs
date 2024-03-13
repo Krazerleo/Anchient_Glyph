@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PriorityQueue
 {
-    internal class BinaryHeap<TKey, T> : IPriorityQueue<TKey, T> where TKey : IEquatable<TKey>
+    public class BinaryHeap<TKey, T> : IPriorityQueue<TKey, T> where TKey : IEquatable<TKey>
     {
         private readonly IDictionary<TKey, int> _map;
         private readonly IList<T> _collection;
@@ -43,7 +43,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PriorityQueue
         {
             if (_collection.Count == 0) return default;
 
-            T result = _collection.First();
+            var result = _collection.First();
             RemoveRoot();
             _map.Remove(_lookupFunc(result));
             return result;
@@ -95,9 +95,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PriorityQueue
 
         private void Swap(int i, int j)
         {
-            T temp = _collection[i];
-            _collection[i] = _collection[j];
-            _collection[j] = temp;
+            (_collection[i], _collection[j]) = (_collection[j], _collection[i]);
             _map[_lookupFunc(_collection[i])] = i;
             _map[_lookupFunc(_collection[j])] = j;
         }

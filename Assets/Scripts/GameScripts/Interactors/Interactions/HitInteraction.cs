@@ -1,6 +1,6 @@
 using AncientGlyph.GameScripts.Interactors.Entities;
 
-namespace AncientGlyph.GameScripts.Interactors.Interaction
+namespace AncientGlyph.GameScripts.Interactors.Interactions
 {
     public class HitInteraction : IInteraction
     {

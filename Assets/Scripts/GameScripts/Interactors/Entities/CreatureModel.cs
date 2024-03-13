@@ -5,7 +5,7 @@ using System.Xml.Schema;
 using AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.Interactors.Entities.Traits;
-using AncientGlyph.GameScripts.Interactors.Interaction;
+using AncientGlyph.GameScripts.Interactors.Interactions;
 using AncientGlyph.GameScripts.Serialization.Extensions;
 using UnityEngine;
 

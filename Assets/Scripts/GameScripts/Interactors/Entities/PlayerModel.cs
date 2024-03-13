@@ -3,7 +3,7 @@ using System.Xml;
 using System.Xml.Schema;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
-using AncientGlyph.GameScripts.Interactors.Interaction;
+using AncientGlyph.GameScripts.Interactors.Interactions;
 
 using UnityEngine;
 

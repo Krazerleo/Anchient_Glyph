@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours.MoveBehaviour.PathFinding
+namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 {
     public interface IPath
     {
