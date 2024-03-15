@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using AncientGlyph.GameScripts.GameWorldModel;
+﻿using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours.MoveBehaviour
 {
     public interface IMoveBehaviour
     {
-        public IEnumerable<Vector3Int> YieldFromNeighborCells(Vector3Int position, LevelModel levelModel);
+        public Vector3Int? CalculateNextStep(Vector3Int currentPosition, Vector3Int targetPosition);
     }
 }

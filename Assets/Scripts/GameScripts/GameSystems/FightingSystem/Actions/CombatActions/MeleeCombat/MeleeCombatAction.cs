@@ -1,8 +1,8 @@
-﻿using AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding;
-using AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.FeedbackActions;
+﻿using AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.FeedbackActions;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Interactors.Entities;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller;
+using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours.MoveBehaviour;
 using AncientGlyph.GameScripts.Interactors.Entities.Extensions;
 
 namespace AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.CombatActions.MeleeCombat
@@ -26,7 +26,8 @@ namespace AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.CombatActi
             return _traits.DamageHitValue;
         }
 
-        public bool CanExecute(CreatureModel creatureModel, PlayerModel playerModel)
+        public bool CanExecute(CreatureModel creatureModel, PlayerModel playerModel,
+            IMoveBehaviour moveBehaviour)
         {
             var creatureCell = creatureModel.GetEntityCell(_levelModel);
             var playerCell = playerModel.GetEntityCell(_levelModel);
@@ -35,23 +36,22 @@ namespace AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.CombatActi
             return creatureCell.CheckIsReachable(playerCell, offset);
         }
 
-        public void Execute(CreatureController creatureController, PlayerModel playerModel)
+        public void Execute(CreatureController creatureController, PlayerController playerController)
         {
-            creatureController.ExecuteMeleeCombatAction(this);
+            creatureController.ExecuteMeleeCombatAction(this, playerController);
         }
 
-        public IAction GetFeedback(CreatureModel creatureModel, PlayerModel playerModel)
+        public IAction GetFeedback(CreatureModel creatureModel, PlayerModel playerModel,
+            IMoveBehaviour moveBehaviour)
         {
-            var playerPosition = playerModel.Position;
-            var creaturePosition = creatureModel.Position;
-            var algorithm = new PathFindingAlgorithm(_levelModel);
+            var offset = moveBehaviour.CalculateNextStep(creatureModel.Position, playerModel.Position);
 
-            if (algorithm.TryCalculate(creaturePosition, playerPosition, out var path))
+            if (offset == null)
             {
-                return new GoToAction(path[1] - path[0]);
+                return new NullAction();
             }
 
-            return new NullAction();
+            return new GoToAction(offset.Value);
         }
     }
 }

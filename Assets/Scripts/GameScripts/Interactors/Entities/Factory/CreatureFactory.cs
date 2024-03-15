@@ -19,16 +19,16 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factory
         private readonly ILoggingService _loggingService;
         private readonly IAssetProviderService<CreatureAssetOption> _creatureAssetProvider;
         private readonly LevelModel _levelModel;
-        private readonly PlayerModel _playerModel;
+        private readonly PlayerController _playerController;
 
         public CreatureFactory(ILoggingService loggingService,
             IAssetProviderService<CreatureAssetOption> creatureAssetProvider,
-            LevelModel levelModel, PlayerModel playerModel)
+            LevelModel levelModel, PlayerController playerController)
         {
             _creatureAssetProvider = creatureAssetProvider;
             _loggingService = loggingService;
             _levelModel = levelModel;
-            _playerModel = playerModel;
+            _playerController = playerController;
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Factory
 
             creatureModel.Traits = traitsSource.CreatureTraits;
 
-            return new CreatureController(creatureModel, _playerModel, _levelModel, animator,
-                CreatureBehaviour.CreateFromOptions(traitsSource.CreatureTraits.MovementType),
+            return new CreatureController(creatureModel, _playerController, _levelModel, animator,
+                CreatureBehaviour.CreateFromOptions(traitsSource.CreatureTraits.MovementType, _levelModel),
                 _loggingService);
         }
     }

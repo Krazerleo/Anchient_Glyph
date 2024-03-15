@@ -1,6 +1,6 @@
 namespace AncientGlyph.GameScripts.Geometry
 {
-    public static class ArrayTools
+    public static class ArrayExtensions
     {
         public static (int xIndex, int yIndex, int zIndex)
             Get3dArrayIndex(int index, int sizeX, int sizeZ)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding;
+using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 
@@ -6,9 +7,22 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehav
 {
     public class FlyingBehaviour : IMoveBehaviour
     {
-        public IEnumerable<Vector3Int> YieldFromNeighborCells(Vector3Int position, LevelModel levelModel)
+        private const int FreeAxis = 3;
+        private readonly PathFindingAlgorithm _algorithm;
+        
+        public FlyingBehaviour(LevelModel levelModel)
         {
-            throw new System.NotImplementedException("TODO : create algorithm for traversing all neighbor cells");
+            _algorithm = new PathFindingAlgorithm(levelModel, FreeAxis, GameConstants.MaxPathFindingSteps, 8);
+        }
+        
+        public Vector3Int? CalculateNextStep(Vector3Int currentPosition, Vector3Int targetPosition)
+        {
+            if (_algorithm.TryCalculate(currentPosition, targetPosition, out var path))
+            {
+                return path[1] - path[0];
+            }
+
+            return null;
         }
     }
 }

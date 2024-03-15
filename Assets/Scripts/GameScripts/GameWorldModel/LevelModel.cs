@@ -32,10 +32,10 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
         public CellModel this[int xIndex, int yIndex, int zIndex]
         {
-            get => _cellModelGrid[ArrayTools.Get1dArrayIndex(xIndex, yIndex, zIndex,
+            get => _cellModelGrid[ArrayExtensions.Get1dArrayIndex(xIndex, yIndex, zIndex,
                 GameConstants.LevelCellsSizeX, GameConstants.LevelCellsSizeZ)];
 
-            set => _cellModelGrid[ArrayTools.Get1dArrayIndex(xIndex, yIndex, zIndex,
+            set => _cellModelGrid[ArrayExtensions.Get1dArrayIndex(xIndex, yIndex, zIndex,
                 GameConstants.LevelCellsSizeX, GameConstants.LevelCellsSizeZ)] = value;
         }
 

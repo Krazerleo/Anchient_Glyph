@@ -14,14 +14,15 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehav
         
         private CreatureBehaviour() { }
         
-        public static ICreatureBehaviour CreateFromOptions(MovementType type)
+        public static ICreatureBehaviour CreateFromOptions(MovementType type, LevelModel levelModel)
         {
             var comparer = Comparer<IAction>.Create((a, b) => b.CalculatePower().CompareTo(a.CalculatePower()));
             
             var creatureBehaviour = new CreatureBehaviour
             {
-                _moveBehaviour = MoveBehaviourFactory.CreateCreatureBehaviour(type),
-                _actionPriority = new BinaryHeap<string, IAction>(comparer, action => action.Id, 0)
+                _moveBehaviour = MoveBehaviourFactory.CreateCreatureBehaviour(type, levelModel),
+                _actionPriority = new BinaryHeap<string, IAction>(comparer, action => action.Id, 0),
+                _feedbackPriority = new BinaryHeap<string, IAction>(comparer, action => action.Id, 0)
             };
             
             return creatureBehaviour;
@@ -31,13 +32,13 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehav
         {
             foreach (var action in creatureModel.Actions)
             {
-                if (action.CanExecute(creatureModel, playerModel))
+                if (action.CanExecute(creatureModel, playerModel, _moveBehaviour))
                 {
                     _actionPriority.Enqueue(action);
                 }
                 else
                 {
-                    _feedbackPriority.Enqueue(action.GetFeedback(creatureModel, playerModel));
+                    _feedbackPriority.Enqueue(action.GetFeedback(creatureModel, playerModel, _moveBehaviour));
                 }
             }
 

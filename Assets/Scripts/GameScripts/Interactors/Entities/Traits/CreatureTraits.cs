@@ -1,9 +1,8 @@
+using System.Collections.Generic;
 using AncientGlyph.GameScripts.Constants;
-using AncientGlyph.GameScripts.GameSystems.FightingSystem;
-using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours;
+using AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions;
 using AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours.MoveBehaviour;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace AncientGlyph.GameScripts.Interactors.Entities.Traits
 {
@@ -20,15 +19,14 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Traits
         public int MaxManaPoints;
 
         [Header("Damage Traits")]
-        public int DamageStrength;
-        public DamageType DamageType;
+        public List<string> ActionNames;
 
-        [FormerlySerializedAs("BehaviourType")] [Header("Behaviour")]
+        [Header("Behaviour")] 
         public MovementType MovementType;
         public int MovementSteps;
         public bool IsFullSize;
 
-        [Header("Resistance")]
+        [Header("Resistance")] 
         public int PhysicalResistance;
         public int FireResistance;
         public int WaterResistance;

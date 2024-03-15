@@ -1,11 +1,12 @@
 ﻿using AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.CombatActions.MeleeCombat;
 using AncientGlyph.GameScripts.GameSystems.FightingSystem.Actions.FeedbackActions;
+using AncientGlyph.GameScripts.Interactors.Interactions;
 
 namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehaviours
 {
     public interface IActionExecutor
     {
         public void ExecuteMove(GoToAction goToAction);
-        public void ExecuteMeleeCombatAction(MeleeCombatAction combatAction);
+        public void ExecuteMeleeCombatAction(MeleeCombatAction combatAction, IInteractable entity);
     }
 }

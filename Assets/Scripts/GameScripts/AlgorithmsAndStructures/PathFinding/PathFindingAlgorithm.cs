@@ -11,9 +11,10 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
     /// </summary>
     public class PathFindingAlgorithm
     {
-        private const int MaxNeighbours = 6;
+        private readonly int _freeAxis;
         private readonly int _maxSteps;
-        private readonly PathNode[] _neighbours = new PathNode[MaxNeighbours];
+        private int MaxNeighbours => 2 * _freeAxis;
+        private readonly PathNode[] _neighbours;
         private readonly List<Vector3Int> _output;
 
         private readonly IPriorityQueue<Vector3Int, PathNode> _frontier;
@@ -21,7 +22,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
         private readonly Dictionary<Vector3Int, Vector3Int> _links;
         private readonly LevelModel _levelModel;
 
-        public PathFindingAlgorithm(LevelModel levelModel, int maxSteps = int.MaxValue, int initialCapacity = 0)
+        public PathFindingAlgorithm(LevelModel levelModel, int freeAxis, int maxSteps = int.MaxValue, int initialCapacity = 0)
         {
             if (maxSteps <= 0)
                 throw new ArgumentOutOfRangeException(nameof(maxSteps));
@@ -31,7 +32,9 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 
             _levelModel = levelModel;
             _maxSteps = maxSteps;
-
+            _freeAxis = freeAxis;
+            _neighbours = new PathNode[MaxNeighbours];
+            
             var comparer = Comparer<PathNode>.Create((a, b) => b.EstimatedTotalCost.CompareTo(a.EstimatedTotalCost));
             _frontier = new BinaryHeap<Vector3Int, PathNode>(comparer, node => node.Position, initialCapacity);
 
@@ -85,7 +88,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 
         private void GenerateFrontierNodes(PathNode parent, Vector3Int target)
         {
-            _neighbours.Fill(parent, target);
+            _neighbours.Fill(parent, target, _freeAxis);
 
             foreach (var newNode in _neighbours)
             {

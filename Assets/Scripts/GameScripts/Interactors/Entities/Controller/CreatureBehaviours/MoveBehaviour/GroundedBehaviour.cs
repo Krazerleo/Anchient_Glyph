@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding;
+using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 
@@ -6,10 +7,22 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller.CreatureBehav
 {
     public class GroundedBehaviour : IMoveBehaviour
     {
-        public IEnumerable<Vector3Int> YieldFromNeighborCells(Vector3Int position, LevelModel levelModel)
+        private const int FreeAxis = 2;
+        private readonly PathFindingAlgorithm _algorithm;
+
+        public GroundedBehaviour(LevelModel levelModel)
         {
-            // TODO : create algorithm for traversing all neighbor cells
-            throw new System.NotImplementedException();
+            _algorithm = new PathFindingAlgorithm(levelModel, FreeAxis, GameConstants.MaxPathFindingSteps, 8);
+        }
+
+        public Vector3Int? CalculateNextStep(Vector3Int currentPosition, Vector3Int targetPosition)
+        {
+            if (_algorithm.TryCalculate(currentPosition, targetPosition, out var path))
+            {
+                return path[1] - path[0];
+            }
+
+            return null;
         }
     }
 }

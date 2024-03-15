@@ -47,7 +47,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
             var wallPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(WallDebugPrefabPath);
             var floorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(FloorDebugPrefabPath);
 
-            var (x, y, z) = ArrayTools.Get3dArrayIndex(flatIndex, GameConstants.LevelCellsSizeX, GameConstants.LevelCellsSizeZ);
+            var (x, y, z) = ArrayExtensions.Get3dArrayIndex(flatIndex, GameConstants.LevelCellsSizeX, GameConstants.LevelCellsSizeZ);
 
             for (var i = 0; i < 4; i++)
             {

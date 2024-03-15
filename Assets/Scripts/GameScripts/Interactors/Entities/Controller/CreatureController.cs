@@ -19,21 +19,21 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
         public IEntityModel EntityModel => _creatureModel;
 
         private readonly CreatureModel _creatureModel;
+        private readonly PlayerController _playerController;
         private readonly LevelModel _levelModel;
         private readonly CreatureAnimator _animator;
         private readonly ICreatureBehaviour _behaviour;
-        private readonly PlayerModel _playerModel;
         private readonly ILoggingService _loggingService;
 
         public CreatureController(CreatureModel entityModel,
-            PlayerModel playerModel,
+            PlayerController playerController,
             LevelModel levelModel,
             CreatureAnimator animator,
             ICreatureBehaviour behaviour, 
             ILoggingService loggingService)
         {
             _creatureModel = entityModel;
-            _playerModel = playerModel;
+            _playerController = playerController;
             _levelModel = levelModel;
             _animator = animator;
             _behaviour = behaviour;
@@ -42,9 +42,11 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
 
         public UniTask MakeNextTurn()
         {
-            var decision = _behaviour.PlanForTurn(_creatureModel, _playerModel, _levelModel);
+            var decision = _behaviour.PlanForTurn(_creatureModel,
+                _playerController.EntityModel as PlayerModel,
+                _levelModel);
             
-            decision.Execute(this, _playerModel);
+            decision.Execute(this, _playerController);
             
             var randomOffset = new Vector3Int(0, 0, 1);
 
@@ -78,7 +80,7 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
             
             if (!_levelModel.TryMoveEntity(_creatureModel, offset) && offset.sqrMagnitude != 0)
             {
-                _loggingService.LogWarning("Creature made stupid move: " +
+                _loggingService.LogWarning("Creature made a stupid move: " +
                                            $"{_creatureModel.Position} -> " +
                                            $"{offset + _creatureModel.Position}");
                 
@@ -89,9 +91,10 @@ namespace AncientGlyph.GameScripts.Interactors.Entities.Controller
             _animator.Move(offset);
         }
 
-        public void ExecuteMeleeCombatAction(MeleeCombatAction combatAction)
+        public void ExecuteMeleeCombatAction(MeleeCombatAction combatAction, IInteractable entity)
         {
-            throw new System.NotImplementedException();
+            var hitInteraction = new HitInteraction(combatAction.CalculatePower());
+            entity.AcceptInteraction(hitInteraction);
         }
     }
 }

@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace AncientGlyph.TestScripts.OtherTests
 {
-    public class ArrayToolsTests
+    public class ArrayExtensionsTests
     {
         [Test]
         [TestCase(0)]   [TestCase(24)]  [TestCase(29)]
@@ -13,9 +13,9 @@ namespace AncientGlyph.TestScripts.OtherTests
         public void ThreeDimToOneDimIndexAndReverse(int index)
         {
             var (xSize, zSize) = (64, 64);
-            var (xIndex, yIndex, zIndex) = ArrayTools.Get3dArrayIndex(index, xSize, zSize);
+            var (xIndex, yIndex, zIndex) = ArrayExtensions.Get3dArrayIndex(index, xSize, zSize);
 
-            Assert.AreEqual(index, ArrayTools.Get1dArrayIndex(xIndex,
+            Assert.AreEqual(index, ArrayExtensions.Get1dArrayIndex(xIndex,
                 yIndex, zIndex, xSize, zSize));
         }
     }
