@@ -1,9 +1,9 @@
 using AncientGlyph.EditorScripts.Helpers;
+using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
-using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEditor;
 using UnityEngine;
 

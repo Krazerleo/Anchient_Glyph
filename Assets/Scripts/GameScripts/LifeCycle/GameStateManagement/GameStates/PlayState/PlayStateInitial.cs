@@ -1,7 +1,7 @@
 using AncientGlyph.GameScripts.CoreGameMechanics;
+using AncientGlyph.GameScripts.EntityModel;
+using AncientGlyph.GameScripts.EntityModel.Factory._Interfaces;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.Interactors.Entities;
-using AncientGlyph.GameScripts.Interactors.Entities.Factory._Interfaces;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
 using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
 using Cysharp.Threading.Tasks;

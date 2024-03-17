@@ -1,7 +1,5 @@
 using System;
-
-using AncientGlyph.GameScripts.Serialization.Extensions;
-
+using AncientGlyph.GameScripts.Serialization;
 using NUnit.Framework;
 
 using UnityEngine;

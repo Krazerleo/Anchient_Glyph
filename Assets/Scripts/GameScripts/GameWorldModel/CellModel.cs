@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.Interactors;
-using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEngine.Assertions;
 
 namespace AncientGlyph.GameScripts.GameWorldModel

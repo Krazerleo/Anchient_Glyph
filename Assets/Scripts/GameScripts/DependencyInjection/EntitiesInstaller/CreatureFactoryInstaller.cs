@@ -1,5 +1,5 @@
-using AncientGlyph.GameScripts.Interactors.Entities.Factory;
-using AncientGlyph.GameScripts.Interactors.Entities.Factory._Interfaces;
+using AncientGlyph.GameScripts.EntityModel.Factory;
+using AncientGlyph.GameScripts.EntityModel.Factory._Interfaces;
 using Zenject;
 
 namespace AncientGlyph.GameScripts.DependencyInjection.EntitiesInstaller

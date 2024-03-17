@@ -1,7 +1,7 @@
+using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.Geometry;
 using AncientGlyph.GameScripts.Geometry.Shapes;
-using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers

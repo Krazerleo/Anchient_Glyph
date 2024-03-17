@@ -1,7 +1,7 @@
+using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Helpers

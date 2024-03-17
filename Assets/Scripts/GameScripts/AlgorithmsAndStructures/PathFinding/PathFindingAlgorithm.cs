@@ -92,18 +92,17 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 
             foreach (var newNode in _neighbours)
             {
-                if (_ignoredPositions.Contains(newNode.Position)) continue;
-
-                var newNodeCell = _levelModel.At(newNode.Position);
-                var targetNodeCell = _levelModel.At(target);
-                var offset = newNode.Position - target;
-
-                if (newNodeCell.CheckIsReachable(targetNodeCell, offset: offset) == false)
+                if (_ignoredPositions.Contains(newNode.Position))
                 {
                     continue;
                 }
 
-                if (!_frontier.TryGet(newNode.Position, out PathNode existingNode))
+                if (_levelModel.CheckIsReachable(parent.Position, newNode.Position))
+                {
+                    continue;
+                }
+
+                if (!_frontier.TryGet(newNode.Position, out var existingNode))
                 {
                     _frontier.Enqueue(newNode);
                     _links[newNode.Position] = parent.Position;

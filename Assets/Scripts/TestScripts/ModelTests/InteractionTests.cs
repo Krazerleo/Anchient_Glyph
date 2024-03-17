@@ -1,5 +1,5 @@
-using AncientGlyph.GameScripts.Interactors.Entities;
-using AncientGlyph.GameScripts.Interactors.Entities.Traits;
+using AncientGlyph.GameScripts.EntityModel;
+using AncientGlyph.GameScripts.EntityModel.Traits;
 using NUnit.Framework;
 using UnityEngine;
 

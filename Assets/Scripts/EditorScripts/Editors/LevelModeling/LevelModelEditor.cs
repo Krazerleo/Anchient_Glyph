@@ -1,9 +1,8 @@
 using System.Linq;
+using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
-using AncientGlyph.GameScripts.Interactors.Entities;
-using AncientGlyph.GameScripts.Interactors.Entities.Extensions;
 using UnityEngine;
 
 namespace AncientGlyph.EditorScripts.Editors.LevelModeling

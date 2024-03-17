@@ -1,5 +1,5 @@
+using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.ForEditor

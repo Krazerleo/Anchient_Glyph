@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: leonid
   Description: best man in the world
+  IsFullSize: 1
   MaxHealthPoints: 25331
   MaxManaPoints: 123123
-  DamageStrength: 21212
-  DamageType: 0
-  BehaviourType: 0
+  ActionNames:
+  - {fileID: 11400000, guid: faf12ffcf81ca7c47a146514f73d6744, type: 2}
+  - {fileID: 11400000, guid: eab6084436666d541a804888f9a1fe6c, type: 2}
+  MovementType: 0
   MovementSteps: 1
-  IsFullSize: 1
   PhysicalResistance: 100
   FireResistance: 100
   WaterResistance: 100

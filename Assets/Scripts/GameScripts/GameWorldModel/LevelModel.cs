@@ -5,9 +5,9 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using AncientGlyph.GameScripts.Constants;
+using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.Geometry;
-using AncientGlyph.GameScripts.Interactors.Entities;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -46,8 +46,8 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             set => _cellModelGrid[index] = value;
         }
 
-        public CellModel At(Vector3Int vec3Int)
-            => this[vec3Int.x, vec3Int.y, vec3Int.z];
+        public CellModel At(Vector3Int position)
+            => this[position.x, position.y, position.z];
 
         public List<CellModel>.Enumerator GetEnumerator()
         {
@@ -73,7 +73,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                 return false;
             }
 
-            if (CheckIfCrossedWall(oldEntityPosition, offset) == false)
+            if (this.CheckIsReachable(oldEntityPosition, newEntityPosition) == false)
             {
                 return false;
             }
@@ -87,13 +87,6 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             At(newEntityPosition).AddEntityToCell(entity);
 
             return true;
-        }
-
-        private bool CheckIfCrossedWall(Vector3Int startPosition, Vector3Int offset)
-        {
-            var direction = VectorExtensions.GetDirectionFromNormalizedOffset(offset);
-
-            return At(startPosition).GetWalls[(int)direction] != WallType.Whole;
         }
 
         /// <summary>

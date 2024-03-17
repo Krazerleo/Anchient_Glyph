@@ -1,4 +1,4 @@
-using AncientGlyph.GameScripts.Interactors.Entities.Traits;
+using AncientGlyph.GameScripts.EntityModel.Traits;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.ForEditor

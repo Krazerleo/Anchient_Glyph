@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-03-12T17:27:49.935Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="ffkOwpXh4z4J8Ol1DKrf" version="21.6.1" type="device">
+<mxfile host="Electron" modified="2024-03-17T17:00:44.796Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="jaOw8B7ulacmivcCBDJA" version="21.6.1" type="device">
   <diagram name="Architecture" id="58cdce13-f638-feb5-8d6f-7d28b1aa9fa0">
-    <mxGraphModel dx="3688" dy="1723" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="6663" dy="3470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1567,17 +1567,96 @@
         <mxCell id="ZKKkXAqBo6NX67ldLgTl-239" value="" style="shape=singleArrow;whiteSpace=wrap;html=1;rotation=-90;" parent="ZKKkXAqBo6NX67ldLgTl-1" vertex="1">
           <mxGeometry x="1545" y="240" width="80" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="WBIlbkt2y29Igghdw3yU-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZKKkXAqBo6NX67ldLgTl-1">
+        <mxCell id="WBIlbkt2y29Igghdw3yU-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="ZKKkXAqBo6NX67ldLgTl-1" vertex="1">
           <mxGeometry x="80" y="320" width="190" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="WBIlbkt2y29Igghdw3yU-3" value="Единственная цель существа - нанести как можно больше урона игроку.&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="ZKKkXAqBo6NX67ldLgTl-1">
+        <mxCell id="WBIlbkt2y29Igghdw3yU-3" value="Единственная цель существа - нанести как можно больше урона игроку.&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="ZKKkXAqBo6NX67ldLgTl-1" vertex="1">
           <mxGeometry x="90" y="335" width="170" height="85" as="geometry" />
         </mxCell>
-        <mxCell id="WBIlbkt2y29Igghdw3yU-4" value="У каждого action будут клетки, на которых можно совершить сам action.&lt;br&gt;&lt;br&gt;Выбор action будет зависить от количества клеток, которые нужно пройти, чтобы встать на позицию совершения action, и сама мощь action.&lt;br&gt;&lt;br&gt;Также нужно учитывать тот факт, что action могут задеть других существ. За это можно снимать баллы." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZKKkXAqBo6NX67ldLgTl-1">
+        <mxCell id="WBIlbkt2y29Igghdw3yU-4" value="У каждого action будут клетки, на которых можно совершить сам action.&lt;br&gt;&lt;br&gt;Выбор action будет зависить от количества клеток, которые нужно пройти, чтобы встать на позицию совершения action, и сама мощь action.&lt;br&gt;&lt;br&gt;Также нужно учитывать тот факт, что action могут задеть других существ. За это можно снимать баллы." style="rounded=0;whiteSpace=wrap;html=1;" parent="ZKKkXAqBo6NX67ldLgTl-1" vertex="1">
           <mxGeometry x="80" y="580" width="240" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="WBIlbkt2y29Igghdw3yU-5" value="Если action нельзя совершить, то будет предложено совершить feedback action" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="ZKKkXAqBo6NX67ldLgTl-1">
+        <mxCell id="WBIlbkt2y29Igghdw3yU-5" value="Если action нельзя совершить, то будет предложено совершить feedback action" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="ZKKkXAqBo6NX67ldLgTl-1" vertex="1">
           <mxGeometry x="380" y="440" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-1" value="Ability Data" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-2190" y="20" width="1070" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-14" value="Просто имя обилки чтобы ее потом десериализовать" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-1" vertex="1">
+          <mxGeometry x="400" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-16" value="Условия применения" style="swimlane;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-1" vertex="1">
+          <mxGeometry x="400" y="130" width="190" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-8" value="Геометрические" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-16" vertex="1">
+          <mxGeometry x="30" y="48" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-11" value="Находиться в определенном радиусе от игрока" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="smfsRSgSNM1d1Lc-hO8V-16" vertex="1">
+          <mxGeometry x="30" y="108" width="120" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-12" value="На статы" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-16" vertex="1">
+          <mxGeometry x="30" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-13" value="Сжирает столько то маны, здоровья, или чего-либо другого" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="smfsRSgSNM1d1Lc-hO8V-16" vertex="1">
+          <mxGeometry x="30" y="250" width="120" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-21" value="Список накладываемых эффектов" style="swimlane;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-1" vertex="1">
+          <mxGeometry x="630" y="60" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-23" value="Накладывается на игрока" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-21" vertex="1">
+          <mxGeometry x="20" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-24" value="Может накладываться на среду" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-21" vertex="1">
+          <mxGeometry x="150" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-25" value="Список накладываемых эффектов" style="swimlane;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-1" vertex="1">
+          <mxGeometry x="630" y="340" width="280" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-26" value="Накладывается на кастера" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-25" vertex="1">
+          <mxGeometry x="20" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-27" value="Причиняет определенные эффекты кастеру." style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-25" vertex="1">
+          <mxGeometry x="150" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-3" value="Must Have" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-2170" y="50" width="270" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-2" value="Название Ability" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-3" vertex="1">
+          <mxGeometry x="75" y="45" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-4" value="Условия применения" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-3" vertex="1">
+          <mxGeometry x="75" y="123" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-6" value="Список накладываемых таргет эффектов" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-3" vertex="1">
+          <mxGeometry x="75" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-9" value="Список накладываемых сэлф эффектов" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-3" vertex="1">
+          <mxGeometry x="75" y="295" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="smfsRSgSNM1d1Lc-hO8V-4" target="smfsRSgSNM1d1Lc-hO8V-16" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-1800" y="228.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="smfsRSgSNM1d1Lc-hO8V-2" target="smfsRSgSNM1d1Lc-hO8V-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="smfsRSgSNM1d1Lc-hO8V-6" target="smfsRSgSNM1d1Lc-hO8V-21" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-2035" y="330" />
+              <mxPoint x="-1420" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="smfsRSgSNM1d1Lc-hO8V-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="smfsRSgSNM1d1Lc-hO8V-9" target="smfsRSgSNM1d1Lc-hO8V-25" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-2035" y="500" />
+              <mxPoint x="-1580" y="500" />
+              <mxPoint x="-1580" y="430" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
