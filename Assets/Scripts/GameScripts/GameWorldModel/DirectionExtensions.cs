@@ -1,10 +1,8 @@
 ﻿using System;
-using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace AncientGlyph.GameScripts.Geometry
+namespace AncientGlyph.GameScripts.GameWorldModel
 {
     public static class DirectionExtensions
     {
@@ -39,6 +37,20 @@ namespace AncientGlyph.GameScripts.Geometry
             
             Debug.LogError("Unreachable code detected");
             return 0;
+        }
+
+        public static Vector3Int GetNormalizedOffsetFromDirection(this Direction direction)
+        {
+            return direction switch
+            {
+                Direction.East => new Vector3Int(1, 0, 0),
+                Direction.North => new Vector3Int(0, 0, 1),
+                Direction.West => new Vector3Int(-1, 0, 0),
+                Direction.South => new Vector3Int(0, 0, -1),
+                Direction.Up => new Vector3Int(0, 1, 0),
+                Direction.Down => new Vector3Int(0, -1, 0),
+                _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+            };
         }
     }
 }

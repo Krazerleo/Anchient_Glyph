@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem.CombatActions.MeleeCombat;
@@ -7,7 +6,6 @@ using AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Services.LoggingService;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace AncientGlyph.GameScripts.EntityModel.Controller
 {
@@ -28,7 +26,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
             PlayerController playerController,
             LevelModel levelModel,
             CreatureAnimator animator,
-            ICreatureBehaviour behaviour, 
+            ICreatureBehaviour behaviour,
             ILoggingService loggingService)
         {
             _creatureModel = entityModel;
@@ -44,16 +42,8 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
             var decision = _behaviour.PlanForTurn(_creatureModel,
                 _playerController.EntityModel as PlayerModel,
                 _levelModel);
-            
-            decision.Execute(this, _playerController);
-            
-            var randomOffset = new Vector3Int(0, 0, 1);
 
-            if (_levelModel.TryMoveEntity(_creatureModel, randomOffset))
-            {
-                _creatureModel.Position += randomOffset;
-                _animator.Move(randomOffset);
-            }
+            decision.Execute(this, _playerController);
 
             return UniTask.CompletedTask;
         }
@@ -61,18 +51,16 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
         public void ExecuteMove(GoToAction goToAction)
         {
             var offset = goToAction.Offset;
-            
-            if (!_levelModel.TryMoveEntity(_creatureModel, offset) && offset.sqrMagnitude != 0)
+
+            if (_creatureModel.TryMoveToNextCell(offset, _levelModel))
             {
-                _loggingService.LogWarning("Creature made a stupid move: " +
-                                           $"{_creatureModel.Position} -> " +
-                                           $"{offset + _creatureModel.Position}");
-                
+                _animator.Move(offset);
                 return;
             }
-            
-            _creatureModel.Position += offset;
-            _animator.Move(offset);
+
+            _loggingService.LogWarning("Creature made a stupid move: " +
+                                       $"{_creatureModel.Position} -> " +
+                                       $"{offset + _creatureModel.Position}");
         }
 
         public void ExecuteMeleeCombatAction(MeleeCombatAction combatAction, IEffectAcceptor entity)

@@ -61,10 +61,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
             }
 
             playerPrefab.transform.position = _saveDataService.BaseSaveInfo.PlayerPosition;
-            var playerModel = new PlayerModel
-            {
-                Position = _saveDataService.BaseSaveInfo.PlayerPosition,
-            };
+            var playerModel = new PlayerModel(_saveDataService.BaseSaveInfo.PlayerPosition);
 
             return new PlayerController(animator, moveInput, _levelModel,
                                         playerModel, _loggingService);

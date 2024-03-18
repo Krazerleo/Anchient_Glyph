@@ -80,7 +80,6 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
             if (_levelModel.TryMoveEntity(_playerEntity, offsetVector))
             {
                 RemoveActionEvents();
-                _playerEntity.Position += offsetVector;
                 _playerAnimator.Move(offsetVector);
 
                 if (_actionCompletionSource.TrySetResult() == false)

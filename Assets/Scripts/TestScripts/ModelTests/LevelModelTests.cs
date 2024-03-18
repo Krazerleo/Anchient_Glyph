@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace AncientGlyph.TestScripts.ModelTests
 {
+    [TestFixture]
     public class LevelModelTests
     {
         [Test]
@@ -20,8 +21,8 @@ namespace AncientGlyph.TestScripts.ModelTests
                 "test", creatureOldPosition);
             
             levelModel.At(creatureOldPosition).AddEntityToCell(creature);
-            
-            levelModel.TryMoveEntity(creature, offset);
+
+            creature.TryMoveToNextCell(offset, levelModel);
             
             Assert.AreEqual(0, levelModel.At(creatureOldPosition)
                                                        .GetEntitiesFromCell().Count());
@@ -29,13 +30,14 @@ namespace AncientGlyph.TestScripts.ModelTests
             Assert.AreEqual(1, levelModel.At(creatureNewPosition)
                                                        .GetEntitiesFromCell().Count());
 
-            Assert.NotNull((levelModel.At(creatureNewPosition)
+            Assert.NotNull(levelModel.At(creatureNewPosition)
                 .GetEntitiesFromCell()
-                .First() as CreatureModel)!.Traits);
+                .First() as CreatureModel);
             
-            Assert.AreEqual(levelModel.At(creatureNewPosition)
-                .GetEntitiesFromCell()
-                .First().Position, creatureNewPosition);
+            Assert.AreEqual(creatureNewPosition,
+                levelModel.At(creatureNewPosition)
+                    .GetEntitiesFromCell()
+                    .First().Position);
         }
 
         [Test]

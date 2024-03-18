@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace AncientGlyph.TestScripts.ModelTests
 {
+    [TestFixture]
     public class CellReachabilityTests
     {
         [Test]

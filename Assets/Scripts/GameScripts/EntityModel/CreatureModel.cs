@@ -4,6 +4,7 @@ using System.Xml;
 using System.Xml.Schema;
 using AncientGlyph.GameScripts.EntityModel.Traits;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem;
+using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Serialization;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ namespace AncientGlyph.GameScripts.EntityModel
         public List<IAction> Actions = new();
         
         [field: SerializeField]
-        public Vector3Int Position { get; set; }
+        public Vector3Int Position { get; private set; }
         
         public CreatureModel() { }
 
@@ -43,6 +44,24 @@ namespace AncientGlyph.GameScripts.EntityModel
 
         public string Name => Traits.Name;
 
+        public bool TryMoveToNextCell(Direction moveDirection, LevelModel levelModel)
+        {
+            var offset = moveDirection.GetNormalizedOffsetFromDirection();
+
+            return TryMoveToNextCell(offset, levelModel);
+        }
+
+        public bool TryMoveToNextCell(Vector3Int offset, LevelModel levelModel)
+        {
+            if (levelModel.TryMoveEntity(this, offset))
+            {
+                Position += offset;
+                return true;
+            }
+
+            return false;
+        }
+        
         public XmlSchema GetSchema()
         {
             return null;

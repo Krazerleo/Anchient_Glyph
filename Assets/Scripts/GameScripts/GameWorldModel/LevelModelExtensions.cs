@@ -9,9 +9,9 @@ namespace AncientGlyph.GameScripts.GameWorldModel
     {
         /// <summary>
         /// Check if other End Cell is reachable
-        /// from Start Cell. Maximum distance
-        /// is only 1 else UB.
+        /// from neighbour Start Cell.
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Throws if cells are not neighbours</exception>
         public static bool CheckIsReachable(this LevelModel levelModel,
             Vector3Int startPosition, Vector3Int endPosition)
         {
@@ -48,6 +48,68 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                 default:
                     throw new ArgumentOutOfRangeException($"{direction} - Unexpected type of Direction Enum");
             }
+        }
+        
+        /// <summary>
+        /// Check if a ray intersects walls
+        /// from startPosition to targetPosition
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Throws if positions are not X or Z aligned</exception>
+        public static bool IsRayCollided(this LevelModel levelModel, Vector3Int startPosition, Vector3Int targetPosition)
+        {
+            // Ray is going on X Axis
+            if (startPosition.z == targetPosition.z)
+            {
+                if (startPosition.x > targetPosition.x)
+                {
+                    (startPosition, targetPosition) = (targetPosition, startPosition);
+                }
+                
+                var currentPosition = startPosition;
+                var frontPosition = startPosition;
+                frontPosition.x += 1;
+
+                for (int i = startPosition.x; i < targetPosition.x; i++)
+                {
+                    if (levelModel.CheckIsReachable(currentPosition, frontPosition) == false)
+                    {
+                        return true;
+                    }
+
+                    currentPosition.x += 1;
+                    frontPosition.x += 1;
+                }
+
+                return false;
+            }
+            
+            // Ray is going on Z Axis
+            if (startPosition.x == targetPosition.x)
+            {
+                if (startPosition.z > targetPosition.z)
+                {
+                    (startPosition, targetPosition) = (targetPosition, startPosition);
+                }
+                
+                var currentPosition = startPosition;
+                var frontPosition = startPosition;
+                frontPosition.z += 1;
+
+                for (int i = startPosition.z; i < targetPosition.z; i++)
+                {
+                    if (levelModel.CheckIsReachable(currentPosition, frontPosition) == false)
+                    {
+                        return true;
+                    }
+
+                    currentPosition.z += 1;
+                    frontPosition.z += 1;
+                }
+
+                return false;
+            }
+
+            throw new ArgumentException("Start and target position must be X or Z aligned");
         }
     }
 }

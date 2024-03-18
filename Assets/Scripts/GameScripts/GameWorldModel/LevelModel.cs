@@ -54,6 +54,14 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             return _cellModelGrid.GetEnumerator();
         }
         
+        /// <summary>
+        /// Move entity if next conditions are satisfied:
+        /// 1) Offset is normalized
+        /// 2) Target cell is not occupied by full size entity
+        /// </summary>
+        /// <param name="entity">Entity to Move</param>
+        /// <param name="offset">Normalized Vector Offset</param>
+        /// <returns></returns>
         public bool TryMoveEntity(IEntityModel entity, Vector3Int offset)
         {
             if (offset.magnitude <= 0.001)

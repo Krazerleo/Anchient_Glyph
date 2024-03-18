@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.EntityModel
@@ -13,16 +14,22 @@ namespace AncientGlyph.GameScripts.EntityModel
         /// Indicate if it cannot be placed in same cell with
         /// other full size entity
         /// </summary>
-        public bool IsFullSize { get; }
-        public Vector3Int Position { get; set; }
+        bool IsFullSize { get; }
+
+        Vector3Int Position { get; }
+
         /// <summary>
         /// Some unique identifier
         /// </summary>
-        public string Identifier { get; }
+        string Identifier { get; }
+
         /// <summary>
-        /// Name of the creature (also used for asset managment
+        /// Name of the creature (also used for asset management
         /// at this moment)
         /// </summary>
-        public string Name { get; }
+        string Name { get; }
+
+        bool TryMoveToNextCell(Direction moveDirection, LevelModel levelModel);
+        bool TryMoveToNextCell(Vector3Int offset, LevelModel levelModel);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using AncientGlyph.GameScripts.AlgorithmsAndStructures;
 using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.MoveBehaviour;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions;
@@ -41,12 +40,12 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
                 return false;
             }
 
-            return CellRayCaster.IsRayCollided(creatureModel.Position, playerModel.Position, levelModel);
+            return levelModel.IsRayCollided(creatureModel.Position, playerModel.Position);
         }
 
         // TODO : Implement more smart and distance sensitive solution
         // Step 1 : Calculate positions on two nearest lines to target considering min_max distance
-        // Step 2 : 
+        // Step 2 : For each position calculate distance and take one with minimum distance.
         public IAction GetFeedback(CreatureModel creatureModel, PlayerModel playerModel,
             IMoveBehaviour moveBehaviour, LevelModel levelModel)
         {

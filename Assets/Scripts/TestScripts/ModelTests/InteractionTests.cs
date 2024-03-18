@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace AncientGlyph.TestScripts.ModelTests
 {
+    [TestFixture]
     public class InteractionTests
     {
         [Test]
