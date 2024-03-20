@@ -17,9 +17,8 @@ MonoBehaviour:
   IsFullSize: 1
   MaxHealthPoints: 25331
   MaxManaPoints: 123123
-  ActionNames:
-  - {fileID: 11400000, guid: faf12ffcf81ca7c47a146514f73d6744, type: 2}
-  - {fileID: 11400000, guid: eab6084436666d541a804888f9a1fe6c, type: 2}
+  Actions:
+  - {fileID: 11400000, guid: 3f5b993ef52d58e4b8f3247893ddd463, type: 2}
   MovementType: 0
   MovementSteps: 1
   PhysicalResistance: 100

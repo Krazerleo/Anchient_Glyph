@@ -72,17 +72,20 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 
             while (_frontier.Count > 0 && step++ <= _maxSteps)
             {
+                Debug.Log("Calculating");
                 var current = _frontier.Dequeue();
                 _ignoredPositions.Add(current.Position);
 
                 if (current.Position.Equals(target))
                 {
+                    Debug.Log("Calculating success");
                     return true;
                 }
 
                 GenerateFrontierNodes(current, target);
             }
 
+            Debug.Log("Calculating failed");
             return false;
         }
 
@@ -97,17 +100,21 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
                     continue;
                 }
 
-                if (_levelModel.CheckIsReachable(parent.Position, newNode.Position))
+                if (_levelModel.CheckInBounds(newNode.Position) == false)
                 {
                     continue;
                 }
 
-                if (!_frontier.TryGet(newNode.Position, out var existingNode))
+                if (_levelModel.CheckIsReachable(parent.Position, newNode.Position) == false)
+                {
+                    continue;
+                }
+
+                if (_frontier.TryGet(newNode.Position, out var existingNode) == false)
                 {
                     _frontier.Enqueue(newNode);
                     _links[newNode.Position] = parent.Position;
                 }
-
                 else if (newNode.TraverseDistance < existingNode.TraverseDistance)
                 {
                     _frontier.Modify(newNode);

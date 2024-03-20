@@ -114,7 +114,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             return entities;
         }
 
-        private bool CheckInBounds(int xPosition, int yPosition, int zPosition)
+        public bool CheckInBounds(int xPosition, int yPosition, int zPosition)
         {
             return 0 <= xPosition && 0 <= yPosition && 0 <= zPosition &&
                    xPosition < GameConstants.LevelCellsSizeX &&
@@ -122,7 +122,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                    zPosition < GameConstants.LevelCellsSizeZ;
         }
 
-        private bool CheckInBounds(Vector3Int position)
+        public bool CheckInBounds(Vector3Int position)
         {
             return CheckInBounds(position.x, position.y, position.z);
         }

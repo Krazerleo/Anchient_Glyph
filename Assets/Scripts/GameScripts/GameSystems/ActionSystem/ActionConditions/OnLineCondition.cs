@@ -2,14 +2,24 @@
 using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.MoveBehaviour;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions;
+using AncientGlyph.GameScripts.GameSystems.EffectSystem;
+using AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects;
 using AncientGlyph.GameScripts.GameWorldModel;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
 {
+    [Serializable]
     public class OnLineCondition : IActionCondition
     {
-        private readonly int _minDistanceFromTarget;
-        private readonly int _maxDistanceFromTarget;
+        [SerializeField]
+        [MinValue(0)]
+        private int _minDistanceFromTarget;
+
+        [SerializeField]
+        [MinValue(nameof(_minDistanceFromTarget))]
+        private int _maxDistanceFromTarget;
 
         public OnLineCondition(int minDistanceFromTarget, int maxDistanceFromTarget)
         {
@@ -17,43 +27,43 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
             _maxDistanceFromTarget = maxDistanceFromTarget;
         }
 
-        public bool CanExecute(CreatureModel creatureModel, PlayerModel playerModel,
+        public bool CanExecute(IEntityModel self, IEntityModel target,
             IMoveBehaviour moveBehaviour, LevelModel levelModel)
         {
-            if (creatureModel.Position.y != playerModel.Position.y)
+            if (self.Position.y != target.Position.y)
             {
                 return false;
             }
 
-            if (creatureModel.Position.x != playerModel.Position.x &&
-                creatureModel.Position.z != playerModel.Position.z)
+            if (self.Position.x != target.Position.x &&
+                self.Position.z != target.Position.z)
             {
                 return false;
             }
 
             var distance = Math.Max(
-                Math.Abs(creatureModel.Position.x - playerModel.Position.x),
-                Math.Abs(creatureModel.Position.z - playerModel.Position.z));
+                Math.Abs(self.Position.x - target.Position.x),
+                Math.Abs(self.Position.z - target.Position.z));
 
             if (distance < _minDistanceFromTarget || distance > _maxDistanceFromTarget)
             {
                 return false;
             }
 
-            return levelModel.IsRayCollided(creatureModel.Position, playerModel.Position);
+            return levelModel.IsRayCollided(self.Position, target.Position) == false;
         }
 
         // TODO : Implement more smart and distance sensitive solution
         // Step 1 : Calculate positions on two nearest lines to target considering min_max distance
         // Step 2 : For each position calculate distance and take one with minimum distance.
-        public IAction GetFeedback(CreatureModel creatureModel, PlayerModel playerModel,
+        public IFeedbackAction GetFeedback(IEntityModel self, IEntityModel target,
             IMoveBehaviour moveBehaviour, LevelModel levelModel)
         {
-            var offset = moveBehaviour.CalculateNextStep(creatureModel.Position, playerModel.Position);
+            var offset = moveBehaviour.CalculateNextStep(self.Position, target.Position);
 
             if (offset == null)
             {
-                return new NullAction();
+                return new DoNothingAction();
             }
 
             return new GoToAction(offset.Value);

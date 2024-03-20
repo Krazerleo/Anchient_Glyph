@@ -1,6 +1,5 @@
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours;
-using AncientGlyph.GameScripts.GameSystems.ActionSystem.CombatActions.MeleeCombat;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions;
 using AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects;
 using AncientGlyph.GameScripts.GameWorldModel;
@@ -9,7 +8,7 @@ using Cysharp.Threading.Tasks;
 
 namespace AncientGlyph.GameScripts.EntityModel.Controller
 {
-    public class CreatureController : IEntityController, IEffectAcceptor, IActionExecutor
+    public class CreatureController : IEntityController, IEffectAcceptor
     {
         public bool IsEnabled => true;
 
@@ -40,11 +39,20 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
         public UniTask MakeNextTurn()
         {
             var decision = _behaviour.PlanForTurn(_creatureModel,
-                _playerController.EntityModel as PlayerModel,
-                _levelModel);
+                _playerController.EntityModel, _levelModel);
 
-            decision.Execute(this, _playerController);
+            if (decision.PlannedAction != null)
+            {
+                decision.PlannedAction.Execute(this, _playerController);
+                return UniTask.CompletedTask;
+            }
 
+            if (decision.FeedbackAction != null)
+            {
+                decision.FeedbackAction.Execute(this);
+                return UniTask.CompletedTask;
+            }
+                
             return UniTask.CompletedTask;
         }
 
@@ -63,12 +71,12 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
                                        $"{offset + _creatureModel.Position}");
         }
 
-        public void ExecuteMeleeCombatAction(MeleeCombatAction combatAction, IEffectAcceptor entity)
+        public void AcceptDamageEffect(DamageEffect damageEffect)
         {
-            // TODO : 
+            throw new System.NotImplementedException("damage effect");
         }
 
-        public void AcceptDamageEffect(DamageEffect damageEffect)
+        public void AcceptGoToEffect(GoToEffect goToEffect)
         {
             throw new System.NotImplementedException();
         }

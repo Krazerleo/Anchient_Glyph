@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-03-17T17:00:44.796Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="jaOw8B7ulacmivcCBDJA" version="21.6.1" type="device">
+<mxfile host="Electron" modified="2024-03-20T19:01:05.372Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="_qKSn6Ovr23HUpGpT0Rd" version="21.6.1" type="device">
   <diagram name="Architecture" id="58cdce13-f638-feb5-8d6f-7d28b1aa9fa0">
-    <mxGraphModel dx="6663" dy="3470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="4135" dy="1978" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1580,7 +1580,7 @@
           <mxGeometry x="380" y="440" width="210" height="130" as="geometry" />
         </mxCell>
         <mxCell id="smfsRSgSNM1d1Lc-hO8V-1" value="Ability Data" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-2190" y="20" width="1070" height="510" as="geometry" />
+          <mxGeometry x="-2190" y="20" width="1070" height="980" as="geometry" />
         </mxCell>
         <mxCell id="smfsRSgSNM1d1Lc-hO8V-14" value="Просто имя обилки чтобы ее потом десериализовать" style="rounded=0;whiteSpace=wrap;html=1;" parent="smfsRSgSNM1d1Lc-hO8V-1" vertex="1">
           <mxGeometry x="400" y="60" width="120" height="60" as="geometry" />

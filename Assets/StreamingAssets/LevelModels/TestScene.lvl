@@ -7,10 +7,6 @@
         <SerializationName>test_creature_1</SerializationName>
         <Position>(9, 1, 14)</Position>
       </CreatureModel>
-      <CreatureModel Identifier="6919c18e-ad3e-4708-b274-a09f5ec1bdd2">
-        <SerializationName>test_creature_1</SerializationName>
-        <Position>(12, 2, 18)</Position>
-      </CreatureModel>
     </level_model_entities>
   </level_file>
 </LevelModel>

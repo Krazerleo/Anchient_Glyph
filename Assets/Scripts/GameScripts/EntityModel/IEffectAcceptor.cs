@@ -5,5 +5,7 @@ namespace AncientGlyph.GameScripts.EntityModel
     public interface IEffectAcceptor
     {
         void AcceptDamageEffect(DamageEffect damageEffect);
+
+        void AcceptGoToEffect(GoToEffect goToEffect);
     }
 }

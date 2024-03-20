@@ -62,6 +62,24 @@ namespace AncientGlyph.TestScripts.ModelTests
 
             Assert.IsFalse(levelModel.CheckIsReachable(startPosition, endPosition));
         }
+        
+        [Test]
+        public void CheckReachability_TEST_FIXED_SWITCH()
+        {
+            var startCell = new CellModel(new WallType[] { 0, 0, 0, 0, 0, 0 });
+            var endCell = new CellModel(new WallType[] { 0, 0, 0, WallType.Whole, 0, 0 });
+
+            var startPosition = new Vector3Int(0, 0, 1);
+            var endPosition = new Vector3Int(0, 0, 0);
+
+            var levelModel = new LevelModel
+            {
+                [startPosition.x, startPosition.y, startPosition.z] = startCell,
+                [endPosition.x, endPosition.y, endPosition.z] = endCell
+            };
+
+            Assert.IsTrue(levelModel.CheckIsReachable(startPosition, endPosition));
+        }
 
         [Test]
         public void CheckReachability_TEST_UB()

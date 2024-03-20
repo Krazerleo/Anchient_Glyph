@@ -19,16 +19,14 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
         private readonly ILoggingService _loggingService;
         private readonly IAssetProviderService<CreatureAssetOption> _creatureAssetProvider;
         private readonly LevelModel _levelModel;
-        private readonly PlayerController _playerController;
 
         public CreatureFactory(ILoggingService loggingService,
             IAssetProviderService<CreatureAssetOption> creatureAssetProvider,
-            LevelModel levelModel, PlayerController playerController)
+            LevelModel levelModel)
         {
             _creatureAssetProvider = creatureAssetProvider;
             _loggingService = loggingService;
             _levelModel = levelModel;
-            _playerController = playerController;
         }
 
         /// <summary>
@@ -36,10 +34,11 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
         /// </summary>
         /// <param name="position">Position where to place creature</param>
         /// <param name="creatureModel">Creature model (before configuration)</param>
+        /// <param name="playerController">Player Controller</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         public async UniTask<CreatureController>
-            CreateCreature(Vector3Int position, CreatureModel creatureModel)
+            CreateCreature(Vector3Int position, CreatureModel creatureModel, PlayerController playerController)
         {
             if (creatureModel == null)
             {
@@ -67,9 +66,9 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
                 throw new ArgumentException(message);
             }
 
-            creatureModel.Traits = traitsSource.CreatureTraits;
-
-            return new CreatureController(creatureModel, _playerController, _levelModel, animator,
+            creatureModel.PostInitialize(traitsSource);
+            
+            return new CreatureController(creatureModel, playerController, _levelModel, animator,
                 CreatureBehaviour.CreateFromOptions(traitsSource.CreatureTraits.MovementType, _levelModel),
                 _loggingService);
         }

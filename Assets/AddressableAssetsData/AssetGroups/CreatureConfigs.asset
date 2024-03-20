@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: d4213a9d52f0cf345acbaa08e6657c62
   m_SerializeEntries:
-  - m_GUID: faf12ffcf81ca7c47a146514f73d6744
-    m_Address: Assets/Level/Prefab/Creatures/test_creature_1/melee_hit.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da5b79a03dd283547a439ed93b2bf4e4
     m_Address: Assets/Level/Prefab/Creatures/test_creature_1/test_creature_1.asset
     m_ReadOnly: 0

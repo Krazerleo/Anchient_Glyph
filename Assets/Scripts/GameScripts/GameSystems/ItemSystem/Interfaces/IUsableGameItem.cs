@@ -1,4 +1,4 @@
-namespace AncientGlyph.GameScripts.GameSystems.ItemSystem
+namespace AncientGlyph.GameScripts.GameSystems.ItemSystem.Interfaces
 {
     public interface IUsableGameItem
     {

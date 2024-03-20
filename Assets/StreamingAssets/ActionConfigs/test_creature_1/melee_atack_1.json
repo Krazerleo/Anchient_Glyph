@@ -1,20 +1,13 @@
 ﻿{
   "Name": "Simple Attack",
-  "ApplyConditions" :
-  {
-    "OnLine":
+  "Description": "Just simple attack of test creature",
+  "ApplyConditions": [
     {
-      "MinDistance" : 2,
-      "MaxDistance" : 0
+      "$type": "AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions.OnLineCondition, GameScriptsAssembly",
+      "MinDistance": 2,
+      "MaxDistance": 0
     }
-  },
-  "TargetEffects" :
-  {
-    "TakeDamage":
-    {
-      "Value": 10,
-      "DamageType" : "Physical"
-    }
-  },
-  "SelfEffects" : {}
+  ],
+  "TargetEffects": [],
+  "SelfEffects": []
 }

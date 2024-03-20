@@ -276,7 +276,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &27770248
 MeshRenderer:
@@ -372,7 +371,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &28253834
 MeshRenderer:
@@ -468,7 +466,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &34494554
 MeshRenderer:
@@ -564,7 +561,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &37249922
 MeshRenderer:
@@ -660,7 +656,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &38737697
 MeshRenderer:
@@ -755,7 +750,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &57327992
 GameObject:
@@ -809,7 +803,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &57327995
 MeshRenderer:
@@ -905,7 +898,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &66349012
 MeshRenderer:
@@ -1001,7 +993,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &79684161
 MeshRenderer:
@@ -1097,7 +1088,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &82139319
 MeshRenderer:
@@ -1276,7 +1266,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &107689454
 MeshRenderer:
@@ -1371,7 +1360,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &113018804
 GameObject:
@@ -1425,7 +1413,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &113018807
 MeshRenderer:
@@ -1687,7 +1674,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &126194882
 MeshRenderer:
@@ -2114,7 +2100,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &208787873
 GameObject:
@@ -2489,7 +2474,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &291713249
 GameObject:
@@ -2543,7 +2527,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &291713252
 MeshRenderer:
@@ -2638,7 +2621,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &315783864
 GameObject:
@@ -2858,7 +2840,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &320330046
 MeshRenderer:
@@ -2954,7 +2935,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &361856850
 MeshRenderer:
@@ -3050,7 +3030,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &371129055
 MeshRenderer:
@@ -3312,7 +3291,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &385657824
 MeshRenderer:
@@ -3407,7 +3385,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &402867113
 GameObject:
@@ -3461,7 +3438,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &402867116
 MeshRenderer:
@@ -3640,7 +3616,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &415574415
 MeshRenderer:
@@ -3736,7 +3711,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &415676538
 MeshRenderer:
@@ -3831,7 +3805,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &418809231
 GameObject:
@@ -3885,7 +3858,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &418809234
 MeshRenderer:
@@ -4313,7 +4285,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &446878003
 MeshRenderer:
@@ -4408,7 +4379,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &473435030
 GameObject:
@@ -4628,7 +4598,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &498305695
 MeshRenderer:
@@ -4672,59 +4641,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &501699843
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 501699844}
-  - component: {fileID: 501699845}
-  m_Layer: 0
-  m_Name: entity_marker(Clone)
-  m_TagString: EditorEntityMarker
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &501699844
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501699843}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: 3, z: 18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1223407334}
-  m_Father: {fileID: 739705179}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &501699845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501699843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Coordinates: {x: 12, y: 2, z: 18}
-  Direction: 0
-  Type: 5
-  CreatureModel:
-    SerializationName: test_creature_1
-    <Identifier>k__BackingField: 6919c18e-ad3e-4708-b274-a09f5ec1bdd2
-    Traits: {fileID: 11400000, guid: da5b79a03dd283547a439ed93b2bf4e4, type: 2}
-    <Position>k__BackingField: {x: 12, y: 2, z: 18}
 --- !u!1 &513812495
 GameObject:
   m_ObjectHideFlags: 0
@@ -4942,7 +4858,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &538099361
 GameObject:
@@ -5244,7 +5159,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &569523334
 GameObject:
@@ -5298,7 +5212,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &569523337
 MeshRenderer:
@@ -5477,7 +5390,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &577078668
 MeshRenderer:
@@ -5572,7 +5484,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &610737272
 GameObject:
@@ -5626,7 +5537,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &610737275
 MeshRenderer:
@@ -5825,7 +5735,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 501699844}
   - {fileID: 1466969237}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -5882,7 +5791,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &746357474
 MeshRenderer:
@@ -5978,7 +5886,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &747201621
 MeshRenderer:
@@ -6156,7 +6063,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &765694864
 GameObject:
@@ -6655,7 +6561,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &839235244
 GameObject:
@@ -7167,7 +7072,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &892569828
 GameObject:
@@ -7265,7 +7169,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &905861248
 MeshRenderer:
@@ -7858,7 +7761,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &964087838
 GameObject:
@@ -7912,7 +7814,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &964087841
 MeshRenderer:
@@ -8008,7 +7909,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &965974870
 MeshRenderer:
@@ -8104,7 +8004,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &970877131
 MeshRenderer:
@@ -8532,7 +8431,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1025499061
 MeshRenderer:
@@ -8960,7 +8858,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1076706799
 MeshRenderer:
@@ -9139,7 +9036,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1118079242
 MeshRenderer:
@@ -9235,7 +9131,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1158752470
 MeshRenderer:
@@ -9331,7 +9226,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1163560219
 MeshRenderer:
@@ -9427,7 +9321,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1179667929
 MeshRenderer:
@@ -9523,7 +9416,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1186458149
 MeshRenderer:
@@ -9785,7 +9677,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1218785475
 MeshRenderer:
@@ -9829,111 +9720,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &1223407333
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1223407334}
-  - component: {fileID: 1223407337}
-  - component: {fileID: 1223407336}
-  - component: {fileID: 1223407335}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1223407334
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223407333}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.639, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 501699844}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1223407335
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223407333}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1223407336
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223407333}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: d9769b62fdfcf9a498eba8a0dd549755, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1223407337
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223407333}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1229334687
 GameObject:
   m_ObjectHideFlags: 0
@@ -9985,7 +9771,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1233759251
 GameObject:
@@ -10039,7 +9824,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1233759254
 MeshRenderer:
@@ -10134,7 +9918,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1267299581
 GameObject:
@@ -10188,7 +9971,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1267299584
 MeshRenderer:
@@ -10283,7 +10065,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1284946837
 GameObject:
@@ -10678,7 +10459,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1315724828
 MeshRenderer:
@@ -10857,7 +10637,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1318886029
 MeshRenderer:
@@ -10953,7 +10732,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1320035159
 MeshRenderer:
@@ -11079,7 +10857,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1398806399
 GameObject:
@@ -11215,7 +10992,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1434823404
 GameObject:
@@ -11453,7 +11229,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: test_creature_1
     <Identifier>k__BackingField: 54cb2324-93e1-4898-9259-549eda4302bd
-    Traits: {fileID: 11400000, guid: da5b79a03dd283547a439ed93b2bf4e4, type: 2}
     <Position>k__BackingField: {x: 9, y: 1, z: 14}
 --- !u!1 &1467814288
 GameObject:
@@ -11506,7 +11281,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1470367749
 GameObject:
@@ -11809,7 +11583,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1500798218
 MeshRenderer:
@@ -12071,7 +11844,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1510758170
 MeshRenderer:
@@ -12416,7 +12188,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1560389263
 MeshRenderer:
@@ -12512,7 +12283,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1575582856
 MeshRenderer:
@@ -12691,7 +12461,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1597439249
 MeshRenderer:
@@ -12952,7 +12721,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1636365437
 GameObject:
@@ -13338,7 +13106,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1696853171
 MeshRenderer:
@@ -13434,7 +13201,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1697055948
 MeshRenderer:
@@ -13657,7 +13423,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1738312585
 MeshRenderer:
@@ -14251,7 +14016,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1769666650
 MeshRenderer:
@@ -14347,7 +14111,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1782451394
 MeshRenderer:
@@ -14443,7 +14206,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1804815593
 MeshRenderer:
@@ -14538,7 +14300,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1812830774
 GameObject:
@@ -14592,7 +14353,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1812830777
 MeshRenderer:
@@ -14688,7 +14448,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1822209097
 MeshRenderer:
@@ -14784,7 +14543,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1828133558
 MeshRenderer:
@@ -14880,7 +14638,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1841637686
 MeshRenderer:
@@ -15141,7 +14898,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1899035229
 GameObject:
@@ -15278,7 +15034,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1899178093
 MeshRenderer:
@@ -15456,7 +15211,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1926726287
 GameObject:
@@ -15510,7 +15264,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1926726290
 MeshRenderer:
@@ -15689,7 +15442,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1942650002
 MeshRenderer:
@@ -15784,7 +15536,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1949868814
 GameObject:
@@ -15921,7 +15672,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1953206036
 MeshRenderer:
@@ -16017,7 +15767,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1954060276
 MeshRenderer:
@@ -16196,7 +15945,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1964271914
 MeshRenderer:
@@ -16374,7 +16122,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1988418556
 GameObject:
@@ -16428,7 +16175,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &1988418559
 MeshRenderer:
@@ -16690,7 +16436,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &2011421990
 MeshRenderer:
@@ -16778,7 +16523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd79258e27348efad5a25c8c892f6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPosition: {x: 8, y: 1, z: 4}
+  PlayerPosition: {x: 6, y: 1, z: 15}
 --- !u!1 &2050565012
 GameObject:
   m_ObjectHideFlags: 0
@@ -16914,7 +16659,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &2053389156
 MeshRenderer:
@@ -17229,7 +16973,6 @@ MonoBehaviour:
   CreatureModel:
     SerializationName: 
     <Identifier>k__BackingField: 
-    Traits: {fileID: 0}
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!23 &2137911134
 MeshRenderer:

@@ -1,44 +1,51 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AncientGlyph.GameScripts.AlgorithmsAndStructures.PriorityQueue;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.MoveBehaviour;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem;
+using AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions;
 using AncientGlyph.GameScripts.GameWorldModel;
 
 namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours
 {
     public class CreatureBehaviour : ICreatureBehaviour
     {
-        private IPriorityQueue<string, IAction> _actionPriority;
-        private IPriorityQueue<string, IAction> _feedbackPriority;
+        private IPriorityQueue<string, ActionConfig> _actionPriority;
+        private IPriorityQueue<string, IFeedbackAction> _feedbackPriority;
         private IMoveBehaviour _moveBehaviour;
         
         private CreatureBehaviour() { }
         
         public static ICreatureBehaviour CreateFromOptions(MovementType type, LevelModel levelModel)
         {
-            var comparer = Comparer<IAction>.Create((a, b) => b.CalculatePower().CompareTo(a.CalculatePower()));
+            var actionComparer = Comparer<ActionConfig>.Create((a, b) => b.CalculatePower().CompareTo(a.CalculatePower()));
+            var feedbackComparer =
+                Comparer<IFeedbackAction>.Create((a, b) => b.CalculatePriority().CompareTo(a.CalculatePriority()));
             
             var creatureBehaviour = new CreatureBehaviour
             {
                 _moveBehaviour = MoveBehaviourFactory.CreateCreatureBehaviour(type, levelModel),
-                _actionPriority = new BinaryHeap<string, IAction>(comparer, action => action.Id, 0),
-                _feedbackPriority = new BinaryHeap<string, IAction>(comparer, action => action.Id, 0)
+                _actionPriority = new BinaryHeap<string, ActionConfig>(actionComparer, action => action.Name, 0),
+                _feedbackPriority =
+                    new BinaryHeap<string, IFeedbackAction>(feedbackComparer, action => action.Identifier, 0)
             };
             
             return creatureBehaviour;
         }
 
-        public IAction PlanForTurn(CreatureModel creatureModel, PlayerModel playerModel, LevelModel levelModel)
+        public (ApplyEffectsAction, IFeedbackAction) PlanForTurn(CreatureModel creatureModel, PlayerModel playerModel, LevelModel levelModel)
         {
-            foreach (var action in creatureModel.Actions)
+            foreach (var action in creatureModel.Traits.Actions)
             {
-                if (action.CanExecute(creatureModel, playerModel, _moveBehaviour))
+                var feedback = action.CanBeApplied(creatureModel, playerModel, _moveBehaviour, levelModel);
+                
+                if (feedback.Any() == false)
                 {
                     _actionPriority.Enqueue(action);
                 }
                 else
                 {
-                    _feedbackPriority.Enqueue(action.GetFeedback(creatureModel, playerModel, _moveBehaviour));
+                    _feedbackPriority.Enqueue(feedback);
                 }
             }
 
@@ -47,17 +54,17 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours
                 var bestAction = _actionPriority.Dequeue();
                 _actionPriority.Clear();
                 _feedbackPriority.Clear();
-                return bestAction;
+                return (new ApplyEffectsAction(bestAction.TargetEffects, bestAction.SelfEffects), null);
             }
 
             if (_feedbackPriority.Count != 0)
             {
                 var bestFeedback = _feedbackPriority.Dequeue();
                 _feedbackPriority.Clear();
-                return bestFeedback;
+                return (null, bestFeedback);
             }
 
-            return new NullAction();
+            return (null, new DoNothingAction());
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.EntityModel.Controller;
-using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.MoveBehaviour;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions
 {
-    public class GoToAction : IAction
+    public class GoToAction : IFeedbackAction
     {
         public readonly Vector3Int Offset;
         
@@ -14,23 +13,13 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions
             Offset = offset;
         }
         
-        public string Id => nameof(GoToAction);
+        public string Identifier => nameof(GoToAction);
         
-        public int CalculatePower() => 1;
-
-        public bool CanExecute(CreatureModel creatureModel, PlayerModel playerModel,
-            IMoveBehaviour moveBehaviour) => true;
-
-        public void Execute(CreatureController creatureController, PlayerController playerController)
+        public int CalculatePriority() => 1;
+        
+        public void Execute(CreatureController controller)
         {
-            creatureController.ExecuteMove(this);
-        }
-
-        public IAction GetFeedback(CreatureModel creatureModel, PlayerModel playerModel,
-            IMoveBehaviour moveBehaviour)
-        {
-            Debug.LogError("Trying to get feedback action from feedback action <<GoToAction>>");
-            return new NullAction();
+            controller.ExecuteMove(this);
         }
     }
 }

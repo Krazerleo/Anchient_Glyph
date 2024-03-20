@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
 using AncientGlyph.GameScripts.EntityModel.Traits;
-using AncientGlyph.GameScripts.GameSystems.ActionSystem;
+using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Serialization;
 using UnityEngine;
@@ -24,8 +24,7 @@ namespace AncientGlyph.GameScripts.EntityModel
         [field: SerializeField]
         public string Identifier { get; set; }
         
-        public CreatureTraits Traits;
-        public List<IAction> Actions = new();
+        public CreatureTraits Traits { get; private set; }
         
         [field: SerializeField]
         public Vector3Int Position { get; private set; }
@@ -96,6 +95,11 @@ namespace AncientGlyph.GameScripts.EntityModel
         public bool Equals(IEntityModel other)
         {
             return other?.Identifier == Identifier;
+        }
+
+        public void PostInitialize(CreatureTraitsSource traitsSource)
+        {
+            Traits = traitsSource.CreatureTraits;
         }
     }
 }

@@ -39,6 +39,14 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PriorityQueue
             }
         }
 
+        public void Enqueue(IEnumerable<T> items)
+        {
+            foreach (var item in items)
+            {
+                Enqueue(item);
+            }
+        }
+
         public T Dequeue()
         {
             if (_collection.Count == 0) return default;

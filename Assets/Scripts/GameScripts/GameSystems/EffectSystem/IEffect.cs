@@ -4,6 +4,8 @@ namespace AncientGlyph.GameScripts.GameSystems.EffectSystem
 {
     public interface IEffect
     {
-        public void ApplyOn(IEffectAcceptor entity);
+        int GetPower();
+        
+        void ApplyOn(IEffectAcceptor entity);
     }
 }

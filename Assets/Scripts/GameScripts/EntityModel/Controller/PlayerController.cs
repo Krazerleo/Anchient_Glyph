@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects;
-using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.PlayerInput;
 using AncientGlyph.GameScripts.Services.LoggingService;
@@ -28,7 +26,9 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
             _actionCompletionSource = AutoResetUniTaskCompletionSource.Create();
         }
 
-        public IEntityModel EntityModel => _playerEntity;
+        IEntityModel IEntityController.EntityModel => _playerEntity;
+        public PlayerModel EntityModel => _playerEntity;
+        
         public bool IsEnabled => true;
 
         private readonly ILoggingService _loggingService;
@@ -77,7 +77,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
         {
             var offsetVector = new Vector3Int(xOffset, yOffset, zOffset);
             
-            if (_levelModel.TryMoveEntity(_playerEntity, offsetVector))
+            if (_playerEntity.TryMoveToNextCell(offsetVector, _levelModel))
             {
                 RemoveActionEvents();
                 _playerAnimator.Move(offsetVector);
@@ -90,6 +90,11 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
         }
 
         public void AcceptDamageEffect(DamageEffect damageEffect)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AcceptGoToEffect(GoToEffect goToEffect)
         {
             throw new System.NotImplementedException();
         }

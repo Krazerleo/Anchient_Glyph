@@ -19,7 +19,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.Mov
         {
             if (_algorithm.TryCalculate(currentPosition, targetPosition, out var path))
             {
-                return path[1] - path[0];
+                return path[0] - path[1];
             }
 
             return null;

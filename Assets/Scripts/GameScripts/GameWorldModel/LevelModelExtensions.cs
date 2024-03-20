@@ -1,6 +1,5 @@
 ﻿using System;
 using AncientGlyph.GameScripts.Enums;
-using AncientGlyph.GameScripts.Geometry;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameWorldModel
@@ -34,17 +33,23 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             switch (direction)
             {
                 case Direction.East:
-                case Direction.West:
                     return startCell.GetWalls[(int)Direction.East] != WallType.Whole &&
                            endCell.GetWalls[(int)Direction.West] != WallType.Whole;
+                case Direction.West:
+                    return startCell.GetWalls[(int)Direction.West] != WallType.Whole &&
+                           endCell.GetWalls[(int)Direction.East] != WallType.Whole;
                 case Direction.North:
-                case Direction.South:
                     return startCell.GetWalls[(int)Direction.North] != WallType.Whole &&
                            endCell.GetWalls[(int)Direction.South] != WallType.Whole;
+                case Direction.South:
+                    return startCell.GetWalls[(int)Direction.South] != WallType.Whole &&
+                           endCell.GetWalls[(int)Direction.North] != WallType.Whole;
                 case Direction.Up:
-                case Direction.Down:
                     return startCell.GetWalls[(int)Direction.Up] != WallType.Whole &&
                            endCell.GetWalls[(int)Direction.Down] != WallType.Whole;
+                case Direction.Down:
+                    return startCell.GetWalls[(int)Direction.Down] != WallType.Whole &&
+                           endCell.GetWalls[(int)Direction.Up] != WallType.Whole;
                 default:
                     throw new ArgumentOutOfRangeException($"{direction} - Unexpected type of Direction Enum");
             }
