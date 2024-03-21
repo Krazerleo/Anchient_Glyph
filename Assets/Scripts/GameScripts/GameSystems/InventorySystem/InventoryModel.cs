@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
+using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 {
@@ -9,19 +10,21 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private struct InventoryCell
         {
             public uint ItemId { get; set; }
-            public int PivotX { get; set; }
-            public int PivotY { get; set; }
+            public Vector2Int ItemPivotCell { get; set; }
         }
 
-        public int Width { get; private set; }
-        public int Height { get; private set; }
+        public int Width { get; }
+        public int Height { get; }
         private readonly List<InventoryCell> _inventoryCells = new();
 
         private InventoryCell this[int x, int y]
-            => _inventoryCells[x + y * Width];
+        {
+            get => _inventoryCells[x + y * Width];
+            set => _inventoryCells[x + y * Width] = value;
+        }
 
         private const int EmptyCellPivotIndicator = -1;
-        private Dictionary<(int x, int y), GameItem> _itemPivots = new();
+        private readonly Dictionary<Vector2Int, GameItem> _itemPivots = new();
 
         public int SlotsCount => _inventoryCells.Count;
 
@@ -33,10 +36,9 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
             for (int i = 0; i < _inventoryCells.Capacity; i++)
             {
-                _inventoryCells.Add(new InventoryCell()
+                _inventoryCells.Add(new InventoryCell
                 {
-                    PivotX = 0,
-                    PivotY = 0,
+                    ItemPivotCell = new Vector2Int(),
                     ItemId = Constants.GameConstants.UndefinedItemId,
                 });
             }
@@ -44,24 +46,29 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         public bool TryTakeItemFromPosition(int xPosition, int yPosition, out GameItem gameItem)
         {
-            var pivotCell = this[xPosition, yPosition];
+            var inventoryCell = this[xPosition, yPosition];
 
-            if (pivotCell.PivotX == EmptyCellPivotIndicator)
+            if (inventoryCell.ItemPivotCell.x == EmptyCellPivotIndicator)
             {
                 gameItem = null;
                 return false;
             }
 
-            var requestedItem = _itemPivots[(pivotCell.PivotX, pivotCell.PivotY)];
+            var requestedItem = _itemPivots[inventoryCell.ItemPivotCell];
             gameItem = requestedItem;
 
             foreach (var cell in gameItem.CellSet.GetDefinedGeometry())
             {
-                var removingCell = this[xPosition + cell.x, yPosition + cell.y];
-                removingCell.PivotX = -1;
-                removingCell.PivotY = -1;
+                var addedCellPosition = new Vector2Int(
+                    xPosition + cell.x, yPosition + cell.y);
+                
+                var removingCell = this[addedCellPosition.x, addedCellPosition.y];
+                removingCell.ItemPivotCell.Set(-1, -1);
                 removingCell.ItemId = Constants.GameConstants.UndefinedItemId;
+                this[addedCellPosition.x, addedCellPosition.y] = removingCell;
             }
+
+            _itemPivots.Remove(inventoryCell.ItemPivotCell);
 
             return true;
         }
@@ -77,12 +84,17 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
             foreach (var itemCell in item.CellSet.GetDefinedGeometry())
             {
-                var addedCell = this[xPosition + itemCell.x, yPosition + itemCell.y];
+                var addedCellPosition = new Vector2Int(
+                    xPosition + itemCell.x, yPosition + itemCell.y);
+                
+                var addedCell = this[addedCellPosition.x, addedCellPosition.y];
                 addedCell.ItemId = item.ItemId;
-                addedCell.PivotX = pivotCell.x;
-                addedCell.PivotY = pivotCell.y;
+                addedCell.ItemPivotCell = pivotCell;
+                this[addedCellPosition.x, addedCellPosition.y] = addedCell;
             }
 
+            _itemPivots.Add(pivotCell, item);
+            
             return true;
         }
 
@@ -90,7 +102,16 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         {
             foreach (var itemCell in item.CellSet.GetDefinedGeometry())
             {
-                var checkedCell = this[xPosition + itemCell.x, yPosition + itemCell.y];
+                var addedCellPosition = new Vector2Int(
+                    xPosition + itemCell.x, yPosition + itemCell.y);
+                
+                if (addedCellPosition.x >= Width || addedCellPosition.x < 0 ||
+                    addedCellPosition.y >= Height || addedCellPosition.y < 0)
+                {
+                    return false;
+                }
+                
+                var checkedCell = this[addedCellPosition.x, addedCellPosition.y];
 
                 if (checkedCell.ItemId != Constants.GameConstants.UndefinedItemId)
                 {

@@ -1,4 +1,4 @@
-using AncientGlyph.EditorScripts.Helpers;
+using AncientGlyph.EditorScripts.Utils;
 using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.ForEditor;

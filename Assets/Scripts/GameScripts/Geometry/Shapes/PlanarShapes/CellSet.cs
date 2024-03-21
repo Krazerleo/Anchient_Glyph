@@ -1,66 +1,63 @@
 using System.Collections.Generic;
 using System.Linq;
-
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
-
 using UnityEngine;
 
-namespace AncientGlyph.GameScripts.Geometry.Shapes
+namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
 {
     public class CellSet : IShape2D
     {
-        private IEnumerable<Vector2Int> _ceils;
+        private readonly List<Vector2Int> _cells;
 
         public CellSet()
         {
-            _ceils = new List<Vector2Int>();
+            _cells = new List<Vector2Int>();
         }
 
-        public CellSet(IEnumerable<Vector2Int> ceils)
+        public CellSet(IEnumerable<Vector2Int> cells)
         {
-            _ceils = ceils;
+            _cells = cells.ToList();
         }
 
         public IEnumerable<Vector2Int> GetDefinedGeometry()
         {
-            foreach (var ceil in _ceils)
+            foreach (var ceil in _cells)
             {
                 yield return ceil;
             }
         }
 
-        // TODO : Implement item cells rotation
-        public IEnumerable<Vector2Int> GetDefinedGeometry(int rotations)
+        public IEnumerable<Vector2Int> GetRotatedGeometry(int rotations)
         {
             rotations %= 4;
 
             switch (rotations)
             {
                 case 0:
-                    foreach (var ceil in _ceils)
+                    foreach (var cell in _cells)
                     {
-                        yield return ceil;
+                        yield return cell;
                     }
                     yield break;
 
                 case 1:
-                    foreach (var ceil in _ceils)
+                    foreach (var cell in _cells)
                     {
-                        yield return ceil;
+                        yield return new Vector2Int(cell.y, -cell.x - 1);
                     }
                     yield break;
 
                 case 2:
-                    foreach (var ceil in _ceils)
+                    foreach (var cell in _cells)
                     {
-                        yield return ceil;
+                        yield return new Vector2Int(-cell.x - 1, -cell.y - 1);
                     }
                     yield break;
 
                 case 3:
-                    foreach (var ceil in _ceils)
+                    foreach (var cell in _cells)
                     {
-                        yield return ceil;
+                        yield return new Vector2Int(-cell.y - 1, cell.x);
                     }
                     yield break;
             }
@@ -68,38 +65,35 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes
 
         public RectInt GetBounds()
         {
-            if (_ceils.Any() == false)
+            if (_cells.Any() == false)
             {
                 return new RectInt();
             }
 
-            var xMax = _ceils.Select(cell => cell.x).Max();
-            var xMin = _ceils.Select(cell => cell.x).Min();
-            var yMax = _ceils.Select(cell => cell.y).Max();
-            var yMin = _ceils.Select(cell => cell.y).Min();
+            var xMax = _cells.Select(cell => cell.x).Max();
+            var xMin = _cells.Select(cell => cell.x).Min();
+            var yMax = _cells.Select(cell => cell.y).Max();
+            var yMin = _cells.Select(cell => cell.y).Min();
 
             return new RectInt(xMin, yMin, xMax - xMin, yMax - yMin);
         }
 
         public bool Contains(Vector2Int position)
         {
-            return _ceils.Contains(position);
+            return _cells.Contains(position);
         }
 
-        public void Add(Vector2Int position)
+        public void AddCell(Vector2Int position)
         {
-            if (_ceils.Contains(position) == false)
+            if (_cells.Contains(position) == false)
             {
-                _ceils = _ceils.Append(position);
+                _cells.Add(position);
             }
         }
 
-        public void Remove(Vector2Int position)
+        public void RemoveCell(Vector2Int position)
         {
-            if (_ceils.Contains(position))
-            {
-                _ceils = _ceils.Where(cell => cell != position);
-            }
+            _cells.Remove(position);
         }
     }
 }

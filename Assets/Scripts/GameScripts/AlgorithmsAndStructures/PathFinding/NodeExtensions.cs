@@ -8,19 +8,19 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
         private static readonly (Vector3Int offset, float cost)[] NeighboursThreeAxisTemplate =
         {
             (new Vector3Int(1, 0, 0), 1),
-            (new Vector3Int(0, 1, 0), 1),
             (new Vector3Int(-1, 0, 0), 1),
-            (new Vector3Int(0, -1, 0), 1),
             (new Vector3Int(0, 0, 1), 1),
             (new Vector3Int(0, 0, -1), 1),
+            (new Vector3Int(0, 1, 0), 1),
+            (new Vector3Int(0, -1, 0), 1),
         };
         
         private static readonly (Vector3Int offset, float cost)[] NeighboursTwoAxisTemplate =
         {
             (new Vector3Int(1, 0, 0), 1),
-            (new Vector3Int(0, 1, 0), 1),
             (new Vector3Int(-1, 0, 0), 1),
-            (new Vector3Int(0, -1, 0), 1),
+            (new Vector3Int(0, 0, 1), 1),
+            (new Vector3Int(0, 0, -1), 1),
         };
 
         public static void Fill(this PathNode[] buffer, PathNode parent, Vector3Int target, int freeAxis)

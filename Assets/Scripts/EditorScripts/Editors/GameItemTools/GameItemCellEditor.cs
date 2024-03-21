@@ -84,13 +84,13 @@ namespace AncientGlyph.EditorScripts.Editors.GameItemTools
         {
             if (_inspectedGameItem.CellSet.Contains(position))
             {
-                _inspectedGameItem.CellSet.Remove(position);
+                _inspectedGameItem.CellSet.RemoveCell(position);
                 _slots[position.x + position.y * GameConstants.MaxItemSizeX]
                     .styleSheets.Remove(_freeCellStyleSheet);
             }
             else
             {
-                _inspectedGameItem.CellSet.Add(position);
+                _inspectedGameItem.CellSet.AddCell(position);
                 _slots[position.x + position.y * GameConstants.MaxItemSizeX]
                     .styleSheets.Add(_freeCellStyleSheet);
             }

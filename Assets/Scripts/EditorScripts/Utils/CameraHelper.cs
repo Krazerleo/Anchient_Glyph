@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace AncientGlyph.EditorScripts.Helpers
+namespace AncientGlyph.EditorScripts.Utils
 {
     public class CameraHelper
     {

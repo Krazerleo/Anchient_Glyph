@@ -1,10 +1,9 @@
 using AncientGlyph.GameScripts.EntityModel;
-using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 
-namespace AncientGlyph.EditorScripts.Helpers
+namespace AncientGlyph.EditorScripts.Utils
 {
     public static class ModelMarkerCreator
     {

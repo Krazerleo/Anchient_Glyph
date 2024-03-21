@@ -7,7 +7,8 @@ using UnityEngine;
 namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 {
     /// <summary>
-    /// Typical A* Algorithm
+    /// Typical A* Algorithm with some modifications
+    /// https://habr.com/ru/articles/513158/
     /// </summary>
     public class PathFindingAlgorithm
     {
@@ -115,7 +116,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
                     _frontier.Enqueue(newNode);
                     _links[newNode.Position] = parent.Position;
                 }
-                else if (newNode.TraverseDistance < existingNode.TraverseDistance)
+                else if (newNode.TraverseDistance <= existingNode.TraverseDistance)
                 {
                     _frontier.Modify(newNode);
                     _links[newNode.Position] = parent.Position;
