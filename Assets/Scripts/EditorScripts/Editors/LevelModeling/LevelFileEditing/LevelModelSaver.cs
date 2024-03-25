@@ -53,8 +53,6 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
                     case AssetType.Wall:
                         levelEditor.TryPlaceWall(coordinates, marker.Direction);
                         break;
-                    case AssetType.Object:
-                        break;
                     case AssetType.Item:
                         break;
                     case AssetType.Entity:

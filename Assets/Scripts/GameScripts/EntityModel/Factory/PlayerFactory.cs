@@ -60,8 +60,8 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
                 throw new ArgumentException(message);
             }
 
-            playerPrefab.transform.position = _saveDataService.BaseSaveInfo.PlayerPosition;
-            var playerModel = new PlayerModel(_saveDataService.BaseSaveInfo.PlayerPosition);
+            playerPrefab.transform.position = _saveDataService.BaseInfo.PlayerPosition;
+            var playerModel = new PlayerModel(_saveDataService.BaseInfo.PlayerPosition);
 
             return new PlayerController(animator, moveInput, _levelModel,
                                         playerModel, _loggingService);

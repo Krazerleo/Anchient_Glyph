@@ -5,8 +5,7 @@ namespace AncientGlyph.GameScripts.ForEditor
         None = 0,
         Tile = 1,
         Wall = 2,
-        Object = 3,
-        Item = 4,
+        Item = 3,
         Entity,
     }
 }

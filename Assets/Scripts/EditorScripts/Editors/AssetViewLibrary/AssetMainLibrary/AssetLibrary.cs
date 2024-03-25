@@ -20,7 +20,6 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
 
         private const string CreaturePath = "Level/Prefab/Creatures";
         private const string ItemPath = "Level/Prefab/Items";
-        private const string ObjectPath = "Level/Prefab/Objects";
         private const string TilesPath = "Level/Prefab/Tiles/";
         private const string WallPath = "Level/Prefab/Walls";
         private const string AssetListViewName = "Asset-List-View";
@@ -28,15 +27,14 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
         private const string AssetTypeToolbarName = "Asset-Type-Toolbar";
         private const string HighlightStylePath = "Assets/Scripts/EditorScripts/Editors/AssetViewLibrary/Styles/highlight.uss";
         private const string LayoutPath = "Assets/Scripts/EditorScripts/Editors/AssetViewLibrary/AssetMainLibrary/AssetLibrary.uxml";
-        private static StyleSheet _highlightStyle;
-        private static string _prompt = "";
+        private static StyleSheet _HighlightStyle;
+        private static string _Prompt = "";
 
         private static readonly List<(ToolbarButton button, AssetType type, string name)> TypeButtonList = new()
         {
             (null, AssetType.Tile, "Tiles-Type-Button"),
             (null, AssetType.Wall, "Walls-Type-Button"),
             (null, AssetType.Item, "Items-Type-Button"),
-            (null, AssetType.Object, "Objects-Type-Button"),
             (null, AssetType.Entity, "Creatures-Type-Button"),
         };
 
@@ -47,7 +45,6 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
 
         private static readonly List<string> CreaturesAssetsPath = new();
         private static readonly List<string> ItemsAssetsPath = new();
-        private static readonly List<string> ObjectsAssetsPath = new();
         private static readonly List<string> TilesAssetsPath = new();
         private static readonly List<string> WallsAssetsPath = new();
 
@@ -65,10 +62,9 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
             FindAssetsPath(TilesAssetsPath, TilesPath);
             FindAssetsPath(WallsAssetsPath, WallPath);
             FindAssetsPath(ItemsAssetsPath, ItemPath);
-            FindAssetsPath(ObjectsAssetsPath, ObjectPath);
             FindAssetsPath(CreaturesAssetsPath, CreaturePath);
 
-            _highlightStyle = AssetDatabase.LoadAssetAtPath<StyleSheet>(HighlightStylePath);
+            _HighlightStyle = AssetDatabase.LoadAssetAtPath<StyleSheet>(HighlightStylePath);
             var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(LayoutPath);
             rootVisualElement.Add(visualTree.CloneTree());
 
@@ -110,7 +106,6 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
                 AssetType.Wall => WallPath,
                 AssetType.Item => ItemPath,
                 AssetType.Entity => CreaturePath,
-                AssetType.Object => ObjectPath,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }
@@ -132,7 +127,7 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
 
             _assetSearchField.RegisterValueChangedCallback(changeStringEvent =>
             {
-                _prompt = changeStringEvent.newValue;
+                _Prompt = changeStringEvent.newValue;
             });
             
             _assetSearchField.RegisterCallback<KeyDownEvent>(OnAssetSearchPressed);
@@ -156,22 +151,24 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
                 var typeButton = _assetTypeToolbar.Q<ToolbarButton>(TypeButtonList[index].name);
                 typeButton.userData = TypeButtonList[index].type;
 
-                typeButton.RegisterCallback<ClickEvent>(click =>
-                {
-                    SelectedTypeAsset = (AssetType) typeButton.userData;
-                    RepaintAssetToolbar(typeButton);
-
-                    _assetSearchField.value = string.Empty;
-
-                    RefreshSelectedAssets();
-                    RefreshAssetListView();
-
-                    OnAssetTypeChangeHandler?.Invoke(null, SelectedTypeAsset);
-                    OnAssetNameChangeHandler?.Invoke(null, string.Empty);
-                });
+                typeButton.RegisterCallback<ClickEvent, ToolbarButton>(OnChangedAssetType, typeButton);
 
                 TypeButtonList[index] = (typeButton, TypeButtonList[index].type, TypeButtonList[index].name);
             }
+        }
+
+        private void OnChangedAssetType(ClickEvent evt, ToolbarButton typeButton)
+        {
+            SelectedTypeAsset = (AssetType) typeButton.userData;
+            RepaintAssetToolbar(typeButton);
+
+            _assetSearchField.value = string.Empty;
+
+            RefreshSelectedAssets();
+            RefreshAssetListView();
+
+            OnAssetTypeChangeHandler?.Invoke(null, SelectedTypeAsset);
+            OnAssetNameChangeHandler?.Invoke(null, string.Empty);
         }
 
         private VisualElement MakeItemForAssetListView()
@@ -193,27 +190,22 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
             {
                 case AssetType.Tile:
                 {
-                    foundAssetsDirectories = TilesAssetsPath.Where(path => path.StartsWith(_prompt) || _prompt == "");
+                    foundAssetsDirectories = TilesAssetsPath.Where(path => path.StartsWith(_Prompt) || _Prompt == "");
                     break;
                 }
                 case AssetType.Wall:
                 {
-                    foundAssetsDirectories = WallsAssetsPath.Where(path => path.StartsWith(_prompt) || _prompt == "");
+                    foundAssetsDirectories = WallsAssetsPath.Where(path => path.StartsWith(_Prompt) || _Prompt == "");
                     break;
                 }
                 case AssetType.Item:
                 {
-                    foundAssetsDirectories = ItemsAssetsPath.Where(path => path.StartsWith(_prompt) || _prompt == "");
-                    break;
-                }
-                case AssetType.Object:
-                {
-                    foundAssetsDirectories = ObjectsAssetsPath.Where(path => path.StartsWith(_prompt) || _prompt == "");
+                    foundAssetsDirectories = ItemsAssetsPath.Where(path => path.StartsWith(_Prompt) || _Prompt == "");
                     break;
                 }
                 case AssetType.Entity:
                 {
-                    foundAssetsDirectories = CreaturesAssetsPath.Where(path => path.StartsWith(_prompt) || _prompt == "");
+                    foundAssetsDirectories = CreaturesAssetsPath.Where(path => path.StartsWith(_Prompt) || _Prompt == "");
                     break;
                 }
                 default:
@@ -269,10 +261,10 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
         {
             foreach (var button in TypeButtonList.Select(b => b.button))
             {
-                button.styleSheets.Remove(_highlightStyle);
+                button.styleSheets.Remove(_HighlightStyle);
             }
 
-            selectedButton.styleSheets.Add(_highlightStyle);
+            selectedButton.styleSheets.Add(_HighlightStyle);
         }
     }
 }

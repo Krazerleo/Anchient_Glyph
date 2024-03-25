@@ -1,30 +1,15 @@
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
-
+using AncientGlyph.GameScripts.Services.SaveDataService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using Zenject;
 
 namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 {
-    public class InventoryView : MonoBehaviour
+    public partial class InventoryView : MonoBehaviour
     {
-        private readonly struct InventoryPosition
-        {
-            public readonly Vector2Int SlotModelPosition;
-            public readonly Vector2 SlotViewPosition;
-            public readonly InventoryModel CurrentInventory;
-
-            public InventoryPosition(Vector2 slotViewPosition,
-                Vector2Int slotModelPosition,
-                InventoryModel inventory)
-            {
-                SlotViewPosition = slotViewPosition;
-                SlotModelPosition = slotModelPosition;
-                CurrentInventory = inventory;
-            }
-        }
-
         private const string InventoryMainName = "MainInventory";
         private const string InventoryLeftName = "LeftInventory";
         private const string InventoryRightName = "RightInventory";
@@ -53,23 +38,20 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         [SerializeField]
         private InputActionReference _onRotateItem;
 
-        public InventoryView(InventoryModel inventoryMain,
-            InventoryModel inventoryLeft, InventoryModel inventoryRight)
+        [Inject]
+        public void Construct(ISaveDataService saveDataService)
         {
-            _inventoryMain = inventoryMain;
-            _inventoryLeft = inventoryLeft;
-            _inventoryRight = inventoryRight;
+            _inventoryMain = saveDataService.PlayerInfo.InventoryInfo.MainInventory;
+            _inventoryLeft = saveDataService.PlayerInfo.InventoryInfo.ExtraInventoryLeft;
+            _inventoryRight = saveDataService.PlayerInfo.InventoryInfo.ExtraInventoryRight;
 
             AddBindings();
+            ToggleInventory(default);
         }
 
-        private void Awake()
+        private void OnDisable()
         {
-            _inventoryMain = new InventoryModel(6, 4);
-            _inventoryLeft = new InventoryModel(3, 3);
-            _inventoryRight = new InventoryModel(3, 3);
-
-            AddBindings();
+            RemoveBindings();
         }
 
         private void AddBindings()
@@ -87,19 +69,25 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void RemoveBindings()
         {
-            // TODO
+            _onRotateItem.action.performed -= RotateItem;
+            _onCloseInventory.action.performed -= ToggleInventory;
         }
+        
+        private void AddInventoryToggle()
+            => _onCloseInventory.action.performed += ToggleInventory;
 
         private void AddRotateAction()
             => _onRotateItem.action.performed += RotateItem;
 
         private void RotateItem(InputAction.CallbackContext context)
-            => _rotations++;
+        {
+            if (_capturedGameItem != null)
+            {
+                
+            }
+        }
 
-        private void AddInventoryToggle()
-            => _onCloseInventory.action.performed += CloseInventory;
-
-        private void CloseInventory(InputAction.CallbackContext context)
+        private void ToggleInventory(InputAction.CallbackContext context)
         {
             var sideWindow = _inventoryUiDocument.rootVisualElement
                 .Query(SideWindowName).First();
@@ -109,7 +97,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void AddIconDragging()
             => _inventoryUiDocument.rootVisualElement
-                .RegisterCallback<MouseMoveEvent>(OnMouseMoveIconSpace);
+                .RegisterCallback<MouseMoveEvent>(OnMouseMoveInIconSpace);
 
         private void AddIconSpaceInteraction()
         {
@@ -123,8 +111,8 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                 return;
             }
 
-            rootIconSpace.RegisterCallback<MouseDownEvent>(OnMouseDownIconSpace);
-            rootIconSpace.RegisterCallback<MouseUpEvent>(OnMouseUpIconSpace);
+            rootIconSpace.RegisterCallback<MouseDownEvent>(OnMouseDownInIconSpace);
+            rootIconSpace.RegisterCallback<MouseUpEvent>(OnMouseUpInIconSpace);
         }
 
         private void AddInventorySpaceInteraction()
@@ -181,7 +169,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                             new Vector2Int(i, j), inventory));
 
                     slot.RegisterCallback<MouseUpEvent, InventoryPosition>(
-                        OnMouseUpItemSlot,
+                        OnMouseUpInItemSlot,
                         new InventoryPosition(
                             new Vector2(slot.style.left.value.value, 
                                 slot.style.top.value.value),
@@ -226,6 +214,11 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private void OnMouseEnterItemSlot(MouseEnterEvent mouseEvent,
             InventoryPosition inventoryPosition)
         {
+            if (_capturedGameItem == null)
+            {
+                return;    
+            }
+            
             if (inventoryPosition.CurrentInventory.CanItemPlaced(
                 inventoryPosition.SlotModelPosition.x,
                 inventoryPosition.SlotModelPosition.y,
@@ -241,21 +234,29 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private void OnMouseLeaveItemSlot(MouseLeaveEvent mouseEvent,
             InventoryPosition inventoryPosition)
         {
+            if (_capturedGameItem == null)
+            {
+                return;    
+            }
             // TODO : Implement moving item in inventory grid
             //Debug.Log($"Mouse leave icon slot {inventoryPosition.SlotModelPosition}");
         }
 
-        private void OnMouseUpItemSlot(MouseUpEvent mouseEvent,
+        private void OnMouseUpInItemSlot(MouseUpEvent mouseEvent,
             InventoryPosition inventoryPosition)
         {
+            if (_capturedGameItem == null)
+            {
+                return;    
+            }
             // TODO : Implement taking item from inventory grid
             //Debug.Log($"Mouse up icon slot {inventoryPosition.SlotModelPosition}");
         }
 
-        private void OnMouseUpIconSpace(MouseUpEvent mouseUpEvent)
+        private void OnMouseUpInIconSpace(MouseUpEvent mouseUpEvent)
             => DestroyItemIconOnUI(_itemIconElement);
 
-        private void OnMouseMoveIconSpace(MouseMoveEvent mouseMoveEvent)
+        private void OnMouseMoveInIconSpace(MouseMoveEvent mouseMoveEvent)
         {
             if (_itemIconElement == null)
             {
@@ -267,7 +268,8 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             _itemIconElement.style.left = mousePosition.x;
         }
 
-        private void OnMouseDownIconSpace(MouseDownEvent mouseDownEvent)
+        // Grabbed item from environment
+        private void OnMouseDownInIconSpace(MouseDownEvent mouseDownEvent)
         {
             var mousePosition = mouseDownEvent.mousePosition;
             mousePosition.y = Screen.height - mousePosition.y;

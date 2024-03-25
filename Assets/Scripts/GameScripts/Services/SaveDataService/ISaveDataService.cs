@@ -1,12 +1,11 @@
-﻿using AncientGlyph.GameScripts.Serialization.BaseSaveInfo;
+﻿using AncientGlyph.GameScripts.Serialization.SaveInfo;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.Services.SaveDataService
 {
     public interface ISaveDataService
     {
-        public void LoadSaveFile(string saveFilePath);
-        
-        public IBaseSaveInfo BaseSaveInfo { get; }
+        public BaseSaveInfo BaseInfo { get; }
+        public PlayerSaveInfo PlayerInfo { get; }
     }
 }
