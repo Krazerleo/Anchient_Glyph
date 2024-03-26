@@ -33,12 +33,12 @@ namespace AncientGlyph.EditorScripts.Utils
             marker.CreatureModel = creatureModel;
         }
 
-        public static void AddItemMarker(Vector3 coordinates, GameItem gameItem, GameObject toItemMarker)
+        public static void AddItemMarker(Vector3 coordinates, string itemName, GameObject toItemMarker)
         {
             var marker = toItemMarker.AddComponent<ModelMarker>();
+            marker.GameItemIdentifier = itemName;
             marker.Type = AssetType.Item;
             marker.ItemCoordinates = coordinates;
-            marker.GameItem = gameItem;
         }
     }
 }

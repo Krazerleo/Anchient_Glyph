@@ -53,7 +53,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
         {
             return _cellModelGrid.GetEnumerator();
         }
-        
+
         /// <summary>
         /// Move entity if next conditions are satisfied:
         /// 1) Offset is normalized
@@ -68,14 +68,14 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             {
                 return true;
             }
-            
+
             Assert.IsTrue(offset.magnitude <= 1.001,
                 "Offset magnitude cannot be more than 1 cell length" +
                 "Divide entity movement to few offsets");
-            
+
             var oldEntityPosition = entity.Position;
             var newEntityPosition = entity.Position + offset;
-            
+
             if (CheckInBounds(newEntityPosition) == false)
             {
                 return false;

@@ -12,70 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746c5d3e6db941db80c51bef5e7ab877, type: 3}
   m_Name: simple_melee_attack
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: <Name>k__BackingField
-      Entry: 1
-      Data: Simple Attack
-    - Name: <Description>k__BackingField
-      Entry: 1
-      Data: Just simple attack of test creature
-    - Name: _applyConditions
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions.IActionCondition,
-        GameScriptsAssembly]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 1|AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions.OnLineCondition,
-        GameScriptsAssembly
-    - Name: _minDistanceFromTarget
-      Entry: 3
-      Data: 0
-    - Name: _maxDistanceFromTarget
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: <TargetEffects>k__BackingField
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[AncientGlyph.GameScripts.GameSystems.EffectSystem.IEffect,
-        GameScriptsAssembly]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: <SelfEffects>k__BackingField
-      Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[AncientGlyph.GameScripts.GameSystems.EffectSystem.IEffect,
-        GameScriptsAssembly]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+  ApplyConditions:
+  - rid: 1576924578347220993
+  TargetEffects:
+  - rid: 1576924578347220994
+  SelfEffects: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1576924578347220993
+      type: {class: OnLineCondition, ns: AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions, asm: GameScriptsAssembly}
+      data:
+        _minDistanceFromTarget: 0
+        _maxDistanceFromTarget: 1
+    - rid: 1576924578347220994
+      type: {class: DamageEffect, ns: AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects, asm: GameScriptsAssembly}
+      data:
+        Value: 2
+        Type: 0

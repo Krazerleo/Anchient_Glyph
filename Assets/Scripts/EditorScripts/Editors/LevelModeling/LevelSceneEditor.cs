@@ -12,6 +12,8 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
     {
         private GameObject _entityMarkerPrefab;
         private const string EntityMarkerPrefabPath = "Assets/Level/Prefab/Debug/entity_marker.prefab";
+        private GameObject _itemMarkerPrefab;
+        private const string ItemMarkerPrefabPath = "Assets/Level/Prefab/Debug/item_marker.prefab";
 
         private const string TilesGroupName = "{GROUND}";
         private const string WallsGroupName = "{WALLS}";
@@ -68,8 +70,10 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             {
                 var heightAdjustedCoordinates = (Vector3)cellCoordinates;
                 heightAdjustedCoordinates.y *= 1.5f;
+                
                 var entityMarker = Object.Instantiate(_entityMarkerPrefab, heightAdjustedCoordinates,
                     Quaternion.identity, entitiesGroup.transform);
+                
                 var creatureModel = new CreatureModel(traitSource.CreatureTraits, creaturePrefab.name, cellCoordinates);
                 ModelMarkerCreator.AddEntityMarker(cellCoordinates, creatureModel, entityMarker);
                 Undo.RegisterCreatedObjectUndo(entityMarker, "");
@@ -116,9 +120,14 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
 
             var itemGroup = GameObject.Find(ItemsGroupName);
 
-            var gameObject = Object.Instantiate(itemPrefab, itemPosition, Quaternion.identity, itemGroup.transform);
-            ModelMarkerCreator.AddItemMarker(itemPosition, null, gameObject);
-            Undo.RegisterCreatedObjectUndo(gameObject, "");
+            _itemMarkerPrefab ??= AssetDatabase
+                .LoadAssetAtPath<GameObject>(ItemMarkerPrefabPath);
+            
+            var itemMarker = Object.Instantiate(_itemMarkerPrefab, itemPosition,
+                Quaternion.identity, itemGroup.transform);
+            
+            ModelMarkerCreator.AddItemMarker(itemPosition, itemPrefab.name, itemMarker);
+            Undo.RegisterCreatedObjectUndo(itemMarker, "");
 
             Undo.CollapseUndoOperations(groupId);
         }

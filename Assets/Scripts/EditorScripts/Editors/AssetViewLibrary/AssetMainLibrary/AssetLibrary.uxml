@@ -7,7 +7,6 @@
             <uie:Toolbar name="Asset-Type-Toolbar" style="flex-grow: 1; justify-content: space-between;">
                 <uie:ToolbarButton text="Tiles" display-tooltip-when-elided="true" name="Tiles-Type-Button" class="typeButton" style="flex-grow: 1;" />
                 <uie:ToolbarButton text="Walls" display-tooltip-when-elided="true" name="Walls-Type-Button" class="typeButton" style="flex-grow: 1;" />
-                <uie:ToolbarButton text="Objects" display-tooltip-when-elided="true" name="Objects-Type-Button" class="typeButton" style="flex-grow: 1;" />
                 <uie:ToolbarButton text="Items" display-tooltip-when-elided="true" name="Items-Type-Button" class="typeButton" style="flex-grow: 1;" />
                 <uie:ToolbarButton text="Creatures" display-tooltip-when-elided="true" name="Creatures-Type-Button" class="typeButton" style="flex-grow: 1;" />
             </uie:Toolbar>

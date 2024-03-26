@@ -291,6 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -386,6 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -481,6 +485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 1, z: 13}
   Direction: 0
   Type: 1
@@ -576,6 +582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 13, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -671,6 +679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 1, z: 15}
   Direction: 0
   Type: 1
@@ -765,6 +775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 15}
   Direction: 0
   Type: 2
@@ -818,6 +830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 1, z: 14}
   Direction: 0
   Type: 1
@@ -913,6 +927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 13, y: 2, z: 15}
   Direction: 0
   Type: 1
@@ -1008,6 +1024,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -1103,6 +1121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 14, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -1281,6 +1301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -1375,6 +1397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 13}
   Direction: 0
   Type: 2
@@ -1428,6 +1452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 1, z: 13}
   Direction: 0
   Type: 1
@@ -1689,6 +1715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -1867,6 +1895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 1, z: 12}
   Direction: 0
   Type: 1
@@ -1962,6 +1992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 11}
   Direction: 0
   Type: 1
@@ -2223,6 +2255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 1, z: 10}
   Direction: 0
   Type: 1
@@ -2400,6 +2434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 1, z: 15}
   Direction: 1
   Type: 2
@@ -2774,6 +2810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 14}
   Direction: 0
   Type: 2
@@ -2910,6 +2948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 13, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -3004,6 +3044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 16}
   Direction: 0
   Type: 2
@@ -3223,6 +3265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -3401,6 +3445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 1, z: 14}
   Direction: 0
   Type: 1
@@ -3496,6 +3542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 13}
   Direction: 0
   Type: 1
@@ -3711,6 +3759,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373000926}
   m_Mesh: {fileID: -6281424698479989189, guid: bdfaac76c6bb28c4da69a68f55ecd0d9, type: 3}
+--- !u!1 &382970719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 382970720}
+  - component: {fileID: 382970723}
+  - component: {fileID: 382970722}
+  - component: {fileID: 382970721}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &382970720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382970719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.639, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1993441737}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &382970721
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382970719}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &382970722
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382970719}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d9769b62fdfcf9a498eba8a0dd549755, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &382970723
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382970719}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &385657821
 GameObject:
   m_ObjectHideFlags: 0
@@ -3757,6 +3910,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 14, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -3851,6 +4006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 1, z: 15}
   Direction: 1
   Type: 2
@@ -3904,6 +4061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 12}
   Direction: 0
   Type: 1
@@ -3999,6 +4158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -4177,6 +4338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -4272,6 +4435,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -4366,6 +4531,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 1, z: 15}
   Direction: 1
   Type: 2
@@ -4502,6 +4669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 14, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -4929,6 +5098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -5023,6 +5194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 1, z: 15}
   Direction: 1
   Type: 2
@@ -5325,6 +5498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 14, y: 2, z: 15}
   Direction: 0
   Type: 1
@@ -5585,6 +5760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -5886,6 +6063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -5939,6 +6118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 1, z: 13}
   Direction: 0
   Type: 1
@@ -6200,6 +6381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -6294,6 +6477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -6430,6 +6615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 13, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -6525,6 +6712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 1, z: 11}
   Direction: 0
   Type: 1
@@ -6728,7 +6917,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1993441737}
+  - {fileID: 1444454321}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6778,6 +6969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -6873,6 +7066,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 14, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -7050,6 +7245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 13, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -7631,6 +7828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -7638,6 +7837,111 @@ MonoBehaviour:
     SerializationName: 
     <Identifier>k__BackingField: 
     <Position>k__BackingField: {x: 0, y: 0, z: 0}
+--- !u!1 &834793210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 834793211}
+  - component: {fileID: 834793214}
+  - component: {fileID: 834793213}
+  - component: {fileID: 834793212}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &834793211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834793210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.182, z: 0}
+  m_LocalScale: {x: 0.34593, y: 0.34593, z: 0.34593}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1795498430}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &834793212
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834793210}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &834793213
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834793210}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d9769b62fdfcf9a498eba8a0dd549755, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &834793214
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834793210}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &839235244
 GameObject:
   m_ObjectHideFlags: 0
@@ -7894,6 +8198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 10}
   Direction: 0
   Type: 1
@@ -8237,6 +8543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -8417,6 +8725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -9010,6 +9320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 1, z: 10}
   Direction: 0
   Type: 1
@@ -9270,6 +9582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 15}
   Direction: 1
   Type: 2
@@ -9323,6 +9637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 13, y: 2, z: 13}
   Direction: 0
   Type: 1
@@ -9418,6 +9734,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -9513,6 +9831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 14, y: 2, z: 13}
   Direction: 0
   Type: 1
@@ -10022,6 +10342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 12}
   Direction: 0
   Type: 2
@@ -10075,6 +10397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 1, z: 14}
   Direction: 0
   Type: 1
@@ -10502,6 +10826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -10597,6 +10923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 1, z: 12}
   Direction: 0
   Type: 1
@@ -10775,6 +11103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -10870,6 +11200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 1, z: 11}
   Direction: 0
   Type: 1
@@ -10965,6 +11297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 14, y: 2, z: 14}
   Direction: 0
   Type: 1
@@ -11060,6 +11394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 1, z: 15}
   Direction: 0
   Type: 1
@@ -11109,6 +11445,111 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1175021665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1175021666}
+  - component: {fileID: 1175021669}
+  - component: {fileID: 1175021668}
+  - component: {fileID: 1175021667}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1175021666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175021665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.182, z: 0}
+  m_LocalScale: {x: 0.34593, y: 0.34593, z: 0.34593}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1828287649}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1175021667
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175021665}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1175021668
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175021665}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d9769b62fdfcf9a498eba8a0dd549755, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1175021669
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175021665}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1179667926
 GameObject:
   m_ObjectHideFlags: 0
@@ -11155,6 +11596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 14}
   Direction: 0
   Type: 1
@@ -11333,6 +11776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 1, z: 14}
   Direction: 0
   Type: 1
@@ -11428,6 +11873,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 1, z: 10}
   Direction: 0
   Type: 1
@@ -11689,6 +12136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 1, z: 14}
   Direction: 0
   Type: 1
@@ -11783,6 +12232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -11836,6 +12287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 15}
   Direction: 0
   Type: 1
@@ -11931,6 +12384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 1, z: 11}
   Direction: 0
   Type: 1
@@ -12108,6 +12563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 19}
   Direction: 0
   Type: 2
@@ -12244,6 +12701,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 1, z: 13}
   Direction: 0
   Type: 1
@@ -12338,6 +12797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 17}
   Direction: 0
   Type: 2
@@ -12474,6 +12935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 1, z: 12}
   Direction: 0
   Type: 1
@@ -12826,6 +13289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 11}
   Direction: 0
   Type: 2
@@ -12879,6 +13344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 1, z: 12}
   Direction: 0
   Type: 1
@@ -12974,6 +13441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -13152,6 +13621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -13247,6 +13718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 1, z: 15}
   Direction: 0
   Type: 1
@@ -13489,6 +13962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -13624,6 +14099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 15}
   Direction: 0
   Type: 2
@@ -13677,6 +14154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 1, z: 11}
   Direction: 0
   Type: 1
@@ -13892,6 +14371,60 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434823404}
   m_Mesh: {fileID: -462981019419857548, guid: 40e9919884cdf8a449afd4259d8274a3, type: 3}
+--- !u!1 &1444454320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444454321}
+  - component: {fileID: 1444454322}
+  m_Layer: 0
+  m_Name: entity_marker(Clone)
+  m_TagString: EditorEntityMarker
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1444454321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444454320}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11, y: 1.5, z: 14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2006808216}
+  m_Father: {fileID: 739705179}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1444454322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444454320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
+  Coordinates: {x: 11, y: 1, z: 14}
+  Direction: 0
+  Type: 4
+  CreatureModel:
+    SerializationName: test_creature_1
+    <Identifier>k__BackingField: a3521ca5-7021-4caa-96d8-8cffc4f29bf3
+    <Position>k__BackingField: {x: 11, y: 1, z: 14}
 --- !u!1 &1460321893
 GameObject:
   m_ObjectHideFlags: 0
@@ -14042,6 +14575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -14427,6 +14962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 1, z: 13}
   Direction: 0
   Type: 1
@@ -14688,6 +15225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 1, z: 15}
   Direction: 0
   Type: 1
@@ -15032,6 +15571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 14}
   Direction: 0
   Type: 1
@@ -15127,6 +15668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 13, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -15388,6 +15931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 1, z: 12}
   Direction: 0
   Type: 1
@@ -15483,6 +16028,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -15826,6 +16373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 1, z: 15}
   Direction: 1
   Type: 2
@@ -16211,6 +16760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -16306,6 +16857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 1, z: 15}
   Direction: 0
   Type: 1
@@ -16528,6 +17081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 7, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -16623,6 +17178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 1, z: 10}
   Direction: 0
   Type: 1
@@ -17132,6 +17689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 10}
   Direction: 0
   Type: 2
@@ -17351,6 +17910,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 1, z: 12}
   Direction: 0
   Type: 1
@@ -17529,6 +18090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -17624,6 +18187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 1, z: 13}
   Direction: 0
   Type: 1
@@ -17673,6 +18238,60 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1795498429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795498430}
+  - component: {fileID: 1795498431}
+  m_Layer: 0
+  m_Name: item_marker(Clone)
+  m_TagString: EditorEntityMarker
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1795498430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795498429}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.2321186, y: 1.49, z: 11.742897}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 834793211}
+  m_Father: {fileID: 2069322250}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795498431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795498429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 7.2321186, y: 1.49, z: 11.742897}
+  GameItemIdentifier: test_item_1
+  Coordinates: {x: 0, y: 0, z: 0}
+  Direction: 0
+  Type: 3
+  CreatureModel:
+    SerializationName: 
+    <Identifier>k__BackingField: 
+    <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1804815590
 GameObject:
   m_ObjectHideFlags: 0
@@ -17719,6 +18338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -17813,6 +18434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 18}
   Direction: 0
   Type: 2
@@ -17866,6 +18489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 10, y: 1, z: 14}
   Direction: 0
   Type: 1
@@ -17961,6 +18586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -18056,6 +18683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -18105,6 +18734,60 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1828287648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1828287649}
+  - component: {fileID: 1828287650}
+  m_Layer: 0
+  m_Name: item_marker(Clone)
+  m_TagString: EditorEntityMarker
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1828287649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828287648}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.877117, y: 1.49, z: 14.621206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1175021666}
+  m_Father: {fileID: 2069322250}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1828287650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828287648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 8.877117, y: 1.49, z: 14.621206}
+  GameItemIdentifier: test_item_1
+  Coordinates: {x: 0, y: 0, z: 0}
+  Direction: 0
+  Type: 3
+  CreatureModel:
+    SerializationName: 
+    <Identifier>k__BackingField: 
+    <Position>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1841637683
 GameObject:
   m_ObjectHideFlags: 0
@@ -18151,6 +18834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 13, y: 2, z: 14}
   Direction: 0
   Type: 1
@@ -18411,6 +19096,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 1, z: 15}
   Direction: 1
   Type: 2
@@ -18547,6 +19234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 15}
   Direction: 0
   Type: 1
@@ -18725,6 +19414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 1, z: 10}
   Direction: 0
   Type: 1
@@ -18819,6 +19510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 14, y: 2, z: 19}
   Direction: 1
   Type: 2
@@ -18872,6 +19565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -19050,6 +19745,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -19144,6 +19841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 14}
   Direction: 0
   Type: 2
@@ -19280,6 +19979,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 2, z: 18}
   Direction: 0
   Type: 1
@@ -19375,6 +20076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 15, y: 2, z: 13}
   Direction: 0
   Type: 1
@@ -19553,6 +20256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -19730,6 +20435,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 12, y: 1, z: 13}
   Direction: 0
   Type: 2
@@ -19783,6 +20490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 1, z: 11}
   Direction: 0
   Type: 1
@@ -19878,6 +20587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 8, y: 1, z: 11}
   Direction: 0
   Type: 1
@@ -19973,6 +20684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 2, z: 19}
   Direction: 0
   Type: 1
@@ -20105,6 +20818,60 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993092004}
   m_Mesh: {fileID: -462981019419857548, guid: 40e9919884cdf8a449afd4259d8274a3, type: 3}
+--- !u!1 &1993441736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1993441737}
+  - component: {fileID: 1993441738}
+  m_Layer: 0
+  m_Name: entity_marker(Clone)
+  m_TagString: EditorEntityMarker
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1993441737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993441736}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11, y: 1.5, z: 11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 382970720}
+  m_Father: {fileID: 739705179}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1993441738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993441736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
+  Coordinates: {x: 11, y: 1, z: 11}
+  Direction: 0
+  Type: 4
+  CreatureModel:
+    SerializationName: test_creature_1
+    <Identifier>k__BackingField: ed4afe05-dbe0-41b5-aa45-dabb330fc215
+    <Position>k__BackingField: {x: 11, y: 1, z: 11}
 --- !u!1 &1998499013
 GameObject:
   m_ObjectHideFlags: 0
@@ -20188,6 +20955,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998499013}
   m_Mesh: {fileID: -462981019419857548, guid: 40e9919884cdf8a449afd4259d8274a3, type: 3}
+--- !u!1 &2006808215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2006808216}
+  - component: {fileID: 2006808219}
+  - component: {fileID: 2006808218}
+  - component: {fileID: 2006808217}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2006808216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006808215}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.639, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1444454321}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2006808217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006808215}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &2006808218
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006808215}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d9769b62fdfcf9a498eba8a0dd549755, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2006808219
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006808215}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2011421987
 GameObject:
   m_ObjectHideFlags: 0
@@ -20234,6 +21106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 2, z: 16}
   Direction: 0
   Type: 1
@@ -20457,6 +21331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 9, y: 2, z: 17}
   Direction: 0
   Type: 1
@@ -20552,6 +21428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 6, y: 1, z: 10}
   Direction: 0
   Type: 1
@@ -20611,7 +21489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2069322250}
   m_Layer: 0
-  m_Name: '{OBJECTS}'
+  m_Name: '{ITEMS}'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20628,7 +21506,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1828287649}
+  - {fileID: 1795498430}
   m_Father: {fileID: 2146560289}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21010,6 +21890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5b0b9761d7dd4586624138c5ddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCoordinates: {x: 0, y: 0, z: 0}
+  GameItemIdentifier: 
   Coordinates: {x: 11, y: 1, z: 15}
   Direction: 0
   Type: 1

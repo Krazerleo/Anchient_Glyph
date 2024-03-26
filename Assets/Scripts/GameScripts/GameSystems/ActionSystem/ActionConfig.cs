@@ -22,7 +22,7 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem
         public string Description { get; private set; }
 
         [SerializeReference, SubclassSelector]
-        public IActionCondition[] ApplyConditions = Array.Empty<IActionCondition>();
+        private IActionCondition[] _applyConditions = Array.Empty<IActionCondition>();
 
         [SerializeReference, SubclassSelector]
         public IEffect[] TargetEffects = Array.Empty<IEffect>();
@@ -40,7 +40,7 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem
         {
             var feedback = new List<IFeedbackAction>();
 
-            foreach (var condition in ApplyConditions)
+            foreach (var condition in _applyConditions)
             {
                 if (condition.CanExecute(self, target, moveBehaviour, levelModel) == false)
                 {

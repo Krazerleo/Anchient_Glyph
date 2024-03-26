@@ -225,6 +225,7 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
                 if (prefabInfo == null)
                 {
                     Debug.LogError($"Cannot get asset file from {directoryInfo.FullName}");
+                    return;
                 }
 
                 var imageInfo = directoryInfo.GetFiles("*.png")
@@ -233,12 +234,6 @@ namespace AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary
                     .FirstOrDefault();
 
                 if (imageInfo == null)
-                {
-                    Debug.LogError($"Cannot get asset image from {directoryInfo.FullName}");
-                    return;
-                }
-
-                if (prefabInfo == null)
                 {
                     Debug.LogError($"Cannot get asset image from {directoryInfo.FullName}");
                     return;
