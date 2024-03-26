@@ -3,8 +3,7 @@
     "rootNamespace": "AncientGlyph",
     "references": [
         "GUID:136fecf16de443c41a825bd6f14d16a1",
-        "GUID:f7c292403b24ec84ba53c5459a94624b",
-        "GUID:57a6d82589ae03c4cabdc058f719f231"
+        "GUID:e6234d6c1f7bf4e4db20eddc411c00b8"
     ],
     "includePlatforms": [
         "Editor"

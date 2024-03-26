@@ -7,11 +7,12 @@
       "dependencies": {},
       "hash": "b93741e2b5fe9073e169853ade0039c7cf2595f0"
     },
-    "com.kybernetik.ultevents": {
-      "version": "file:com.kybernetik.ultevents",
+    "com.mackysoft.serializereference-extensions": {
+      "version": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
       "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "301cb4b12cf419c60509836d23d2bd482c131368"
     },
     "com.unity.addressables": {
       "version": "1.21.19",

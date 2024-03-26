@@ -1,6 +1,5 @@
 using AncientGlyph.EditorScripts.Utils;
 using AncientGlyph.GameScripts.EntityModel;
-using AncientGlyph.GameScripts.Enums;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
@@ -17,6 +16,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
         private const string TilesGroupName = "{GROUND}";
         private const string WallsGroupName = "{WALLS}";
         private const string EntitiesGroupName = "[ENTITIES]";
+        private const string ItemsGroupName = "{ITEMS}";
 
         public void PlaceTiles(IShape3D shape, GameObject tilePrefab)
         {
@@ -34,7 +34,8 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             {
                 var heightAdjustedCoordinates = (Vector3)cellCoordinates;
                 heightAdjustedCoordinates.y *= 1.5f;
-                var gameObject = Object.Instantiate(tilePrefab, heightAdjustedCoordinates, Quaternion.identity, tilesGroup.transform);
+                var gameObject = Object.Instantiate(tilePrefab, heightAdjustedCoordinates, Quaternion.identity,
+                    tilesGroup.transform);
                 ModelMarkerCreator.AddTileMarker(cellCoordinates, gameObject);
                 Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
@@ -67,7 +68,8 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             {
                 var heightAdjustedCoordinates = (Vector3)cellCoordinates;
                 heightAdjustedCoordinates.y *= 1.5f;
-                var entityMarker = Object.Instantiate(_entityMarkerPrefab, heightAdjustedCoordinates, Quaternion.identity, entitiesGroup.transform);
+                var entityMarker = Object.Instantiate(_entityMarkerPrefab, heightAdjustedCoordinates,
+                    Quaternion.identity, entitiesGroup.transform);
                 var creatureModel = new CreatureModel(traitSource.CreatureTraits, creaturePrefab.name, cellCoordinates);
                 ModelMarkerCreator.AddEntityMarker(cellCoordinates, creatureModel, entityMarker);
                 Undo.RegisterCreatedObjectUndo(entityMarker, "");
@@ -92,11 +94,31 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             {
                 var heightAdjustedCoordinates = (Vector3)cellCoordinates;
                 heightAdjustedCoordinates.y *= 1.5f;
-                var gameObject = Object.Instantiate(wallPrefab, heightAdjustedCoordinates, Quaternion.identity, wallsGroup.transform);
+                var gameObject = Object.Instantiate(wallPrefab, heightAdjustedCoordinates, Quaternion.identity,
+                    wallsGroup.transform);
                 ModelMarkerCreator.AddWallMarker(cellCoordinates, direction, gameObject);
-                gameObject.transform.GetChild(0).Rotate(Vector3.up, -90f * (uint) direction, Space.World);
+                gameObject.transform.GetChild(0).Rotate(Vector3.up, -90f * (uint)direction, Space.World);
                 Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
+
+            Undo.CollapseUndoOperations(groupId);
+        }
+
+        public void PlaceItem(Vector3 itemPosition, GameObject itemPrefab)
+        {
+            if (itemPrefab == null)
+            {
+                return;
+            }
+
+            Undo.SetCurrentGroupName("Remove Item");
+            int groupId = Undo.GetCurrentGroup();
+
+            var itemGroup = GameObject.Find(ItemsGroupName);
+
+            var gameObject = Object.Instantiate(itemPrefab, itemPosition, Quaternion.identity, itemGroup.transform);
+            ModelMarkerCreator.AddItemMarker(itemPosition, null, gameObject);
+            Undo.RegisterCreatedObjectUndo(gameObject, "");
 
             Undo.CollapseUndoOperations(groupId);
         }

@@ -2,10 +2,7 @@
 using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.MoveBehaviour;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions;
-using AncientGlyph.GameScripts.GameSystems.EffectSystem;
-using AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects;
 using AncientGlyph.GameScripts.GameWorldModel;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
@@ -14,13 +11,13 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
     public class OnLineCondition : IActionCondition
     {
         [SerializeField]
-        [MinValue(0)]
         private int _minDistanceFromTarget;
 
         [SerializeField]
-        [MinValue(nameof(_minDistanceFromTarget))]
         private int _maxDistanceFromTarget;
 
+        public OnLineCondition() {}
+        
         public OnLineCondition(int minDistanceFromTarget, int maxDistanceFromTarget)
         {
             _minDistanceFromTarget = minDistanceFromTarget;

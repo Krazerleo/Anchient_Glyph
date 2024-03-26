@@ -1,4 +1,4 @@
-﻿namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.CombatActions
+﻿namespace AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects
 {
     public enum DamageType
     {

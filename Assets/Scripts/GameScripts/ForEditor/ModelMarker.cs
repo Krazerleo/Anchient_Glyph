@@ -1,4 +1,5 @@
 using AncientGlyph.GameScripts.EntityModel;
+using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.GameWorldModel;
 using UnityEngine;
 
@@ -12,9 +13,11 @@ namespace AncientGlyph.GameScripts.ForEditor
     [SelectionBase]
     public class ModelMarker : MonoBehaviour
     {
+        public Vector3 ItemCoordinates;
         public Vector3Int Coordinates;
         public Direction Direction;
         public AssetType Type;
         public CreatureModel CreatureModel;
+        public GameItem GameItem;
     }
 }
