@@ -15,8 +15,8 @@ namespace AncientGlyph.GameScripts.DependencyInjection.LevelModelInstaller
 
         private LevelModel GetLevelModel()
         {
-            var levelModelPath = LevelModelPathProvider.GetPathFromRuntime();
-            var levelDeserializer = new LevelModelDeserializer(levelModelPath);
+            var levelModelPath = LevelPathProvider.GetPathFromRuntime();
+            var levelDeserializer = new LevelDeserializer(levelModelPath);
 
             return levelDeserializer.Deserialize();
         }

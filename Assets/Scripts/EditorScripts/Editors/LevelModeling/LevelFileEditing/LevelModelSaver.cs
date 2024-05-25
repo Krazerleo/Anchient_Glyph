@@ -63,7 +63,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
                 }
             }
 
-            var serializer = new LevelModelSerializer(levelModelPath);
+            var serializer = new LevelSerializer(levelModelPath);
             serializer.Serialize(levelModel);
         }
     }

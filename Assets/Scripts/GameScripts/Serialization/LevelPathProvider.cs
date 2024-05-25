@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace AncientGlyph.GameScripts.Serialization
 {
-    public static class LevelModelPathProvider
+    public static class LevelPathProvider
     {
         public static string GetPathFromRuntime()
         {

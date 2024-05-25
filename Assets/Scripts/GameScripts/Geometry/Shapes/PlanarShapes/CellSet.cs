@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AncientGlyph.GameScripts.Geometry.Shapes.Interfaces;
@@ -5,13 +6,14 @@ using UnityEngine;
 
 namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
 {
+    [Serializable]
     public class CellSet : IShape2D
     {
-        private readonly List<Vector2Int> _cells;
+        [SerializeField]
+        private List<Vector2Int> _cells = new();
 
         public CellSet()
         {
-            _cells = new List<Vector2Int>();
         }
 
         public CellSet(IEnumerable<Vector2Int> cells)
@@ -21,7 +23,7 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
 
         public IEnumerable<Vector2Int> GetDefinedGeometry()
         {
-            foreach (var ceil in _cells)
+            foreach (Vector2Int ceil in _cells)
             {
                 yield return ceil;
             }

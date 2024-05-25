@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -132,23 +133,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             return null;
         }
 
-        public void ReadXml(XmlReader reader)
-        {
-            DeserializeLevelEnvironment(reader);
-            DeserializeLevelEntities(reader);
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            writer.WriteStartElement(XmlLevelConstants.XmlNodeLevelFileName);
-
-            SerializeLevelEnvironment(writer);
-            SerializeLevelCreatures(writer);
-
-            writer.WriteEndElement();
-        }
-
-        private void DeserializeLevelEnvironment(XmlReader xmlReader)
+        public void ReadXml(XmlReader xmlReader)
         {
             var levelModelBuffer = new byte[CellsCount * CellModel.SizeOfElementBytes];
 
@@ -166,29 +151,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             }
         }
 
-        /// <summary>
-        /// Deserialize only creatures, excluding player
-        /// </summary>
-        /// <param name="xmlReader"></param>
-        private void DeserializeLevelEntities(XmlReader xmlReader)
-        {
-            var xmlSerializer = new XmlSerializer(typeof(CreatureModel[]),
-                new XmlRootAttribute()
-                {
-                    ElementName = XmlLevelConstants.XmlNodeLevelEntitiesName
-                });
-
-            xmlReader.ReadToNextSibling(XmlLevelConstants.XmlNodeLevelEntitiesName);
-
-            var creatureModels = (CreatureModel[])xmlSerializer.Deserialize(xmlReader);
-            foreach (var creatureModel in creatureModels)
-            {
-                At(creatureModel.Position)
-                    .AddEntityToCell(creatureModel);
-            }
-        }
-
-        private void SerializeLevelEnvironment(XmlWriter xmlWriter)
+        public void WriteXml(XmlWriter xmlWriter)
         {
             var arrayBuffer = new byte[CellsCount * CellModel.SizeOfElementBytes];
             var bytePointer = 0;
@@ -204,34 +167,6 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
             xmlWriter.WriteStartElement(XmlLevelConstants.XmlNodeLevelEnvName);
             xmlWriter.WriteBase64(arrayBuffer, 0, arrayBuffer.Length);
-            xmlWriter.WriteEndElement();
-        }
-
-        /// <summary>
-        /// Serialize only creatures, excluding player
-        /// </summary>
-        /// <param name="xmlWriter"></param>
-        private void SerializeLevelCreatures(XmlWriter xmlWriter)
-        {
-            var xmlSerializer = new XmlSerializer(typeof(CreatureModel));
-
-            xmlWriter.WriteStartElement(XmlLevelConstants.XmlNodeLevelEntitiesName);
-
-            foreach (var cell in this)
-            {
-                foreach (var entity in cell.GetEntitiesFromCell())
-                {
-                    // Player Serialization in another place. It`s not available to
-                    // polymorph serialize entities at least using standard serializer
-                    if (entity is PlayerModel)
-                    {
-                        continue;
-                    }
-
-                    xmlSerializer.Serialize(xmlWriter, entity);
-                }
-            }
-
             xmlWriter.WriteEndElement();
         }
     }

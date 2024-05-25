@@ -24,7 +24,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
 #if PRINT_LOG_DESERIALIZATION
                 Debug.Log($"Deserializing level model from {levelModelPath}");
 #endif
-                var levelModelDeserializer = new LevelModelDeserializer(levelModelPath);
+                var levelModelDeserializer = new LevelDeserializer(levelModelPath);
 
                 if (levelModelDeserializer.TryDeserialize(out var levelModel))
                 {
