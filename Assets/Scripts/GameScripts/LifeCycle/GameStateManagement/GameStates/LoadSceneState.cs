@@ -1,10 +1,9 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateArguments;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateArguments;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateMachine;
 using AncientGlyph.GameScripts.Services.LoggingService;
 using AncientGlyph.GameScripts.Services.SceneManagmentService;
 
-namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
+namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates
 {
     public class LoadSceneState : IGameState
     {

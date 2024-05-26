@@ -1,15 +1,12 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateMachine;
 using AncientGlyph.GameScripts.Services.ComponentLocatorService;
-
 using Cysharp.Threading.Tasks;
-using Zenject;
-
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
+using Zenject;
 
-
-namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.Initialization
+namespace AncientGlyph.GameScripts.LifeCycle.Initialization
 {
     public class GameInitializer : MonoBehaviour
     {

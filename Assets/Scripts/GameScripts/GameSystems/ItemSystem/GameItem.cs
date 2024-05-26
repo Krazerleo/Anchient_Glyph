@@ -13,7 +13,6 @@ namespace AncientGlyph.GameScripts.GameSystems.ItemSystem
         public string Name;
         public Sprite Icon;
         public Sprite GhostIcon;
-
-        [SerializeField] public CellSet CellSet;
+        public CellSet CellSet;
     }
 }

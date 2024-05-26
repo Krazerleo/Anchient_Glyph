@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -46,7 +45,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
             set => _cellModelGrid[index] = value;
         }
-
+        
         public CellModel At(Vector3Int position)
             => this[position.x, position.y, position.z];
 
@@ -105,9 +104,9 @@ namespace AncientGlyph.GameScripts.GameWorldModel
         /// <returns>Collection of entities</returns>
         public IEnumerable<IEntityModel> GetAllCurrentEntities()
         {
-            var entities = new List<IEntityModel>();
+            List<IEntityModel> entities = new();
 
-            foreach (var cell in this)
+            foreach (CellModel cell in this)
             {
                 entities.AddRange(cell.GetEntitiesFromCell());
             }
@@ -115,6 +114,8 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             return entities;
         }
 
+        // ReSharper disable once MemberCanBePrivate.Global
+        // ReSharper disable once MemberCanBeMadeStatic.Global
         public bool CheckInBounds(int xPosition, int yPosition, int zPosition)
         {
             return 0 <= xPosition && 0 <= yPosition && 0 <= zPosition &&

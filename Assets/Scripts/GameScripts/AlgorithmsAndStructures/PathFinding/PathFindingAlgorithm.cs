@@ -36,9 +36,9 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
             _freeAxis = freeAxis;
             _neighbours = new PathNode[MaxNeighbours];
             
-            var comparer = Comparer<PathNode>.Create((a, b) => b.EstimatedTotalCost.CompareTo(a.EstimatedTotalCost));
+            Comparer<PathNode> comparer = Comparer<PathNode>
+                .Create((a, b) => b.EstimatedTotalCost.CompareTo(a.EstimatedTotalCost));
             _frontier = new BinaryHeap<Vector3Int, PathNode>(comparer, node => node.Position, initialCapacity);
-
             _ignoredPositions = new HashSet<Vector3Int>(initialCapacity);
             _output = new List<Vector3Int>(initialCapacity);
             _links = new Dictionary<Vector3Int, Vector3Int>(initialCapacity);
@@ -73,13 +73,11 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 
             while (_frontier.Count > 0 && step++ <= _maxSteps)
             {
-                Debug.Log("Calculating");
-                var current = _frontier.Dequeue();
+                PathNode current = _frontier.Dequeue();
                 _ignoredPositions.Add(current.Position);
 
                 if (current.Position.Equals(target))
                 {
-                    Debug.Log("Calculating success");
                     return true;
                 }
 
@@ -94,7 +92,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
         {
             _neighbours.Fill(parent, target, _freeAxis);
 
-            foreach (var newNode in _neighbours)
+            foreach (PathNode newNode in _neighbours)
             {
                 if (_ignoredPositions.Contains(newNode.Position))
                 {
@@ -111,7 +109,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
                     continue;
                 }
 
-                if (_frontier.TryGet(newNode.Position, out var existingNode) == false)
+                if (_frontier.TryGet(newNode.Position, out PathNode existingNode) == false)
                 {
                     _frontier.Enqueue(newNode);
                     _links[newNode.Position] = parent.Position;

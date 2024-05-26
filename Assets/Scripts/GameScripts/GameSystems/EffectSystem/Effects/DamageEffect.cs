@@ -1,5 +1,6 @@
 ﻿using System;
 using AncientGlyph.GameScripts.EntityModel;
+using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects
 {
@@ -16,7 +17,8 @@ namespace AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects
 
         public void ApplyOn(IEffectAcceptor entity)
         {
-            throw new NotImplementedException();
+            // TODO: Make Effects
+            Debug.Log("TODO: Make Damage Effect");
         }
     }
 }

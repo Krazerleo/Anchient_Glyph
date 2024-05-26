@@ -1,4 +1,4 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateMachine;
 
 namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates
 {

@@ -1,7 +1,6 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateMachine;
 
-namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
+namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates
 {
     public class MenuState : IGameState
     {

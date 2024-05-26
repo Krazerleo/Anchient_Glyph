@@ -34,9 +34,9 @@ namespace AncientGlyph.GameScripts.Serialization
 
         public LevelModel Deserialize()
         {
-            using var xmlReader = XmlReader.Create(_levelModelPath);
+            using XmlReader xmlReader = XmlReader.Create(_levelModelPath);
 
-            var model = DeserializeLevelModel(xmlReader);
+            LevelModel model = DeserializeLevelModel(xmlReader);
 
             if (model is null)
             {
@@ -44,12 +44,17 @@ namespace AncientGlyph.GameScripts.Serialization
                                                  "Broken level model");
             }
 
-            var creatures = DeserializeLevelEntities(xmlReader);
+            IEnumerable<CreatureModel> creatures = DeserializeLevelEntities(xmlReader);
 
             if (creatures == null)
             {
                 throw new SerializationException("Deserialization unsuccessful: " +
                                                  "Broken creatures");
+            }
+
+            foreach (CreatureModel creature in creatures)
+            {
+                model.At(creature.Position).AddEntityToCell(creature);
             }
 
             return model;

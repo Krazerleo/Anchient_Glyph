@@ -12,9 +12,7 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
         [SerializeField]
         private List<Vector2Int> _cells = new();
 
-        public CellSet()
-        {
-        }
+        public CellSet() { }
 
         public CellSet(IEnumerable<Vector2Int> cells)
         {
@@ -36,31 +34,35 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
             switch (rotations)
             {
                 case 0:
-                    foreach (var cell in _cells)
+                    foreach (Vector2Int cell in _cells)
                     {
                         yield return cell;
                     }
+
                     yield break;
 
                 case 1:
-                    foreach (var cell in _cells)
+                    foreach (Vector2Int cell in _cells)
                     {
                         yield return new Vector2Int(cell.y, -cell.x - 1);
                     }
+
                     yield break;
 
                 case 2:
-                    foreach (var cell in _cells)
+                    foreach (Vector2Int cell in _cells)
                     {
                         yield return new Vector2Int(-cell.x - 1, -cell.y - 1);
                     }
+
                     yield break;
 
                 case 3:
-                    foreach (var cell in _cells)
+                    foreach (Vector2Int cell in _cells)
                     {
                         yield return new Vector2Int(-cell.y - 1, cell.x);
                     }
+
                     yield break;
             }
         }
@@ -72,10 +74,10 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
                 return new RectInt();
             }
 
-            var xMax = _cells.Select(cell => cell.x).Max();
-            var xMin = _cells.Select(cell => cell.x).Min();
-            var yMax = _cells.Select(cell => cell.y).Max();
-            var yMin = _cells.Select(cell => cell.y).Min();
+            int xMax = _cells.Select(cell => cell.x).Max();
+            int xMin = _cells.Select(cell => cell.x).Min();
+            int yMax = _cells.Select(cell => cell.y).Max();
+            int yMin = _cells.Select(cell => cell.y).Min();
 
             return new RectInt(xMin, yMin, xMax - xMin, yMax - yMin);
         }

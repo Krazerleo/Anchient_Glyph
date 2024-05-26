@@ -1,9 +1,8 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateArguments;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateArguments;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateMachine;
 using AncientGlyph.GameScripts.Services.SceneManagmentService;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
 
-namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
+namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates
 {
     public class BootstrapState : IGameState
     {

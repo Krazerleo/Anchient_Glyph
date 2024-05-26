@@ -1,5 +1,6 @@
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours;
+using AncientGlyph.GameScripts.GameSystems.ActionSystem;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions;
 using AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects;
 using AncientGlyph.GameScripts.GameWorldModel;
@@ -38,8 +39,8 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
 
         public UniTask MakeNextTurn()
         {
-            var decision = _behaviour.PlanForTurn(_creatureModel,
-                _playerController.EntityModel, _levelModel);
+            (ApplyEffectsAction PlannedAction, IFeedbackAction FeedbackAction) decision = 
+                _behaviour.PlanForTurn(_creatureModel, _playerController.EntityModel, _levelModel);
 
             if (decision.PlannedAction != null)
             {

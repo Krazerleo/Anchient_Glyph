@@ -1,6 +1,6 @@
 using System;
 
-namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateArguments
+namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateArguments
 {
     public class LoadSceneArguments
     {

@@ -1,8 +1,9 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateMachine;
+using JetBrains.Annotations;
 
-namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates
+namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.PlayState
 {
+    [UsedImplicitly]
     public class PlayStateRegular : IGameState
     {
         private IGameStateMachine _stateMachine;

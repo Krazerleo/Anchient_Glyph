@@ -1,5 +1,5 @@
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.GameStates;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateMachine;
 using AncientGlyph.GameScripts.Services.ComponentLocatorService;
 using AncientGlyph.GameScripts.Services.AssetProviderService;
 using AncientGlyph.GameScripts.Services.LoggingService;

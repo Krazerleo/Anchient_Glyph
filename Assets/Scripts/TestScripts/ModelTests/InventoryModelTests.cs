@@ -5,7 +5,7 @@ using AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace AncientGlyph.TestScripts.ModelTests.InventoryTests
+namespace AncientGlyph.TestScripts.ModelTests
 {
     [TestFixture]
     public class InventoryModelTests

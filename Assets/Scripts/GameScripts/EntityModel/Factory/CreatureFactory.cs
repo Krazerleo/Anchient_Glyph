@@ -47,21 +47,21 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
                 throw new ArgumentException(message);
             }
 
-            var creaturePrefab = await _creatureAssetProvider
+            GameObject creaturePrefab = await _creatureAssetProvider
                 .GetAssetByName(creatureModel.SerializationName);
 
             creaturePrefab.transform.position = position;
 
             if (creaturePrefab.TryGetComponent<CreatureAnimator>(out var animator) == false)
             {
-                var message = $"Animator of creature {creatureModel.SerializationName} not found";
+                string message = $"Animator of creature {creatureModel.SerializationName} not found";
                 _loggingService.LogError(message);
                 throw new ArgumentException(message);
             }
 
             if (creaturePrefab.TryGetComponent<CreatureTraitsSource>(out var traitsSource) == false)
             {
-                var message = $"Traits Source of creature {creatureModel.SerializationName} not found";
+                string message = $"Traits Source of creature {creatureModel.SerializationName} not found";
                 _loggingService.LogError(message);
                 throw new ArgumentException(message);
             }

@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using AncientGlyph.GameScripts.CoreGameMechanics;
 using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.EntityModel.Controller;
 using AncientGlyph.GameScripts.EntityModel.Factory._Interfaces;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.LifeCycle.GameStateManagment.StateMachine;
+using AncientGlyph.GameScripts.LifeCycle.GameStateManagement.StateMachine;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 
@@ -46,11 +47,11 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
 
         private async UniTask InjectCreaturesToGameLoop(PlayerController playerController)
         {
-            var entities = _levelModel.GetAllCurrentEntities();
+            IEnumerable<IEntityModel> entities = _levelModel.GetAllCurrentEntities();
             
-            foreach (var entity in entities)
+            foreach (IEntityModel entity in entities)
             {
-                var controller = await _creatureFactory
+                CreatureController controller = await _creatureFactory
                     .CreateCreature(entity.Position, entity as CreatureModel, playerController);
 
                 _gameLoop.InjectEntityController(controller);
@@ -59,7 +60,7 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
 
         private async UniTask<PlayerController> InjectPlayerToGameLoop()
         {
-            var player = await _playerFactory.CreatePlayer();
+            PlayerController player = await _playerFactory.CreatePlayer();
             
             _gameLoop.InjectEntityController(player);
             return player;

@@ -1,7 +1,18 @@
+﻿using System.Collections.Generic;
+using AncientGlyph.GameScripts.EntityModel;
+using AncientGlyph.GameScripts.GameSystems.EffectSystem;
+using UnityEngine;
+
 namespace AncientGlyph.GameScripts.GameSystems.ItemSystem
 {
-    public class ConsumableItem : IUsableGameItem
+    public class ConsumableItem : GameItem
     {
-        public void Use() { }
+        [SerializeReference]
+        public List<IEffect> Effects;
+
+        public void ApplyEffect(PlayerModel player)
+        {
+            
+        }
     }
 }

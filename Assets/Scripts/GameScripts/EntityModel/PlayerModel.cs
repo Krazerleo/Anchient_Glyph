@@ -12,7 +12,7 @@ namespace AncientGlyph.GameScripts.EntityModel
         public Vector3Int Position { get; private set; }
         public string Identifier => GameConstants.PlayerId;
         public string Name => GameConstants.PlayerName;
-
+        
         public bool TryMoveToNextCell(Direction moveDirection, LevelModel levelModel)
         {
             var offset = moveDirection.GetNormalizedOffsetFromDirection();
