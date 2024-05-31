@@ -3,7 +3,6 @@ using AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Geometry;
-
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -21,11 +20,11 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
         {
             RemovePreviousDebugView();
             EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
-            
-            var levelModel = LevelModelLoader.GetOrCreateLevelModel();
-            var flatIndex = 0;
 
-            foreach (var cell in levelModel)
+            LevelModel levelModel = LevelModelLoader.GetOrCreateLevelModel();
+            int flatIndex = 0;
+
+            foreach (CellModel cell in levelModel)
             {
                 DrawWalls(cell, flatIndex);
                 flatIndex++;
@@ -34,9 +33,9 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
 
         public static void RemovePreviousDebugView()
         {
-            var debugGameObjects = GameObject.FindGameObjectsWithTag(DebugObjectTag);
+            GameObject[] debugGameObjects = GameObject.FindGameObjectsWithTag(DebugObjectTag);
 
-            foreach (var debugObject in debugGameObjects)
+            foreach (GameObject debugObject in debugGameObjects)
             {
                 Object.DestroyImmediate(debugObject);
             }
@@ -44,12 +43,15 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
 
         private static void DrawWalls(CellModel cell, int flatIndex)
         {
-            var wallPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(WallDebugPrefabPath);
-            var floorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(FloorDebugPrefabPath);
+            GameObject wallPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(WallDebugPrefabPath);
+            GameObject floorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(FloorDebugPrefabPath);
 
-            var (x, y, z) = ArrayExtensions.Get3dArrayIndex(flatIndex, GameConstants.LevelCellsSizeX, GameConstants.LevelCellsSizeZ);
+            (int x, int y, int z) = ArrayExtensions.Get3dArrayIndex(
+                flatIndex, 
+                GameConstants.LevelCellsSizeX,
+                GameConstants.LevelCellsSizeZ);
 
-            for (var i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 if (cell.GetWalls[i] != 0)
                 {
@@ -67,10 +69,10 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.DebugTools
             if (cell.HasFloor)
             {
                 Object.Instantiate(
-                    floorPrefab,
-                    position: new Vector3(x, y * EditorConstants.FloorHeight, z),
-                    rotation: Quaternion.identity)
-                .tag = DebugObjectTag;
+                        floorPrefab,
+                        position: new Vector3(x, y * EditorConstants.FloorHeight, z),
+                        rotation: Quaternion.identity)
+                    .tag = DebugObjectTag;
             }
         }
     }

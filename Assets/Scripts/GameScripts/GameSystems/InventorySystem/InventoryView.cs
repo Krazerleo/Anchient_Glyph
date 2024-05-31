@@ -1,4 +1,4 @@
-using AncientGlyph.GameScripts.Constants;
+﻿using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.Services.SaveDataService;
 using UnityEngine;
@@ -8,7 +8,7 @@ using Zenject;
 
 namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 {
-    public partial class InventoryView : MonoBehaviour
+    public class InventoryView : MonoBehaviour
     {
         private const string InventoryMainName = "MainInventory";
         private const string InventoryLeftName = "LeftInventory";
@@ -72,7 +72,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             _onRotateItem.action.performed -= RotateItem;
             _onCloseInventory.action.performed -= ToggleInventory;
         }
-        
+
         private void AddInventoryToggle()
             => _onCloseInventory.action.performed += ToggleInventory;
 
@@ -81,16 +81,12 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void RotateItem(InputAction.CallbackContext context)
         {
-            if (_capturedGameItem != null)
-            {
-                
-            }
+            if (_capturedGameItem != null) { }
         }
 
         private void ToggleInventory(InputAction.CallbackContext context)
         {
-            var sideWindow = _inventoryUiDocument.rootVisualElement
-                .Query(SideWindowName).First();
+            var sideWindow = UQueryExtensions.Query(_inventoryUiDocument.rootVisualElement, SideWindowName).First();
 
             sideWindow.visible = !sideWindow.visible;
         }
@@ -101,8 +97,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void AddIconSpaceInteraction()
         {
-            var rootIconSpace = _inventoryUiDocument.rootVisualElement
-                .Query(IconSpaceName)
+            var rootIconSpace = UQueryExtensions.Query(_inventoryUiDocument.rootVisualElement, IconSpaceName)
                 .First();
 
             if (rootIconSpace == null)
@@ -117,10 +112,9 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void AddInventorySpaceInteraction()
         {
-            var rootAllInventoryElement = _inventoryUiDocument.rootVisualElement
-                .Query(InventoryName)
+            var rootAllInventoryElement = UQueryExtensions.Query(_inventoryUiDocument.rootVisualElement, InventoryName)
                 .First();
-            
+
             if (rootAllInventoryElement == null)
             {
                 Debug.LogError($"Not found UI inventory: should be named {InventoryName}");
@@ -130,8 +124,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private void AddBindingsToInventory(InventoryModel inventory,
             string inventoryViewName)
         {
-            var rootInventoryElement = _inventoryUiDocument.rootVisualElement
-                .Query(inventoryViewName)
+            var rootInventoryElement = UQueryExtensions.Query(_inventoryUiDocument.rootVisualElement, inventoryViewName)
                 .First();
 
             if (rootInventoryElement == null)
@@ -152,7 +145,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             {
                 for (int j = 0; j < inventory.Width; j++)
                 {
-                    var slot = slots[j + i*inventory.Width];
+                    var slot = slots[j + i * inventory.Width];
 
                     slot.RegisterCallback<MouseEnterEvent, InventoryPosition>(
                         OnMouseEnterItemSlot,
@@ -171,7 +164,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                     slot.RegisterCallback<MouseUpEvent, InventoryPosition>(
                         OnMouseUpInItemSlot,
                         new InventoryPosition(
-                            new Vector2(slot.style.left.value.value, 
+                            new Vector2(slot.style.left.value.value,
                                 slot.style.top.value.value),
                             new Vector2Int(i, j), inventory));
                 }
@@ -216,13 +209,13 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         {
             if (_capturedGameItem == null)
             {
-                return;    
+                return;
             }
-            
+
             if (inventoryPosition.CurrentInventory.CanItemPlaced(
-                inventoryPosition.SlotModelPosition.x,
-                inventoryPosition.SlotModelPosition.y,
-                _capturedGameItem.GameItem))
+                    inventoryPosition.SlotModelPosition.x,
+                    inventoryPosition.SlotModelPosition.y,
+                    _capturedGameItem.GameItem))
             {
                 InstantiateItemIconOnUI(_capturedGameItem.GameItem.GhostIcon,
                     new Rect(inventoryPosition.SlotViewPosition.x, inventoryPosition.SlotViewPosition.y,
@@ -236,7 +229,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         {
             if (_capturedGameItem == null)
             {
-                return;    
+                return;
             }
             // TODO : Implement moving item in inventory grid
             //Debug.Log($"Mouse leave icon slot {inventoryPosition.SlotModelPosition}");
@@ -247,7 +240,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         {
             if (_capturedGameItem == null)
             {
-                return;    
+                return;
             }
             // TODO : Implement taking item from inventory grid
             //Debug.Log($"Mouse up icon slot {inventoryPosition.SlotModelPosition}");
@@ -285,12 +278,28 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                     InstantiateItemIconOnUI(
                         _capturedGameItem.GameItem.Icon,
                         new Rect(mousePosition.x, mousePosition.y,
-                            FileConstants.ItemImageCellSize*4,
-                            FileConstants.ItemImageCellSize*4),
+                            FileConstants.ItemImageCellSize * 4,
+                            FileConstants.ItemImageCellSize * 4),
                         ItemIconName, out var resultIcon);
 
                     _itemIconElement = resultIcon;
                 }
+            }
+        }
+
+        private readonly struct InventoryPosition
+        {
+            public readonly Vector2Int SlotModelPosition;
+            public readonly Vector2 SlotViewPosition;
+            public readonly InventoryModel CurrentInventory;
+
+            public InventoryPosition(Vector2 slotViewPosition,
+                Vector2Int slotModelPosition,
+                InventoryModel inventory)
+            {
+                SlotViewPosition = slotViewPosition;
+                SlotModelPosition = slotModelPosition;
+                CurrentInventory = inventory;
             }
         }
     }

@@ -1,16 +1,19 @@
+#nullable enable
 using System;
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.EntityModel.Controller;
-using AncientGlyph.GameScripts.EntityModel.Factory._Interfaces;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.PlayerInput;
 using AncientGlyph.GameScripts.Services.AssetProviderService;
+using AncientGlyph.GameScripts.Services.AssetProviderService.AssetTypeOption;
 using AncientGlyph.GameScripts.Services.ComponentLocatorService;
 using AncientGlyph.GameScripts.Services.LoggingService;
 using AncientGlyph.GameScripts.Services.SaveDataService;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace AncientGlyph.GameScripts.EntityModel.Factory
 {
@@ -43,17 +46,26 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
                 throw new ArgumentException(message);
             }
 
-            var playerPrefab = await _creatureAssetProvider
+            GameObject? playerAsset = await _creatureAssetProvider
                 .GetAssetByName(GameConstants.PlayerName);
 
-            if (playerPrefab.TryGetComponent<PlayerAnimator>(out var animator) == false)
+            if (playerAsset == null)
+            {
+                _loggingService.LogFatal("Cannot find player asset");
+                throw new ArgumentException("FATAL ERROR: Player asset not found");
+            }
+
+            GameObject playerPrefab = Object.Instantiate(playerAsset, _saveDataService.BaseInfo.PlayerPosition,
+                                                         Quaternion.identity);
+            
+            if (playerPrefab.TryGetComponent(out PlayerAnimator animator) == false)
             {
                 const string message = "Player Animator not found";
                 _loggingService.LogError(message);
                 throw new ArgumentException(message);
             }
 
-            if (playerPrefab.TryGetComponent<PlayerMoveInput>(out var moveInput) == false)
+            if (playerPrefab.TryGetComponent(out PlayerMoveInput moveInput) == false)
             {
                 const string message = "Player Move Input not found";
                 _loggingService.LogError(message);
@@ -61,7 +73,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
             }
 
             playerPrefab.transform.position = _saveDataService.BaseInfo.PlayerPosition;
-            var playerModel = new PlayerModel(_saveDataService.BaseInfo.PlayerPosition);
+            PlayerModel playerModel = new(_saveDataService.BaseInfo.PlayerPosition);
 
             return new PlayerController(animator, moveInput, _levelModel,
                                         playerModel, _loggingService);

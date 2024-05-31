@@ -11,31 +11,31 @@ namespace AncientGlyph.GameScripts.Services.LoggingService
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void LogFatal(string errorMessage)
         {
-            Debug.LogError($"<color=red>Fatal Error: ${errorMessage}</color>");
+            Debug.LogError($"<color=red>Fatal Error: {errorMessage}</color>");
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void LogError(string errorMessage)
         {
-            Debug.LogError($"<color=red>Error: ${errorMessage}</color>");
+            Debug.LogError($"<color=red>Error: {errorMessage}</color>");
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void LogWarning(string warningMessage)
         {
-            Debug.LogError($"<color=orange>Warning: ${warningMessage}</color>");
+            Debug.LogWarning($"<color=orange>Warning: {warningMessage}</color>");
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void LogDebug(string debugMessage)
         {
-            Debug.LogError($"<color=blue>Debug Info: ${debugMessage}</color>");
+            Debug.Log($"<color=blue>Debug Info: {debugMessage}</color>");
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void LogTrace(string message)
         {
-            Debug.Log($"<color=gray>Trace Info: ${message}</color>");
+            Debug.Log($"<color=gray>Trace Info: {message}</color>");
         }
     }
 }

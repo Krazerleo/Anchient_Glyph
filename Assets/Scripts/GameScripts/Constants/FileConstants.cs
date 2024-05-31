@@ -4,7 +4,6 @@ namespace AncientGlyph.GameScripts.Constants
     {
         public const string LevelModelFileExtension = ".lvl";
         public const string StreamingAssetLevelFolderName = "LevelModels";
-
         public const int ItemImageCellSize = 64;
     }
 }

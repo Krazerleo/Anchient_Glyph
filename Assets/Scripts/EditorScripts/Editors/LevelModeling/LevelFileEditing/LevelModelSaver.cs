@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.ForEditor;
@@ -28,20 +29,21 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
         [MenuItem("Project Instruments / Save Level Model")]
         private static void SaveLevelModel()
         {
-            var currentSceneName = SceneManager.GetActiveScene().name;
-            var streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
-            var levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            string streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
+            string levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
                                             FileConstants.StreamingAssetLevelFolderName,
                                             currentSceneName + FileConstants.LevelModelFileExtension);
 
-            var levelModel = new LevelModel();
-            var levelEditor = new LevelModelEditor(levelModel);
+            LevelModel levelModel = new();
+            List<(string, Vector3)> gameItemsOnScene = new();
             
-            var markers = UnityEngine.Object.FindObjectsOfType<ModelMarker>();
+            LevelModelEditor levelEditor = new(levelModel);
+            ModelMarker[] markers = UnityEngine.Object.FindObjectsOfType<ModelMarker>();
 
-            foreach (var marker in markers)
+            foreach (ModelMarker marker in markers)
             {
-                var coordinates = new Point(marker.Coordinates);
+                Point coordinates = new(marker.Coordinates);
                 
                 switch (marker.Type)
                 {
@@ -54,6 +56,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
                         levelEditor.TryPlaceWall(coordinates, marker.Direction);
                         break;
                     case AssetType.Item:
+                        gameItemsOnScene.Add((marker.GameItemIdentifier, marker.ItemCoordinates));
                         break;
                     case AssetType.Entity:
                         levelEditor.TryPlaceEntity(coordinates, marker.CreatureModel);
@@ -63,8 +66,8 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
                 }
             }
 
-            var serializer = new LevelSerializer(levelModelPath);
-            serializer.Serialize(levelModel);
+            LevelSerializer serializer = new(levelModelPath);
+            serializer.Serialize(levelModel, gameItemsOnScene);
         }
     }
 }

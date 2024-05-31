@@ -1,15 +1,17 @@
+#nullable enable
 using System;
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.EntityModel.Controller;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours;
-using AncientGlyph.GameScripts.EntityModel.Factory._Interfaces;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Services.AssetProviderService;
+using AncientGlyph.GameScripts.Services.AssetProviderService.AssetTypeOption;
 using AncientGlyph.GameScripts.Services.LoggingService;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace AncientGlyph.GameScripts.EntityModel.Factory
 {
@@ -37,7 +39,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
         /// <param name="playerController">Player Controller</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public async UniTask<CreatureController>
+        public async UniTask<CreatureController?>
             CreateCreature(Vector3Int position, CreatureModel creatureModel, PlayerController playerController)
         {
             if (creatureModel == null)
@@ -47,25 +49,30 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
                 throw new ArgumentException(message);
             }
 
-            GameObject creaturePrefab = await _creatureAssetProvider
+            GameObject? creatureAsset = await _creatureAssetProvider
                 .GetAssetByName(creatureModel.SerializationName);
 
+            if (creatureAsset == null)
+            {
+                _loggingService.LogFatal($"There is no asset of creature with name {creatureModel.SerializationName}");
+                return null;
+            }
+
+            GameObject creaturePrefab = Object.Instantiate(creatureAsset);
+            
+            if (creaturePrefab.TryGetComponent(out CreatureAnimator animator) == false)
+            {
+                _loggingService.LogFatal($"Animator of creature {creatureModel.SerializationName} not found");
+                return null;
+            }
+
+            if (creaturePrefab.TryGetComponent(out CreatureTraitsSource traitsSource) == false)
+            {
+                _loggingService.LogFatal($"Traits Source of creature {creatureModel.SerializationName} not found");
+                return null;
+            }
+
             creaturePrefab.transform.position = position;
-
-            if (creaturePrefab.TryGetComponent<CreatureAnimator>(out var animator) == false)
-            {
-                string message = $"Animator of creature {creatureModel.SerializationName} not found";
-                _loggingService.LogError(message);
-                throw new ArgumentException(message);
-            }
-
-            if (creaturePrefab.TryGetComponent<CreatureTraitsSource>(out var traitsSource) == false)
-            {
-                string message = $"Traits Source of creature {creatureModel.SerializationName} not found";
-                _loggingService.LogError(message);
-                throw new ArgumentException(message);
-            }
-
             creatureModel.PostInitialize(traitsSource);
             
             return new CreatureController(creatureModel, playerController, _levelModel, animator,

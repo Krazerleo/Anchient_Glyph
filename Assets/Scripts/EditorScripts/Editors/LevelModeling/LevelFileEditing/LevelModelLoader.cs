@@ -1,4 +1,4 @@
-//#define PRINT_LOG_DESERIALIZATION
+//#define PRINT_DEBUG_DESERIALIZATION
 
 using System.IO;
 using AncientGlyph.GameScripts.Constants;
@@ -13,22 +13,22 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
     {
         public static LevelModel GetOrCreateLevelModel()
         {
-            var currentSceneName = SceneManager.GetActiveScene().name;
-            var streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
-            var levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            string streamingAssetsLevelFolderPath = Application.streamingAssetsPath;
+            string levelModelPath = Path.Combine(streamingAssetsLevelFolderPath,
                 FileConstants.StreamingAssetLevelFolderName,
                 currentSceneName + FileConstants.LevelModelFileExtension);
 
             if (File.Exists(levelModelPath))
             {
-#if PRINT_LOG_DESERIALIZATION
+#if PRINT_DEBUG_DESERIALIZATION
                 Debug.Log($"Deserializing level model from {levelModelPath}");
 #endif
-                var levelModelDeserializer = new LevelDeserializer(levelModelPath);
-
-                if (levelModelDeserializer.TryDeserialize(out var levelModel))
+                LevelDeserializer levelModelDeserializer = new(levelModelPath);
+                
+                if (levelModelDeserializer.TryDeserialize(out LevelModel levelModel, out _))
                 {
-#if PRINT_LOG_DESERIALIZATION
+#if PRINT_DEBUG_DESERIALIZATION
                     Debug.Log("Level model deserialized successfully");
 #endif
                     return levelModel;
@@ -37,11 +37,9 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling.LevelFileEditing
                 Debug.LogError("Level model deserialized unsuccessfully");
                 return null;
             }
-            else
-            {
-                Debug.LogError("Cannot find level model");
-                return null;
-            }
+
+            Debug.LogError("Cannot find level model");
+            return null;
         }
     }
 }

@@ -2,7 +2,7 @@ using System;
 using AncientGlyph.GameScripts.EntityModel.Controller;
 using Cysharp.Threading.Tasks;
 
-namespace AncientGlyph.GameScripts.EntityModel.Factory._Interfaces
+namespace AncientGlyph.GameScripts.EntityModel.Factory
 {
     public interface IPlayerFactory
     {

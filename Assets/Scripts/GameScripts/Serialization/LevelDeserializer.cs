@@ -4,8 +4,10 @@ using System.Xml;
 using System.Xml.Serialization;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.EntityModel;
+using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.GameWorldModel;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace AncientGlyph.GameScripts.Serialization
 {
@@ -18,27 +20,28 @@ namespace AncientGlyph.GameScripts.Serialization
             _levelModelPath = levelModelPath;
         }
 
-        public bool TryDeserialize(out LevelModel levelModel)
+        public bool TryDeserialize(out LevelModel levelModel, out ItemsSerializationContainer itemsOnScene)
         {
             try
             {
-                levelModel = Deserialize();
+                (levelModel, itemsOnScene) = Deserialize();
                 return true;
             }
             catch
             {
                 levelModel = null;
+                itemsOnScene = null;
                 return false;
             }
         }
 
-        public LevelModel Deserialize()
+        public (LevelModel, ItemsSerializationContainer)  Deserialize()
         {
             using XmlReader xmlReader = XmlReader.Create(_levelModelPath);
 
-            LevelModel model = DeserializeLevelModel(xmlReader);
+            LevelModel levelModel = DeserializeLevelModel(xmlReader);
 
-            if (model is null)
+            if (levelModel is null)
             {
                 throw new SerializationException("Deserialization unsuccessful: " +
                                                  "Broken level model");
@@ -54,32 +57,51 @@ namespace AncientGlyph.GameScripts.Serialization
 
             foreach (CreatureModel creature in creatures)
             {
-                model.At(creature.Position).AddEntityToCell(creature);
+                levelModel[creature.Position].AddEntityToCell(creature);
             }
 
-            return model;
+            ItemsSerializationContainer itemsResult = new(DeserializeItemsOnScene(xmlReader));
+            
+            return (levelModel, itemsResult);
         }
 
         [CanBeNull]
         private LevelModel DeserializeLevelModel(XmlReader xmlReader)
         {
             xmlReader.ReadToDescendant(nameof(LevelModel));
-            var xmlSerializer = new XmlSerializer(typeof(LevelModel));
+            XmlSerializer xmlSerializer = new(typeof(LevelModel));
             return xmlSerializer.Deserialize(xmlReader) as LevelModel;
         }
 
         [CanBeNull]
         private IEnumerable<CreatureModel> DeserializeLevelEntities(XmlReader xmlReader)
         {
-            var xmlSerializer = new XmlSerializer(typeof(CreatureModel[]),
-                new XmlRootAttribute()
+            XmlSerializer xmlSerializer = new(typeof(CreatureModel[]),
+                new XmlRootAttribute
                 {
-                    ElementName = XmlLevelConstants.XmlNodeLevelEntitiesName
+                    ElementName = XmlLevelConstants.EntitiesElementName
                 });
 
-            xmlReader.ReadToFollowing(XmlLevelConstants.XmlNodeLevelEntitiesName);
+            xmlReader.ReadToFollowing(XmlLevelConstants.EntitiesElementName);
 
             return xmlSerializer.Deserialize(xmlReader) as CreatureModel[];
+        }
+
+        private IEnumerable<ItemSerializationInfo> DeserializeItemsOnScene(XmlReader xmlReader)
+        {
+            List<ItemSerializationInfo> resultItems = new();
+            xmlReader.ReadToFollowing(XmlLevelConstants.ItemsOnSceneElementName);
+            
+            while (xmlReader.ReadToFollowing(nameof(GameItem)))
+            {
+                string uid = xmlReader.GetAttribute(XmlLevelConstants.ItemUidAttributeName);
+                Vector3 position = SerializationExtensions.ParseVector3( 
+                    xmlReader.GetAttribute(XmlLevelConstants.ItemPositionAttributeName));
+                
+                resultItems.Add(new ItemSerializationInfo(uid, position));
+            }
+
+            return resultItems;
         }
     }
 }

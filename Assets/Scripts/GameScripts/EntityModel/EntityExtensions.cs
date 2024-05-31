@@ -13,7 +13,7 @@ namespace AncientGlyph.GameScripts.EntityModel
 
         public static CellModel GetEntityCell(this IEntityModel entity, LevelModel levelModel)
         {
-            return levelModel.At(entity.Position);
+            return levelModel[entity.Position];
         }
     }
 }

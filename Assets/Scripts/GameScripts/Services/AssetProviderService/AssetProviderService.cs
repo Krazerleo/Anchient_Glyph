@@ -1,11 +1,12 @@
-using System;
+#nullable enable
 using System.Collections.Generic;
-
+using AncientGlyph.GameScripts.Services.AssetProviderService.AssetTypeOption;
 using AncientGlyph.GameScripts.Services.LoggingService;
-
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace AncientGlyph.GameScripts.Services.AssetProviderService
 {
@@ -14,28 +15,26 @@ namespace AncientGlyph.GameScripts.Services.AssetProviderService
         where TAssetTypeOption : IAssetTypeOption
     {
         private readonly ILoggingService _loggingService;
-        private Dictionary<string, GameObject> _resources;
+        private Dictionary<string, GameObject>? _resources;
 
         public AssetProviderService(ILoggingService loggingService)
         {
             _loggingService = loggingService;
         }
 
-        public async UniTask<GameObject> GetAssetByName(string name)
+        public async UniTask<GameObject?> GetAssetByName(string name)
         {
             await GetAllAssets();
 
-            if (_resources.TryGetValue(name, out var asset))
+            if (_resources!.TryGetValue(name, out GameObject? asset))
             {
-                return UnityEngine.Object.Instantiate(asset);
+                return asset;
             }
-            else
-            {
-                var message = $"Unexpected asset name: {name}." +
-                    $"Cannot find in resources";
-                _loggingService.LogError(message);
-                throw new ArgumentException(message);
-            }
+            
+            _loggingService.LogError($"Unexpected asset name: {name}." +
+                                     $"Cannot find in resources");
+            
+            return null;
         }
 
         private async UniTask GetAllAssets()
@@ -45,28 +44,26 @@ namespace AncientGlyph.GameScripts.Services.AssetProviderService
                 return;
             }
 
-            _resources = new();
+            _resources = new Dictionary<string, GameObject>();
 
-            var resourceLocationsHandle = Addressables
-                .LoadResourceLocationsAsync(default(TAssetTypeOption)!.Labels,
-                                            Addressables.MergeMode.Union);
+            AsyncOperationHandle<IList<IResourceLocation>> resourceLocationsHandle
+                = Addressables.LoadResourceLocationsAsync(default(TAssetTypeOption)!.Labels,
+                                                          Addressables.MergeMode.Union);
 
-            var resourceLocations = await resourceLocationsHandle;
+            IList<IResourceLocation> resourceLocations = await resourceLocationsHandle;
 
             if (resourceLocations.Count == 0)
             {
-                _loggingService.LogError("Cannot get creature asset locations");
+                _loggingService.LogError("Cannot get asset locations");
             }
 
-            foreach (var resourceLocation in resourceLocations)
+            foreach (IResourceLocation resourceLocation in resourceLocations)
             {
-                var resource = await Addressables.LoadAssetAsync<GameObject>(resourceLocation);
+                GameObject resource = await Addressables.LoadAssetAsync<GameObject>(resourceLocation);
                 _resources.Add(resource.name, resource);
             }
 
             Addressables.Release(resourceLocationsHandle);
-
-            return;
         }
     }
 }

@@ -14,28 +14,28 @@ namespace AncientGlyph.TestScripts.ModelTests
         public void MoveEntity()
         {
             var levelModel = new LevelModel();
-            var creatureOldPosition = new Vector3Int(5, 0, 5);
+            var oldPositionOfCreature = new Vector3Int(5, 0, 5);
             var offset = new Vector3Int(1, 0, 0);
-            var creatureNewPosition = creatureOldPosition + offset;
-            var creature = new CreatureModel(ScriptableObject.CreateInstance<CreatureTraits>(), 
-                "test", creatureOldPosition);
-            
-            levelModel.At(creatureOldPosition).AddEntityToCell(creature);
+            var newPositionOfCreature = oldPositionOfCreature + offset;
+            var creature = new CreatureModel(ScriptableObject.CreateInstance<CreatureTraits>(),
+                "test", oldPositionOfCreature);
+
+            levelModel[oldPositionOfCreature].AddEntityToCell(creature);
 
             creature.TryMoveToNextCell(offset, levelModel);
-            
-            Assert.AreEqual(0, levelModel.At(creatureOldPosition)
-                                                       .GetEntitiesFromCell().Count());
 
-            Assert.AreEqual(1, levelModel.At(creatureNewPosition)
-                                                       .GetEntitiesFromCell().Count());
+            Assert.AreEqual(0, levelModel[oldPositionOfCreature]
+                .GetEntitiesFromCell().Count());
 
-            Assert.NotNull(levelModel.At(creatureNewPosition)
+            Assert.AreEqual(1, levelModel[newPositionOfCreature]
+                .GetEntitiesFromCell().Count());
+
+            Assert.NotNull(levelModel[newPositionOfCreature]
                 .GetEntitiesFromCell()
                 .First() as CreatureModel);
-            
-            Assert.AreEqual(creatureNewPosition,
-                levelModel.At(creatureNewPosition)
+
+            Assert.AreEqual(newPositionOfCreature,
+                levelModel[newPositionOfCreature]
                     .GetEntitiesFromCell()
                     .First().Position);
         }
@@ -43,19 +43,18 @@ namespace AncientGlyph.TestScripts.ModelTests
         [Test]
         public void GetAllEntities()
         {
-            var levelModel = new LevelModel();
+            LevelModel levelModel = new();
             const int totalCreatures = 10;
-            
+
             for (var i = 0; i < totalCreatures; i++)
             {
-                var position = new Vector3Int(i * 2, 0, i * 3);
+                Vector3Int position = new(i * 2, 0, i * 3);
 
-                var creature = new CreatureModel(ScriptableObject.CreateInstance<CreatureTraits>(),
-                    "testing", position);
-                
-                levelModel.At(position).AddEntityToCell(creature);
+                CreatureModel creature = new(ScriptableObject.CreateInstance<CreatureTraits>(), "testing", position);
+
+                levelModel[position].AddEntityToCell(creature);
             }
-            
+
             Assert.AreEqual(totalCreatures, levelModel.GetAllCurrentEntities().Count());
         }
     }

@@ -2,13 +2,12 @@ namespace AncientGlyph.GameScripts.Constants
 {
     public static class XmlLevelConstants
     {
-        public const string XmlNodeLevelFileName = "LevelFile";
-        public const string XmlNodeLevelEnvName = "LevelModelEnvironment";
-        public const string XmlNodeLevelEntitiesName = "LevelModelEntities";
-
-        public const string XmlNodeEntity = "entity";
-        public const string XmlPropertyEntityId = "id";
-        public const string XmlPropertyEntityName = "name";
-        public const string XmlPropertyEntityPosition = "position";
+        public const string FileElementName = "LevelFile";
+        public const string EnvElementName = "LevelModelEnvironment";
+        public const string EntitiesElementName = "LevelModelEntities";
+        
+        public const string ItemsOnSceneElementName = "LevelItemsOnScene";
+        public const string ItemUidAttributeName = "ItemUid";
+        public const string ItemPositionAttributeName = "Position";
     }
 }

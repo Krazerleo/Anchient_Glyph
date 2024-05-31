@@ -21,5 +21,7 @@ namespace AncientGlyph.GameScripts.Constants
 
         public const string PlayerName = "Player";
         public const string PlayerId = "PLAYERID";
+        
+        public const int MaxSaveSlotNumber = 3;
     }
 }

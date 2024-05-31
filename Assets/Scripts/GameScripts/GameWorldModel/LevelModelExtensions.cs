@@ -14,9 +14,9 @@ namespace AncientGlyph.GameScripts.GameWorldModel
         public static bool CheckIsReachable(this LevelModel levelModel,
             Vector3Int startPosition, Vector3Int endPosition)
         {
-            var offset = endPosition - startPosition;
-            var startCell = levelModel.At(startPosition);
-            var endCell = levelModel.At(endPosition);
+            Vector3Int offset = endPosition - startPosition;
+            CellModel startCell = levelModel[startPosition];
+            CellModel endCell = levelModel[endPosition];
             
             if (offset.sqrMagnitude == 0)
             {
@@ -28,7 +28,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                 throw new ArgumentOutOfRangeException($"{nameof(offset)} is greater than 1");
             }
 
-            var direction = offset.GetDirectionFromNormalizedOffset();
+            Direction direction = offset.GetDirectionFromNormalizedOffset();
 
             switch (direction)
             {
@@ -70,8 +70,8 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                     (startPosition, targetPosition) = (targetPosition, startPosition);
                 }
                 
-                var currentPosition = startPosition;
-                var frontPosition = startPosition;
+                Vector3Int currentPosition = startPosition;
+                Vector3Int frontPosition = startPosition;
                 frontPosition.x += 1;
 
                 for (int i = startPosition.x; i < targetPosition.x; i++)
@@ -96,8 +96,8 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                     (startPosition, targetPosition) = (targetPosition, startPosition);
                 }
                 
-                var currentPosition = startPosition;
-                var frontPosition = startPosition;
+                Vector3Int currentPosition = startPosition;
+                Vector3Int frontPosition = startPosition;
                 frontPosition.z += 1;
 
                 for (int i = startPosition.z; i < targetPosition.z; i++)
@@ -115,6 +115,14 @@ namespace AncientGlyph.GameScripts.GameWorldModel
             }
 
             throw new ArgumentException("Start and target position must be X or Z aligned");
+        }
+
+        public static void SetWall(this LevelModel levelModel, Vector3Int cellPosition, 
+            Direction direction, WallType wallType)
+        {
+            CellModel cell = levelModel[cellPosition];
+            cell.SetWall(wallType, direction);
+            levelModel[cellPosition] = cell;
         }
     }
 }

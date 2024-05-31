@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 {
-    public partial class InventoryModel
+    public class InventoryModel
     {
         public int Width { get; }
         public int Height { get; }
@@ -40,7 +40,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         public bool TryTakeItemFromPosition(int xPosition, int yPosition, out GameItem gameItem)
         {
-            var inventoryCell = this[xPosition, yPosition];
+            InventoryCell inventoryCell = this[xPosition, yPosition];
 
             if (inventoryCell.ItemPivotCell.x == EmptyCellPivotIndicator)
             {
@@ -48,15 +48,14 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                 return false;
             }
 
-            var requestedItem = _itemPivots[inventoryCell.ItemPivotCell];
+            GameItem requestedItem = _itemPivots[inventoryCell.ItemPivotCell];
             gameItem = requestedItem;
 
-            foreach (var cell in gameItem.CellSet.GetDefinedGeometry())
+            foreach (Vector2Int cell in gameItem.CellSet.GetDefinedGeometry())
             {
-                var addedCellPosition = new Vector2Int(
-                    xPosition + cell.x, yPosition + cell.y);
-                
-                var removingCell = this[addedCellPosition.x, addedCellPosition.y];
+                Vector2Int addedCellPosition = new(xPosition + cell.x, yPosition + cell.y);
+
+                InventoryCell removingCell = this[addedCellPosition.x, addedCellPosition.y];
                 removingCell.ItemPivotCell.Set(-1, -1);
                 removingCell.ItemId = Constants.GameConstants.UndefinedItemId;
                 this[addedCellPosition.x, addedCellPosition.y] = removingCell;
@@ -74,38 +73,36 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                 return false;
             }
 
-            var pivotCell = item.CellSet.GetDefinedGeometry().First();
+            Vector2Int pivotCell = item.CellSet.GetDefinedGeometry().First();
 
-            foreach (var itemCell in item.CellSet.GetDefinedGeometry())
+            foreach (Vector2Int itemCell in item.CellSet.GetDefinedGeometry())
             {
-                var addedCellPosition = new Vector2Int(
-                    xPosition + itemCell.x, yPosition + itemCell.y);
-                
-                var addedCell = this[addedCellPosition.x, addedCellPosition.y];
+                Vector2Int addedCellPosition = new(xPosition + itemCell.x, yPosition + itemCell.y);
+
+                InventoryCell addedCell = this[addedCellPosition.x, addedCellPosition.y];
                 addedCell.ItemId = item.ItemId;
                 addedCell.ItemPivotCell = pivotCell;
                 this[addedCellPosition.x, addedCellPosition.y] = addedCell;
             }
 
             _itemPivots.Add(pivotCell, item);
-            
+
             return true;
         }
 
         public bool CanItemPlaced(int xPosition, int yPosition, GameItem item)
         {
-            foreach (var itemCell in item.CellSet.GetDefinedGeometry())
+            foreach (Vector2Int itemCell in item.CellSet.GetDefinedGeometry())
             {
-                var addedCellPosition = new Vector2Int(
-                    xPosition + itemCell.x, yPosition + itemCell.y);
-                
+                Vector2Int addedCellPosition = new(xPosition + itemCell.x, yPosition + itemCell.y);
+
                 if (addedCellPosition.x >= Width || addedCellPosition.x < 0 ||
                     addedCellPosition.y >= Height || addedCellPosition.y < 0)
                 {
                     return false;
                 }
-                
-                var checkedCell = this[addedCellPosition.x, addedCellPosition.y];
+
+                InventoryCell checkedCell = this[addedCellPosition.x, addedCellPosition.y];
 
                 if (checkedCell.ItemId != Constants.GameConstants.UndefinedItemId)
                 {
@@ -114,6 +111,12 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             }
 
             return true;
+        }
+
+        private struct InventoryCell
+        {
+            public uint ItemId { get; set; }
+            public Vector2Int ItemPivotCell { get; set; }
         }
     }
 }

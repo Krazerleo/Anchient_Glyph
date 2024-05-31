@@ -45,9 +45,13 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
             set => _cellModelGrid[index] = value;
         }
-        
-        public CellModel At(Vector3Int position)
-            => this[position.x, position.y, position.z];
+
+        public CellModel this[Vector3Int index]
+        {
+            get => this[index.x, index.y, index.z];
+
+            set => this[index.x, index.y, index.z] = value;
+        }
 
         public List<CellModel>.Enumerator GetEnumerator()
         {
@@ -61,7 +65,7 @@ namespace AncientGlyph.GameScripts.GameWorldModel
         /// </summary>
         /// <param name="entity">Entity to Move</param>
         /// <param name="offset">Normalized Vector Offset</param>
-        /// <returns></returns>
+        /// <returns>true if successful</returns>
         public bool TryMoveEntity(IEntityModel entity, Vector3Int offset)
         {
             if (offset.magnitude <= 0.001)
@@ -73,8 +77,8 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                 "Offset magnitude cannot be more than 1 cell length" +
                 "Divide entity movement to few offsets");
 
-            var oldEntityPosition = entity.Position;
-            var newEntityPosition = entity.Position + offset;
+            Vector3Int oldEntityPosition = entity.Position;
+            Vector3Int newEntityPosition = entity.Position + offset;
 
             if (CheckInBounds(newEntityPosition) == false)
             {
@@ -86,13 +90,13 @@ namespace AncientGlyph.GameScripts.GameWorldModel
                 return false;
             }
 
-            if (entity.IsFullSize && At(newEntityPosition).GetEntitiesFromCell().Any(x => x.IsFullSize))
+            if (entity.IsFullSize && this[newEntityPosition].GetEntitiesFromCell().Any(x => x.IsFullSize))
             {
                 return false;
             }
-
-            At(oldEntityPosition).RemoveEntityFromCell(entity);
-            At(newEntityPosition).AddEntityToCell(entity);
+            
+            this[oldEntityPosition].RemoveEntityFromCell(entity);
+            this[newEntityPosition].AddEntityToCell(entity);
 
             return true;
         }
@@ -136,9 +140,9 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
         public void ReadXml(XmlReader xmlReader)
         {
-            var levelModelBuffer = new byte[CellsCount * CellModel.SizeOfElementBytes];
+            byte[] levelModelBuffer = new byte[CellsCount * CellModel.SizeOfElementBytes];
 
-            xmlReader.ReadToDescendant(XmlLevelConstants.XmlNodeLevelEnvName);
+            xmlReader.ReadToDescendant(XmlLevelConstants.EnvElementName);
             xmlReader.ReadElementContentAsBase64(levelModelBuffer, 0,
                 CellsCount * CellModel.SizeOfElementBytes);
 
@@ -154,19 +158,19 @@ namespace AncientGlyph.GameScripts.GameWorldModel
 
         public void WriteXml(XmlWriter xmlWriter)
         {
-            var arrayBuffer = new byte[CellsCount * CellModel.SizeOfElementBytes];
-            var bytePointer = 0;
+            byte[] arrayBuffer = new byte[CellsCount * CellModel.SizeOfElementBytes];
+            int bytePointer = 0;
 
-            foreach (var cell in this)
+            foreach (CellModel cell in this)
             {
-                var cellData = cell.SerializeElement();
-                var location = arrayBuffer.AsSpan().Slice(bytePointer, CellModel.SizeOfElementBytes);
+                Span<byte> cellData = cell.SerializeElement();
+                Span<byte> location = arrayBuffer.AsSpan().Slice(bytePointer, CellModel.SizeOfElementBytes);
                 bytePointer += CellModel.SizeOfElementBytes;
 
                 cellData.CopyTo(location);
             }
 
-            xmlWriter.WriteStartElement(XmlLevelConstants.XmlNodeLevelEnvName);
+            xmlWriter.WriteStartElement(XmlLevelConstants.EnvElementName);
             xmlWriter.WriteBase64(arrayBuffer, 0, arrayBuffer.Length);
             xmlWriter.WriteEndElement();
         }

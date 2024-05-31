@@ -1,3 +1,4 @@
+using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Serialization;
 using Zenject;
@@ -8,17 +9,19 @@ namespace AncientGlyph.GameScripts.DependencyInjection.LevelModelInstaller
     {
         public override void InstallBindings()
         {
+            string levelModelPath = LevelPathProvider.GetPathFromRuntime();
+            LevelDeserializer levelDeserializer = new(levelModelPath);
+            
+            (LevelModel levelModel, ItemsSerializationContainer gameItems) =
+                levelDeserializer.Deserialize();
+
             Container.Bind<LevelModel>()
-                .FromMethod(GetLevelModel)
+                .FromInstance(levelModel)
                 .AsSingle();
-        }
 
-        private LevelModel GetLevelModel()
-        {
-            var levelModelPath = LevelPathProvider.GetPathFromRuntime();
-            var levelDeserializer = new LevelDeserializer(levelModelPath);
-
-            return levelDeserializer.Deserialize();
+            Container.Bind<ItemsSerializationContainer>()
+                .FromInstance(gameItems)
+                .AsSingle();
         }
     }
 }

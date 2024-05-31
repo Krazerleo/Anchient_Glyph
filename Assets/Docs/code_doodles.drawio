@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-03-27T12:21:39.586Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="w2ESQGr1iVxS08KPm9C_" version="21.6.1" type="device">
+<mxfile host="Electron" modified="2024-05-29T14:40:20.875Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="Ffr2GFP_y2EVYCp_32vO" version="21.6.1" type="device">
   <diagram name="Architecture" id="58cdce13-f638-feb5-8d6f-7d28b1aa9fa0">
-    <mxGraphModel dx="3620" dy="1684" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="3748" dy="1752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1312,7 +1312,7 @@
         <mxCell id="sTKgu8o8D2LIeQviYa95-21" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Level 1&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
           <mxGeometry x="50" y="520" width="120" height="60.5" as="geometry" />
         </mxCell>
-        <mxCell id="sTKgu8o8D2LIeQviYa95-22" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Level Model Diff&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
+        <mxCell id="sTKgu8o8D2LIeQviYa95-22" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Level Model&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
           <mxGeometry x="50" y="650" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="sTKgu8o8D2LIeQviYa95-24" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Creatures&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
@@ -1327,7 +1327,7 @@
         <mxCell id="sTKgu8o8D2LIeQviYa95-30" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Level 2&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
           <mxGeometry x="370" y="520" width="120" height="60.5" as="geometry" />
         </mxCell>
-        <mxCell id="sTKgu8o8D2LIeQviYa95-31" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Level Model Diff&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
+        <mxCell id="sTKgu8o8D2LIeQviYa95-31" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Level Model&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
           <mxGeometry x="370" y="650" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="sTKgu8o8D2LIeQviYa95-32" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Creatures&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
@@ -1336,13 +1336,13 @@
         <mxCell id="sTKgu8o8D2LIeQviYa95-33" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Other Info&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
           <mxGeometry x="510" y="650" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-1" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Items&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="sTKgu8o8D2LIeQviYa95-2">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-1" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Items&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
           <mxGeometry x="510" y="590" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-2" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Other Info&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="sTKgu8o8D2LIeQviYa95-2">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-2" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Other Info&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
           <mxGeometry x="200" y="650" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-3" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Items&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="sTKgu8o8D2LIeQviYa95-2">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-3" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Items&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="sTKgu8o8D2LIeQviYa95-2" vertex="1">
           <mxGeometry x="200" y="590" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="sTKgu8o8D2LIeQviYa95-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -1694,41 +1694,67 @@
         <mxCell id="h_UtbUjM8iUbsz1y42bU-6" value="Не являются частью Level Model" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="h_UtbUjM8iUbsz1y42bU-5" vertex="1">
           <mxGeometry x="20" y="45" width="100" height="82.5" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-4" value="Система сохранений" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-4" value="Система сохранений" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="2240" width="530" height="570" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-8" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-4">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-8" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="kXFOptWCvpmJUv4UDSLg-4" vertex="1">
           <mxGeometry x="170" y="30" width="20" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-9" value="Хранятся в отдельной папке. Не изменяются.&lt;br&gt;При загрузке уровня подгружаются.&lt;br&gt;Запекаются персистентные данные (стены, полы и возможно другие данные)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-4">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-9" value="Хранятся в отдельной папке. Не изменяются.&lt;br&gt;При загрузке уровня подгружаются.&lt;br&gt;Запекаются персистентные данные (стены, полы и возможно другие данные)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="kXFOptWCvpmJUv4UDSLg-4" vertex="1">
           <mxGeometry x="200" y="40" width="180" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-10" value="Сохранение" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-4">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-10" value="Сохранение" style="swimlane;whiteSpace=wrap;html=1;" parent="kXFOptWCvpmJUv4UDSLg-4" vertex="1">
           <mxGeometry x="10" y="280" width="150" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-11" value="Level ...:&lt;br&gt;Level Model Diff&lt;br&gt;Creatures&lt;br&gt;Items&lt;br&gt;Different States" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-10">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-11" value="Level ...:&lt;br&gt;Level Model Diff&lt;br&gt;Creatures&lt;br&gt;Items&lt;br&gt;Different States" style="rounded=0;whiteSpace=wrap;html=1;" parent="kXFOptWCvpmJUv4UDSLg-10" vertex="1">
           <mxGeometry x="20" y="110" width="120" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-12" value="Level ...:&lt;br&gt;Level Model Diff&lt;br&gt;Creatures&lt;br&gt;Items&lt;br&gt;Different States" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-10">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-12" value="Level ...:&lt;br&gt;Level Model Diff&lt;br&gt;Creatures&lt;br&gt;Items&lt;br&gt;Different States" style="rounded=0;whiteSpace=wrap;html=1;" parent="kXFOptWCvpmJUv4UDSLg-10" vertex="1">
           <mxGeometry x="20" y="200" width="120" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-14" value="Player Data" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-10">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-14" value="Player Data" style="rounded=0;whiteSpace=wrap;html=1;" parent="kXFOptWCvpmJUv4UDSLg-10" vertex="1">
           <mxGeometry x="20" y="30" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-15" value="Level Models" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-4">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-15" value="Level Models" style="swimlane;whiteSpace=wrap;html=1;" parent="kXFOptWCvpmJUv4UDSLg-4" vertex="1">
           <mxGeometry x="10" y="30" width="150" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-6" value="Level Model ..." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-15">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-6" value="Level Model ..." style="rounded=0;whiteSpace=wrap;html=1;" parent="kXFOptWCvpmJUv4UDSLg-15" vertex="1">
           <mxGeometry x="10" y="140" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-5" value="Level Model ..." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-15">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-5" value="Level Model ..." style="rounded=0;whiteSpace=wrap;html=1;" parent="kXFOptWCvpmJUv4UDSLg-15" vertex="1">
           <mxGeometry x="10" y="50" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-16" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" vertex="1" parent="kXFOptWCvpmJUv4UDSLg-4">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-16" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="kXFOptWCvpmJUv4UDSLg-4" vertex="1">
           <mxGeometry x="170" y="280" width="20" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="kXFOptWCvpmJUv4UDSLg-18" value="Хранятся в папке сохранений. Данные загружаются при загрузке сохранения.&amp;nbsp;&lt;br&gt;&lt;br&gt;При билде данные со сцены запекаются в этот начальный файл сохранения.&lt;br&gt;&lt;br&gt;Итоговый начальный файл сохранения содержит в себе все начальные данные для каждого уровня в игре." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="kXFOptWCvpmJUv4UDSLg-18" value="Хранятся в папке сохранений. Данные загружаются при загрузке сохранения.&amp;nbsp;&lt;br&gt;&lt;br&gt;При билде данные со сцены запекаются в этот начальный файл сохранения.&lt;br&gt;&lt;br&gt;Итоговый начальный файл сохранения содержит в себе все начальные данные для каждого уровня в игре." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="2450" y="280" width="150" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnBh-zUXXPtzdW-HIIG-2" value="New Game" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="-850" width="350" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnBh-zUXXPtzdW-HIIG-3" value="Save slot system&lt;br&gt;is used" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZmnBh-zUXXPtzdW-HIIG-2">
+          <mxGeometry x="30" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnBh-zUXXPtzdW-HIIG-4" value="On creating new game save slot had be created" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZmnBh-zUXXPtzdW-HIIG-2">
+          <mxGeometry x="30" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnBh-zUXXPtzdW-HIIG-5" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="ZmnBh-zUXXPtzdW-HIIG-2">
+          <mxGeometry x="60" y="250" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnBh-zUXXPtzdW-HIIG-8" value="Copy all level data from scene editors" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZmnBh-zUXXPtzdW-HIIG-2">
+          <mxGeometry x="150" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnBh-zUXXPtzdW-HIIG-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" source="sTKgu8o8D2LIeQviYa95-19" target="ZmnBh-zUXXPtzdW-HIIG-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="205" y="-380" />
+              <mxPoint x="860" y="-380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZmnBh-zUXXPtzdW-HIIG-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" source="sTKgu8o8D2LIeQviYa95-29" target="ZmnBh-zUXXPtzdW-HIIG-5">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
