@@ -5,7 +5,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.Mov
 {
     public static class MoveBehaviourFactory
     {
-        public static IMoveBehaviour CreateCreatureBehaviour(MovementType type, LevelModel levelModel)
+        public static MoveBehaviour CreateCreatureBehaviour(MovementType type, LevelModel levelModel)
         {
             return type switch
             {

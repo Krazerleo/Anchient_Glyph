@@ -9,9 +9,9 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
     public interface IActionCondition
     {
         public bool CanExecute(IEntityModel self, IEntityModel target,
-            IMoveBehaviour moveBehaviour, LevelModel levelModel);
+            MoveBehaviour moveBehaviour, LevelModel levelModel);
 
         public IFeedbackAction GetFeedback(IEntityModel self, IEntityModel target,
-            IMoveBehaviour moveBehaviour, LevelModel levelModel);
+            MoveBehaviour moveBehaviour, LevelModel levelModel);
     }
 }

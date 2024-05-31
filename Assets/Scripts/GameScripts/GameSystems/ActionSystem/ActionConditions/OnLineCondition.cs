@@ -25,7 +25,7 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
         }
 
         public bool CanExecute(IEntityModel self, IEntityModel target,
-            IMoveBehaviour moveBehaviour, LevelModel levelModel)
+            MoveBehaviour moveBehaviour, LevelModel levelModel)
         {
             if (self.Position.y != target.Position.y)
             {
@@ -54,7 +54,7 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
         // Step 1 : Calculate positions on two nearest lines to target considering min_max distance
         // Step 2 : For each position calculate distance and take one with minimum distance.
         public IFeedbackAction GetFeedback(IEntityModel self, IEntityModel target,
-            IMoveBehaviour moveBehaviour, LevelModel levelModel)
+            MoveBehaviour moveBehaviour, LevelModel levelModel)
         {
             var offset = moveBehaviour.CalculateNextStep(self.Position, target.Position);
 

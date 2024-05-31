@@ -36,11 +36,11 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem
         }
 
         public ICollection<IFeedbackAction> CanBeApplied(IEntityModel self, IEntityModel target,
-            IMoveBehaviour moveBehaviour, LevelModel levelModel)
+            MoveBehaviour moveBehaviour, LevelModel levelModel)
         {
-            var feedback = new List<IFeedbackAction>();
+            List<IFeedbackAction> feedback = new();
 
-            foreach (var condition in _applyConditions)
+            foreach (IActionCondition condition in _applyConditions)
             {
                 if (condition.CanExecute(self, target, moveBehaviour, levelModel) == false)
                 {

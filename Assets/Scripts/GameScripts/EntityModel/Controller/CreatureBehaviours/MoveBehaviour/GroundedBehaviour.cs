@@ -1,28 +1,11 @@
-﻿using AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding;
-using AncientGlyph.GameScripts.Constants;
-using AncientGlyph.GameScripts.GameWorldModel;
-using UnityEngine;
+﻿using AncientGlyph.GameScripts.GameWorldModel;
 
 namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.MoveBehaviour
 {
-    public class GroundedBehaviour : IMoveBehaviour
+    public sealed class GroundedBehaviour : MoveBehaviour
     {
-        private const int FreeAxis = 2;
-        private readonly PathFindingAlgorithm _algorithm;
+        public GroundedBehaviour(LevelModel levelModel) : base(levelModel) { }
 
-        public GroundedBehaviour(LevelModel levelModel)
-        {
-            _algorithm = new PathFindingAlgorithm(levelModel, FreeAxis, GameConstants.MaxPathFindingSteps, 8);
-        }
-
-        public Vector3Int? CalculateNextStep(Vector3Int currentPosition, Vector3Int targetPosition)
-        {
-            if (_algorithm.TryCalculate(currentPosition, targetPosition, out var path))
-            {
-                return path[0] - path[1];
-            }
-
-            return null;
-        }
+        protected override int FreeAxis => 2;
     }
 }

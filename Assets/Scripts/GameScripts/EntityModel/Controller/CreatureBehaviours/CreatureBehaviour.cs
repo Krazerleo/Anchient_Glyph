@@ -12,7 +12,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours
     {
         private IPriorityQueue<string, ActionConfig> _actionPriority;
         private IPriorityQueue<string, IFeedbackAction> _feedbackPriority;
-        private IMoveBehaviour _moveBehaviour;
+        private MoveBehaviour.MoveBehaviour _moveBehaviour;
         
         private CreatureBehaviour() { }
         
