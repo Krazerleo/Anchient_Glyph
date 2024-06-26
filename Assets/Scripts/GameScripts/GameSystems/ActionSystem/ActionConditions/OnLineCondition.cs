@@ -49,11 +49,12 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
 
             return levelModel.IsRayCollided(self.Position, target.Position) == false;
         }
-        
+
         public IFeedbackAction GetFeedback(IEntityModel self, IEntityModel target,
             MoveBehaviour moveBehaviour, LevelModel levelModel)
         {
-            Vector3Int? offset = moveBehaviour.CalculateNextStepToLine(self.Position, target.Position);
+            Vector3Int? offset = moveBehaviour.CalculateNextStepToLine(self.Position, target.Position,
+                                                                       _maxDistanceFromTarget);
 
             if (offset == null)
             {

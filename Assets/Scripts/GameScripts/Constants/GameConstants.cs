@@ -6,7 +6,7 @@ namespace AncientGlyph.GameScripts.Constants
         public const int LevelCellsSizeZ = 32;
         public const int LevelCellsSizeY = 6;
 
-        public const int MaxPathFindingSteps = 32;
+        public const int MaxPathFindingSteps = 128;
         
         /// <summary>
         /// Maximum size X of Item in Inventory measured in Grid Cell Sides

@@ -10,6 +10,7 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
     [Serializable]
     public class OnCloseCondition : IActionCondition
     {
+        // ReSharper disable once EmptyConstructor
         public OnCloseCondition() { }
         
         public bool CanExecute(IEntityModel self, IEntityModel target,

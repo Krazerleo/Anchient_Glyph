@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define DO_BENCHMARK
+
+using System;
 using System.Collections.Generic;
 using AncientGlyph.GameScripts.AlgorithmsAndStructures.PriorityQueue;
 using AncientGlyph.GameScripts.GameWorldModel;
@@ -6,10 +8,6 @@ using UnityEngine;
 
 namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
 {
-    /// <summary>
-    /// Typical A* Algorithm with some modifications
-    /// https://habr.com/ru/articles/513158/
-    /// </summary>
     public class PathFindingAlgorithm
     {
         private readonly PathFindingAlgoSettings _settings;
@@ -46,7 +44,7 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
             out IReadOnlyList<Vector3Int> path)
         {
             path = Array.Empty<Vector3Int>();
-            
+
             if (!GenerateNodes(start, target))
                 return false;
 

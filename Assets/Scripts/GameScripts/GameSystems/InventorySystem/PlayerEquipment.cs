@@ -23,8 +23,8 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private Dictionary<(EquipableItemType, object), EquipableItem> _equipableSlots;
 
         public bool TrySetItemInSlot(EquipableItem item, EquipableItemType selectedSlot,
-            HandWeaponSelector whatHand = HandWeaponSelector.None,
-            TrinketSelector whatTrinket = TrinketSelector.None,
+            HandWeaponSelector whichHandSlot = HandWeaponSelector.None,
+            TrinketSelector whichTrinketSlot = TrinketSelector.None,
             bool pushItemToSlot = false)
         {
             if (item.Type != selectedSlot)
@@ -38,48 +38,48 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             switch (item.Type)
             {
                 case EquipableItemType.Weapon:
-                    if (whatHand == HandWeaponSelector.None)
+                    if (whichHandSlot == HandWeaponSelector.None)
                     {
                         _logger.LogWarning("Specify whatHand parameter");
                     }
 
-                    EquipableItem weaponSlot = _equipableSlots[(EquipableItemType.Weapon, whatHand)];
+                    EquipableItem weaponSlot = _equipableSlots[(EquipableItemType.Weapon, whichHandSlot)];
 
                     if (weaponSlot is not FreeEquipSlot)
                     {
-                        _logger.LogTrace($"Tried to push weapon {item.Name} to {whatHand}: " +
+                        _logger.LogTrace($"Tried to push weapon {item.Name} to {whichHandSlot}: " +
                                          $"slot already occupied by {weaponSlot.Name}");
                         return false;
                     }
 
                     if (pushItemToSlot)
                     {
-                        _equipableSlots[(EquipableItemType.Weapon, whatHand)] = item;
-                        _logger.LogTrace($"Pushed weapon {item.Name} to weapon slot {whatHand}");
+                        _equipableSlots[(EquipableItemType.Weapon, whichHandSlot)] = item;
+                        _logger.LogTrace($"Pushed weapon {item.Name} to weapon slot {whichHandSlot}");
                         return true;
                     }
 
                     return false;
 
                 case EquipableItemType.Trinket:
-                    if (whatTrinket == TrinketSelector.None)
+                    if (whichTrinketSlot == TrinketSelector.None)
                     {
                         _logger.LogWarning("Specify whatTrinket parameter");
                     }
 
-                    EquipableItem trinketSlot = _equipableSlots[(EquipableItemType.Trinket, whatTrinket)];
+                    EquipableItem trinketSlot = _equipableSlots[(EquipableItemType.Trinket, whichTrinketSlot)];
 
                     if (trinketSlot is not FreeEquipSlot)
                     {
-                        _logger.LogTrace($"Tried to push trinket {item.Name} to {whatTrinket}: " +
+                        _logger.LogTrace($"Tried to push trinket {item.Name} to {whichTrinketSlot}: " +
                                          $"slot is already occupied by {trinketSlot.Name}");
                         return false;
                     }
 
                     if (pushItemToSlot)
                     {
-                        _equipableSlots[(EquipableItemType.Trinket, whatTrinket)] = item;
-                        _logger.LogTrace($"Pushed trinket {item.Name} to trinket slot {whatTrinket}");
+                        _equipableSlots[(EquipableItemType.Trinket, whichTrinketSlot)] = item;
+                        _logger.LogTrace($"Pushed trinket {item.Name} to trinket slot {whichTrinketSlot}");
                         return true;
                     }
 

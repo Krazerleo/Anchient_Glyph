@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f197d7304b3e64f85326e2d5c25f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureTraits: {fileID: 11400000, guid: da5b79a03dd283547a439ed93b2bf4e4, type: 2}
+  CreatureTraits: {fileID: 11400000, guid: ae77b83a87aaff64eace94dfbe8fdc60, type: 2}
 --- !u!114 &2707711841196054300
 MonoBehaviour:
   m_ObjectHideFlags: 0

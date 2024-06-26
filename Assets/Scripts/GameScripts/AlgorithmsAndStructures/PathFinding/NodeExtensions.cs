@@ -39,23 +39,6 @@ namespace AncientGlyph.GameScripts.AlgorithmsAndStructures.PathFinding
             }
         }
 
-        public static void FillForLine(this PathNode[] buffer, PathNode parent, Vector3Int target, int freeAxis)
-        {
-            IReadOnlyCollection<(Vector3Int offset, float cost)> template = FillTemplate(freeAxis);
-
-            int bufferIndex = 0;
-            foreach ((Vector3Int offset, float cost) in template)
-            {
-                Vector3Int nodePosition = offset + parent.Position;
-                float traverseDistance = parent.TraverseDistance + cost;
-
-                Vector3Int xProjection = new(nodePosition.x, nodePosition.y, target.z);
-                Vector3Int zProjection = new(target.x, nodePosition.y, nodePosition.z);
-
-                buffer[bufferIndex++] = new PathNode(nodePosition, target, traverseDistance);
-            }
-        }
-
         private static IReadOnlyCollection<(Vector3Int offset, float cost)> FillTemplate(int freeAxis)
         {
             IReadOnlyCollection<(Vector3Int offset, float cost)> template = freeAxis switch
