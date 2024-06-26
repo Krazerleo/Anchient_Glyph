@@ -6,6 +6,6 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.Mov
     {
         public GroundedBehaviour(LevelModel levelModel) : base(levelModel) { }
 
-        protected override int FreeAxis => 2;
+        protected override int DoF => 2;
     }
 }

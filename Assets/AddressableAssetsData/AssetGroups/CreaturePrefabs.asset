@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - creature
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab7c17f62d2b34544b90a8f37341dd06
+    m_Address: Assets/Level/Prefab/Creatures/test_creature_2/test_creature_2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - creature
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8accd8095bd26bc499267b21d179e59e, type: 2}
   m_SchemaSet:

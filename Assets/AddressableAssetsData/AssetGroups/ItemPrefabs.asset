@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Address: Assets/Level/Prefab/Items/test_item_1/test_item_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - items
+    - item
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8accd8095bd26bc499267b21d179e59e, type: 2}

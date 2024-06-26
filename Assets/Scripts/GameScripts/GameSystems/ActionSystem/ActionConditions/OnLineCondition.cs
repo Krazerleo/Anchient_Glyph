@@ -16,8 +16,8 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
         [SerializeField]
         private int _maxDistanceFromTarget;
 
-        public OnLineCondition() {}
-        
+        public OnLineCondition() { }
+
         public OnLineCondition(int minDistanceFromTarget, int maxDistanceFromTarget)
         {
             _minDistanceFromTarget = minDistanceFromTarget;
@@ -38,7 +38,7 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
                 return false;
             }
 
-            var distance = Math.Max(
+            int distance = Math.Max(
                 Math.Abs(self.Position.x - target.Position.x),
                 Math.Abs(self.Position.z - target.Position.z));
 
@@ -49,14 +49,11 @@ namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions
 
             return levelModel.IsRayCollided(self.Position, target.Position) == false;
         }
-
-        // TODO : Implement more smart and distance sensitive solution
-        // Step 1 : Calculate positions on two nearest lines to target considering min_max distance
-        // Step 2 : For each position calculate distance and take one with minimum distance.
+        
         public IFeedbackAction GetFeedback(IEntityModel self, IEntityModel target,
             MoveBehaviour moveBehaviour, LevelModel levelModel)
         {
-            var offset = moveBehaviour.CalculateNextStep(self.Position, target.Position);
+            Vector3Int? offset = moveBehaviour.CalculateNextStepToLine(self.Position, target.Position);
 
             if (offset == null)
             {

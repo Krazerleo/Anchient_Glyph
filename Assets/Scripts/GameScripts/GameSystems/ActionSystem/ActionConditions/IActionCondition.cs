@@ -1,7 +1,6 @@
 ﻿using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.MoveBehaviour;
 using AncientGlyph.GameScripts.GameSystems.ActionSystem.FeedbackActions;
-using AncientGlyph.GameScripts.GameSystems.EffectSystem;
 using AncientGlyph.GameScripts.GameWorldModel;
 
 namespace AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions

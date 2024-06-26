@@ -6,6 +6,6 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.Mov
     {
         public FlyingBehaviour(LevelModel levelModel) : base(levelModel) { }
 
-        protected override int FreeAxis => 3;
+        protected override int DoF => 3;
     }
 }

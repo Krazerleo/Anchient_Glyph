@@ -8,20 +8,42 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.Mov
 {
     public abstract class MoveBehaviour
     {
-        protected abstract int FreeAxis { get; }
-        private readonly PathFindingAlgorithm _algorithm;
+        protected abstract int DoF { get; }
+        private readonly PathFindingAlgorithm _pointAlgorithm;
+        private readonly PathFindingAlgorithm _onLineAlgorithm;
 
         protected MoveBehaviour(LevelModel levelModel)
         {
             // ReSharper disable once VirtualMemberCallInConstructor
-            _algorithm = new PathFindingAlgorithm(levelModel, FreeAxis, GameConstants.MaxPathFindingSteps, 8);
+            _pointAlgorithm = new PathFindingAlgorithm(levelModel,
+                                                       new PathFindingAlgoSettings(
+                                                           DoF, GameConstants.MaxPathFindingSteps,
+                                                           NodeExtensions.FillForPoint), 
+                                                       8);
+            
+            // ReSharper disable once VirtualMemberCallInConstructor
+            _onLineAlgorithm = new PathFindingAlgorithm(levelModel,
+                                                        new PathFindingAlgoSettings(
+                                                            DoF, GameConstants.MaxPathFindingSteps,
+                                                            NodeExtensions.FillForLine), 
+                                                        8);
         }
 
-        public Vector3Int? CalculateNextStep(Vector3Int currentPosition, Vector3Int targetPosition)
+        public Vector3Int? CalculateNextStepToPoint(Vector3Int currentPosition, Vector3Int targetPosition)
         {
-            if (_algorithm.TryCalculate(currentPosition, targetPosition, out IReadOnlyList<Vector3Int> path))
+            if (_pointAlgorithm.TryCalculate(currentPosition, targetPosition, out IReadOnlyList<Vector3Int> path))
             {
-                return path[0] - path[1];
+                return path[^2] - path[^1];
+            }
+
+            return null;
+        }
+
+        public Vector3Int? CalculateNextStepToLine(Vector3Int currentPosition, Vector3Int targetPosition)
+        {
+            if (_onLineAlgorithm.TryCalculate(currentPosition, targetPosition, out IReadOnlyList<Vector3Int> path))
+            {
+                return path[^2] - path[^1];
             }
 
             return null;

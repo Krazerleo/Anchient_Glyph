@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: adbb13a5534f7254b950ce87c552abed
   m_currentHash:
     serializedVersion: 2
-    Hash: edecc37872f76763ad1c851cbb191bbd
+    Hash: 8caaf9b87bd6a8f3dee21e65bdd551eb
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - creature
-    - items
+    - item
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 0bf1e5281238bc4498ae8c756fc255da, type: 2}

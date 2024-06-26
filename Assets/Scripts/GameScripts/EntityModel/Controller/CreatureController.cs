@@ -6,6 +6,7 @@ using AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects;
 using AncientGlyph.GameScripts.GameWorldModel;
 using AncientGlyph.GameScripts.Services.LoggingService;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace AncientGlyph.GameScripts.EntityModel.Controller
 {
@@ -59,7 +60,7 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller
 
         public void ExecuteMove(GoToAction goToAction)
         {
-            var offset = goToAction.Offset;
+            Vector3Int offset = goToAction.Offset;
 
             if (_creatureModel.TryMoveToNextCell(offset, _levelModel))
             {
