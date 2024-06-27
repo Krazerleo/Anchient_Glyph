@@ -39,11 +39,11 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.Mov
         {
             Vector3Int xProjectedPosition = new(targetPosition.x, currentPosition.y, currentPosition.z);
             (Vector3Int? dir, int? dist) possibleOffsetToXProjection =
-                GetBestFitDirection(currentPosition, targetPosition, xProjectedPosition, maxDistance);
+                GetMoveToProjection(currentPosition, targetPosition, xProjectedPosition, maxDistance);
 
             Vector3Int zProjectedPosition = new(currentPosition.x, currentPosition.y, targetPosition.z);
             (Vector3Int? dir, int? dist) possibleOffsetToZProjection =
-                GetBestFitDirection(currentPosition, targetPosition, zProjectedPosition, maxDistance);
+                GetMoveToProjection(currentPosition, targetPosition, zProjectedPosition, maxDistance);
 
             if (possibleOffsetToXProjection.dir != null && possibleOffsetToZProjection.dir != null)
             {
@@ -70,7 +70,8 @@ namespace AncientGlyph.GameScripts.EntityModel.Controller.CreatureBehaviours.Mov
             return null;
         }
 
-        private (Vector3Int? direction, int? distance) GetBestFitDirection(
+        // TODO: Return path to projection
+        private (Vector3Int? direction, int? distance) GetMoveToProjection(
             Vector3Int currentPosition, Vector3Int targetPosition,
             Vector3Int projectedPosition, int maxDistance)
         {

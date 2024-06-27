@@ -8,19 +8,18 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
     public class PlayerEquipment
     {
         private readonly FreeEquipSlot _freeEquipSlot;
+        private readonly ILoggingService _logger;
         private readonly TwoHandedOccupiedSlot _twoHandedOccupiedSlot;
+        private Dictionary<(EquipableItemType, object), EquipableItem> _equipableSlots;
 
         public PlayerEquipment(ILoggingService logger)
         {
             _logger = logger;
-
             _freeEquipSlot = ScriptableObject.CreateInstance<FreeEquipSlot>();
             _twoHandedOccupiedSlot = ScriptableObject.CreateInstance<TwoHandedOccupiedSlot>();
+            
             InitializeEquipmentCollection();
         }
-
-        private readonly ILoggingService _logger;
-        private Dictionary<(EquipableItemType, object), EquipableItem> _equipableSlots;
 
         public bool TrySetItemInSlot(EquipableItem item, EquipableItemType selectedSlot,
             HandWeaponSelector whichHandSlot = HandWeaponSelector.None,
