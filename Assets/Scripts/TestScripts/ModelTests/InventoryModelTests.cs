@@ -24,7 +24,7 @@ namespace AncientGlyph.TestScripts.ModelTests
                 new Vector2Int(1, 0),
             });
 
-            Assert.IsTrue(inventoryModel.CanItemPlaced(0, 0, gameItem));
+            Assert.IsTrue(inventoryModel.CanItemBePlaced(0, 0, gameItem));
         }
         
         [Test]
@@ -48,7 +48,7 @@ namespace AncientGlyph.TestScripts.ModelTests
             });
 
             Assert.IsTrue(inventoryModel.TryPlaceItemToPosition(1, 1, gameItemObstacle));
-            Assert.IsFalse(inventoryModel.CanItemPlaced(0, 0, gameItem));
+            Assert.IsFalse(inventoryModel.CanItemBePlaced(0, 0, gameItem));
         }
         
         [Test]
@@ -71,7 +71,7 @@ namespace AncientGlyph.TestScripts.ModelTests
             });
 
             Assert.IsTrue(inventoryModel.TryPlaceItemToPosition(1, 1, gameItemObstacle));
-            Assert.IsTrue(inventoryModel.CanItemPlaced(0, 0, gameItem));
+            Assert.IsTrue(inventoryModel.CanItemBePlaced(0, 0, gameItem));
         }
         
         [Test]

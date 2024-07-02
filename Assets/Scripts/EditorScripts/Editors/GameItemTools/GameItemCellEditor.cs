@@ -43,9 +43,14 @@ namespace AncientGlyph.EditorScripts.Editors.GameItemTools
             return _root;
         }
 
-        public void OnDisable()
+        public void OnDestroy()
         {
             if (_inspectedGameItem == null)
+            {
+                return;
+            }
+
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
             {
                 return;
             }

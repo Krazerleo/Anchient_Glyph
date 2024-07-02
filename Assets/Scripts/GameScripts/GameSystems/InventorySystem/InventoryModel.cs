@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using UnityEngine;
 
 namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 {
-    public class InventoryModel
+    public partial class InventoryModel
     {
         public int Width { get; }
         public int Height { get; }
@@ -66,35 +65,36 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             return true;
         }
 
-        public bool TryPlaceItemToPosition(int xPosition, int yPosition, GameItem item)
+        public bool TryPlaceItemToPosition(Vector2Int position, GameItem item)
         {
-            if (CanItemPlaced(xPosition, yPosition, item) == false)
+            if (CanItemBePlaced(position, item) == false)
             {
                 return false;
             }
 
-            Vector2Int pivotCell = item.CellSet.GetDefinedGeometry().First();
-
             foreach (Vector2Int itemCell in item.CellSet.GetDefinedGeometry())
             {
-                Vector2Int addedCellPosition = new(xPosition + itemCell.x, yPosition + itemCell.y);
+                Vector2Int addedCellPosition = new(position.x + itemCell.x, position.y + itemCell.y);
 
                 InventoryCell addedCell = this[addedCellPosition.x, addedCellPosition.y];
                 addedCell.ItemId = item.ItemId;
-                addedCell.ItemPivotCell = pivotCell;
+                addedCell.ItemPivotCell = position;
                 this[addedCellPosition.x, addedCellPosition.y] = addedCell;
             }
 
-            _itemPivots.Add(pivotCell, item);
+            _itemPivots.Add(position, item);
 
             return true;
         }
 
-        public bool CanItemPlaced(int xPosition, int yPosition, GameItem item)
+        public bool TryPlaceItemToPosition(int xPosition, int yPosition, GameItem item) =>
+            TryPlaceItemToPosition(new Vector2Int(xPosition, yPosition), item);
+
+        public bool CanItemBePlaced(Vector2Int position, GameItem item)
         {
             foreach (Vector2Int itemCell in item.CellSet.GetDefinedGeometry())
             {
-                Vector2Int addedCellPosition = new(xPosition + itemCell.x, yPosition + itemCell.y);
+                Vector2Int addedCellPosition = new(position.x + itemCell.x, position.y + itemCell.y);
 
                 if (addedCellPosition.x >= Width || addedCellPosition.x < 0 ||
                     addedCellPosition.y >= Height || addedCellPosition.y < 0)
@@ -113,10 +113,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             return true;
         }
 
-        private struct InventoryCell
-        {
-            public uint ItemId { get; set; }
-            public Vector2Int ItemPivotCell { get; set; }
-        }
+        public bool CanItemBePlaced(int xPosition, int yPosition, GameItem item) =>
+            CanItemBePlaced(new Vector2Int(xPosition, yPosition), item);
     }
 }

@@ -2,6 +2,7 @@
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
 using AncientGlyph.GameScripts.Services.SaveDataService;
+using AncientGlyph.GameScripts.UserInterface;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -9,7 +10,7 @@ using Zenject;
 
 namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 {
-    public class InventoryView : MonoBehaviour
+    public partial class InventoryView : MonoBehaviour
     {
         private const string InventoryMainName = "MainInventory";
         private const string InventoryLeftName = "LeftInventory";
@@ -25,12 +26,13 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private int _rotations;
         private GameItemView _capturedGameItem;
-        private VisualElement _itemIconElement;
-        private VisualElement _inventoryUiDocument;
+        private VisualElement _itemIcon;
+        private VisualElement _inventoryUi;
+        private VisualElement _iconSpace;
+        private VisualElement _ghostIcon;
 
         [SerializeField]
         private UIDocument _playerSideWindowUiDocument;
-
 
         [SerializeField]
         private Camera _camera;
@@ -48,7 +50,8 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             _inventoryLeft = saveDataService.PlayerInfo.InventoryInfo.ExtraInventoryLeft;
             _inventoryRight = saveDataService.PlayerInfo.InventoryInfo.ExtraInventoryRight;
 
-            _inventoryUiDocument = _playerSideWindowUiDocument.rootVisualElement.Q(InventoryName);
+            _inventoryUi = _playerSideWindowUiDocument.rootVisualElement.Q(InventoryName);
+            _iconSpace = _playerSideWindowUiDocument.rootVisualElement.Q(IconSpaceName);
 
             AddBindings();
             ToggleInventory(default);
@@ -121,6 +124,32 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             if (rootAllInventoryElement == null)
             {
                 Debug.LogError($"Not found UI inventory: should be named {InventoryName}");
+                return;
+            }
+
+            rootAllInventoryElement.RegisterCallback<MouseEnterEvent>(OnMouseEnterInventorySpace);
+            rootAllInventoryElement.RegisterCallback<MouseLeaveEvent>(OnMouseLeaveInventorySpace);
+
+            return;
+
+            void OnMouseEnterInventorySpace(MouseEnterEvent mouseEvent)
+            {
+                if (_capturedGameItem == null)
+                {
+                    return;
+                }
+
+                _itemIcon.visible = false;
+            }
+
+            void OnMouseLeaveInventorySpace(MouseLeaveEvent mouseEvent)
+            {
+                if (_capturedGameItem == null)
+                {
+                    return;
+                }
+
+                _itemIcon.visible = true;
             }
         }
 
@@ -145,11 +174,11 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                 return;
             }
 
-            for (int i = 0; i < inventory.Height; i++)
+            for (int j = 0; j < inventory.Height; j++)
             {
-                for (int j = 0; j < inventory.Width; j++)
+                for (int i = 0; i < inventory.Width; i++)
                 {
-                    VisualElement slot = slots[j + i * inventory.Width];
+                    VisualElement slot = slots[i + j * inventory.Width];
                     InventoryPosition inventoryPosition = new(new Vector2Int(i, j), inventory);
 
                     slot.RegisterCallback<MouseEnterEvent, InventoryPosition>(OnMouseEnterItemSlot, inventoryPosition);
@@ -159,59 +188,25 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             }
         }
 
-        private void InstantiateItemIconOnUI(Sprite sprite, Rect rectToPlace,
-            string iconName, out VisualElement iconElement)
-        {
-            iconElement = new VisualElement
-            {
-                name = iconName,
-                style =
-                {
-                    height = rectToPlace.height,
-                    width = rectToPlace.width,
-                    top = rectToPlace.y,
-                    left = rectToPlace.x,
-                    backgroundImage = new StyleBackground(sprite),
-                    position = new StyleEnum<Position>(Position.Absolute),
-                },
-                pickingMode = PickingMode.Ignore,
-            };
-
-            _inventoryUiDocument.Add(iconElement);
-        }
-
-        private void DestroyItemIconOnUI(VisualElement itemIconElement)
-        {
-            if (itemIconElement == null)
-            {
-                return;
-            }
-
-            VisualElement iconParent = itemIconElement.parent;
-            iconParent?.Remove(itemIconElement);
-        }
-
         private void OnMouseEnterItemSlot(MouseEnterEvent mouseEvent,
             InventoryPosition inventoryPosition)
         {
-            VisualElement slotVisualElement = mouseEvent.currentTarget as VisualElement;
-                
+            VisualElement slotVisualElement = (mouseEvent.currentTarget as VisualElement)!;
+
             if (_capturedGameItem == null)
             {
                 return;
             }
 
-            if (inventoryPosition.ParentInventory.CanItemPlaced(
-                    inventoryPosition.SlotModelPosition.x,
-                    inventoryPosition.SlotModelPosition.y,
-                    _capturedGameItem.GameItem))
+            if (inventoryPosition.ParentInventory.CanItemBePlaced(
+                    inventoryPosition.SlotModelPosition, _capturedGameItem.GameItem))
             {
-                InstantiateItemIconOnUI(_capturedGameItem.GameItem.GhostIcon,
-                                        new Rect(slotVisualElement!.worldBound.x,
-                                                 slotVisualElement!.worldBound.y,
-                                                 FileConstants.ItemImageCellSize * 4,
-                                                 FileConstants.ItemImageCellSize * 4),
-                                        _capturedGameItem.GameItem.Name, out VisualElement _);
+                _ghostIcon = _inventoryUi.AttachIcon(_capturedGameItem.GameItem.GhostIcon,
+                                                     new Rect(slotVisualElement.worldBound.x,
+                                                              slotVisualElement.worldBound.y,
+                                                              FileConstants.ItemImageCellSize * 4,
+                                                              FileConstants.ItemImageCellSize * 4),
+                                                     _capturedGameItem.GameItem.Name);
             }
         }
 
@@ -222,8 +217,8 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             {
                 return;
             }
-            // TODO : Implement moving item in inventory grid
-            //Debug.Log($"Mouse leave icon slot {inventoryPosition.SlotModelPosition}");
+
+            _ghostIcon.Dispose();
         }
 
         private void OnMouseUpInItemSlot(MouseUpEvent mouseEvent,
@@ -231,30 +226,46 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         {
             if (_capturedGameItem == null)
             {
+                // TODO : Implement taking item from inventory grid
                 return;
             }
 
-            DestroyItemIconOnUI(_itemIconElement);
+            if (inventoryPosition.ParentInventory.CanItemBePlaced(inventoryPosition.SlotModelPosition,
+                                                                _capturedGameItem.GameItem))
+            {
+                inventoryPosition.ParentInventory.TryPlaceItemToPosition(inventoryPosition.SlotModelPosition,
+                                                                         _capturedGameItem.GameItem);
+                
+                VisualElement slotVisualElement = (mouseEvent.currentTarget as VisualElement)!;
+                _inventoryUi.AttachIcon(_capturedGameItem.GameItem.Icon,
+                                       new Rect(slotVisualElement.worldBound.x,
+                                                slotVisualElement.worldBound.y,
+                                                FileConstants.ItemImageCellSize * 4,
+                                                FileConstants.ItemImageCellSize * 4),
+                                       ItemIconName);
+                
+                _ghostIcon.Dispose();
+            }
 
-            // TODO : Implement taking item from inventory grid
-            //Debug.Log($"Mouse up icon slot {inventoryPosition.SlotModelPosition}");
+            DropGameItem();
         }
-
+        
         private void OnMouseUpInIconSpace(MouseUpEvent mouseUpEvent)
         {
-            DestroyItemIconOnUI(_itemIconElement);
+            _itemIcon.Dispose();
+            DropGameItem();
         }
 
         private void OnMouseMoveInIconSpace(MouseMoveEvent mouseMoveEvent)
         {
-            if (_itemIconElement == null)
+            if (_itemIcon == null)
             {
                 return;
             }
 
             Vector2 mousePosition = mouseMoveEvent.mousePosition;
-            _itemIconElement.style.top = mousePosition.y;
-            _itemIconElement.style.left = mousePosition.x;
+            _itemIcon.style.top = mousePosition.y;
+            _itemIcon.style.left = mousePosition.x;
         }
 
         // Grabbed item from environment
@@ -269,31 +280,22 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                 GameObject clickedObject = hitPoint.collider.gameObject;
                 clickedObject = clickedObject.transform.parent.gameObject;
 
-                if (clickedObject.TryGetComponent<GameItemView>(out var itemView))
+                if (clickedObject.TryGetComponent(out GameItemView itemView))
                 {
                     _capturedGameItem = itemView;
-                    InstantiateItemIconOnUI(
-                        _capturedGameItem.GameItem.Icon,
-                        new Rect(mousePosition.x, mousePosition.y,
-                                 FileConstants.ItemImageCellSize * 4,
-                                 FileConstants.ItemImageCellSize * 4),
-                        ItemIconName, out VisualElement resultIcon);
-
-                    _itemIconElement = resultIcon;
+                    _itemIcon = _iconSpace.AttachIcon(_capturedGameItem.GameItem.Icon,
+                                                      new Rect(mousePosition.x, mousePosition.y,
+                                                               FileConstants.ItemImageCellSize * 4,
+                                                               FileConstants.ItemImageCellSize * 4),
+                                                      ItemIconName);
                 }
             }
         }
-
-        private readonly struct InventoryPosition
+        
+        private void DropGameItem()
         {
-            public readonly Vector2Int SlotModelPosition;
-            public readonly InventoryModel ParentInventory;
-
-            public InventoryPosition(Vector2Int slotModelPosition, InventoryModel inventory)
-            {
-                SlotModelPosition = slotModelPosition;
-                ParentInventory = inventory;
-            }
+            _capturedGameItem = null;
+            //TODO: Implement item dropping
         }
     }
 }

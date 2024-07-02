@@ -24,7 +24,7 @@ MonoBehaviour:
       type: {class: OnLineCondition, ns: AncientGlyph.GameScripts.GameSystems.ActionSystem.ActionConditions, asm: GameScriptsAssembly}
       data:
         _minDistanceFromTarget: 0
-        _maxDistanceFromTarget: 5
+        _maxDistanceFromTarget: 20
     - rid: 1576924578347220994
       type: {class: DamageEffect, ns: AncientGlyph.GameScripts.GameSystems.EffectSystem.Effects, asm: GameScriptsAssembly}
       data:
