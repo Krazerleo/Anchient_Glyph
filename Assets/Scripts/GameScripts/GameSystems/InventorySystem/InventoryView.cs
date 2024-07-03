@@ -17,25 +17,18 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private const string InventoryRightName = "RightInventory";
         private const string InventoryName = "Inventory";
         private const string IconSpaceName = "IconSpace";
-        private const string ItemIconName = "ItemIcon";
         private const string SideWindowName = "SideWindow";
 
         private InventoryModel _inventoryMain;
         private InventoryModel _inventoryLeft;
         private InventoryModel _inventoryRight;
 
-        private int _rotations;
-        private GameItemView _capturedGameItem;
-        private VisualElement _itemIcon;
         private VisualElement _inventoryUi;
-        private VisualElement _iconSpace;
         private VisualElement _ghostIcon;
+        private GameItemManipulator _manipulator;
 
         [SerializeField]
         private UIDocument _playerSideWindowUiDocument;
-
-        [SerializeField]
-        private Camera _camera;
 
         [SerializeField]
         private InputActionReference _onCloseInventory;
@@ -44,14 +37,15 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private InputActionReference _onRotateItem;
 
         [Inject]
-        public void Construct(ISaveDataService saveDataService)
+        public void Construct(ISaveDataService saveDataService, Camera mainCamera)
         {
             _inventoryMain = saveDataService.PlayerInfo.InventoryInfo.MainInventory;
             _inventoryLeft = saveDataService.PlayerInfo.InventoryInfo.ExtraInventoryLeft;
             _inventoryRight = saveDataService.PlayerInfo.InventoryInfo.ExtraInventoryRight;
-
             _inventoryUi = _playerSideWindowUiDocument.rootVisualElement.Q(InventoryName);
-            _iconSpace = _playerSideWindowUiDocument.rootVisualElement.Q(IconSpaceName);
+            
+            VisualElement iconSpace = _playerSideWindowUiDocument.rootVisualElement.Q(IconSpaceName);
+            _manipulator = new GameItemManipulator(mainCamera, iconSpace);
 
             AddBindings();
             ToggleInventory(default);
@@ -86,16 +80,11 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private void AddRotateAction()
             => _onRotateItem.action.performed += RotateItem;
 
-        private void RotateItem(InputAction.CallbackContext context)
-        {
-            if (_capturedGameItem != null) { }
-        }
+        private void RotateItem(InputAction.CallbackContext context) => _manipulator.RotateItem();
 
         private void ToggleInventory(InputAction.CallbackContext context)
         {
-            VisualElement sideWindow = _playerSideWindowUiDocument.rootVisualElement
-                .Query(SideWindowName)
-                .First();
+            VisualElement sideWindow = _playerSideWindowUiDocument.rootVisualElement.Q(SideWindowName);
 
             sideWindow.visible = !sideWindow.visible;
         }
@@ -117,9 +106,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void AddInventorySpaceInteraction()
         {
-            VisualElement rootAllInventoryElement = _playerSideWindowUiDocument.rootVisualElement
-                .Query(InventoryName)
-                .First();
+            VisualElement rootAllInventoryElement = _playerSideWindowUiDocument.rootVisualElement.Q(InventoryName);
 
             if (rootAllInventoryElement == null)
             {
@@ -129,36 +116,16 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
             rootAllInventoryElement.RegisterCallback<MouseEnterEvent>(OnMouseEnterInventorySpace);
             rootAllInventoryElement.RegisterCallback<MouseLeaveEvent>(OnMouseLeaveInventorySpace);
-
-            return;
-
-            void OnMouseEnterInventorySpace(MouseEnterEvent mouseEvent)
-            {
-                if (_capturedGameItem == null)
-                {
-                    return;
-                }
-
-                _itemIcon.visible = false;
-            }
-
-            void OnMouseLeaveInventorySpace(MouseLeaveEvent mouseEvent)
-            {
-                if (_capturedGameItem == null)
-                {
-                    return;
-                }
-
-                _itemIcon.visible = true;
-            }
         }
+
+        private void OnMouseEnterInventorySpace(MouseEnterEvent mouseEvent) => _manipulator.HideItemIcon();
+
+        private void OnMouseLeaveInventorySpace(MouseLeaveEvent mouseEvent) => _manipulator.ShowItemIcon();
 
         private void AddBindingsToInventory(InventoryModel inventory,
             string inventoryViewName)
         {
-            VisualElement rootInventoryElement = _playerSideWindowUiDocument.rootVisualElement
-                .Query(inventoryViewName)
-                .First();
+            VisualElement rootInventoryElement = _playerSideWindowUiDocument.rootVisualElement.Q(inventoryViewName);
 
             if (rootInventoryElement == null)
             {
@@ -192,110 +159,72 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             InventoryPosition inventoryPosition)
         {
             VisualElement slotVisualElement = (mouseEvent.currentTarget as VisualElement)!;
+            GameItem gameItem = _manipulator.GameItem;
 
-            if (_capturedGameItem == null)
+            if (gameItem == null)
             {
                 return;
             }
 
             if (inventoryPosition.ParentInventory.CanItemBePlaced(
-                    inventoryPosition.SlotModelPosition, _capturedGameItem.GameItem))
+                    inventoryPosition.SlotModelPosition, gameItem))
             {
-                _ghostIcon = _inventoryUi.AttachIcon(_capturedGameItem.GameItem.GhostIcon,
+                // TODO: REWORK TO HIDE GHOST ICON
+                _ghostIcon = _inventoryUi.AttachIcon(gameItem.GhostIcon,
                                                      new Rect(slotVisualElement.worldBound.x,
                                                               slotVisualElement.worldBound.y,
                                                               FileConstants.ItemImageCellSize * 4,
                                                               FileConstants.ItemImageCellSize * 4),
-                                                     _capturedGameItem.GameItem.Name);
+                                                     gameItem.Name);
             }
         }
 
         private void OnMouseLeaveItemSlot(MouseLeaveEvent mouseEvent,
             InventoryPosition inventoryPosition)
         {
-            if (_capturedGameItem == null)
+            if (_manipulator.GameItem != null)
             {
-                return;
+                _ghostIcon.Dispose();
             }
-
-            _ghostIcon.Dispose();
         }
 
         private void OnMouseUpInItemSlot(MouseUpEvent mouseEvent,
             InventoryPosition inventoryPosition)
         {
-            if (_capturedGameItem == null)
+            if (_manipulator.GameItem == null)
             {
                 // TODO : Implement taking item from inventory grid
                 return;
             }
 
             if (inventoryPosition.ParentInventory.CanItemBePlaced(inventoryPosition.SlotModelPosition,
-                                                                _capturedGameItem.GameItem))
+                                                                  _manipulator.GameItem))
             {
                 inventoryPosition.ParentInventory.TryPlaceItemToPosition(inventoryPosition.SlotModelPosition,
-                                                                         _capturedGameItem.GameItem);
-                
+                                                                         _manipulator.GameItem);
+
                 VisualElement slotVisualElement = (mouseEvent.currentTarget as VisualElement)!;
-                _inventoryUi.AttachIcon(_capturedGameItem.GameItem.Icon,
-                                       new Rect(slotVisualElement.worldBound.x,
-                                                slotVisualElement.worldBound.y,
-                                                FileConstants.ItemImageCellSize * 4,
-                                                FileConstants.ItemImageCellSize * 4),
-                                       ItemIconName);
-                
+                _inventoryUi.AttachIcon(_manipulator.GameItem.Icon,
+                                        new Rect(slotVisualElement.worldBound.x,
+                                                 slotVisualElement.worldBound.y,
+                                                 FileConstants.ItemImageCellSize * 4,
+                                                 FileConstants.ItemImageCellSize * 4),
+                                        GameItemManipulator.ItemIconName);
+
                 _ghostIcon.Dispose();
             }
 
-            DropGameItem();
-        }
-        
-        private void OnMouseUpInIconSpace(MouseUpEvent mouseUpEvent)
-        {
-            _itemIcon.Dispose();
-            DropGameItem();
+            _manipulator.DropItem();
         }
 
-        private void OnMouseMoveInIconSpace(MouseMoveEvent mouseMoveEvent)
-        {
-            if (_itemIcon == null)
-            {
-                return;
-            }
+        private void OnMouseUpInIconSpace(MouseUpEvent mouseUpEvent) =>
+            _manipulator.ThrowAwayItem(mouseUpEvent.mousePosition.ToScreenSpace());
 
-            Vector2 mousePosition = mouseMoveEvent.mousePosition;
-            _itemIcon.style.top = mousePosition.y;
-            _itemIcon.style.left = mousePosition.x;
-        }
+        private void OnMouseMoveInIconSpace(MouseMoveEvent mouseMoveEvent) =>
+            _manipulator.MoveItemIcon(mouseMoveEvent.mousePosition);
 
         // Grabbed item from environment
-        private void OnMouseDownInIconSpace(MouseDownEvent mouseDownEvent)
-        {
-            Vector2 mousePosition = mouseDownEvent.mousePosition;
-            mousePosition.y = Screen.height - mousePosition.y;
-            Ray cameraRay = _camera.ScreenPointToRay(mousePosition);
-
-            if (Physics.Raycast(cameraRay, out RaycastHit hitPoint))
-            {
-                GameObject clickedObject = hitPoint.collider.gameObject;
-                clickedObject = clickedObject.transform.parent.gameObject;
-
-                if (clickedObject.TryGetComponent(out GameItemView itemView))
-                {
-                    _capturedGameItem = itemView;
-                    _itemIcon = _iconSpace.AttachIcon(_capturedGameItem.GameItem.Icon,
-                                                      new Rect(mousePosition.x, mousePosition.y,
-                                                               FileConstants.ItemImageCellSize * 4,
-                                                               FileConstants.ItemImageCellSize * 4),
-                                                      ItemIconName);
-                }
-            }
-        }
-        
-        private void DropGameItem()
-        {
-            _capturedGameItem = null;
-            //TODO: Implement item dropping
-        }
+        private void OnMouseDownInIconSpace(MouseDownEvent mouseDownEvent) =>
+            _manipulator.PickItemFromScene(mouseDownEvent.mousePosition.ToScreenSpace());
     }
 }
