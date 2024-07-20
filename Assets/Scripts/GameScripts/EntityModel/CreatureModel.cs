@@ -80,6 +80,7 @@ namespace AncientGlyph.GameScripts.EntityModel
             // VOODOO MAGIC
             // WITHOUT IT DESERIALIZING ARRAY
             // STOPS ON FIRST ELEMENT ???
+            // TODO: FIX LATER THIS
             xmlReader.Read();
             xmlReader.Read();
         }

@@ -1,119 +1,97 @@
-using System.Collections.Generic;
-using AncientGlyph.GameScripts.GameSystems.ItemSystem;
-using UnityEngine;
+﻿using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 {
-    public partial class InventoryModel
+    public class InventoryModel : IXmlSerializable
     {
-        public int Width { get; }
-        public int Height { get; }
-        private readonly List<InventoryCell> _inventoryCells = new();
+        public Storage MainPlayerBackpack { get; private set; }
 
-        private InventoryCell this[int x, int y]
+        public Storage LeftPlayerPocket { get; private set; }
+        public bool IsLeftPlayerPocketEnabled { get; private set; }
+
+        public Storage RightPlayerPocket { get; private set; }
+        public bool IsRightPlayerPocketEnabled { get; private set; }
+
+        /// <summary>
+        /// Only for serialization
+        /// </summary>
+        public InventoryModel() {}
+        
+        /// <summary>
+        /// If left or right Storage passed as null values then
+        /// considered these player storages is disabled.
+        /// Main storage can never be null.
+        /// </summary>
+        public InventoryModel(Storage main, Storage left, Storage right)
         {
-            get => _inventoryCells[x + y * Width];
-            set => _inventoryCells[x + y * Width] = value;
+            MainPlayerBackpack = main;
+            LeftPlayerPocket = left;
+            RightPlayerPocket = right;
+            
+            if (left != null)
+            {
+                IsLeftPlayerPocketEnabled = true;
+            }
+
+            if (right != null)
+            {
+                IsRightPlayerPocketEnabled = true;
+            }
         }
 
-        private const int EmptyCellPivotIndicator = -1;
-        private readonly Dictionary<Vector2Int, GameItem> _itemPivots = new();
-
-        public int SlotsCount => _inventoryCells.Count;
-
-        public InventoryModel(int width, int height)
+        public XmlSchema GetSchema()
         {
-            Width = width;
-            Height = height;
-            _inventoryCells.Capacity = width * height;
+            return null;
+        }
 
-            for (int i = 0; i < _inventoryCells.Capacity; i++)
+        public void ReadXml(XmlReader reader)
+        {
+            XmlSerializer deserializer = new(typeof(Storage));
+            reader.ReadToFollowing("PlayerInventory");
+            
+            reader.ReadToDescendant(nameof(MainPlayerBackpack));
+            MainPlayerBackpack = deserializer.Deserialize(reader) as Storage;
+
+            reader.ReadToNextSibling(nameof(LeftPlayerPocket));
+            IsLeftPlayerPocketEnabled = bool.Parse(reader.GetAttribute("IsEnabled")!);
+
+            if (IsRightPlayerPocketEnabled)
             {
-                _inventoryCells.Add(new InventoryCell
-                {
-                    ItemPivotCell = new Vector2Int(),
-                    ItemId = Constants.GameConstants.UndefinedItemId,
-                });
+                LeftPlayerPocket = deserializer.Deserialize(reader) as Storage;
+            }
+            
+            reader.ReadToNextSibling(nameof(RightPlayerPocket));
+            IsRightPlayerPocketEnabled = bool.Parse(reader.GetAttribute("IsEnabled")!);
+
+            if (IsRightPlayerPocketEnabled)
+            {
+                LeftPlayerPocket = deserializer.Deserialize(reader) as Storage;
             }
         }
 
-        public bool TryTakeItemFromPosition(int xPosition, int yPosition, out GameItem gameItem)
+        public void WriteXml(XmlWriter writer)
         {
-            InventoryCell inventoryCell = this[xPosition, yPosition];
-
-            if (inventoryCell.ItemPivotCell.x == EmptyCellPivotIndicator)
-            {
-                gameItem = null;
-                return false;
-            }
-
-            GameItem requestedItem = _itemPivots[inventoryCell.ItemPivotCell];
-            gameItem = requestedItem;
-
-            foreach (Vector2Int cell in gameItem.CellSet.GetDefinedGeometry())
-            {
-                Vector2Int addedCellPosition = new(xPosition + cell.x, yPosition + cell.y);
-
-                InventoryCell removingCell = this[addedCellPosition.x, addedCellPosition.y];
-                removingCell.ItemPivotCell.Set(-1, -1);
-                removingCell.ItemId = Constants.GameConstants.UndefinedItemId;
-                this[addedCellPosition.x, addedCellPosition.y] = removingCell;
-            }
-
-            _itemPivots.Remove(inventoryCell.ItemPivotCell);
-
-            return true;
+            XmlSerializer serializer = new(typeof(Storage));
+            writer.WriteStartElement("PlayerInventory");
+            
+            writer.WriteStartElement(nameof(MainPlayerBackpack));
+            writer.WriteAttributeString("IsEnabled", true.ToString());
+            serializer.Serialize(writer, MainPlayerBackpack);
+            writer.WriteEndElement();
+            
+            writer.WriteStartElement(nameof(LeftPlayerPocket));
+            writer.WriteAttributeString("IsEnabled", IsLeftPlayerPocketEnabled.ToString());
+            serializer.Serialize(writer, LeftPlayerPocket);
+            writer.WriteEndElement();
+            
+            writer.WriteStartElement(nameof(RightPlayerPocket));
+            writer.WriteAttributeString("IsEnabled", IsRightPlayerPocketEnabled.ToString());
+            serializer.Serialize(writer, RightPlayerPocket);
+            writer.WriteEndElement();
+            
+            writer.WriteEndElement();
         }
-
-        public bool TryPlaceItemToPosition(Vector2Int position, GameItem item)
-        {
-            if (CanItemBePlaced(position, item) == false)
-            {
-                return false;
-            }
-
-            foreach (Vector2Int itemCell in item.CellSet.GetDefinedGeometry())
-            {
-                Vector2Int addedCellPosition = new(position.x + itemCell.x, position.y + itemCell.y);
-
-                InventoryCell addedCell = this[addedCellPosition.x, addedCellPosition.y];
-                addedCell.ItemId = item.ItemId;
-                addedCell.ItemPivotCell = position;
-                this[addedCellPosition.x, addedCellPosition.y] = addedCell;
-            }
-
-            _itemPivots.Add(position, item);
-
-            return true;
-        }
-
-        public bool TryPlaceItemToPosition(int xPosition, int yPosition, GameItem item) =>
-            TryPlaceItemToPosition(new Vector2Int(xPosition, yPosition), item);
-
-        public bool CanItemBePlaced(Vector2Int position, GameItem item)
-        {
-            foreach (Vector2Int itemCell in item.CellSet.GetDefinedGeometry())
-            {
-                Vector2Int addedCellPosition = new(position.x + itemCell.x, position.y + itemCell.y);
-
-                if (addedCellPosition.x >= Width || addedCellPosition.x < 0 ||
-                    addedCellPosition.y >= Height || addedCellPosition.y < 0)
-                {
-                    return false;
-                }
-
-                InventoryCell checkedCell = this[addedCellPosition.x, addedCellPosition.y];
-
-                if (checkedCell.ItemId != Constants.GameConstants.UndefinedItemId)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public bool CanItemBePlaced(int xPosition, int yPosition, GameItem item) =>
-            CanItemBePlaced(new Vector2Int(xPosition, yPosition), item);
     }
 }

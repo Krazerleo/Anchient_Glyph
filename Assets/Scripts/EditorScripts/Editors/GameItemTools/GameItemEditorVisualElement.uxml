@@ -29,6 +29,6 @@
     </ui:VisualElement>
     <ui:TextField picking-mode="Ignore" label="Item ID" value="filler text" binding-path="ItemId" name="IdField" />
     <ui:TextField picking-mode="Ignore" label="Item Name" value="filler text" binding-path="Name" name="NameField" />
-    <uie:PropertyField binding-path="Icon" label="Item Icon" name="IconField" />
-    <uie:PropertyField name="GhostIconField" binding-path="GhostIcon" />
+    <uie:PropertyField binding-path="MiniIcon" label="Mini Icon" name="MiniIconField" />
+    <uie:PropertyField name="InventoryIconField" binding-path="InventoryIcon" label="Inventory Icon" />
 </ui:UXML>

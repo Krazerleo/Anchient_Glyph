@@ -7,9 +7,9 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private readonly struct InventoryPosition
         {
             public readonly Vector2Int SlotModelPosition;
-            public readonly InventoryModel ParentInventory;
+            public readonly Storage ParentInventory;
 
-            public InventoryPosition(Vector2Int slotModelPosition, InventoryModel inventory)
+            public InventoryPosition(Vector2Int slotModelPosition, Storage inventory)
             {
                 SlotModelPosition = slotModelPosition;
                 ParentInventory = inventory;

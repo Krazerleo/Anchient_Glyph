@@ -13,7 +13,7 @@ namespace AncientGlyph.EditorScripts.Editors.GameItemTools
     public class GameItemEditor : Editor
     {
         private const string SlotName = "Slot";
-        private const string IconFieldName = "IconField";
+        private const string InventoryIconFieldName = "InventoryIconField";
         private const string ItemGeometryPickerName = "ItemGeometryPicker";
         private const int ExpectedSlotsCount = GameConstants.MaxItemSizeY * GameConstants.MaxItemSizeX;
 
@@ -91,7 +91,7 @@ namespace AncientGlyph.EditorScripts.Editors.GameItemTools
                 for (int x = 0; x < GameConstants.MaxItemSizeX; x++)
                 {
                     _slots[x + y*GameConstants.MaxItemSizeX]
-                        .RegisterCallback<MouseUpEvent, Vector2Int>(OnSlotClick, new(x, y));
+                        .RegisterCallback<MouseUpEvent, Vector2Int>(OnSlotClick, new Vector2Int(x, y));
                 }
             }
         }
@@ -124,19 +124,19 @@ namespace AncientGlyph.EditorScripts.Editors.GameItemTools
 
         private void ObserveOnSpriteChange()
         {
-            PropertyField spriteField = _root.Query<PropertyField>(IconFieldName).First();
+            PropertyField spriteField = _root.Q<PropertyField>(InventoryIconFieldName);
             spriteField.RegisterValueChangeCallback(OnSpriteChange);
         }
 
         private void OnSpriteChange(SerializedPropertyChangeEvent propertyChangedEvent)
         {
-            if (_inspectedGameItem.Icon == null)
+            if (_inspectedGameItem.InventoryIcon == null)
             {
                 return;
             }
 
-            VisualElement container = _root.Query(ItemGeometryPickerName).First();
-            container.style.backgroundImage = new StyleBackground(_inspectedGameItem.Icon);
+            VisualElement container = _root.Q(ItemGeometryPickerName);
+            container.style.backgroundImage = new StyleBackground(_inspectedGameItem.InventoryIcon);
         }
     }
 }

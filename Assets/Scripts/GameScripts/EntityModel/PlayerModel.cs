@@ -12,11 +12,10 @@ namespace AncientGlyph.GameScripts.EntityModel
         public Vector3Int Position { get; private set; }
         public string Identifier => GameConstants.PlayerId;
         public string Name => GameConstants.PlayerName;
-        
+
         public bool TryMoveToNextCell(Direction moveDirection, LevelModel levelModel)
         {
-            var offset = moveDirection.GetNormalizedOffsetFromDirection();
-
+            Vector3Int offset = moveDirection.GetNormalizedOffsetFromDirection();
             return TryMoveToNextCell(offset, levelModel);
         }
 
@@ -31,9 +30,11 @@ namespace AncientGlyph.GameScripts.EntityModel
             return false;
         }
 
-        public PlayerModel()
-        {
-        }
+        /// <summary>
+        /// Only for serialization
+        /// </summary>
+        // ReSharper disable once UnusedMember.Global
+        public PlayerModel() { }
 
         // TODO : Remove after implementing Xml Serialization
         public PlayerModel(Vector3Int startPosition)

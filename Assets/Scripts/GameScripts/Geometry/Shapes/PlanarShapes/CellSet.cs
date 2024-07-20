@@ -7,8 +7,13 @@ using UnityEngine;
 namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
 {
     [Serializable]
-    public class CellSet : IShape2D
+    public class CellSet : IShape2D, IEquatable<CellSet>
     {
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
+
         [SerializeField]
         private List<Vector2Int> _cells = new();
 
@@ -27,47 +32,22 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
             }
         }
 
-        public IEnumerable<Vector2Int> GetRotatedGeometry(int rotations)
+        public CellSet GetRotatedGeometry(int rotations)
         {
             rotations %= 4;
 
-            switch (rotations)
-            {
-                case 0:
-                    foreach (Vector2Int cell in _cells)
-                    {
-                        yield return cell;
-                    }
+            RectInt initialBoundingBox = GetBoundingBox();
+            CellSet rotatedGeometry = new(RotateAroundZeroPivot(rotations));
+            RectInt rotatedBoundingBox = rotatedGeometry.GetBoundingBox();
+            Vector2Int offsetToAlign = new(rotatedBoundingBox.x - initialBoundingBox.x,
+                                           rotatedBoundingBox.y - initialBoundingBox.y);
+            rotatedGeometry.Translate(-offsetToAlign);
 
-                    yield break;
-
-                case 1:
-                    foreach (Vector2Int cell in _cells)
-                    {
-                        yield return new Vector2Int(cell.y, -cell.x - 1);
-                    }
-
-                    yield break;
-
-                case 2:
-                    foreach (Vector2Int cell in _cells)
-                    {
-                        yield return new Vector2Int(-cell.x - 1, -cell.y - 1);
-                    }
-
-                    yield break;
-
-                case 3:
-                    foreach (Vector2Int cell in _cells)
-                    {
-                        yield return new Vector2Int(-cell.y - 1, cell.x);
-                    }
-
-                    yield break;
-            }
+            return rotatedGeometry;
         }
 
-        public RectInt GetBounds()
+
+        public RectInt GetBoundingBox()
         {
             if (_cells.Any() == false)
             {
@@ -79,12 +59,7 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
             int yMax = _cells.Select(cell => cell.y).Max();
             int yMin = _cells.Select(cell => cell.y).Min();
 
-            return new RectInt(xMin, yMin, xMax - xMin, yMax - yMin);
-        }
-
-        public bool Contains(Vector2Int position)
-        {
-            return _cells.Contains(position);
+            return new RectInt(xMin, yMin, xMax - xMin + 1, yMax - yMin + 1);
         }
 
         public void AddCell(Vector2Int position)
@@ -95,9 +70,103 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
             }
         }
 
-        public void RemoveCell(Vector2Int position)
+        public bool Contains(Vector2Int position) => _cells.Contains(position);
+
+        public void RemoveCell(Vector2Int position) => _cells.Remove(position);
+
+        public bool Equals(CellSet otherSet)
         {
-            _cells.Remove(position);
+            if (otherSet == null)
+            {
+                return false;
+            }
+
+            if (_cells.Count != otherSet._cells.Count)
+            {
+                return false;
+            }
+
+            Dictionary<Vector2Int, int> thisCellsCount = _cells.ToDictionary(k => k, _ => 1);
+
+            foreach (Vector2Int cell in otherSet._cells)
+            {
+                if (thisCellsCount.ContainsKey(cell))
+                {
+                    thisCellsCount[cell]--;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            foreach ((_, int value) in thisCellsCount)
+            {
+                if (value != 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private List<Vector2Int> RotateAroundZeroPivot(int rotations)
+        {
+            Debug.Assert(rotations < 4);
+            List<Vector2Int> rotatedCells = new(_cells.Count);
+
+            switch (rotations)
+            {
+                case 0:
+                    foreach (Vector2Int cell in _cells)
+                    {
+                        rotatedCells.Add(new Vector2Int(cell.x, cell.y));
+                    }
+
+                    break;
+
+                case 1:
+                    foreach (Vector2Int cell in _cells)
+                    {
+                        rotatedCells.Add(new Vector2Int(cell.y, -cell.x - 1));
+                    }
+
+                    break;
+
+                case 2:
+                    foreach (Vector2Int cell in _cells)
+                    {
+                        rotatedCells.Add(new Vector2Int(-cell.x - 1, -cell.y - 1));
+                    }
+
+                    break;
+
+                case 3:
+                    foreach (Vector2Int cell in _cells)
+                    {
+                        rotatedCells.Add(new Vector2Int(-cell.y - 1, cell.x));
+                    }
+
+                    break;
+            }
+
+            return rotatedCells;
+        }
+
+        private void Translate(Vector2Int translation)
+        {
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                _cells[i] += translation;
+            }
+        }
+
+        public Vector2 FindCenterOfBoundingBox()
+        {
+            RectInt boundingBox = GetBoundingBox();
+            return new Vector2(boundingBox.x + boundingBox.width / 2f,
+                               boundingBox.y + boundingBox.height / 2f);
         }
     }
 }

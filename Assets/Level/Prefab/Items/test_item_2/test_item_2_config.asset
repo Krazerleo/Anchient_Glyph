@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd34626987acfbc4980d21f1e35871e3, type: 3}
-  m_Name: test_item_1_config
+  m_Name: test_item_2_config
   m_EditorClassIdentifier: 
-  ItemId: 76
+  ItemId: 79
   Name: test_item_config
-  MiniIcon: {fileID: 21300000, guid: d072183cec3f83f41ad56841d34c73fe, type: 3}
-  InventoryIcon: {fileID: 21300000, guid: 11ac13323a804aa4faa63e67fdde4e46, type: 3}
+  MiniIcon: {fileID: 21300000, guid: 2e37acee5129b2f48be580676937c60b, type: 3}
+  InventoryIcon: {fileID: 21300000, guid: 60b946ad824b0204a8d07ed3c0879cef, type: 3}
   CellSet:
     _cells:
     - {x: 1, y: 0}
@@ -24,5 +24,6 @@ MonoBehaviour:
     - {x: 2, y: 1}
     - {x: 0, y: 1}
     - {x: 0, y: 0}
-    - {x: 3, y: 1}
-    - {x: 3, y: 0}
+    - {x: 2, y: 2}
+    - {x: 0, y: 2}
+    - {x: 1, y: 2}

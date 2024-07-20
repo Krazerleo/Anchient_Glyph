@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
+using AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes;
 using AncientGlyph.GameScripts.Services.SaveDataService;
 using AncientGlyph.GameScripts.UserInterface;
 using UnityEngine;
@@ -19,12 +20,12 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private const string IconSpaceName = "IconSpace";
         private const string SideWindowName = "SideWindow";
 
-        private InventoryModel _inventoryMain;
-        private InventoryModel _inventoryLeft;
-        private InventoryModel _inventoryRight;
+        private Storage _inventoryMain;
+        private Storage _inventoryLeft;
+        private Storage _inventoryRight;
 
         private VisualElement _inventoryUi;
-        private VisualElement _ghostIcon;
+        private VisualElement _inventoryIconVisualElement;
         private GameItemManipulator _manipulator;
 
         [SerializeField]
@@ -43,7 +44,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             _inventoryLeft = saveDataService.PlayerInfo.InventoryInfo.ExtraInventoryLeft;
             _inventoryRight = saveDataService.PlayerInfo.InventoryInfo.ExtraInventoryRight;
             _inventoryUi = _playerSideWindowUiDocument.rootVisualElement.Q(InventoryName);
-            
+
             VisualElement iconSpace = _playerSideWindowUiDocument.rootVisualElement.Q(IconSpaceName);
             _manipulator = new GameItemManipulator(mainCamera, iconSpace);
 
@@ -80,12 +81,19 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private void AddRotateAction()
             => _onRotateItem.action.performed += RotateItem;
 
-        private void RotateItem(InputAction.CallbackContext context) => _manipulator.RotateItem();
+        private void RotateItem(InputAction.CallbackContext context)
+        {
+            _manipulator.RotateItem();
+
+            if (_inventoryIconVisualElement != null)
+            {
+                _inventoryIconVisualElement.style.rotate = new StyleRotate(new Rotate(-90 * _manipulator.Rotations));
+            }
+        }
 
         private void ToggleInventory(InputAction.CallbackContext context)
         {
             VisualElement sideWindow = _playerSideWindowUiDocument.rootVisualElement.Q(SideWindowName);
-
             sideWindow.visible = !sideWindow.visible;
         }
 
@@ -122,8 +130,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 
         private void OnMouseLeaveInventorySpace(MouseLeaveEvent mouseEvent) => _manipulator.ShowItemIcon();
 
-        private void AddBindingsToInventory(InventoryModel inventory,
-            string inventoryViewName)
+        private void AddBindingsToInventory(Storage inventory, string inventoryViewName)
         {
             VisualElement rootInventoryElement = _playerSideWindowUiDocument.rootVisualElement.Q(inventoryViewName);
 
@@ -155,8 +162,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             }
         }
 
-        private void OnMouseEnterItemSlot(MouseEnterEvent mouseEvent,
-            InventoryPosition inventoryPosition)
+        private void OnMouseEnterItemSlot(MouseEnterEvent mouseEvent, InventoryPosition inventoryPosition)
         {
             VisualElement slotVisualElement = (mouseEvent.currentTarget as VisualElement)!;
             GameItem gameItem = _manipulator.GameItem;
@@ -166,52 +172,77 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
                 return;
             }
 
-            if (inventoryPosition.ParentInventory.CanItemBePlaced(
-                    inventoryPosition.SlotModelPosition, gameItem))
+            Vector2Int pivotCell = CalculateModelOffset(inventoryPosition, gameItem);
+
+            if (false == inventoryPosition.ParentInventory.CanItemBePlaced(pivotCell, gameItem, _manipulator.Rotations))
             {
-                // TODO: REWORK TO HIDE GHOST ICON
-                _ghostIcon = _inventoryUi.AttachIcon(gameItem.GhostIcon,
-                                                     new Rect(slotVisualElement.worldBound.x,
-                                                              slotVisualElement.worldBound.y,
-                                                              FileConstants.ItemImageCellSize * 4,
-                                                              FileConstants.ItemImageCellSize * 4),
-                                                     gameItem.Name);
+                return;
             }
+
+            Vector2 iconCenterOffset = gameItem.CellSet.FindCenterOfBoundingBox() * UiConstants.CellSlotSize;
+
+            _inventoryIconVisualElement = _inventoryUi
+                .AttachIcon(gameItem.InventoryIcon,
+                            new Rect(slotVisualElement.worldBound.x - (int)(iconCenterOffset.x / 64f) * 64,
+                                     slotVisualElement.worldBound.y - (int)(iconCenterOffset.y / 64f) * 64,
+                                     FileConstants.ItemImageCellSize * 4,
+                                     FileConstants.ItemImageCellSize * 4),
+                            gameItem.Name);
+
+            _inventoryIconVisualElement.style.transformOrigin
+                = new StyleTransformOrigin(new TransformOrigin(iconCenterOffset.x, iconCenterOffset.y));
+            _inventoryIconVisualElement.style.rotate = new StyleRotate(new Rotate(-90 * _manipulator.Rotations));
         }
 
-        private void OnMouseLeaveItemSlot(MouseLeaveEvent mouseEvent,
-            InventoryPosition inventoryPosition)
+        private static Vector2Int CalculateModelOffset(InventoryPosition inventoryPosition, GameItem gameItem)
+        {
+            Vector2Int selectedCell = inventoryPosition.SlotModelPosition;
+            RectInt cellSetBoundingBox = gameItem.CellSet.GetBoundingBox();
+            Vector2Int pivotCell = new(selectedCell.x - cellSetBoundingBox.width / 2,
+                                       selectedCell.y - cellSetBoundingBox.height / 2);
+            return pivotCell;
+        }
+
+        private void OnMouseLeaveItemSlot(MouseLeaveEvent mouseEvent, InventoryPosition inventoryPosition)
         {
             if (_manipulator.GameItem != null)
             {
-                _ghostIcon.Dispose();
+                _inventoryIconVisualElement.Dispose();
             }
         }
 
-        private void OnMouseUpInItemSlot(MouseUpEvent mouseEvent,
-            InventoryPosition inventoryPosition)
+        private void OnMouseUpInItemSlot(MouseUpEvent mouseEvent, InventoryPosition inventoryPosition)
         {
-            if (_manipulator.GameItem == null)
+            GameItem gameItem = _manipulator.GameItem;
+
+            if (gameItem == null)
             {
                 // TODO : Implement taking item from inventory grid
                 return;
             }
 
-            if (inventoryPosition.ParentInventory.CanItemBePlaced(inventoryPosition.SlotModelPosition,
-                                                                  _manipulator.GameItem))
+            _inventoryIconVisualElement.Dispose();
+
+            Vector2Int pivotCell = CalculateModelOffset(inventoryPosition, gameItem);
+
+            if (inventoryPosition.ParentInventory.TryPlaceItemToPosition(pivotCell, gameItem, _manipulator.Rotations))
             {
-                inventoryPosition.ParentInventory.TryPlaceItemToPosition(inventoryPosition.SlotModelPosition,
-                                                                         _manipulator.GameItem);
-
                 VisualElement slotVisualElement = (mouseEvent.currentTarget as VisualElement)!;
-                _inventoryUi.AttachIcon(_manipulator.GameItem.Icon,
-                                        new Rect(slotVisualElement.worldBound.x,
-                                                 slotVisualElement.worldBound.y,
-                                                 FileConstants.ItemImageCellSize * 4,
-                                                 FileConstants.ItemImageCellSize * 4),
-                                        GameItemManipulator.ItemIconName);
+                Vector2 iconCenterOffset = gameItem.CellSet.FindCenterOfBoundingBox() * UiConstants.CellSlotSize;
+                VisualElement newIcon = _inventoryUi
+                    .AttachIcon(gameItem.MiniIcon,
+                                new Rect(slotVisualElement.worldBound.x - (int)(iconCenterOffset.x / 64f) * 64,
+                                         slotVisualElement.worldBound.y - (int)(iconCenterOffset.y / 64f) * 64,
+                                         FileConstants.ItemImageCellSize * 4,
+                                         FileConstants.ItemImageCellSize * 4),
+                                GameItemManipulator.ItemIconName);
 
-                _ghostIcon.Dispose();
+                newIcon.style.transformOrigin
+                    = new StyleTransformOrigin(new TransformOrigin(iconCenterOffset.x, iconCenterOffset.y));
+                newIcon.style.rotate = new StyleRotate(new Rotate(-90 * _manipulator.Rotations));
+
+                _manipulator.ReleaseItem();
+                return;
             }
 
             _manipulator.DropItem();
@@ -223,8 +254,7 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
         private void OnMouseMoveInIconSpace(MouseMoveEvent mouseMoveEvent) =>
             _manipulator.MoveItemIcon(mouseMoveEvent.mousePosition);
 
-        // Grabbed item from environment
         private void OnMouseDownInIconSpace(MouseDownEvent mouseDownEvent) =>
-            _manipulator.PickItemFromScene(mouseDownEvent.mousePosition.ToScreenSpace());
+            _manipulator.PickItemFromScene(mouseDownEvent.mousePosition);
     }
 }

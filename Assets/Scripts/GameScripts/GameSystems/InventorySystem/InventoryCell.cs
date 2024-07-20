@@ -2,7 +2,7 @@
 
 namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
 {
-    public partial class InventoryModel
+    public partial class Storage
     {
         private struct InventoryCell
         {

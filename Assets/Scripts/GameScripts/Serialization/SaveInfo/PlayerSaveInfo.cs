@@ -4,18 +4,18 @@ namespace AncientGlyph.GameScripts.Serialization.SaveInfo
 {
     public class InventoryInfo
     {
-        public InventoryModel MainInventory;
+        public Storage MainInventory;
         
-        public InventoryModel ExtraInventoryLeft;
+        public Storage ExtraInventoryLeft;
         public bool ExtraInventoryLeftEnabled;
         
-        public InventoryModel ExtraInventoryRight;
+        public Storage ExtraInventoryRight;
         public bool ExtraInventoryRightEnabled;
 
-        public InventoryInfo(InventoryModel mainInventory,
-            InventoryModel extraInventoryLeft,
+        public InventoryInfo(Storage mainInventory,
+            Storage extraInventoryLeft,
             bool extraInventoryLeftEnabled,
-            InventoryModel extraInventoryRight,
+            Storage extraInventoryRight,
             bool extraInventoryRightEnabled)
         {
             MainInventory = mainInventory;

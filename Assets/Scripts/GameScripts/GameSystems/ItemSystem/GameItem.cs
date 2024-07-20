@@ -1,6 +1,7 @@
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace AncientGlyph.GameScripts.GameSystems.ItemSystem
 {
@@ -11,8 +12,9 @@ namespace AncientGlyph.GameScripts.GameSystems.ItemSystem
     {
         public uint ItemId;
         public string Name;
-        public Sprite Icon;
-        public Sprite GhostIcon;
+        public Sprite MiniIcon;
+        public Sprite InventoryIcon;
+        [FormerlySerializedAs("CellSetRotation")]
         public CellSet CellSet;
     }
 }

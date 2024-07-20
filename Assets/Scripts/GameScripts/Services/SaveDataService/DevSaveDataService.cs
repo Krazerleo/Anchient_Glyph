@@ -20,9 +20,9 @@ namespace AncientGlyph.GameScripts.Services.SaveDataService
 
         private PlayerSaveInfo CreateDevPlayerSaveInfo()
         {
-            var mainInventory = new InventoryModel(6, 4);
-            var leftInventory = new InventoryModel(3, 3);
-            var rightInventory = new InventoryModel(3, 3);
+            var mainInventory = new Storage(6, 4);
+            var leftInventory = new Storage(3, 3);
+            var rightInventory = new Storage(3, 3);
 
             var inventorySaveInfo = new InventoryInfo(mainInventory, leftInventory, false, rightInventory, false);
 

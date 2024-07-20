@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace AncientGlyph.GameScripts.UserInterface
 {
-    public static class UiExtensions
+    public static class UiVisualElementExtensions
     {
         /// <summary>
         /// Create icon with absolute position relative to anchorElement
