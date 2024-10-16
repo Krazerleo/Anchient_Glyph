@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAsset
+namespace AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAssets
 {
     public class AssetVisualElement : VisualElement
     {
@@ -11,7 +11,8 @@ namespace AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAsset
         private const string AssetPreviewImageName = "Asset-Preview-Image";
 
         private readonly TemplateContainer _root;
-
+        
+        
         public AssetVisualElement()
         {
             VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(LayoutPath);
@@ -21,10 +22,10 @@ namespace AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAsset
             _root = root;
         }
 
-        public void BindToAssetInfoVisualElement(AssetViewModel assetViewModel)
+        public void BindToAssetInfoVisualElement(AgAsset agAsset)
         {
-            _root.Q<Image>(AssetPreviewImageName).image = assetViewModel.AssetPreviewImage;
-            _root.Q<Label>(AssetLabelName).text = assetViewModel.PrefabFile.Name;
+            _root.Q<Image>(AssetPreviewImageName).image = agAsset.AssetPreviewImage;
+            _root.Q<Label>(AssetLabelName).text = agAsset.Prefab.name;
         }
     }
 }

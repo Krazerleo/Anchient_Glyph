@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAsset;
-using AncientGlyph.EditorScripts.Editors.LevelModeling.Brushes;
+using AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAssets;
+using AncientGlyph.EditorScripts.Editors.AssetLibrary.AgBrushes;
 using AncientGlyph.GameScripts.Common;
 using AncientGlyph.GameScripts.ForEditor;
 using UnityEditor;
@@ -15,7 +15,7 @@ namespace AncientGlyph.EditorScripts.Editors.AssetLibrary
 {
     public class AssetLibrary : EditorWindow
     {
-        public static EventHandler<AssetViewModel> OnAssetChangeHandler;
+        public static EventHandler<AgAsset> OnAssetChangeHandler;
         public static EventHandler<AssetType> OnAssetTypeChangeHandler;
         private static StyleSheet _highlightStyle;
 
@@ -41,10 +41,10 @@ namespace AncientGlyph.EditorScripts.Editors.AssetLibrary
         private static AssetsExplorer _assetsExplorer;
 
         private ListView _assetListView;
-        private readonly List<AssetViewModel> _foundAssets = new();
+        private readonly List<AgAsset> _foundAssets = new();
 
         private ListView _brushListView;
-        private readonly List<BaseBrush> _foundBrushes = new();
+        private readonly List<AgBrush> _foundBrushes = new();
 
         private Toolbar _assetTypeToolbar;
         private AssetType SelectedTypeAsset { get; set; } = AssetType.Tile;
@@ -87,14 +87,31 @@ namespace AncientGlyph.EditorScripts.Editors.AssetLibrary
             _assetListView.makeItem = () => new AssetVisualElement();
             _assetListView.bindItem = (visualElement, index) =>
             {
-                AssetViewModel assetViewModel = _foundAssets[index];
+                AgAsset agAsset = _foundAssets[index];
                 AssetVisualElement assetVisualElement = (AssetVisualElement)visualElement;
-                assetVisualElement.BindToAssetInfoVisualElement(assetViewModel);
+                assetVisualElement.BindToAssetInfoVisualElement(agAsset);
                 assetVisualElement
-                    .RegisterCallback((ClickEvent _, AssetViewModel info)
-                                          => OnAssetChangeHandler?.Invoke(null, info), assetViewModel);
+                    .RegisterCallback((ClickEvent _, AgAsset info)
+                                          => OnAssetChangeHandler?.Invoke(null, info), agAsset);
             };
             _assetListView.selectionType = SelectionType.Single;
+        }
+        
+        private void InitBrushListView()
+        {
+            _brushListView = rootVisualElement.Q<ListView>(BrushListViewName);
+            _brushListView.itemsSource = _foundBrushes;
+            _brushListView.makeItem = () => new AssetVisualElement();
+            _brushListView.bindItem = (visualElement, index) =>
+            {
+                AgAsset agAsset = _foundAssets[index];
+                AssetVisualElement assetVisualElement = (AssetVisualElement)visualElement;
+                assetVisualElement.BindToAssetInfoVisualElement(agAsset);
+                assetVisualElement.RegisterCallback((ClickEvent _, AgAsset info) =>
+                                                        OnAssetChangeHandler?.Invoke(null, info),
+                                                    agAsset);
+            };
+            _brushListView.selectionType = SelectionType.Single;
         }
 
         private void InitAssetSearchField()
@@ -135,36 +152,9 @@ namespace AncientGlyph.EditorScripts.Editors.AssetLibrary
             }
         }
 
-        private void InitBrushListView()
-        {
-            _brushListView = rootVisualElement.Q<ListView>(BrushListViewName);
-            _brushListView.itemsSource = _foundBrushes;
-            _brushListView.makeItem = () => new AssetVisualElement();
-            _brushListView.bindItem = (visualElement, index) =>
-            {
-                AssetViewModel assetViewModel = _foundAssets[index];
-                AssetVisualElement assetVisualElement = (AssetVisualElement)visualElement;
-                assetVisualElement.BindToAssetInfoVisualElement(assetViewModel);
-                assetVisualElement.RegisterCallback((ClickEvent _, AssetViewModel info) =>
-                                                        OnAssetChangeHandler?.Invoke(null, info),
-                                                    assetViewModel);
-            };
-            _brushListView.selectionType = SelectionType.Single;
-        }
-
-        private void BindItemForAssetListView(VisualElement visualElement, int index)
-        {
-            AssetViewModel assetViewModel = _foundAssets[index];
-            AssetVisualElement assetVisualElement = (AssetVisualElement)visualElement;
-            assetVisualElement.BindToAssetInfoVisualElement(assetViewModel);
-            assetVisualElement.RegisterCallback((ClickEvent _, AssetViewModel info) =>
-                                                    OnAssetChangeHandler?.Invoke(null, info),
-                                                assetViewModel);
-        }
-
         private void RefreshSelectedAssets()
         {
-            Result<List<AssetViewModel>, ExploreErrorCode> exploredAssets =
+            Result<List<AgAsset>, ExploreErrorCode> exploredAssets =
                 _assetsExplorer.GetAssets(SelectedTypeAsset, _prompt);
             if (exploredAssets.IsFailed() && exploredAssets.FailStatus == ExploreErrorCode.AssetDirectoryNotFound)
             {

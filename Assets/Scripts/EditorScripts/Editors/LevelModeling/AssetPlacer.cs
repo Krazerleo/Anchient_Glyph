@@ -1,5 +1,5 @@
 using AncientGlyph.EditorScripts.Constants;
-using AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAsset;
+using AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAssets;
 using AncientGlyph.EditorScripts.Editors.LevelModeling.EditingHandlers;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.ForEditor;
@@ -170,15 +170,15 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             }
         }
 
-        private void OnAssetNameChanged(object obj, AssetViewModel assetViewModel)
+        private void OnAssetNameChanged(object obj, AgAsset agAsset)
         {
-            if (assetViewModel is null)
+            if (agAsset is null)
             {
                 Debug.LogError("Asset info is null");
                 return;
             }
 
-            _selectedGameObject = AssetDatabase.LoadAssetAtPath<GameObject>(assetViewModel.PrefabFile.FullName);
+            _selectedGameObject = agAsset.Prefab;
             _placerHandler.SetPrefabObject(_selectedGameObject);
         }
 
