@@ -9,11 +9,6 @@ namespace AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes
     [Serializable]
     public class CellSet : IShape2D, IEquatable<CellSet>
     {
-        public override int GetHashCode()
-        {
-            throw new NotImplementedException();
-        }
-
         [SerializeField]
         private List<Vector2Int> _cells = new();
 

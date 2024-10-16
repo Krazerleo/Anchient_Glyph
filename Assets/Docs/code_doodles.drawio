@@ -1,6 +1,164 @@
-<mxfile host="Electron" modified="2024-07-19T14:26:56.237Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="0rb0QmB6Oyn2ITpAh4q7" version="21.6.1" type="device" pages="2">
+<mxfile host="Electron" modified="2024-09-26T16:14:07.589Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="6gauFB7a04CtTXYaCMZQ" version="21.6.1" type="device" pages="5">
+  <diagram id="aYEsmFKB-GO0YAxnXGVO" name="GameDesign Scratches">
+    <mxGraphModel dx="1548" dy="902" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-1" value="Здоровье и еда" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="520" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-6" value="Здоровье можно повышать если кушать что-то приготовленное." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-1" vertex="1">
+          <mxGeometry x="20" y="40" width="130" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-7" value="Ингридиенты для приготовления пищи можно найти в разных местах. Их количество ограничено." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-1" vertex="1">
+          <mxGeometry x="20" y="170" width="165" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-8" value="Также некоторые блюда могут давать другие постоянные положительные эффекты." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-1" vertex="1">
+          <mxGeometry x="220" y="75" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-9" value="Так как количество продуктов ограничено, а чем круче блюдо, тем больше оно дает баффов (нелинейное возрастание), то игроку нужно будет принимать решение сделать сразу что-то простое, или накопить и сделать что-то крутое." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-1" vertex="1">
+          <mxGeometry x="250" y="240" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-10" value="Идея для интересной механики" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-1" vertex="1">
+          <mxGeometry x="305" y="150" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-11" value="Чекпоинты" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="480" width="820" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-12" value="После отдыха у чекпоинта, уничтоженные существа снова появляются в тех же точках" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-11" vertex="1">
+          <mxGeometry x="20" y="60" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-13" value="Будет представленно в виде лагеря" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-11" vertex="1">
+          <mxGeometry x="220" y="50" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-14" value="Лагерь может уже быть разбит, и тогда ничего не нужно, что бы отдыхать у него, то есть восстановить очки маны и здоровья." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-11" vertex="1">
+          <mxGeometry x="210" y="180" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-16" value="Лагерь, кроме как место отдыха, еще и место крафта всех необходимых расходников и улучшения снаряжения." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-11" vertex="1">
+          <mxGeometry x="410" y="60" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-11" source="dxx2qrCqdPRJCV27nMZO-17" target="dxx2qrCqdPRJCV27nMZO-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-17" value="На каждом шарде есть 1 разбитый лагерь и 1 неразбитый" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-11" vertex="1">
+          <mxGeometry x="410" y="160" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-11" source="dxx2qrCqdPRJCV27nMZO-18" target="dxx2qrCqdPRJCV27nMZO-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-18" value="Есть места, где можно будет разбить лагерь. Для этого потребуется специальный предмет." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-11" vertex="1">
+          <mxGeometry x="410" y="250" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-19" value="Игроку предстоит решать где стоит разбить лагерь, а где нет. Количество таких специальных предметов ограничено." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-11" vertex="1">
+          <mxGeometry x="630" y="210" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-15" value="Существуют определенные группы врагов, которые не будут восстанавливаться после сохранения. В их число входят боссы и предбоссы." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="70" y="655" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-22" value="Магия" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="610" y="40" width="470" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-24" value="Использование магии требует для себя свитки заклинания, которые нужно изучить перед ее использованием." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-22" vertex="1">
+          <mxGeometry x="30" y="60" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-25" value="Магия разделяется на 8 элементов: Огонь, Земля, Воздух, Вода, ..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-22" vertex="1">
+          <mxGeometry x="210" y="50" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-22" source="dxx2qrCqdPRJCV27nMZO-26" target="dxx2qrCqdPRJCV27nMZO-27" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-26" value="Каждое использование заклинания снижает шкалу здравомыслия. При остутствии здравомыслия игрок также может кастовать заклинания" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-22" vertex="1">
+          <mxGeometry x="30" y="250" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-27" value="Чем хуже состояние рассудка, тем больше вероятность того, что игрок принесет себе вреда больше чем противнику. При потере рассудка каст ничего хорошего не даст, но тем не менее в экстренных ситуациях можно сильно подгадить противнику.&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-22" vertex="1">
+          <mxGeometry x="270" y="250" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-29" value="Прокачка магии увеличивает мощность эффектов от спеллов и уровень концентрации." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-22" vertex="1">
+          <mxGeometry x="320" y="110" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-31" value="Прогрессия персонажа" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1160" y="40" width="1180" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-31" source="dxx2qrCqdPRJCV27nMZO-32" target="dxx2qrCqdPRJCV27nMZO-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-31" source="dxx2qrCqdPRJCV27nMZO-32" target="dxx2qrCqdPRJCV27nMZO-33" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-32" value="&lt;p&gt;Характеристики:&lt;/p&gt;&lt;p&gt;1) Стойкость&lt;/p&gt;&lt;p&gt;2) Сила&lt;/p&gt;&lt;p&gt;3) Ловкость&lt;/p&gt;&lt;p&gt;4) Интеллект&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="100" y="40" width="110" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-33" value="&lt;p style=&quot;border-color: var(--border-color);&quot;&gt;Стойкость:&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color);&quot;&gt;Влияет только на количество очков здоровья персонажа&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="40" y="230" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-34" value="&lt;p&gt;Сила, ловкость и интеллект:&lt;/p&gt;&lt;p&gt;Влияют на характеристики используемого снаряжения&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="190" y="230" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.467;entryY=1.167;entryDx=0;entryDy=0;entryPerimeter=0;" parent="dxx2qrCqdPRJCV27nMZO-31" source="dxx2qrCqdPRJCV27nMZO-39" target="dxx2qrCqdPRJCV27nMZO-33" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-39" value="Стойкость прокачивается от того что персонаж ест." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="40" y="410" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-31" source="dxx2qrCqdPRJCV27nMZO-44" target="dxx2qrCqdPRJCV27nMZO-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-44" value="Сила прокачивается  ближним боем и ремеслом" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="400" y="190" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-31" source="dxx2qrCqdPRJCV27nMZO-45" target="dxx2qrCqdPRJCV27nMZO-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-45" value="Ловкость качается взломом, работой с механизмами и дальним боем" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="400" y="245" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-31" source="dxx2qrCqdPRJCV27nMZO-46" target="dxx2qrCqdPRJCV27nMZO-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-46" value="Интеллект качается магией, работой с механизмами и алхимией" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="400" y="300" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-51" value="&lt;p&gt;Non-Combat Навыки:&lt;/p&gt;&lt;p&gt;1) Ремесло (Hand Crafting)&lt;/p&gt;&lt;p&gt;2) Взлом (Lock Picking)&lt;/p&gt;&lt;p&gt;3) Работа с механизмами (Engineering)&lt;/p&gt;&lt;p&gt;4) Алхимия (Alchemy)&lt;/p&gt;&lt;p&gt;5) Разведка (Exploration)&lt;/p&gt;&lt;p&gt;Прокачивается с помощью книг, являющимися очень ценными предметами в игровом мире.&lt;/p&gt;&lt;p&gt;Развитие данных навыков позволяет взаимодействовать&amp;nbsp; с предметами окружения&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="600" y="40" width="180" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-52" value="&lt;br&gt;&lt;p&gt;Combat Навыки:&lt;/p&gt;&lt;p&gt;1) Ближний бой (Melee Combat)&lt;/p&gt;&lt;p&gt;2) Дальний бой (Distance Combat)&lt;/p&gt;&lt;p&gt;3) Защита (Armor and Blocking)&lt;/p&gt;&lt;p&gt;4) Магия (Concentration Control)&lt;/p&gt;&lt;p&gt;5) Военное дело (Battle Tactics)&lt;/p&gt;&lt;p&gt;Прокачивается боем, от снаряжения зависит, что прокачивается. Линейные надбавки к статам снаряжения не дают, однако от них зависит, можно носить ли носить снаряжение.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="dxx2qrCqdPRJCV27nMZO-31" vertex="1">
+          <mxGeometry x="840" y="10" width="220" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-55" value="Система предметов" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1160" y="610" width="560" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="dxx2qrCqdPRJCV27nMZO-55" source="dxx2qrCqdPRJCV27nMZO-56" target="dxx2qrCqdPRJCV27nMZO-58" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-55" source="dxx2qrCqdPRJCV27nMZO-56" target="dxx2qrCqdPRJCV27nMZO-60" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-55" source="dxx2qrCqdPRJCV27nMZO-56" target="dxx2qrCqdPRJCV27nMZO-62" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="dxx2qrCqdPRJCV27nMZO-55" source="dxx2qrCqdPRJCV27nMZO-56" target="dxx2qrCqdPRJCV27nMZO-64" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-56" value="&lt;p&gt;Предметы делятся на категории:&amp;nbsp;&lt;/p&gt;&lt;p&gt;1)Снаряжение,&lt;/p&gt;&lt;p&gt;2)Расходники,&lt;/p&gt;&lt;p&gt;3)Инструменты,&amp;nbsp;&lt;/p&gt;&lt;p&gt;4)Ключевые предметы&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;" parent="dxx2qrCqdPRJCV27nMZO-55" vertex="1">
+          <mxGeometry x="40" y="60" width="190" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-58" value="Снаряжение будет влиять на характеристики персонажа. Также высокоуровневое снаряжение может требовать минимальные статы от персонажа, чтобы им пользоваться." style="text;whiteSpace=wrap;html=1;" parent="dxx2qrCqdPRJCV27nMZO-55" vertex="1">
+          <mxGeometry x="340" y="70" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-60" value="Инструменты нужны для того, чтобы взаимодействовать с окружающей средой. Могут являться поводом чтобы вернуться в старые места, где они могли бы пригодиться." style="text;whiteSpace=wrap;html=1;" parent="dxx2qrCqdPRJCV27nMZO-55" vertex="1">
+          <mxGeometry x="340" y="180" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-62" value="Расходники используются один раз и потом исчезают." style="text;whiteSpace=wrap;html=1;" parent="dxx2qrCqdPRJCV27nMZO-55" vertex="1">
+          <mxGeometry x="340" y="300" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dxx2qrCqdPRJCV27nMZO-64" value="Ключевые предметы дают доступ к дальнейшему прохождению" style="text;whiteSpace=wrap;html=1;" parent="dxx2qrCqdPRJCV27nMZO-55" vertex="1">
+          <mxGeometry x="340" y="370" width="180" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
   <diagram name="Architecture Scratches" id="58cdce13-f638-feb5-8d6f-7d28b1aa9fa0">
-    <mxGraphModel dx="3450" dy="1584" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="7407" dy="3907" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2099,7 +2257,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="gPyYPmM51iMQBUtYAKb9" name="Geometry Scratches">
-    <mxGraphModel dx="1157" dy="679" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1644" dy="965" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2699,6 +2857,160 @@
         </mxCell>
         <mxCell id="qBvR5c63eVUzSGqGkZxI-5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="2040" y="560" width="40" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="-3eHEQ403ia0VuSxEKSS" name="Player Quirks">
+    <mxGraphModel dx="893" dy="524" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lmUS8VN0APAB5G85al8u-1" value="Action to player" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lmUS8VN0APAB5G85al8u-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="lmUS8VN0APAB5G85al8u-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="200" as="sourcePoint" />
+            <mxPoint x="280" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lmUS8VN0APAB5G85al8u-4" value="Hit Action&lt;br&gt;(OnHitEvent)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lmUS8VN0APAB5G85al8u-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="lmUS8VN0APAB5G85al8u-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="200" as="sourcePoint" />
+            <mxPoint x="280" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lmUS8VN0APAB5G85al8u-6" value="Dodge Action&lt;br&gt;(OnDodgeEvent)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="130" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lmUS8VN0APAB5G85al8u-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="lmUS8VN0APAB5G85al8u-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="200" as="sourcePoint" />
+            <mxPoint x="280" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lmUS8VN0APAB5G85al8u-10" value="..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="290" y="200" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Nr9a7rSRtsMnLvkIxI_R" name="Arts">
+    <mxGraphModel dx="1302" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4WkArL2mw3A5EdMecTTC-2" value="Smart Patch" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="800" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="40" y="40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-4" value="Corner" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="50" y="120" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-7" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="50" y="50" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-8" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="40" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-9" value="One sided road" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="50" y="240" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="50" y="160" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-12" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="360" y="40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-14" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="370" y="50" width="70" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-15" value="Dead end" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="370" y="120" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-16" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="200" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-17" value="Two sided road" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="210" y="240" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-18" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="210" y="160" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-19" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="360" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-20" value="Crossroad" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="370" y="240" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-21" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="370" y="160" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-22" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rotation=90;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="370" y="160" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-27" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="520" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-28" value="T-Pipe" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="530" y="240" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-29" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="530" y="170" width="60" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-31" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="520" y="170" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-33" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="200" y="40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-34" value="Sandlot" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="210" y="120" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-23" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="520" y="40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-25" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="530" y="50" width="60" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-26" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rotation=90;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="525" y="45" width="60" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-24" value="Road turn" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="530" y="120" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-35" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="680" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-36" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="690" y="170" width="60" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-37" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="680" y="160" width="80" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-38" value="Blunt T-Pipe" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="680" y="240" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-39" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="680" y="40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-40" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="690" y="50" width="60" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-42" value="Blunt road turn" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="690" y="120" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-43" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="4WkArL2mw3A5EdMecTTC-2">
+          <mxGeometry x="680" y="40" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="4WkArL2mw3A5EdMecTTC-44" value="DAILY REMINDER:&lt;br&gt;To make tiles usefull for asset placer, child model of prefab should be turned around y axis by 180 degress" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="40" width="160" height="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

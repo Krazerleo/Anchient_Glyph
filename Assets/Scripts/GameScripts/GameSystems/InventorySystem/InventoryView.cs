@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.GameSystems.ItemSystem;
-using AncientGlyph.GameScripts.Geometry.Shapes.PlanarShapes;
 using AncientGlyph.GameScripts.Services.SaveDataService;
 using AncientGlyph.GameScripts.UserInterface;
 using UnityEngine;

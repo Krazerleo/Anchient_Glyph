@@ -1,5 +1,5 @@
-#nullable enable
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using AncientGlyph.GameScripts.Services.AssetProviderService.AssetTypeOption;
 using AncientGlyph.GameScripts.Services.LoggingService;
 using Cysharp.Threading.Tasks;
@@ -15,18 +15,23 @@ namespace AncientGlyph.GameScripts.Services.AssetProviderService
         where TAssetTypeOption : IAssetTypeOption
     {
         private readonly ILoggingService _loggingService;
-        private Dictionary<string, GameObject>? _resources;
+        private Dictionary<string, GameObject> _resources;
 
         public AssetProviderService(ILoggingService loggingService)
         {
             _loggingService = loggingService;
         }
-
-        public async UniTask<GameObject?> GetAssetByName(string name)
+        
+        /// <summary>
+        /// Returns asset by its name
+        /// </summary>
+        /// <param name="name">Name used to find asset</param>
+        /// <returns>GameObject if found. Otherwise null</returns>
+        public async UniTask<GameObject> GetAssetByName(string name)
         {
             await GetAllAssets();
 
-            if (_resources!.TryGetValue(name, out GameObject? asset))
+            if (_resources!.TryGetValue(name, out GameObject asset))
             {
                 return asset;
             }

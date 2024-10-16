@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace AncientGlyph.GameScripts.CoreGameMechanics
 {
     /// <summary>
-    /// Provides a turn based game
+    /// Provides a turn based game loop
     /// </summary>
     [UsedImplicitly]
     public class GameLoop

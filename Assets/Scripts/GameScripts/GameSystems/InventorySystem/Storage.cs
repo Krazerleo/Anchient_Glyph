@@ -35,6 +35,8 @@ namespace AncientGlyph.GameScripts.GameSystems.InventorySystem
             PopulateInventory(width, height);
         }
 
+        public Storage(Vector2Int size) : this(size.x, size.y) {}
+
         private void PopulateInventory(int width, int height)
         {
             Width = width;

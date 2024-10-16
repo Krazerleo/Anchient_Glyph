@@ -1,7 +1,6 @@
 using AncientGlyph.EditorScripts.Constants;
-using AncientGlyph.EditorScripts.Editors.AssetViewLibrary.AssetMainLibrary;
-using AncientGlyph.EditorScripts.Editors.LevelModeling.LevelEditingHandlers;
-using AncientGlyph.EditorScripts.Utils;
+using AncientGlyph.EditorScripts.Editors.AssetLibrary.AgAsset;
+using AncientGlyph.EditorScripts.Editors.LevelModeling.EditingHandlers;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.ForEditor;
 using UnityEditor;
@@ -33,11 +32,8 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
 
         public override void OnActivated()
         {
-            AssetLibrary.OnAssetNameChangeHandler += OnAssetNameChanged;
-            AssetLibrary.OnAssetTypeChangeHandler += OnAssetTypeChanged;
-
-            _placerHandler = PlacerHandlerCreator.CreatePlacerHandler(AssetLibrary.SelectedTypeAsset);
-            _selectedGameObject = PrefabHelper.LoadPrefabFromFile(AssetLibrary.SelectedAssetName);
+            AssetLibrary.AssetLibrary.OnAssetChangeHandler += OnAssetNameChanged;
+            AssetLibrary.AssetLibrary.OnAssetTypeChangeHandler += OnAssetTypeChanged;
         }
 
         public override void OnToolGUI(EditorWindow window)
@@ -50,8 +46,8 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
 
         public override void OnWillBeDeactivated()
         {
-            AssetLibrary.OnAssetNameChangeHandler -= OnAssetNameChanged;
-            AssetLibrary.OnAssetTypeChangeHandler -= OnAssetTypeChanged;
+            AssetLibrary.AssetLibrary.OnAssetChangeHandler -= OnAssetNameChanged;
+            AssetLibrary.AssetLibrary.OnAssetTypeChangeHandler -= OnAssetTypeChanged;
         }
 
         [Shortcut("Activate Place Tool", typeof(SceneView), KeyCode.C, ShortcutModifiers.Shift)]
@@ -67,11 +63,11 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
 
         private void OnEnable()
         {
-            EditorApplication.update += UpdateAvailable;    
+            EditorApplication.update += UpdateAvailable;
 
             if (GameObject.FindGameObjectsWithTag("GridPlaneTag") == null)
             {
-                InstantiateGridPlane();  
+                InstantiateGridPlane();
             }
             else
             {
@@ -83,19 +79,20 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
         {
             _gridPlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
             _gridPlane.name = GridName;
-            _gridPlane.transform.localScale = new Vector3(EditorConstants.GridSizeX, EditorConstants.FloorHeight, EditorConstants.GridSizeZ);
+            _gridPlane.transform.localScale =
+                new Vector3(EditorConstants.GridSizeX, EditorConstants.FloorHeight, EditorConstants.GridSizeZ);
             _gridPlane.transform.Translate(
-                Vector3.up * (EditorConstants.DistanceTolerance + InitialGridPlaneHeight)
-                + Vector3.right * GameConstants.LevelCellsSizeX / 2
-                + Vector3.forward * GameConstants.LevelCellsSizeZ / 2);
+                                           Vector3.up * (EditorConstants.DistanceTolerance + InitialGridPlaneHeight)
+                                         + Vector3.right * GameConstants.LevelCellsSizeX / 2
+                                         + Vector3.forward * GameConstants.LevelCellsSizeZ / 2);
 
             SceneVisibilityManager.instance.Hide(_gridPlane, true);
         }
 
         private void HandleInput()
         {
-            var current = Event.current;
-            var controlID = GUIUtility.GetControlID(FocusType.Keyboard);
+            Event current = Event.current;
+            int controlID = GUIUtility.GetControlID(FocusType.Keyboard);
 
             switch (current.type)
             {
@@ -106,8 +103,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
                         _mouseButtonWasPressed = true;
 
                         Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-
-                        if (Physics.Raycast(worldRay, out var hitInfo))
+                        if (Physics.Raycast(worldRay, out RaycastHit hitInfo))
                         {
                             _placerHandler.OnMouseButtonPressedHandler(hitInfo.point);
                         }
@@ -124,7 +120,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
                     {
                         Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 
-                        if (Physics.Raycast(worldRay, out var hitInfo))
+                        if (Physics.Raycast(worldRay, out RaycastHit hitInfo))
                         {
                             _placerHandler.OnMouseButtonReleasedHandler(hitInfo.point);
                         }
@@ -174,14 +170,15 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             }
         }
 
-        private void OnAssetNameChanged(object obj, string assetName)
+        private void OnAssetNameChanged(object obj, AssetViewModel assetViewModel)
         {
-            if (string.IsNullOrEmpty(assetName))
+            if (assetViewModel is null)
             {
+                Debug.LogError("Asset info is null");
                 return;
             }
 
-            _selectedGameObject = AssetDatabase.LoadAssetAtPath<GameObject>(assetName);
+            _selectedGameObject = AssetDatabase.LoadAssetAtPath<GameObject>(assetViewModel.PrefabFile.FullName);
             _placerHandler.SetPrefabObject(_selectedGameObject);
         }
 
@@ -197,8 +194,7 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             if (_availableCurrentTicks > AvailableCheckTicks)
             {
                 _availableCurrentTicks = 0;
-
-                _isAvailable = EditorWindow.HasOpenInstances<AssetLibrary>() && AssetLibrary.SelectedAssetName != "";
+                _isAvailable = EditorWindow.HasOpenInstances<AssetLibrary.AssetLibrary>();
             }
         }
     }

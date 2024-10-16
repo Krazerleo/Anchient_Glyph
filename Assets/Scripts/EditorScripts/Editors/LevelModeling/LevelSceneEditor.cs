@@ -1,4 +1,3 @@
-using AncientGlyph.EditorScripts.Utils;
 using AncientGlyph.GameScripts.EntityModel;
 using AncientGlyph.GameScripts.ForEditor;
 using AncientGlyph.GameScripts.GameWorldModel;
@@ -28,21 +27,20 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             }
 
             Undo.SetCurrentGroupName("Remove Tiles");
-            int groupId = Undo.GetCurrentGroup();
+            int undoGroupIndex = Undo.GetCurrentGroup();
 
-            var tilesGroup = GameObject.Find(TilesGroupName);
-
-            foreach (var cellCoordinates in shape.GetDefinedGeometry())
+            GameObject tilesGroup = GameObject.Find(TilesGroupName);
+            foreach (Vector3Int cellCoordinates in shape.GetDefinedGeometry())
             {
-                var heightAdjustedCoordinates = (Vector3)cellCoordinates;
+                Vector3 heightAdjustedCoordinates = cellCoordinates;
                 heightAdjustedCoordinates.y *= 1.5f;
-                var gameObject = Object.Instantiate(tilePrefab, heightAdjustedCoordinates, Quaternion.identity,
-                    tilesGroup.transform);
+                GameObject gameObject = Object.Instantiate(tilePrefab, heightAdjustedCoordinates, Quaternion.identity,
+                                                           tilesGroup.transform);
                 ModelMarkerCreator.AddTileMarker(cellCoordinates, gameObject);
                 Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
 
-            Undo.CollapseUndoOperations(groupId);
+            Undo.CollapseUndoOperations(undoGroupIndex);
         }
 
         public void PlaceEntities(IShape3D shape, GameObject creaturePrefab, string entityId)
@@ -59,27 +57,26 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             }
 
             Undo.SetCurrentGroupName("Remove Creature");
-            int groupId = Undo.GetCurrentGroup();
+            int undoGroupIndex = Undo.GetCurrentGroup();
 
             _entityMarkerPrefab ??= AssetDatabase
                 .LoadAssetAtPath<GameObject>(EntityMarkerPrefabPath);
 
-            var entitiesGroup = GameObject.Find(EntitiesGroupName);
-
-            foreach (var cellCoordinates in shape.GetDefinedGeometry())
+            GameObject entitiesGroup = GameObject.Find(EntitiesGroupName);
+            foreach (Vector3Int cellCoordinates in shape.GetDefinedGeometry())
             {
-                var heightAdjustedCoordinates = (Vector3)cellCoordinates;
+                Vector3 heightAdjustedCoordinates = cellCoordinates;
                 heightAdjustedCoordinates.y *= 1.5f;
                 
-                var entityMarker = Object.Instantiate(_entityMarkerPrefab, heightAdjustedCoordinates,
-                    Quaternion.identity, entitiesGroup.transform);
+                GameObject entityMarker = Object.Instantiate(_entityMarkerPrefab, heightAdjustedCoordinates,
+                                                             Quaternion.identity, entitiesGroup.transform);
                 
-                var creatureModel = new CreatureModel(traitSource.CreatureTraits, creaturePrefab.name, cellCoordinates);
+                CreatureModel creatureModel = new(traitSource.CreatureTraits, creaturePrefab.name, cellCoordinates);
                 ModelMarkerCreator.AddEntityMarker(cellCoordinates, creatureModel, entityMarker);
                 Undo.RegisterCreatedObjectUndo(entityMarker, "");
             }
 
-            Undo.CollapseUndoOperations(groupId);
+            Undo.CollapseUndoOperations(undoGroupIndex);
         }
 
         public void PlaceWalls(IShape3D shape, GameObject wallPrefab, Direction direction)
@@ -90,22 +87,21 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             }
 
             Undo.SetCurrentGroupName("Remove Walls");
-            int groupId = Undo.GetCurrentGroup();
+            int undoGroupIndex = Undo.GetCurrentGroup();
+            GameObject wallsGroup = GameObject.Find(WallsGroupName);
 
-            var wallsGroup = GameObject.Find(WallsGroupName);
-
-            foreach (var cellCoordinates in shape.GetDefinedGeometry())
+            foreach (Vector3Int cellCoordinates in shape.GetDefinedGeometry())
             {
-                var heightAdjustedCoordinates = (Vector3)cellCoordinates;
+                Vector3 heightAdjustedCoordinates = cellCoordinates;
                 heightAdjustedCoordinates.y *= 1.5f;
-                var gameObject = Object.Instantiate(wallPrefab, heightAdjustedCoordinates, Quaternion.identity,
-                    wallsGroup.transform);
+                GameObject gameObject = Object.Instantiate(wallPrefab, heightAdjustedCoordinates, Quaternion.identity,
+                                                           wallsGroup.transform);
                 ModelMarkerCreator.AddWallMarker(cellCoordinates, direction, gameObject);
                 gameObject.transform.GetChild(0).Rotate(Vector3.up, -90f * (uint)direction, Space.World);
                 Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
 
-            Undo.CollapseUndoOperations(groupId);
+            Undo.CollapseUndoOperations(undoGroupIndex);
         }
 
         public void PlaceItem(Vector3 itemPosition, GameObject itemPrefab)
@@ -116,20 +112,19 @@ namespace AncientGlyph.EditorScripts.Editors.LevelModeling
             }
 
             Undo.SetCurrentGroupName("Remove Item");
-            int groupId = Undo.GetCurrentGroup();
-
-            var itemGroup = GameObject.Find(ItemsGroupName);
+            int undoGroupIndex = Undo.GetCurrentGroup();
+            GameObject itemGroup = GameObject.Find(ItemsGroupName);
 
             _itemMarkerPrefab ??= AssetDatabase
                 .LoadAssetAtPath<GameObject>(ItemMarkerPrefabPath);
             
-            var itemMarker = Object.Instantiate(_itemMarkerPrefab, itemPosition,
-                Quaternion.identity, itemGroup.transform);
+            GameObject itemMarker = Object.Instantiate(_itemMarkerPrefab, itemPosition,
+                                                       Quaternion.identity, itemGroup.transform);
             
             ModelMarkerCreator.AddItemMarker(itemPosition, itemPrefab.name, itemMarker);
-            Undo.RegisterCreatedObjectUndo(itemMarker, "");
 
-            Undo.CollapseUndoOperations(groupId);
+            Undo.RegisterCreatedObjectUndo(itemMarker, "");
+            Undo.CollapseUndoOperations(undoGroupIndex);
         }
     }
 }

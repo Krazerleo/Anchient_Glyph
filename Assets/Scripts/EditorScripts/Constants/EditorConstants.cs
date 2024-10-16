@@ -11,5 +11,7 @@ namespace AncientGlyph.EditorScripts.Constants
         public const float GridSizeY = GameConstants.LevelCellsSizeY / 10f - DistanceTolerance;
 
         public const float FloorHeight = 1.5f;
+        public const float FloorSizeX = 1.0f;
+        public const float FloorSizeZ = 1.0f;
     }
 }

@@ -1,13 +1,12 @@
-#nullable enable
 using System;
 using AncientGlyph.GameScripts.Animators;
 using AncientGlyph.GameScripts.Constants;
 using AncientGlyph.GameScripts.EntityModel.Controller;
+using AncientGlyph.GameScripts.EntityModel.Controller.PlayerControllerComponents;
 using AncientGlyph.GameScripts.GameWorldModel;
-using AncientGlyph.GameScripts.PlayerInput;
+using AncientGlyph.GameScripts.InputSystem;
 using AncientGlyph.GameScripts.Services.AssetProviderService;
 using AncientGlyph.GameScripts.Services.AssetProviderService.AssetTypeOption;
-using AncientGlyph.GameScripts.Services.ComponentLocatorService;
 using AncientGlyph.GameScripts.Services.LoggingService;
 using AncientGlyph.GameScripts.Services.SaveDataService;
 using Cysharp.Threading.Tasks;
@@ -22,31 +21,24 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
     {
         private readonly LevelModel _levelModel;
         private readonly ILoggingService _loggingService;
-        private readonly IComponentLocatorService _componentLocator;
         private readonly IAssetProviderService<CreatureAssetOption> _creatureAssetProvider;
         private readonly ISaveDataService _saveDataService;
+        private readonly GameInput _input;
         
         public PlayerFactory(LevelModel levelModel, ILoggingService loggingService,
                              IAssetProviderService<CreatureAssetOption> creatureAssetProvider,
-                             IComponentLocatorService componentLocator, ISaveDataService saveDataService)
+                             GameInput input, ISaveDataService saveDataService)
         {
             _levelModel = levelModel;
             _loggingService = loggingService;
             _creatureAssetProvider = creatureAssetProvider;
-            _componentLocator = componentLocator;
+            _input = input;
             _saveDataService = saveDataService;
         }
 
         public async UniTask<PlayerController> CreatePlayer()
         {
-            if (_componentLocator.FindComponent<PlayerMoveInput>())
-            {
-                const string message = "Trying to duplicate player on scene";
-                _loggingService.LogError(message);
-                throw new ArgumentException(message);
-            }
-
-            GameObject? playerAsset = await _creatureAssetProvider
+            GameObject playerAsset = await _creatureAssetProvider
                 .GetAssetByName(GameConstants.PlayerName);
 
             if (playerAsset == null)
@@ -65,18 +57,12 @@ namespace AncientGlyph.GameScripts.EntityModel.Factory
                 throw new ArgumentException(message);
             }
 
-            if (playerPrefab.TryGetComponent(out PlayerMoveInput moveInput) == false)
-            {
-                const string message = "Player Move Input not found";
-                _loggingService.LogError(message);
-                throw new ArgumentException(message);
-            }
-
             playerPrefab.transform.position = _saveDataService.BaseInfo.PlayerPosition;
             PlayerModel playerModel = new(_saveDataService.BaseInfo.PlayerPosition);
 
-            return new PlayerController(animator, moveInput, _levelModel,
-                                        playerModel, _loggingService);
+            MoveComponent moveComponent = new(_input.MoveInput, animator, _levelModel, playerModel, _loggingService);
+            ActionComponent actionComponent = new(_input.ActionInput);
+            return new PlayerController(playerModel, moveComponent, actionComponent);
         }
     }
 }

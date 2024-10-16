@@ -1,4 +1,4 @@
-#nullable enable
+//#define DEBUG_THIS
 using System.Collections.Generic;
 using AncientGlyph.GameScripts.CoreGameMechanics;
 using AncientGlyph.GameScripts.EntityModel;
@@ -16,7 +16,7 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
     [UsedImplicitly]
     public class PlayStateInitial : IGameState
     {
-        private IGameStateMachine? _stateMachine;
+        private IGameStateMachine _stateMachine;
         private readonly ICreatureFactory _creatureFactory;
         private readonly IPlayerFactory _playerFactory;
         private readonly IItemFactory _itemFactory;
@@ -25,11 +25,13 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
         private readonly GameLoop _gameLoop;
         private readonly ILoggingService _logger;
 
+        private PlayerController _playerControllerToRemoveAfter;
+
         public PlayStateInitial(ICreatureFactory creatureFactory,
-            IPlayerFactory playerFactory, IItemFactory itemFactory,
-            LevelModel levelModel, GameLoop gameLoop,
-            ItemsSerializationContainer itemsContainer,
-            ILoggingService logger)
+                                IPlayerFactory playerFactory, IItemFactory itemFactory,
+                                LevelModel levelModel, GameLoop gameLoop,
+                                ItemsSerializationContainer itemsContainer,
+                                ILoggingService logger)
         {
             _creatureFactory = creatureFactory;
             _playerFactory = playerFactory;
@@ -49,7 +51,10 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
                 .Forget();
         }
 
-        public void Exit() { }
+        public void Exit()
+        {
+            _playerControllerToRemoveAfter.Dispose();
+        }
 
         public void LateStateMachineBinding(IGameStateMachine stateMachine)
             => _stateMachine = stateMachine;
@@ -58,7 +63,7 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
         {
             foreach (ItemSerializationInfo itemInfo in _itemsContainer.ItemData)
             {
-                GameItemView? itemView = await _itemFactory.CreateGameItem(itemInfo);
+                GameItemView itemView = await _itemFactory.CreateGameItem(itemInfo);
 
                 if (itemView == null)
                 {
@@ -79,13 +84,13 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
                     return;
                 }
 
-                CreatureController? controller = await _creatureFactory
+                CreatureController controller = await _creatureFactory
                     .CreateCreature(entity.Position, creatureModel, playerController);
 
                 if (controller == null)
                 {
                     _logger.LogError($"Null creature controller with id {creatureModel.SerializationName}." +
-                                     $" Pass it away");
+                                     " Pass it away");
                     continue;
                 }
 
@@ -95,11 +100,12 @@ namespace AncientGlyph.GameScripts.LifeCycle.GameStateManagement.GameStates.Play
 
         private async UniTask<PlayerController> InjectPlayerToGameLoop()
         {
-            // _logger.LogDebug("Player injected");
-            PlayerController player = await _playerFactory.CreatePlayer();
-
-            _gameLoop.InjectEntityController(player);
-            return player;
+#if DEBUG_THIS
+            _logger.LogDebug("Player injected");
+#endif
+            _playerControllerToRemoveAfter = await _playerFactory.CreatePlayer();
+            _gameLoop.InjectEntityController(_playerControllerToRemoveAfter);
+            return _playerControllerToRemoveAfter;
         }
     }
 }
