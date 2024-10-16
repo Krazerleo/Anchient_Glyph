@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Brush-Info-Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+        <ui:Label name="Brush-Name-Label" style="flex-grow: 1; -unity-text-align: lower-left; align-self: flex-end;" />
+        <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="Brush-Type-Label" style="flex-grow: 1; align-items: center; align-self: flex-end;" />
+        <ui:Image name="Brush-Preview-Image" style="width: 50px;" />
+    </ui:VisualElement>
+</ui:UXML>
