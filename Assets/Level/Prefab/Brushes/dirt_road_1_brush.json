@@ -1,0 +1,16 @@
+{
+  "Preview": "Tiles/dirt_road/preview.png",
+  "BrushType": "SmartPatch",
+  "SmartPatchElements": {
+    "BluntRoadTurnPath": "Tiles/dirt_road/tpipe/tpipe.prefab",
+    "BluntTPipe": "Tiles/dirt_road/blunt_tpipe/blunt_tpipe.prefab",
+    "Crossroad": "Tiles/dirt_road/crossroad/crossroad.prefab",
+    "OneSidedRoad": "Tiles/dirt_road/one_sided_road/one_sided_road.prefab",
+    "RoadCorner": "Tiles/dirt_road/road_corner/road_corner.prefab",
+    "RoadDeadEnd": "Tiles/dirt_road/road_dead_end/road_dead_end.prefab",
+    "road_sandlot": "Tiles/dirt_road/road_sandlot/road_sandlot.prefab",
+    "RoadTurn": "Tiles/dirt_road/road_turn/road_turn.prefab",
+    "Tpipe": "Tiles/dirt_road/tpipe/tpipe.prefab",
+    "TwoSidedRoad": "Tiles/dirt_road/two_sided_road/two_sided_road.prefab"
+  }
+}
